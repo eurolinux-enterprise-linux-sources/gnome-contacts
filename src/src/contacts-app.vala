@@ -1,3 +1,4 @@
+/* -*- Mode: vala; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 8 -*- */
 /*
  * Copyright (C) 2011 Alexander Larsson <alexl@redhat.com>
  *
@@ -15,79 +16,84 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Gee;
 using Gtk;
 using Folks;
 
 public class Contacts.App : Gtk.Application {
-  private Settings settings;
+  public static App app;
+  public GLib.Settings settings;
+  public Store contacts_store;
 
-  private Store contacts_store;
+  public Contacts.Window window;
+  private Gtk.Overlay overlay;
 
-  private Window window;
+  private Gd.MainToolbar left_toolbar;
+  private ToggleButton select_button;
+  private ListPane list_pane;
 
-  private bool is_prepare_scheluded = false;
-  private bool is_quiescent_scheduled = false;
+  private Toolbar right_toolbar;
+  private Label contact_name;
+  private Button edit_button;
+  private Button done_button;
 
-  private const GLib.ActionEntry[] action_entries = {
-    { "quit",        quit                },
-    { "help",        show_help           },
-    { "about",       show_about          },
-    { "change-book", change_address_book },
-    { "new-contact", new_contact         }
-  };
+  private ContactPane contacts_pane;
+  private Overlay right_overlay;
 
-  private const OptionEntry[] options = {
-    { "individual",  'i', 0, OptionArg.STRING, null, N_("Show contact with this individual id") },
-    { "email",       'e', 0, OptionArg.STRING, null, N_("Show contact with this email address") },
-    { "search",      's', 0, OptionArg.STRING                                                   },
-    { "version",     'v', 0, OptionArg.NONE,   null, N_("Show the current version of Contacts") },
-    {}
-  };
-
-  public App () {
-    Object (
-      application_id: "org.gnome.Contacts",
-      flags: ApplicationFlags.HANDLES_COMMAND_LINE
-    );
-
-    this.settings = new Settings (this);
-    add_main_option_entries (options);
-	create_actions ();
+  private bool window_delete_event (Gdk.EventAny event) {
+    // Clear the contacts so any changed information is stored
+    contacts_pane.show_contact (null);
+    return false;
   }
 
-  public override int command_line (ApplicationCommandLine command_line) {
-    var options = command_line.get_options_dict ();
-
-    activate ();
-
-    if ("individual" in options) {
-      var individual = options.lookup_value ("individual", VariantType.STRING);
-      if (individual != null)
-        show_individual.begin (individual.get_string ());
-    } else if ("email" in options) {
-      var email = options.lookup_value ("email", VariantType.STRING);
-      if (email != null)
-        show_by_email.begin (email.get_string ());
-    } else if ("search" in options) {
-      var search_term = options.lookup_value ("search", VariantType.STRING);
-      if (search_term != null)
-        show_search (search_term.get_string ());
+  private bool window_key_press_event (Gdk.EventKey event) {
+    if ((event.keyval == Gdk.keyval_from_name ("q")) &&
+        ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0)) {
+      // Clear the contacts so any changed information is stored
+      contacts_pane.show_contact (null);
+      window.destroy ();
+    } else if (((event.keyval == Gdk.Key.s) ||
+                (event.keyval == Gdk.Key.f)) &&
+               ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0)) {
+      Utils.grab_entry_focus_no_select (list_pane.filter_entry);
+    } else if (event.length >= 1 &&
+               Gdk.keyval_to_unicode (event.keyval) != 0 &&
+               (event.state & Gdk.ModifierType.CONTROL_MASK) == 0 &&
+               (event.state & Gdk.ModifierType.MOD1_MASK) == 0 &&
+               (event.keyval != Gdk.Key.Escape) &&
+               (event.keyval != Gdk.Key.Tab) &&
+               (event.keyval != Gdk.Key.BackSpace) ) {
+      Utils.grab_entry_focus_no_select (list_pane.filter_entry);
+      window.propagate_key_event (event);
     }
 
-    return 0;
+    return false;
   }
 
-  public override int handle_local_options (VariantDict options) {
-    if ("version" in options) {
-      stdout.printf ("gnome-contacts %s\n", Config.PACKAGE_VERSION);
-      return 0;
+  private void selection_changed (Contact? new_selection) {
+    /* FIXME: ask the user lo teave edit-mode and act accordingly */
+    if (contacts_pane.on_edit_mode) {
+      contacts_pane.set_edit_mode (false);
+
+      contact_name.set_text (null);
+      done_button.hide ();
     }
 
-    return -1;
+    contacts_pane.show_contact (new_selection, false, false);
+
+    /* clearing right_toolbar */
+    if (new_selection != null) {
+      edit_button.show ();
+    } else {
+      edit_button.hide ();
+    }
   }
 
   public void show_contact (Contact? contact) {
-    window.set_shown_contact (contact);
+    list_pane.select_contact (contact);
+
+    /* hack for showing contact */
+    selection_changed (contact);
   }
 
   public async void show_individual (string id) {
@@ -95,9 +101,10 @@ public class Contacts.App : Gtk.Application {
         return c.individual.id == id;
       });
     if (contact != null) {
-      show_contact (contact);
+      list_pane.select_contact (contact);
+      contacts_pane.show_contact (contact);
     } else {
-      var dialog = new MessageDialog (this.window, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.CLOSE,
+      var dialog = new MessageDialog (App.app.window, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.CLOSE,
                                       _("No contact with id %s found"), id);
       dialog.set_title(_("Contact not found"));
       dialog.show ();
@@ -108,70 +115,92 @@ public class Contacts.App : Gtk.Application {
   }
 
   public void change_address_book () {
-    var dialog = new Dialog.with_buttons (_("Change Address Book"),
-					  (Window) window,
-					  DialogFlags.MODAL |
-					  DialogFlags.DESTROY_WITH_PARENT |
-					  DialogFlags.USE_HEADER_BAR,
-					  _("Change"), ResponseType.OK,
-					  _("Cancel"), ResponseType.CANCEL,
-					  null);
+    var title = _("Change Address Book");
+    var dialog = new Dialog.with_buttons ("",
+                                          (Window) window,
+                                          DialogFlags.MODAL | DialogFlags.DESTROY_WITH_PARENT,
+                                          Stock.CANCEL, ResponseType.CANCEL,
+                                          _("Select"), ResponseType.OK);
 
-    var ok_button = dialog.get_widget_for_response (ResponseType.OK);
-    ok_button.sensitive = false;
-    ok_button.get_style_context ().add_class ("suggested-action");
     dialog.set_resizable (false);
-    dialog.set_border_width (12);
+    dialog.set_default_response (ResponseType.OK);
 
-    var explanation_label = new Label (_("New contacts will be added to the selected address book.\nYou are able to view and edit contacts from other address books."));
-    (dialog.get_content_area () as Box).add (explanation_label);
-    (dialog.get_content_area () as Box).set_spacing (12);
+    var tree_view = new TreeView ();
+    var store = new ListStore (2, typeof (string), typeof (Folks.PersonaStore));
+    tree_view.set_model (store);
+    tree_view.set_headers_visible (false);
+    tree_view.get_selection ().set_mode (SelectionMode.BROWSE);
 
-    var acc = new AccountsList (this.contacts_store);
-    acc.update_contents (true);
+    var column = new Gtk.TreeViewColumn ();
+    tree_view.append_column (column);
 
-    ulong active_button_once = 0;
-    active_button_once = acc.account_selected.connect (() => {
-	ok_button.sensitive = true;
-	acc.disconnect (active_button_once);
-      });
+    var renderer = new Gtk.CellRendererText ();
+    column.pack_start (renderer, false);
+    column.add_attribute (renderer, "text", 0);
 
-    ulong stores_changed_id = contacts_store.eds_persona_store_changed.connect  ( () => {
-    	acc.update_contents (true);
-      });
+    var scrolled = new ScrolledWindow(null, null);
+    scrolled.set_size_request (340, 300);
+    scrolled.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
+    scrolled.set_vexpand (true);
+    scrolled.set_hexpand (true);
+    scrolled.set_shadow_type (ShadowType.IN);
+    scrolled.add (tree_view);
 
-    (dialog.get_content_area () as Box).add (acc);
+    var grid = new Grid ();
+    grid.set_orientation (Orientation.VERTICAL);
+    grid.set_row_spacing (6);
+
+    var l = new Label (title);
+    l.set_halign (Align.START);
+
+    grid.add (l);
+    grid.add (scrolled);
+
+    var box = dialog.get_content_area () as Box;
+    box.pack_start (grid, true, true, 0);
+    grid.set_border_width (6);
+
+    TreeIter iter;
+
+    foreach (var persona_store in get_eds_address_books ()) {
+      var name = Contact.format_persona_store_name (persona_store);
+      store.append (out iter);
+      store.set (iter, 0, name, 1, persona_store);
+      if (persona_store == contacts_store.aggregator.primary_store) {
+        tree_view.get_selection ().select_iter (iter);
+      }
+    }
 
     dialog.show_all ();
     dialog.response.connect ( (response) => {
-	if (response == ResponseType.OK) {
-	  var e_store = acc.selected_store as Edsf.PersonaStore;
-	  if (e_store != null) {
-	    eds_source_registry.set_default_address_book (e_store.source);
-	    var settings = new GLib.Settings ("org.freedesktop.folks");
-	    settings.set_string ("primary-store",
-				 "eds:%s".printf(e_store.id));
-	    contacts_store.refresh ();
-	  }
-	}
-	contacts_store.disconnect (stores_changed_id);
-	dialog.destroy ();
+        if (response == ResponseType.OK) {
+          PersonaStore selected_store;
+          TreeIter iter2;
+
+          if (tree_view.get_selection() .get_selected (null, out iter2)) {
+            store.get (iter2, 1, out selected_store);
+
+            var e_store = selected_store as Edsf.PersonaStore;
+
+            eds_source_registry.set_default_address_book (e_store.source);
+
+            contacts_store.refresh ();
+          }
+        }
+        dialog.destroy ();
       });
   }
 
   public void show_help () {
-    try {
-      Gtk.show_uri_on_window (window, "help:gnome-help/contacts", Gtk.get_current_event_time ());
-    } catch (GLib.Error e1) {
-      warning ("Error showing help: %s", e1.message);
-    }
+    Gtk.show_uri (window.get_screen (),
+         "help:gnome-help/contacts",
+         Gtk.get_current_event_time ());
   }
 
   public void show_about () {
     string[] authors = {
       "Alexander Larsson <alexl@redhat.com>",
-      "Erick Pérez Castellanos <erick.red@gmail.com>",
-      "Niels De Graef <nielsdegraef@gmail.com>"
+      "Erick Pérez Castellanos <erick.red@gmail.com>"
     };
     string[] artists = {
       "Allan Day <allanpday@gmail.com>"
@@ -183,11 +212,11 @@ public class Contacts.App : Gtk.Application {
                            "program-name", _("GNOME Contacts"),
                            "title", _("About GNOME Contacts"),
                            "comments", _("Contact Management Application"),
-                           "copyright", "Copyright 2011 Red Hat, Inc.\nCopyright 2014 The Contacts Developers",
+                           "copyright", "Copyright 2011 Red Hat, Inc.",
                            "license-type", Gtk.License.GPL_2_0,
-                           "logo-icon-name", "gnome-contacts",
+                           "logo-icon-name", "x-office-address-book",
                            "version", Config.PACKAGE_VERSION,
-                           "website", "https://wiki.gnome.org/Apps/Contacts",
+                           "website", "https://live.gnome.org/Contacts",
                            "wrap-license", true);
   }
 
@@ -196,9 +225,10 @@ public class Contacts.App : Gtk.Application {
         return c.has_email (email_address);
       });
     if (contact != null) {
-      show_contact (contact);
+      list_pane.select_contact (contact);
+      contacts_pane.show_contact (contact);
     } else {
-      var dialog = new MessageDialog (this.window, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.CLOSE,
+      var dialog = new MessageDialog (App.app.window, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.CLOSE,
                                       _("No contact with email address %s found"), email_address);
       dialog.set_title(_("Contact not found"));
       dialog.show ();
@@ -208,154 +238,436 @@ public class Contacts.App : Gtk.Application {
     }
   }
 
-  public void show_search (string query) {
-    if (contacts_store.is_quiescent) {
-      window.show_search (query);
-    } else {
-      contacts_store.quiescent.connect_after (() => {
-	  window.show_search (query);
-	});
-    }
-  }
-
-  private void create_actions () {
-    this.add_action_entries (action_entries, this);
-
-    this.set_accels_for_action ("app.help", {"F1"});
-    this.set_accels_for_action ("app.new-contact", {"<Primary>n"});
-  }
-
   private void create_window () {
-    this.window = new Contacts.Window (this.settings, this, this.contacts_store);
-  }
+    var action = new GLib.SimpleAction ("quit", null);
+    action.activate.connect (() => { window.destroy (); });
+    this.add_action (action);
 
-  private void schedule_window_creation () {
-    /* window creation code is run after Store::prepare */
-    hold ();
-    ulong id = 0;
-    uint id2 = 0;
-    id = contacts_store.prepared.connect (() => {
-	contacts_store.disconnect (id);
-	Source.remove (id2);
+    action = new GLib.SimpleAction ("help", null);
+    action.activate.connect (() => { show_help (); });
+    this.add_action (action);
+    this.add_accelerator ("F1", "app.help", null);
 
-	create_window ();
-	window.show ();
+    action = new GLib.SimpleAction ("about", null);
+    action.activate.connect (() => { show_about (); });
+    this.add_action (action);
 
-	schedule_window_finish_ui ();
+    action = new GLib.SimpleAction ("change_book", null);
+    action.activate.connect (() => { change_address_book (); });
+    this.add_action (action);
 
-	release ();
+    action = new GLib.SimpleAction ("new_contact", null);
+    action.activate.connect (() => { new_contact (); });
+    this.add_action (action);
+    this.add_accelerator ("<Primary>n", "app.new_contact", null);
+
+    var view_action = new GLib.SimpleAction.stateful ("view_subset", VariantType.STRING, settings.get_value ("view-subset"));
+    this.add_action (view_action);
+    settings.changed["view-subset"].connect (() => {
+        view_action.set_state (settings.get_value ("view-subset"));
+        list_pane.refilter ();
       });
-    // Wait at most 0.5 seconds to show the window
-    id2 = Timeout.add (500, () => {
-	contacts_store.disconnect (id);
-
-	create_window ();
-	window.show ();
-
-	schedule_window_finish_ui ();
-
-	release ();
-	return false;
-      });
-
-    is_prepare_scheluded = true;
-  }
-
-  private void schedule_window_finish_ui () {
-    /* make window swap spinner out and init Contacts.ListView */
-    // We delay the initial show a tiny bit so most contacts are loaded when we show
-    ulong id = 0;
-    uint id2 = 0;
-    id = contacts_store.quiescent.connect (() => {
-	Source.remove (id2);
-	contacts_store.disconnect (id);
-
-	debug ("callign set_list_pane from quiescent.connect");
-	window.set_list_pane ();
-      });
-    // Wait at most 0.5 seconds to show the window
-    id2 = Timeout.add (500, () => {
-	contacts_store.disconnect (id);
-
-	debug ("callign set_list_pane from 500.timeout");
-	window.set_list_pane ();
-	return false;
+    view_action.activate.connect ((act, parameter) => {
+        settings.set_value ("view-subset", parameter);
       });
 
-    is_quiescent_scheduled = true;
+    var builder = new Builder ();
+    builder.set_translation_domain (Config.GETTEXT_PACKAGE);
+    try {
+      Gtk.my_builder_add_from_resource (builder, "/org/gnome/contacts/app-menu.ui");
+      set_app_menu ((MenuModel)builder.get_object ("app-menu"));
+    } catch {
+      warning ("Failed to parsing ui file");
+    }
+
+    window = new Contacts.Window (this);
+    window.set_application (this);
+    window.set_title (_("Contacts"));
+    window.set_default_size (800, 600);
+    window.hide_titlebar_when_maximized = true;
+    window.delete_event.connect (window_delete_event);
+    window.key_press_event.connect_after (window_key_press_event);
+
+    var grid = new Grid();
+
+    left_toolbar = new Gd.MainToolbar ();
+    left_toolbar.get_style_context ().add_class (STYLE_CLASS_MENUBAR);
+    left_toolbar.get_style_context ().add_class ("contacts-left-toolbar");
+    left_toolbar.set_vexpand (false);
+    grid.attach (left_toolbar, 0, 0, 1, 1);
+
+    var add_button = left_toolbar.add_button (null, _("New"), true) as Gtk.Button;
+    add_button.set_size_request (70, -1);
+    add_button.set_vexpand (true);
+    add_button.clicked.connect (app.new_contact);
+
+    select_button = left_toolbar.add_toggle ("object-select-symbolic", null, false) as ToggleButton;
+
+    right_toolbar = new Toolbar ();
+    right_toolbar.get_style_context ().add_class (STYLE_CLASS_MENUBAR);
+    right_toolbar.set_vexpand (false);
+    grid.attach (right_toolbar, 1, 0, 1, 1);
+
+    contact_name = new Label (null);
+    contact_name.set_valign (Align.CENTER);
+    contact_name.set_vexpand (true);
+    contact_name.set_hexpand (true);
+    contact_name.margin_left = 12;
+    contact_name.margin_right = 12;
+    var item = new ToolItem ();
+    item.add (contact_name);
+    right_toolbar.insert (item, -1);
+
+    /* spacer */
+    item = new SeparatorToolItem ();
+    (item as SeparatorToolItem).set_draw (false);
+    (item as ToolItem).set_expand (true);
+    right_toolbar.insert (item, -1);
+
+    edit_button = new Button.with_label (_("Edit"));
+    edit_button.set_size_request (70, -1);
+    item = new ToolItem ();
+    item.add (edit_button);
+    right_toolbar.insert (item, -1);
+
+    done_button = new Button.with_label (_("Done"));
+    done_button.set_size_request (70, -1);
+    done_button.get_style_context ().add_class ("suggested-action");
+    item = new ToolItem ();
+    item.add (done_button);
+    right_toolbar.insert (item, -1);
+
+    window.add (grid);
+
+    /* We put in an overlay overlapping the left and right pane for the
+       notifications, so they can show up below the toolbar */
+    overlay = new Gtk.Overlay ();
+    Gdk.RGBA transparent = { 0, 0, 0, 0 };
+    overlay.override_background_color (0, transparent);
+    // Need to put something in here for it to work
+    overlay.add (new Alignment (0,0,0,0));
+    grid.attach (overlay, 0, 1, 2, 1);
+
+    list_pane = new ListPane (contacts_store);
+    list_pane.selection_changed.connect (selection_changed);
+    list_pane.link_contacts.connect (link_contacts);
+    list_pane.delete_contacts.connect (delete_contacts);
+
+    grid.attach (list_pane, 0, 1, 1, 1);
+
+    contacts_pane = new ContactPane (contacts_store);
+    contacts_pane.set_hexpand (true);
+    contacts_pane.will_delete.connect (delete_contact);
+    contacts_pane.contacts_linked.connect (contacts_linked);
+
+    right_overlay = new Overlay ();
+    right_overlay.override_background_color (0, transparent);
+    right_overlay.add (contacts_pane);
+
+    grid.attach (right_overlay, 1, 1, 1, 1);
+
+    grid.show_all ();
+
+    select_button.toggled.connect (() => {
+        if (select_button.active)
+          list_pane.show_selection ();
+        else
+          list_pane.hide_selection ();
+      });
+
+    edit_button.clicked.connect (() => {
+        if (select_button.active)
+          select_button.set_active (false);
+
+        var name = _("Editing");
+        if (contacts_pane.contact != null) {
+          name += " %s".printf (contacts_pane.contact.display_name);
+        }
+
+        contact_name.set_markup (Markup.printf_escaped ("<b>%s</b>", name));
+        edit_button.hide ();
+        done_button.show ();
+        contacts_pane.set_edit_mode (true);
+      });
+
+    done_button.clicked.connect (() => {
+        contact_name.set_text (null);
+        done_button.hide ();
+        edit_button.show ();
+        contacts_pane.set_edit_mode (false);
+      });
+
+    edit_button.hide ();
+    done_button.hide ();
   }
 
   public override void startup () {
-    if (!ensure_eds_accounts (true))
-      quit ();
-
-    this.contacts_store = new Store ();
+    ensure_eds_accounts ();
+    contacts_store = new Store ();
     base.startup ();
-
-    load_styling ();
   }
 
-  public void load_styling () {
-    var provider = new Gtk.CssProvider ();
-    provider.load_from_resource ("/org/gnome/Contacts/ui/style.css");
-    StyleContext.add_provider_for_screen (Gdk.Screen.get_default(),
-                                          provider,
-                                          Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+  private void show_setup () {
+    var setup = new SetupWindow ();
+    setup.set_application (this);
+    setup.destroy.connect ( () => {
+        setup.destroy ();
+        if (setup.succeeded)
+          this.activate ();
+      });
+    setup.show ();
   }
 
   public override void activate () {
-    // Check if we've already done the setup process
-    if (this.settings.did_initial_setup)
-      create_new_window ();
-    else
-      run_setup ();
-  }
-
-  private void run_setup () {
-    // Disable the change-book action (don't want the user to do that during setup)
-    var change_book_action = lookup_action ("change-book") as SimpleAction;
-    change_book_action.set_enabled (false);
-
-    // Create and show the setup window
-    var setup_window = new SetupWindow (this, this.contacts_store);
-    setup_window.setup_done.connect ( (selected_store) => {
-        setup_window.destroy ();
-
-        eds_source_registry.set_default_address_book (selected_store.source);
-        this.settings.did_initial_setup = true;
-
-        change_book_action.set_enabled (true); // re-enable change-book action
-        create_new_window ();
-      });
-    setup_window.show ();
-  }
-
-  private void create_new_window () {
-    /* window creation code */
     if (window == null) {
-      if (!this.contacts_store.is_prepared) {
-	if (!is_prepare_scheluded) {
-	  schedule_window_creation ();
-	  return;
-	}
+      if (!settings.get_boolean ("did-initial-setup")) {
+        if (contacts_store.is_prepared)
+          show_setup ();
+        else {
+          hold ();
+          ulong id = 0;
+          uint id2 = 0;
+          id = contacts_store.prepared.connect (() => {
+              show_setup ();
+              contacts_store.disconnect (id);
+              Source.remove (id2);
+              release ();
+            });
+          // Wait at most 0.5 seconds to show the window
+          id2 = Timeout.add (500, () => {
+              show_setup ();
+              contacts_store.disconnect (id);
+              release ();
+              return false;
+        });
+        }
+
+        return;
       }
 
       create_window ();
-      window.show ();
-    }
 
-    if (this.contacts_store.is_quiescent) {
-      debug ("callign set_list_pane cause store is already quiescent");
-      window.set_list_pane ();
-    } else if (!is_quiescent_scheduled) {
-      schedule_window_finish_ui ();
-    }
-
-    if (window != null)
+      // We delay the initial show a tiny bit so most contacts are loaded when we show
+      contacts_store.quiescent.connect (() => {
+          app.window.show ();
+        });
+      // Wait at most 0.5 seconds to show the window
+      Timeout.add (500, () => {
+          app.window.show ();
+          return false;
+        });
+    } else {
       window.present ();
+    }
+  }
+
+  public void show_message (string message) {
+    var notification = new Gd.Notification ();
+
+    var g = new Grid ();
+    g.set_column_spacing (8);
+    var l = new Label (message);
+    l.set_line_wrap (true);
+    l.set_line_wrap_mode (Pango.WrapMode.WORD_CHAR);
+    notification.add (l);
+
+    notification.show_all ();
+    overlay.add_overlay (notification);
   }
 
   public void new_contact () {
-    window.new_contact ();
+    var dialog = new NewContactDialog (contacts_store, window);
+    dialog.show_all ();
+  }
+
+  private void link_contacts (LinkedList<Contact> contact_list) {
+    /* getting out of selection mode */
+    show_contact (null);
+    select_button.set_active (false);
+
+    LinkOperation2 operation = null;
+    link_contacts_list.begin (contact_list, (obj, result) => {
+        operation = link_contacts_list.end (result);
+      });
+
+    var notification = new Gd.Notification ();
+
+    var g = new Grid ();
+    g.set_column_spacing (8);
+    notification.add (g);
+
+    string msg = ngettext ("%d contacts linked",
+                           "%d contacts linked",
+                           contact_list.size).printf (contact_list.size);
+
+    var b = new Button.from_stock (Stock.UNDO);
+    g.add (new Label (msg));
+    g.add (b);
+
+    notification.show_all ();
+    overlay.add_overlay (notification);
+
+    /* signal handlers */
+    b.clicked.connect ( () => {
+        /* here, we will unlink the thing in question */
+        operation.undo.begin ();
+
+        notification.dismiss ();
+      });
+  }
+
+  private void delete_contacts (LinkedList<Contact> contact_list) {
+    /* getting out of selection mode */
+    show_contact (null);
+    select_button.set_active (false);
+
+    var notification = new Gd.Notification ();
+
+    var g = new Grid ();
+    g.set_column_spacing (8);
+    notification.add (g);
+
+    string msg = ngettext ("%d contact deleted",
+                           "%d contacts deleted",
+                           contact_list.size).printf (contact_list.size);
+
+    var b = new Button.from_stock (Stock.UNDO);
+    g.add (new Label (msg));
+    g.add (b);
+
+    notification.show_all ();
+    overlay.add_overlay (notification);
+
+    /* signal handlers */
+    bool really_delete = true;
+    notification.dismissed.connect ( () => {
+        if (really_delete) {
+          foreach (var c in contact_list) {
+            c.remove_personas.begin ();
+          }
+        }
+      });
+    b.clicked.connect ( () => {
+        really_delete = false;
+        notification.dismiss ();
+          foreach (var c in contact_list) {
+            c.show ();
+          }
+      });
+  }
+
+  private void delete_contact (Contact contact) {
+    /* unsetting edit-mode */
+    contact_name.set_text (null);
+    done_button.hide ();
+    contacts_pane.set_edit_mode (false);
+
+    var notification = new Gd.Notification ();
+
+    var g = new Grid ();
+    g.set_column_spacing (8);
+    notification.add (g);
+
+    string msg = _("Contact deleted: \"%s\"").printf (contact.display_name);
+    var b = new Button.from_stock (Stock.UNDO);
+    g.add (new Label (msg));
+    g.add (b);
+
+    bool really_delete = true;
+    notification.show_all ();
+    notification.dismissed.connect ( () => {
+        if (really_delete)
+          contact.remove_personas.begin ( () => {
+              contact.show ();
+            });
+      });
+    b.clicked.connect ( () => {
+        really_delete = false;
+        notification.dismiss ();
+        contact.show ();
+        show_contact (contact);
+      });
+    overlay.add_overlay (notification);
+  }
+
+  private static string individual_id = null;
+  private static string email_address = null;
+  private static const OptionEntry[] options = {
+    { "individual", 'i', 0, OptionArg.STRING, ref individual_id,
+      N_("Show contact with this individual id"), null },
+    { "email", 'e', 0, OptionArg.STRING, ref email_address,
+      N_("Show contact with this email address"), null },
+    { null }
+  };
+
+  private void contacts_linked (string? main_contact, string linked_contact, LinkOperation operation) {
+    var notification = new Gd.Notification ();
+
+    var g = new Grid ();
+    g.set_column_spacing (8);
+    notification.add (g);
+
+    string msg;
+    if (main_contact != null)
+      msg = _("%s linked to %s").printf (main_contact, linked_contact);
+    else
+      msg = _("%s linked to the contact").printf (linked_contact);
+
+    var b = new Button.from_stock (Stock.UNDO);
+    g.add (new Label (msg));
+    g.add (b);
+
+    notification.show_all ();
+    b.clicked.connect ( () => {
+      notification.dismiss ();
+      operation.undo.begin ();
+    });
+    overlay.add_overlay (notification);
+  }
+
+  public override int command_line (ApplicationCommandLine command_line) {
+    var args = command_line.get_arguments ();
+    unowned string[] _args = args;
+    var context = new OptionContext (N_("— contact management"));
+    context.add_main_entries (options, Config.GETTEXT_PACKAGE);
+    context.set_translation_domain (Config.GETTEXT_PACKAGE);
+    context.add_group (Gtk.get_option_group (true));
+
+    individual_id = null;
+    email_address = null;
+
+    try {
+      context.parse (ref _args);
+    } catch (Error e) {
+      printerr ("Unable to parse: %s\n", e.message);
+      return 1;
+    }
+
+    activate ();
+
+    if (individual_id != null)
+      app.show_individual.begin (individual_id);
+    if (email_address != null)
+      app.show_by_email.begin (email_address);
+
+    return 0;
+  }
+
+  public static PersonaStore[] get_eds_address_books () {
+    PersonaStore[] stores = {};
+    foreach (var backend in app.contacts_store.backend_store.enabled_backends.values) {
+      foreach (var persona_store in backend.persona_stores.values) {
+        if (persona_store.type_id == "eds") {
+          stores += persona_store;
+        }
+      }
+    }
+    return stores;
+  }
+
+  public App () {
+    Object (application_id: "org.gnome.Contacts", flags: ApplicationFlags.HANDLES_COMMAND_LINE);
+    app = this;
+    settings = new GLib.Settings ("org.gnome.Contacts");
   }
 }

@@ -47,19 +47,20 @@ public class Contacts.TypeSet : Object  {
   // Map from display name to TreeIter for all custom types
   private HashTable<string, TreeIter?> custom_hash;
 
-  public Gtk.ListStore store;
+  public ListStore store;
   private TreeIter other_iter;
+  private TreeIter custom_iter;
 
   private TypeSet () {
     display_name_hash = new HashTable<unowned string, Data> (str_hash, str_equal);
     vcard_lookup_hash = new HashTable<unowned string, GLib.List<InitData*> > (str_hash, str_equal);
     custom_hash = new HashTable<unowned string, TreeIter? > (str_hash, str_equal);
 
-    store = new Gtk.ListStore (2,
-                               // Display name or null for separator
-                               typeof(string?),
-                               // Data for standard types, null for custom
-                               typeof (Data));
+    store = new ListStore (2,
+			   // Display name or null for separator
+			   typeof(string?),
+			   // Data for standard types, null for custom
+			   typeof (Data));
   }
 
   private void add_data_to_store (Data data, bool is_custom) {
@@ -68,7 +69,7 @@ public class Contacts.TypeSet : Object  {
 
     data.in_store = true;
     if (is_custom)
-      store.insert_before (out data.iter, null);
+      store.insert_before (out data.iter, custom_iter);
     else
       store.append (out data.iter);
 
@@ -134,7 +135,7 @@ public class Contacts.TypeSet : Object  {
       return;
     }
 
-    store.insert_before (out iter, null);
+    store.insert_before (out iter, custom_iter);
     store.set (iter, 0, label, 1, null);
     custom_hash.insert (label, iter);
   }
@@ -303,13 +304,12 @@ public class Contacts.TypeSet : Object  {
   private const InitData[] email_data = {
     // List most specific first, always in upper case
     { N_("Personal"), { "PERSONAL" } },
-    { N_("Home"), { "HOME" } },
     { N_("Work"), { "WORK" } }
   };
   public static TypeSet email {
     get {
       string[] standard = {
-	"Personal", "Home", "Work"
+	"Personal", "Work"
       };
 
       if (_email == null) {
@@ -397,6 +397,7 @@ public class Contacts.TypeCombo : Grid  {
       });
 
     entry = new Entry ();
+    entry.get_style_context ().add_class ("contacts-entry");
     entry.set_halign (Align.FILL);
     entry.set_hexpand (true);
     // Make the default entry small so we don't unnecessarily

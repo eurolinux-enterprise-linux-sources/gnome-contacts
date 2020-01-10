@@ -37,29 +37,7 @@ public class Contacts.ContactSheet : Grid {
     attach (value_button, 1, row, 1, 1);
     row++;
 
-    (value_button.get_child () as Label).set_ellipsize (Pango.EllipsizeMode.END);
-    (value_button.get_child () as Label).wrap_mode = Pango.WrapMode.CHAR;
-
     return value_button;
-  }
-
-  void add_row_with_link_button (ref int row, string label_value, string value) {
-    var type_label = new Label (label_value);
-    type_label.xalign = 1.0f;
-    type_label.set_halign (Align.END);
-    type_label.get_style_context ().add_class ("dim-label");
-    attach (type_label, 0, row, 1, 1);
-
-    var value_button = new LinkButton (value);
-    value_button.focus_on_click = false;
-    value_button.relief = ReliefStyle.NONE;
-    value_button.xalign = 0.0f;
-    value_button.set_hexpand (true);
-    attach (value_button, 1, row, 1, 1);
-    row++;
-
-    (value_button.get_child () as Label).set_ellipsize (Pango.EllipsizeMode.END);
-    (value_button.get_child () as Label).wrap_mode = Pango.WrapMode.CHAR;
   }
 
   void add_row_with_label (ref int row, string label_value, string value) {
@@ -74,13 +52,10 @@ public class Contacts.ContactSheet : Grid {
     value_label.set_line_wrap (true);
     value_label.xalign = 0.0f;
     value_label.set_halign (Align.START);
-    value_label.set_ellipsize (Pango.EllipsizeMode.END);
-    value_label.wrap_mode = Pango.WrapMode.CHAR;
-    value_label.set_selectable (true);
 
     /* FIXME: hardcode gap to match the button size */
     type_label.margin_top = 3;
-    value_label.margin_start = 6;
+    value_label.margin_left = 6;
     value_label.margin_top = 3;
     value_label.margin_bottom = 3;
 
@@ -92,28 +67,34 @@ public class Contacts.ContactSheet : Grid {
     set_row_spacing (12);
     set_column_spacing (16);
     set_orientation (Orientation.VERTICAL);
-    get_style_context ().add_class ("contacts-contact-sheet");
   }
 
   public void update (Contact c) {
-    var image_frame = new Avatar (PROFILE_SIZE, c);
+    var image_frame = new ContactFrame (PROFILE_SIZE);
     image_frame.set_vexpand (false);
     image_frame.set_valign (Align.START);
+    c.keep_widget_uptodate (image_frame,  (w) => {
+	(w as ContactFrame).set_image (c.individual, c);
+      });
     attach (image_frame,  0, 0, 1, 3);
 
     var name_label = new Label (null);
     name_label.set_hexpand (true);
     name_label.set_halign (Align.START);
-    name_label.set_valign (Align.CENTER);
-    name_label.margin_start = 6;
+    name_label.set_valign (Align.START);
+    name_label.set_margin_top (4);
     name_label.set_ellipsize (Pango.EllipsizeMode.END);
     name_label.xalign = 0.0f;
-    name_label.set_selectable (true);
 
     c.keep_widget_uptodate (name_label, (w) => {
-        (w as Label).set_markup (Markup.printf_escaped ("<span font='16'>%s</span>", c.individual.display_name));
+	(w as Label).set_markup (Markup.printf_escaped ("<span font='16'>%s</span>", c.display_name));
       });
-    attach (name_label,  1, 0, 1, 3);
+    attach (name_label,  1, 0, 1, 1);
+
+    var merged_presence = c.create_merged_presence_widget ();
+    merged_presence.set_halign (Align.START);
+    merged_presence.set_valign (Align.START);
+    attach (merged_presence,  1, 1, 1, 1);
 
     int i = 3;
     int last_store_position = 0;
@@ -128,7 +109,7 @@ public class Contacts.ContactSheet : Grid {
 						      Contact.format_persona_store_name_for_contact (p)));
 	store_name.set_halign (Align.START);
 	store_name.xalign = 0.0f;
-	store_name.margin_start = 6;
+	store_name.margin_left = 6;
 	attach (store_name, 0, i, 3, 1);
 	last_store_position = ++i;
       }
@@ -139,7 +120,7 @@ public class Contacts.ContactSheet : Grid {
 	foreach (var email in emails) {
 	  var button = add_row_with_button (ref i, TypeSet.email.format_type (email), email.value);
 	  button.clicked.connect (() => {
-	      Utils.compose_mail ("%s <%s>".printf(c.individual.display_name, email.value));
+	      Utils.compose_mail ("%s <%s>".printf(c.display_name, email.value));
 	    });
 	}
       }
@@ -148,28 +129,23 @@ public class Contacts.ContactSheet : Grid {
       if (phone_details != null) {
 	var phones = Contact.sort_fields<PhoneFieldDetails>(phone_details.phone_numbers);
 	foreach (var phone in phones) {
-#if HAVE_TELEPATHY
-	  if (c.store != null && c.store.caller_account != null) {
+	  if (App.app.contacts_store.can_call) {
 	    var button = add_row_with_button (ref i, TypeSet.phone.format_type (phone), phone.value);
 	    button.clicked.connect (() => {
-            Utils.start_call (phone.value, c.store.caller_account);
+		Utils.start_call (phone.value, App.app.contacts_store.calling_accounts);
 	      });
 	  } else {
 	    add_row_with_label (ref i, TypeSet.phone.format_type (phone), phone.value);
 	  }
-#else
-          add_row_with_label (ref i, TypeSet.phone.format_type (phone), phone.value);
-#endif
 	}
       }
 
-#if HAVE_TELEPATHY
       var im_details = p as ImDetails;
       if (im_details != null) {
 	foreach (var protocol in im_details.im_addresses.get_keys ()) {
 	  foreach (var id in im_details.im_addresses[protocol]) {
 	    if (p is Tpf.Persona) {
-	      var button = add_row_with_button (ref i, ImService.get_display_name (protocol), id.value);
+	      var button = add_row_with_button (ref i, Contact.format_im_service (protocol, null), id.value);
 	      button.clicked.connect (() => {
 		  var im_persona = c.find_im_persona (protocol, id.value);
 		  if (im_persona != null) {
@@ -186,12 +162,15 @@ public class Contacts.ContactSheet : Grid {
 	  }
 	}
       }
-#endif
 
       var url_details = p as UrlDetails;
       if (url_details != null) {
-	foreach (var url in url_details.urls)
-	  add_row_with_link_button (ref i, _("Website"), url.value);
+	foreach (var url in url_details.urls) {
+	  var button = add_row_with_button (ref i, _("Website"), Contact.format_uri_link_text (url));
+	  button.clicked.connect (() => {
+	      Gtk.show_uri (null, url.value, 0);
+	    });
+	}
       }
 
       var name_details = p as NameDetails;
@@ -204,7 +183,7 @@ public class Contacts.ContactSheet : Grid {
       var birthday_details = p as BirthdayDetails;
       if (birthday_details != null) {
 	if (birthday_details.birthday != null) {
-	  add_row_with_label (ref i, _("Birthday"), birthday_details.birthday.to_local ().format ("%x"));
+	  add_row_with_label (ref i, _("Birthday"), birthday_details.birthday.to_local ().format ("%d %B"));
 	}
       }
 
@@ -217,10 +196,14 @@ public class Contacts.ContactSheet : Grid {
 
       var addr_details = p as PostalAddressDetails;
       if (addr_details != null) {
-        foreach (var addr in addr_details.postal_addresses) {
-          var all_strs = string.joinv ("\n", Contact.format_address (addr.value));
-          add_row_with_label (ref i, TypeSet.general.format_type (addr), all_strs);
-        }
+	foreach (var addr in addr_details.postal_addresses) {
+	  string[] strs = Contact.format_address (addr.value);
+	  var all_strs = "";
+	  foreach (var s in strs) {
+	    all_strs += s + "\n";
+	  }
+	  add_row_with_label (ref i, TypeSet.general.format_type (addr), all_strs);
+	}
       }
 
       if (i != 3)

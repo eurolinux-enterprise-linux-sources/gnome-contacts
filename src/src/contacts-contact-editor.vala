@@ -20,12 +20,9 @@ using Gtk;
 using Folks;
 using Gee;
 
-public class Contacts.AddressEditor : Box {
-  public Entry? entries[7];  /* must be the number of elements in postal_element_props */
+public class Contacts.AddressEditor : Grid {
+  public Entry? entries[7];
   public PostalAddressFieldDetails details;
-
-  public const string[] postal_element_props = {"street", "extension", "locality", "region", "postal_code", "po_box", "country"};
-  public static string[] postal_element_names = {_("Street"), _("Extension"), _("City"), _("State/Province"), _("Zip/Postal Code"), _("PO box"), _("Country")};
 
   public signal void changed ();
 
@@ -37,15 +34,16 @@ public class Contacts.AddressEditor : Box {
 
     for (int i = 0; i < entries.length; i++) {
       string postal_part;
-      details.value.get (AddressEditor.postal_element_props[i], out postal_part);
+      details.value.get (Contact.postal_element_props[i], out postal_part);
 
       entries[i] = new Entry ();
       entries[i].set_hexpand (true);
-      entries[i].set ("placeholder-text", AddressEditor.postal_element_names[i]);
+      entries[i].set ("placeholder-text", Contact.postal_element_names[i]);
 
       if (postal_part != null)
 	entries[i].set_text (postal_part);
 
+      entries[i].get_style_context ().add_class ("contacts-entry");
       entries[i].get_style_context ().add_class ("contacts-postal-entry");
       add (entries[i]);
 
@@ -60,44 +58,16 @@ public class Contacts.AddressEditor : Box {
   }
 }
 
-[GtkTemplate (ui = "/org/gnome/Contacts/ui/contacts-contact-editor.ui")]
 public class Contacts.ContactEditor : Grid {
-
-  private const string[] DEFAULT_PROPS_NEW_CONTACT = {
-    "email-addresses.personal",
-    "phone-numbers.cell",
-    "postal-addresses.home"
-  };
-
-  private Contact contact;
-
-  [GtkChild]
-  private Grid container_grid;
-  private weak Widget focus_widget;
-
-  private Entry name_entry;
-
-  private Avatar avatar;
-
-  [GtkChild]
-  private ScrolledWindow main_sw;
-
-  [GtkChild]
-  private MenuButton add_detail_button;
-
-  [GtkChild]
-  public Button linked_button;
-
-  [GtkChild]
-  public Button remove_button;
+  Contact contact;
 
   public struct PropertyData {
-    Persona? persona;
+    Persona persona;
     Value value;
   }
 
   struct RowData {
-    AbstractFieldDetails details;
+    AbstractFieldDetails<string> details;
   }
 
   struct Field {
@@ -106,32 +76,14 @@ public class Contacts.ContactEditor : Grid {
   }
 
   private int last_row;
-  /* the key of the hash_map is the uid of the persona */
-  private HashMap<string, HashMap<string, Field?> > writable_personas;
-
-  public bool has_birthday_row {
-    get; private set; default = false;
-  }
-
-  public bool has_nickname_row {
-    get; private set; default = false;
-  }
-
-  public bool has_notes_row {
-    get; private set; default = false;
-  }
+  private HashMap<Persona, HashMap<string, Field?> > writable_personas;
 
   Value get_value_from_emails (HashMap<int, RowData?> rows) {
     var new_details = new HashSet<EmailFieldDetails>();
 
     foreach (var row_entry in rows.entries) {
-      var combo = container_grid.get_child_at (0, row_entry.key) as TypeCombo;
-      var entry = container_grid.get_child_at (1, row_entry.key) as Entry;
-
-      /* Ignore empty entries. */
-      if (entry.get_text () == "")
-        continue;
-
+      var combo = get_child_at (0, row_entry.key) as TypeCombo;
+      var entry = get_child_at (1, row_entry.key) as Entry;
       combo.update_details (row_entry.value.details);
       var details = new EmailFieldDetails (entry.get_text (), row_entry.value.details.parameters);
       new_details.add (details);
@@ -146,13 +98,8 @@ public class Contacts.ContactEditor : Grid {
     var new_details = new HashSet<PhoneFieldDetails>();
 
     foreach (var row_entry in rows.entries) {
-      var combo = container_grid.get_child_at (0, row_entry.key) as TypeCombo;
-      var entry = container_grid.get_child_at (1, row_entry.key) as Entry;
-
-      /* Ignore empty entries. */
-      if (entry.get_text () == "")
-        continue;
-
+      var combo = get_child_at (0, row_entry.key) as TypeCombo;
+      var entry = get_child_at (1, row_entry.key) as Entry;
       combo.update_details (row_entry.value.details);
       var details = new PhoneFieldDetails (entry.get_text (), row_entry.value.details.parameters);
       new_details.add (details);
@@ -166,12 +113,7 @@ public class Contacts.ContactEditor : Grid {
     var new_details = new HashSet<UrlFieldDetails>();
 
     foreach (var row_entry in rows.entries) {
-      var entry = container_grid.get_child_at (1, row_entry.key) as Entry;
-
-      /* Ignore empty entries. */
-      if (entry.get_text () == "")
-        continue;
-
+      var entry = get_child_at (1, row_entry.key) as Entry;
       var details = new UrlFieldDetails (entry.get_text (), row_entry.value.details.parameters);
       new_details.add (details);
     }
@@ -183,12 +125,7 @@ public class Contacts.ContactEditor : Grid {
   Value get_value_from_nickname (HashMap<int, RowData?> rows) {
     var new_value = Value (typeof (string));
     foreach (var row_entry in rows.entries) {
-      var entry = container_grid.get_child_at (1, row_entry.key) as Entry;
-
-      /* Ignore empty entries. */
-      if (entry.get_text () == "")
-        continue;
-
+      var entry = get_child_at (1, row_entry.key) as Entry;
       new_value.set_string (entry.get_text ());
     }
     return new_value;
@@ -197,14 +134,13 @@ public class Contacts.ContactEditor : Grid {
   Value get_value_from_birthday (HashMap<int, RowData?> rows) {
     var new_value = Value (typeof (DateTime));
     foreach (var row_entry in rows.entries) {
-      var box = container_grid.get_child_at (1, row_entry.key) as Grid;
+      var box = get_child_at (1, row_entry.key) as Grid;
       var day_spin  = box.get_child_at (0, 0) as SpinButton;
       var combo  = box.get_child_at (1, 0) as ComboBoxText;
-      var year_spin  = box.get_child_at (2, 0) as SpinButton;
 
-      var bday = new DateTime.local (year_spin.get_value_as_int (),
+      var bday = new DateTime.local ((int)box.get_data<int> ("year"),
 				     combo.get_active () + 1,
-				     day_spin.get_value_as_int (),
+				     (int)day_spin.get_value (),
 				     0, 0, 0);
       bday = bday.to_utc ();
 
@@ -217,15 +153,13 @@ public class Contacts.ContactEditor : Grid {
     var new_details = new HashSet<NoteFieldDetails>();
 
     foreach (var row_entry in rows.entries) {
-      var text = (container_grid.get_child_at (1, row_entry.key) as Bin).get_child () as TextView;
+      var text = (get_child_at (1, row_entry.key) as Bin).get_child () as TextView;
       TextIter start, end;
       text.get_buffer ().get_start_iter (out start);
       text.get_buffer ().get_end_iter (out end);
       var value = text.get_buffer ().get_text (start, end, true);
-      if (value != "") {
-        var details = new NoteFieldDetails (value, row_entry.value.details.parameters);
-        new_details.add (details);
-      }
+      var details = new NoteFieldDetails (value, row_entry.value.details.parameters);
+      new_details.add (details);
     }
     var new_value = Value (new_details.get_type ());
     new_value.set_object (new_details);
@@ -236,8 +170,8 @@ public class Contacts.ContactEditor : Grid {
     var new_details = new HashSet<PostalAddressFieldDetails>();
 
     foreach (var row_entry in rows.entries) {
-      var combo = container_grid.get_child_at (0, row_entry.key) as TypeCombo;
-      var addr_editor = container_grid.get_child_at (1, row_entry.key) as AddressEditor;
+      var combo = get_child_at (0, row_entry.key) as TypeCombo;
+      var addr_editor = get_child_at (1, row_entry.key) as AddressEditor;
       combo.update_details (row_entry.value.details);
 
       var new_value = new PostalAddress (addr_editor.details.value.po_box,
@@ -248,9 +182,9 @@ public class Contacts.ContactEditor : Grid {
 					 addr_editor.details.value.postal_code,
 					 addr_editor.details.value.country,
 					 addr_editor.details.value.address_format,
-					 addr_editor.details.id);
+					 addr_editor.details.value.uid);
       for (int i = 0; i < addr_editor.entries.length; i++)
-	new_value.set (AddressEditor.postal_element_props[i], addr_editor.entries[i].get_text ());
+	new_value.set (Contact.postal_element_props[i], addr_editor.entries[i].get_text ());
 
       var details = new PostalAddressFieldDetails(new_value, row_entry.value.details.parameters);
       new_details.add (details);
@@ -274,16 +208,16 @@ public class Contacts.ContactEditor : Grid {
     }
   }
 
-  new void remove_row (int row) {
+  void remove_row (int row) {
     foreach (var fields in writable_personas.values) {
       foreach (var field_entry in fields.entries) {
 	foreach (var idx in field_entry.value.rows.keys) {
 	  if (idx == row) {
-	    var child = container_grid.get_child_at (0, row);
+	    var child = get_child_at (0, row);
 	    child.destroy ();
-	    child = container_grid.get_child_at (1, row);
+	    child = get_child_at (1, row);
 	    child.destroy ();
-	    child = container_grid.get_child_at (3, row);
+	    child = get_child_at (3, row);
 	    child.destroy ();
 
 	    field_entry.value.changed = true;
@@ -301,65 +235,64 @@ public class Contacts.ContactEditor : Grid {
     combo.set_active (details);
     if (type != null)
       combo.set_to (type);
-    combo.set_valign (Align.CENTER);
-    container_grid.attach (combo, 0, row, 1, 1);
+    attach (combo, 0, row, 1, 1);
 
     var value_entry = new Entry ();
     value_entry.set_text (value);
     value_entry.set_hexpand (true);
-    container_grid.attach (value_entry, 1, row, 1, 1);
+    attach (value_entry, 1, row, 2, 1);
 
-    if (type_set == TypeSet.email) {
-      value_entry.placeholder_text = _("Add email");
-    } else if (type_set == TypeSet.phone) {
-      value_entry.placeholder_text = _("Add number");
-    }
-
-    var delete_button = new Button.from_icon_name ("user-trash-symbolic", IconSize.MENU);
-    delete_button.get_accessible ().set_name (_("Delete field"));
-    container_grid.attach (delete_button, 3, row, 1, 1);
+    var delete_button = new Button ();
+    var image = new Image.from_icon_name ("user-trash-symbolic", IconSize.MENU);
+    delete_button.add (image);
+    attach (delete_button, 3, row, 1, 1);
 
     /* Notify change to upper layer */
     combo.changed.connect (() => {
-	set_field_changed (get_current_row (combo));
+	set_field_changed (row);
       });
     value_entry.changed.connect (() => {
-	set_field_changed (get_current_row (value_entry));
+	set_field_changed (row);
       });
     delete_button.clicked.connect (() => {
-	remove_row (get_current_row (delete_button));
+	remove_row (row);
       });
 
-    if (value == "")
-      focus_widget = value_entry;
+    value_entry.map.connect (() => {
+	if (value == "")
+	  value_entry.grab_focus ();
+      });
   }
 
   void attach_row_with_entry_labeled (string title, AbstractFieldDetails? details, string value, int row) {
     var title_label = new Label (title);
     title_label.set_hexpand (false);
     title_label.set_halign (Align.START);
-    title_label.margin_end = 6;
-    container_grid.attach (title_label, 0, row, 1, 1);
+    title_label.margin_right = 6;
+    attach (title_label, 0, row, 1, 1);
 
     var value_entry = new Entry ();
     value_entry.set_text (value);
     value_entry.set_hexpand (true);
-    container_grid.attach (value_entry, 1, row, 1, 1);
+    attach (value_entry, 1, row, 2, 1);
 
-    var delete_button = new Button.from_icon_name ("user-trash-symbolic", IconSize.MENU);
-    delete_button.get_accessible ().set_name (_("Delete field"));
-    container_grid.attach (delete_button, 3, row, 1, 1);
+    var delete_button = new Button ();
+    var image = new Image.from_icon_name ("user-trash-symbolic", IconSize.MENU);
+    delete_button.add (image);
+    attach (delete_button, 3, row, 1, 1);
 
     /* Notify change to upper layer */
     value_entry.changed.connect (() => {
-	set_field_changed (get_current_row (value_entry));
+	set_field_changed (row);
       });
-    delete_button.clicked.connect_after (() => {
-	remove_row (get_current_row (delete_button));
+    delete_button.clicked.connect (() => {
+	remove_row (row);
       });
 
-    if (value == "")
-      focus_widget = value_entry;
+    value_entry.map.connect (() => {
+	if (value == "")
+	  value_entry.grab_focus ();
+      });
   }
 
   void attach_row_with_text_labeled (string title, AbstractFieldDetails? details, string value, int row) {
@@ -368,8 +301,8 @@ public class Contacts.ContactEditor : Grid {
     title_label.set_halign (Align.START);
     title_label.set_valign (Align.START);
     title_label.margin_top = 3;
-    title_label.margin_end = 6;
-    container_grid.attach (title_label, 0, row, 1, 1);
+    title_label.margin_right = 6;
+    attach (title_label, 0, row, 1, 1);
 
     var sw = new ScrolledWindow (null, null);
     sw.set_shadow_type (ShadowType.OUT);
@@ -377,36 +310,36 @@ public class Contacts.ContactEditor : Grid {
     var value_text = new TextView ();
     value_text.get_buffer ().set_text (value);
     value_text.set_hexpand (true);
+    value_text.get_style_context ().add_class ("contacts-entry");
     sw.add (value_text);
-    container_grid.attach (sw, 1, row, 1, 1);
+    attach (sw, 1, row, 2, 1);
 
-    var delete_button = new Button.from_icon_name ("user-trash-symbolic", IconSize.MENU);
-    delete_button.get_accessible ().set_name (_("Delete field"));
+    var delete_button = new Button ();
+    var image = new Image.from_icon_name ("user-trash-symbolic", IconSize.MENU);
+    delete_button.add (image);
     delete_button.set_valign (Align.START);
-    container_grid.attach (delete_button, 3, row, 1, 1);
+    attach (delete_button, 3, row, 1, 1);
 
     /* Notify change to upper layer */
     value_text.get_buffer ().changed.connect (() => {
-	set_field_changed (get_current_row (sw));
+	set_field_changed (row);
       });
     delete_button.clicked.connect (() => {
-	remove_row (get_current_row (delete_button));
-	/* eventually will need to check against the details type */
-	has_notes_row = false;
+	remove_row (row);
       });
 
-    if (value == "")
-      focus_widget = value_text;
+    value_text.map.connect (() => {
+	if (value == "")
+	  value_text.grab_focus ();
+      });
   }
-
-  delegate void AdjustingDateFn();
 
   void attach_row_for_birthday (string title, AbstractFieldDetails? details, DateTime birthday, int row) {
     var title_label = new Label (title);
     title_label.set_hexpand (false);
     title_label.set_halign (Align.START);
-    title_label.margin_end = 6;
-    container_grid.attach (title_label, 0, row, 1, 1);
+    title_label.margin_right = 6;
+    attach (title_label, 0, row, 1, 1);
 
     var box = new Grid ();
     box.set_column_spacing (12);
@@ -415,62 +348,44 @@ public class Contacts.ContactEditor : Grid {
     day_spin.numeric = true;
     day_spin.set_value ((double)birthday.to_local ().get_day_of_month ());
 
-    var month_combo = new ComboBoxText ();
-    var january = new DateTime.local (1, 1, 1, 1, 1, 1);
-    for (int i = 0; i < 12; i++) {
-        var month = january.add_months (i);
-        month_combo.append_text (month.format ("%B"));
-    }
-    month_combo.set_active (birthday.to_local ().get_month () - 1);
-    month_combo.hexpand = true;
+    var combo = new ComboBoxText ();
+    combo.append_text (_("January"));
+    combo.append_text (_("February"));
+    combo.append_text (_("March"));
+    combo.append_text (_("April"));
+    combo.append_text (_("May"));
+    combo.append_text (_("June"));
+    combo.append_text (_("July"));
+    combo.append_text (_("August"));
+    combo.append_text (_("September"));
+    combo.append_text (_("October"));
+    combo.append_text (_("November"));
+    combo.append_text (_("December"));
+    combo.set_active (birthday.to_local ().get_month () - 1);
+    combo.get_style_context ().add_class ("contacts-combo");
+    combo.set_hexpand (true);
 
-    var year_spin = new SpinButton.with_range (1800, 3000, 1);
-    year_spin.set_digits (0);
-    year_spin.numeric = true;
-    year_spin.set_value ((double)birthday.to_local ().get_year ());
-
+    /* hack to preserver year in order to compare latter full date */
+    box.set_data ("year", birthday.to_local ().get_year ());
     box.add (day_spin);
-    box.add (month_combo);
-    box.add (year_spin);
+    box.add (combo);
 
-    container_grid.attach (box, 1, row, 1, 1);
+    attach (box, 1, row, 2, 1);
 
-    var delete_button = new Button.from_icon_name ("user-trash-symbolic", IconSize.MENU);
-    delete_button.get_accessible ().set_name (_("Delete field"));
-    container_grid.attach (delete_button, 3, row, 1, 1);
-
-    AdjustingDateFn fn = () => {
-      int[] month_of_31 = {3, 5, 8, 10};
-      if (month_combo.get_active () in month_of_31) {
-        day_spin.set_range (1, 30);
-      } else if (month_combo.get_active () == 1) {
-        if (year_spin.get_value_as_int () % 4 == 0 &&
-            year_spin.get_value_as_int () % 100 != 0) {
-          day_spin.set_range (1, 29);
-        } else {
-          day_spin.set_range (1, 28);
-        }
-      }
-    };
+    var delete_button = new Button ();
+    var image = new Image.from_icon_name ("user-trash-symbolic", IconSize.MENU);
+    delete_button.add (image);
+    attach (delete_button, 3, row, 1, 1);
 
     /* Notify change to upper layer */
     day_spin.changed.connect (() => {
-        set_field_changed (get_current_row (day_spin));
+	set_field_changed (row);
       });
-    month_combo.changed.connect (() => {
-        set_field_changed (get_current_row (month_combo));
-
-        /* adjusting day_spin value using selected month constraints*/
-        fn ();
-      });
-    year_spin.changed.connect (() => {
-        set_field_changed (get_current_row (year_spin));
-
-        fn ();
+    combo.changed.connect (() => {
+	set_field_changed (row);
       });
     delete_button.clicked.connect (() => {
-        remove_row (get_current_row (delete_button));
-        has_birthday_row = false;
+	remove_row (row);
       });
   }
 
@@ -480,34 +395,36 @@ public class Contacts.ContactEditor : Grid {
     combo.set_active (details);
     if (type != null)
       combo.set_to (type);
-    container_grid.attach (combo, 0, row, 1, 1);
+    attach (combo, 0, row, 1, 1);
 
     var value_address = new AddressEditor (details);
-    container_grid.attach (value_address, 1, row, 1, 1);
+    attach (value_address, 1, row, 2, 1);
 
-    var delete_button = new Button.from_icon_name ("user-trash-symbolic", IconSize.MENU);
-    delete_button.get_accessible ().set_name (_("Delete field"));
+    var delete_button = new Button ();
+    var image = new Image.from_icon_name ("user-trash-symbolic", IconSize.MENU);
+    delete_button.add (image);
     delete_button.set_valign (Align.START);
-    container_grid.attach (delete_button, 3, row, 1, 1);
+    attach (delete_button, 3, row, 1, 1);
 
     /* Notify change to upper layer */
     combo.changed.connect (() => {
-	set_field_changed (get_current_row (combo));
+	set_field_changed (row);
       });
     value_address.changed.connect (() => {
-	set_field_changed (get_current_row (value_address));
+	set_field_changed (row);
       });
     delete_button.clicked.connect (() => {
-	remove_row (get_current_row (delete_button));
+	remove_row (row);
       });
 
-    focus_widget = value_address;
+    value_address.map.connect (() => {
+	value_address.grab_focus ();
+      });
   }
 
-  void add_edit_row (Persona? p, string prop_name, ref int row, bool add_empty = false, string? type = null) {
+  void add_edit_row (Persona p, string prop_name, ref int row, bool add_empty = false, string? type = null) {
     /* Here, we will need to add manually every type of field,
      * we're planning to allow editing on */
-    string persona_uid = p != null ? p.uid : "null-persona.hack";
     switch (prop_name) {
     case "email-addresses":
       var rows = new HashMap<int, RowData?> ();
@@ -528,12 +445,12 @@ public class Contacts.ContactEditor : Grid {
 	}
       }
       if (! rows.is_empty) {
-	if (writable_personas[persona_uid].has_key (prop_name)) {
+	if (writable_personas[p].has_key (prop_name)) {
 	  foreach (var entry in rows.entries) {
-	    writable_personas[persona_uid][prop_name].rows.set (entry.key, entry.value);
+	    writable_personas[p][prop_name].rows.set (entry.key, entry.value);
 	  }
 	} else {
-	  writable_personas[persona_uid].set (prop_name, { false, rows });
+	  writable_personas[p].set (prop_name, { false, rows });
 	}
       }
       break;
@@ -556,12 +473,12 @@ public class Contacts.ContactEditor : Grid {
 	}
       }
       if (! rows.is_empty) {
-	if (writable_personas[persona_uid].has_key (prop_name)) {
+	if (writable_personas[p].has_key (prop_name)) {
 	  foreach (var entry in rows.entries) {
-	    writable_personas[persona_uid][prop_name].rows.set (entry.key, entry.value);
+	    writable_personas[p][prop_name].rows.set (entry.key, entry.value);
 	  }
 	} else {
-	  writable_personas[persona_uid].set (prop_name, { false, rows });
+	  writable_personas[p].set (prop_name, { false, rows });
 	}
       }
       break;
@@ -583,12 +500,12 @@ public class Contacts.ContactEditor : Grid {
 	}
       }
       if (! rows.is_empty) {
-	if (writable_personas[persona_uid].has_key (prop_name)) {
+	if (writable_personas[p].has_key (prop_name)) {
 	  foreach (var entry in rows.entries) {
-	    writable_personas[persona_uid][prop_name].rows.set (entry.key, entry.value);
+	    writable_personas[p][prop_name].rows.set (entry.key, entry.value);
 	  }
 	} else {
-	  writable_personas[persona_uid].set (prop_name, { false, rows });
+	  writable_personas[p].set (prop_name, { false, rows });
 	}
       }
       break;
@@ -609,18 +526,12 @@ public class Contacts.ContactEditor : Grid {
 	}
       }
       if (! rows.is_empty) {
-	has_nickname_row = true;
-	var delete_button = container_grid.get_child_at (3, row - 1) as Button;
-	delete_button.clicked.connect (() => {
-	    has_nickname_row = false;
-	  });
-
-	if (writable_personas[persona_uid].has_key (prop_name)) {
+	if (writable_personas[p].has_key (prop_name)) {
 	  foreach (var entry in rows.entries) {
-	    writable_personas[persona_uid][prop_name].rows.set (entry.key, entry.value);
+	    writable_personas[p][prop_name].rows.set (entry.key, entry.value);
 	  }
 	} else {
-	  writable_personas[persona_uid].set (prop_name, { false, rows });
+	  writable_personas[p].set (prop_name, { false, rows });
 	}
       }
       break;
@@ -642,8 +553,7 @@ public class Contacts.ContactEditor : Grid {
 	}
       }
       if (! rows.is_empty) {
-	has_birthday_row = true;
-	writable_personas[persona_uid].set (prop_name, { add_empty, rows });
+	writable_personas[p].set (prop_name, { add_empty, rows });
       }
       break;
     case "notes":
@@ -664,13 +574,12 @@ public class Contacts.ContactEditor : Grid {
 	}
       }
       if (! rows.is_empty) {
-	has_notes_row = true;
-	if (writable_personas[persona_uid].has_key (prop_name)) {
+	if (writable_personas[p].has_key (prop_name)) {
 	  foreach (var entry in rows.entries) {
-	    writable_personas[persona_uid][prop_name].rows.set (entry.key, entry.value);
+	    writable_personas[p][prop_name].rows.set (entry.key, entry.value);
 	  }
 	} else {
-	  writable_personas[persona_uid].set (prop_name, { false, rows });
+	  writable_personas[p].set (prop_name, { false, rows });
 	}
       }
       break;
@@ -701,23 +610,16 @@ public class Contacts.ContactEditor : Grid {
 	}
       }
       if (! rows.is_empty) {
-	if (writable_personas[persona_uid].has_key (prop_name)) {
+	if (writable_personas[p].has_key (prop_name)) {
 	  foreach (var entry in rows.entries) {
-	    writable_personas[persona_uid][prop_name].rows.set (entry.key, entry.value);
+	    writable_personas[p][prop_name].rows.set (entry.key, entry.value);
 	  }
 	} else {
-	  writable_personas[persona_uid].set (prop_name, { false, rows });
+	  writable_personas[p].set (prop_name, { false, rows });
 	}
       }
       break;
     }
-  }
-
-  int get_current_row (Widget child) {
-    int row;
-
-    container_grid.child_get (child, "top-attach", out row);
-    return row;
   }
 
   void insert_row_at (int idx) {
@@ -736,57 +638,42 @@ public class Contacts.ContactEditor : Grid {
 	}
       }
     }
-    foreach (var entry in writable_personas.entries) {
-      foreach (var field_entry in entry.value.entries) {
-	foreach (var row in field_entry.value.rows.keys) {
-	  if (row >= idx) {
-	    var new_rows = new HashMap <int, RowData?> ();
-	    foreach (var old_row in field_entry.value.rows.keys) {
-	      new_rows.set (old_row + 1, field_entry.value.rows[old_row]);
-	    }
-	    field_entry.value.rows = new_rows;
-	    break;
-	  }
-	}
-      }
-    }
-    container_grid.insert_row (idx);
+    insert_row (idx);
   }
 
-  [GtkCallback]
-  private void on_container_grid_size_allocate (Allocation alloc) {
-    if (focus_widget != null &&
-        focus_widget is Widget) {
-      focus_widget.grab_focus ();
-      focus_widget = null;
-    }
+  public ContactEditor () {
+    set_row_spacing (12);
+    set_column_spacing (16);
+
+    writable_personas = new HashMap<Persona, HashMap<string, Field?> > ();
   }
 
-  public ContactEditor (SimpleActionGroup editor_actions) {
-    this.container_grid.set_focus_vadjustment (this.main_sw.get_vadjustment ());
-
-    this.main_sw.get_style_context ().add_class ("contacts-main-view");
-    this.main_sw.get_style_context ().add_class ("view");
-
-    this.add_detail_button.get_popover ().insert_action_group ("edit", editor_actions);
-
-    this.writable_personas = new HashMap<string, HashMap<string, Field?>> ();
-  }
-
-  /**
-   * Adjusts the ContactEditor to the given contact.
-   * Use clear() to make sure nothing is lingering from the previous one.
-   */
-  public void edit (Contact c) {
+  public void update (Contact c) {
     contact = c;
 
-    remove_button.show ();
-    remove_button.sensitive = contact.can_remove_personas ();
-    linked_button.show ();
-    linked_button.sensitive = contact.individual.personas.size > 1;
+    var image_frame = new ContactFrame (PROFILE_SIZE, true);
+    image_frame.set_vexpand (false);
+    image_frame.set_valign (Align.START);
+    (image_frame.get_child () as Button).set_relief (ReliefStyle.NORMAL);
+    image_frame.clicked.connect ( () => {
+	change_avatar (c, image_frame);
+      });
+    c.keep_widget_uptodate (image_frame,  (w) => {
+	(w as ContactFrame).set_image (c.individual, c);
+      });
+    attach (image_frame,  0, 0, 1, 3);
 
-    create_avatar_button ();
-    create_name_entry ();
+    var name_entry = new Entry ();
+    name_entry.set_hexpand (true);
+    name_entry.set_valign (Align.CENTER);
+    name_entry.set_text (c.display_name);
+    name_entry.set_data ("changed", false);
+    attach (name_entry,  1, 0, 2, 1);
+
+    /* structured name change */
+    name_entry.changed.connect (() => {
+	name_entry.set_data ("changed", true);
+      });
 
     int i = 3;
     int last_store_position = 0;
@@ -800,17 +687,17 @@ public class Contacts.ContactEditor : Grid {
 						      Contact.format_persona_store_name_for_contact (p)));
 	store_name.set_halign (Align.START);
 	store_name.xalign = 0.0f;
-	store_name.margin_start = 6;
-	container_grid.attach (store_name, 0, i, 2, 1);
+	store_name.margin_left = 6;
+	attach (store_name, 0, i, 1, 1);
 	last_store_position = ++i;
       }
 
       var rw_props = Contact.sort_persona_properties (p.writeable_properties);
       if (rw_props.length != 0) {
-  	writable_personas.set (p.uid, new HashMap<string, Field?> ());
-  	foreach (var prop in rw_props) {
-  	  add_edit_row (p, prop, ref i);
-  	}
+	writable_personas.set (p, new HashMap<string, Field?> ());
+	foreach (var prop in rw_props) {
+	  add_edit_row (p, prop, ref i);
+	}
       }
 
       if (is_first_persona) {
@@ -823,47 +710,17 @@ public class Contacts.ContactEditor : Grid {
 
       if (i == last_store_position) {
 	i--;
-	container_grid.get_child_at (0, i).destroy ();
+	get_child_at (0, i).destroy ();
       }
     }
   }
 
-  /**
-   * Adjusts the ContactEditor for a new contact.
-   * Use clear() to make sure nothing is lingering from the previous one.
-   */
-  public void set_new_contact () {
-    remove_button.hide ();
-    linked_button.hide ();
-
-    create_avatar_button ();
-    create_name_entry ();
-    this.last_row = 2;
-
-    writable_personas["null-persona.hack"] = new HashMap<string, Field?> ();
-    foreach (var prop in DEFAULT_PROPS_NEW_CONTACT) {
-      var tok = prop.split (".");
-      add_new_row_for_property (null, tok[0], tok[1].up ());
-    }
-
-    this.focus_widget = this.name_entry;
-  }
-
   public void clear () {
-    foreach (var w in container_grid.get_children ()) {
+    foreach (var w in get_children ()) {
       w.destroy ();
     }
 
-    remove_button.set_sensitive (false);
-    linked_button.set_sensitive (false);
-
     /* clean metadata as well */
-    has_birthday_row = false;
-    has_nickname_row = false;
-    has_notes_row = false;
-
-    writable_personas.clear ();
-    contact = null;
   }
 
   public HashMap<string, PropertyData?> properties_changed () {
@@ -871,12 +728,9 @@ public class Contacts.ContactEditor : Grid {
 
     foreach (var entry in writable_personas.entries) {
       foreach (var field_entry in entry.value.entries) {
-	if (field_entry.value.changed && !props_set.has_key (field_entry.key)) {
+	if (field_entry.value.changed && ! (field_entry.key in props_set)) {
 	  PropertyData p = PropertyData ();
-	  p.persona = null;
-	  if (contact != null) {
-	    p.persona = contact.find_persona_from_uid (entry.key);
-	  }
+	  p.persona = entry.key;
 
 	  switch (field_entry.key) {
 	    case "email-addresses":
@@ -910,17 +764,26 @@ public class Contacts.ContactEditor : Grid {
     return props_set;
   }
 
+  public bool name_changed () {
+    var name_entry = get_child_at (1, 0) as Entry;
+    return name_entry.get_data<bool> ("changed");
+  }
+
+  public Value get_full_name_value () {
+    Value v = Value (typeof (string));
+    var name_entry = get_child_at (1, 0) as Entry;
+    v.set_string (name_entry.get_text ());
+    return v;
+  }
+
   public void add_new_row_for_property (Persona? p, string prop_name, string? type = null) {
     /* Somehow, I need to ensure that p is the main/default/first persona */
-    Persona persona = null;
-    if (contact != null) {
-      if (p == null) {
-  	persona = new FakePersona (contact);
-  	writable_personas.set (persona.uid,
-			       new HashMap<string, Field?> ());
-      } else {
-	persona = p;
-      }
+    Persona persona;
+    if (p == null) {
+      persona = new FakePersona (contact);
+      writable_personas.set (persona, new HashMap<string, Field?> ());
+    } else {
+      persona = p;
     }
 
     int next_idx = 0;
@@ -937,77 +800,6 @@ public class Contacts.ContactEditor : Grid {
     insert_row_at (next_idx);
     add_edit_row (persona, prop_name, ref next_idx, true, type);
     last_row++;
-    container_grid.show_all ();
-  }
-
-  // Creates the contact's current avatar in a big button on top of the Editor
-  private void create_avatar_button () {
-    this.avatar = new Avatar (PROFILE_SIZE, this.contact);
-
-    var button = new Button ();
-    button.get_accessible ().set_name (_("Change avatar"));
-    button.image = this.avatar;
-    button.clicked.connect (on_avatar_button_clicked);
-
-    this.container_grid.attach (button, 0, 0, 1, 3);
-  }
-
-  // Show the avatar dialog when the avatar is clicked
-  private void on_avatar_button_clicked (Button avatar_button) {
-    var dialog = new AvatarSelector ((Window) get_toplevel (), this.contact);
-    dialog.set_avatar.connect ( (icon) =>  {
-        this.avatar.set_data ("value", icon);
-        this.avatar.set_data ("changed", true);
-
-        Gdk.Pixbuf? a_pixbuf = null;
-        try {
-          var stream = (icon as LoadableIcon).load (PROFILE_SIZE, null);
-          a_pixbuf = new Gdk.Pixbuf.from_stream_at_scale (stream, PROFILE_SIZE, PROFILE_SIZE, true);
-        } catch {
-        }
-
-        this.avatar.set_pixbuf (a_pixbuf);
-      });
-    dialog.run ();
-  }
-
-  public bool avatar_changed () {
-    return this.avatar.get_data<bool> ("changed");
-  }
-
-  public Value get_avatar_value () {
-    GLib.Icon icon = this.avatar.get_data<GLib.Icon> ("value");
-    Value v = Value (icon.get_type ());
-    v.set_object (icon);
-    return v;
-  }
-
-  // Creates the big name entry on the top
-  private void create_name_entry () {
-    this.name_entry = new Entry ();
-    this.name_entry.hexpand = true;
-    this.name_entry.valign = Align.CENTER;
-    this.name_entry.placeholder_text = _("Add name");
-    this.name_entry.set_data ("changed", false);
-
-    if (this.contact != null)
-        this.name_entry.text = this.contact.individual.display_name;
-
-    /* structured name change */
-    this.name_entry.changed.connect (() => {
-        this.name_entry.set_data ("changed", true);
-      });
-
-    this.container_grid.attach (this.name_entry, 1, 0, 3, 3);
-  }
-
-  public bool name_changed () {
-    return this.name_entry.get_data<bool> ("changed");
-  }
-
-  public Value get_full_name_value () {
-    Value v = Value (typeof (string));
-    v.set_string (this.name_entry.get_text ());
-    return v;
+    show_all ();
   }
 }

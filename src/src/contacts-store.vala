@@ -19,6 +19,7 @@
 using Gtk;
 using Folks;
 using Gee;
+using TelepathyGLib;
 
 public class Contacts.Store : GLib.Object {
   public signal void changed (Contact c);
@@ -27,17 +28,19 @@ public class Contacts.Store : GLib.Object {
   public signal void quiescent ();
   public signal void prepared ();
 
-  public signal void eds_persona_store_changed ();
-
   public IndividualAggregator aggregator { get; private set; }
-  public BackendStore backend_store { get { return this.aggregator.backend_store; } }
-  private ArrayList<Contact> contacts;
+  public BackendStore backend_store { get; private set; }
+  Gee.ArrayList<Contact> contacts;
+
+  public Gee.HashMap<string, Account> calling_accounts;
 
   public Gee.HashMultiMap<string, string> dont_suggest_link;
 
-#if HAVE_TELEPATHY
-  public TelepathyGLib.Account? caller_account { get; private set; default = null; }
-#endif
+  public bool can_call {
+    get {
+      return this.calling_accounts.size > 0 ? true : false;
+    }
+  }
 
   public bool is_quiescent {
     get { return this.aggregator.is_quiescent; }
@@ -48,8 +51,9 @@ public class Contacts.Store : GLib.Object {
   }
 
   public void refresh () {
-    foreach (var c in contacts)
-      c.queue_changed ();
+    foreach (var c in contacts) {
+      c.queue_changed (true);
+    }
   }
 
   private bool individual_can_replace_at_split (Individual new_individual) {
@@ -130,25 +134,14 @@ public class Contacts.Store : GLib.Object {
     write_dont_suggest_db ();
   }
 
-  construct {
+  public Store () {
     contacts = new Gee.ArrayList<Contact>();
 
     dont_suggest_link = new Gee.HashMultiMap<string, string> ();
     read_dont_suggest_db ();
 
-    var backend_store = BackendStore.dup ();
-    backend_store.backend_available.connect ((backend) => {
-        if (backend.name == "eds") {
-          backend.persona_store_added.connect (() => {
-              eds_persona_store_changed ();
-            });
-          backend.persona_store_removed.connect (() => {
-              eds_persona_store_changed ();
-            });
-        }
-      });
-
-    this.aggregator = IndividualAggregator.dup_with_backend_store (backend_store);
+    backend_store = BackendStore.dup ();
+    aggregator = new IndividualAggregator ();
     aggregator.notify["is-quiescent"].connect ( (obj, pspec) => {
 	// We seem to get this before individuals_changed, so hack around it
 	Idle.add( () => {
@@ -164,80 +157,76 @@ public class Contacts.Store : GLib.Object {
 	  });
       });
 
-    this.aggregator.individuals_changed_detailed.connect (on_individuals_changed_detailed);
+    aggregator.individuals_changed_detailed.connect ( (changes) =>   {
+	// Note: Apparently the current implementation doesn't necessarily pick
+	// up unlinked individual as replacements.
+
+	var replaced_individuals = new HashMap<Individual?, Individual?> ();
+
+	// Pick best replacements at joins
+	foreach (var old_individual in changes.get_keys ()) {
+	  if (old_individual == null)
+	    continue;
+	  foreach (var new_individual in changes.get (old_individual)) {
+	    if (new_individual == null)
+	      continue;
+	    if (!replaced_individuals.has_key (new_individual) ||
+		individual_should_replace_at_join (old_individual)) {
+	      replaced_individuals.set (new_individual, old_individual);
+	    }
+	  }
+	}
+
+	foreach (var old_individual in changes.get_keys ()) {
+	  HashSet<Individual>? replacements = null;
+	  foreach (var new_individual in changes.get (old_individual)) {
+	    if (old_individual != null && new_individual != null &&
+		replaced_individuals.get (new_individual) == old_individual) {
+	      if (replacements == null)
+		replacements = new HashSet<Individual> ();
+	      replacements.add (new_individual);
+	    } else if (old_individual != null) {
+	      /* Removing an old individual. */
+	      var c = Contact.from_individual (old_individual);
+	      this.remove (c);
+	    } else if (new_individual != null) {
+	      /* Adding a new individual. */
+	      this.add (new Contact (this, new_individual));
+	    }
+	  }
+
+	  // This old_individual was split up into one or more new ones
+	  // We have to pick one to be the one that we keep around
+	  // in the old Contact, the rest gets new Contacts
+	  // This is important to get right, as we might be displaying
+	  // the contact and unlink a specific persona from the contact
+	  if (replacements != null) {
+	    Individual? main_individual = null;
+	    foreach (var i in replacements) {
+	      main_individual = i;
+	      // If this was marked as being possible to replace the
+	      // contact on split then we can otherwise bail immediately
+	      // Otherwise need to look for other possible better
+	      // replacements that we should reuse
+	      if (individual_can_replace_at_split (i))
+		break;
+	    }
+
+	    var c = Contact.from_individual (old_individual);
+	    c.replace_individual (main_individual);
+	    foreach (var i in replacements) {
+	      if (i != main_individual) {
+		/* Already replaced this old_individual, i.e. we're splitting
+		   old_individual. We just make this a new one. */
+		this.add (new Contact (this, i));
+	      }
+	    }
+	  }
+	}
+      });
     aggregator.prepare.begin ();
 
-#if HAVE_TELEPATHY
     check_call_capabilities.begin ();
-#endif
-  }
-
-  private void on_individuals_changed_detailed (MultiMap<Individual?,Individual?> changes) {
-    // Note: Apparently the current implementation doesn't necessarily pick
-    // up unlinked individual as replacements.
-
-    var replaced_individuals = new HashMap<Individual?, Individual?> ();
-
-    // Pick best replacements at joins
-    foreach (var old_individual in changes.get_keys ()) {
-      if (old_individual == null)
-        continue;
-      foreach (var new_individual in changes[old_individual]) {
-        if (new_individual == null)
-          continue;
-        if (!replaced_individuals.has_key (new_individual)
-            || individual_should_replace_at_join (old_individual)) {
-          replaced_individuals[new_individual] = old_individual;
-        }
-      }
-    }
-
-    foreach (var old_individual in changes.get_keys ()) {
-      HashSet<Individual>? replacements = null;
-      foreach (var new_individual in changes[old_individual]) {
-        if (old_individual != null && new_individual != null &&
-            replaced_individuals[new_individual] == old_individual) {
-          if (replacements == null)
-            replacements = new HashSet<Individual> ();
-          replacements.add (new_individual);
-        } else if (old_individual != null) {
-          // Removing an old individual.
-          var c = Contact.from_individual (old_individual);
-          remove (c);
-        } else if (new_individual != null) {
-          // Adding a new individual.
-          add (new Contact (this, new_individual));
-        }
-      }
-
-      // This old_individual was split up into one or more new ones
-      // We have to pick one to be the one that we keep around
-      // in the old Contact, the rest gets new Contacts
-      // This is important to get right, as we might be displaying
-      // the contact and unlink a specific persona from the contact
-      if (replacements != null) {
-        Individual? main_individual = null;
-        foreach (var i in replacements) {
-          main_individual = i;
-          // If this was marked as being possible to replace the
-          // contact on split then we can otherwise bail immediately
-          // Otherwise need to look for other possible better
-          // replacements that we should reuse
-          if (individual_can_replace_at_split (i))
-            break;
-        }
-
-        var c = Contact.from_individual (old_individual);
-        c.replace_individual (main_individual);
-        foreach (var i in replacements) {
-          if (i != main_individual) {
-            // Already replaced this old_individual, i.e. we're splitting
-            // old_individual. We just make this a new one.
-            add (new Contact (this, i));
-          }
-        }
-      }
-    }
   }
 
   private void contact_changed_cb (Contact c) {
@@ -290,6 +279,14 @@ public class Contacts.Store : GLib.Object {
     return contacts.read_only_view;
   }
 
+  public bool is_empty () {
+    foreach (var contact in contacts) {
+      if (!contact.is_hidden)
+	return false;
+    }
+    return true;
+  }
+
   private void add (Contact c) {
     contacts.add (c);
     c.changed.connect (contact_changed_cb);
@@ -307,10 +304,10 @@ public class Contacts.Store : GLib.Object {
     removed (c);
   }
 
-#if HAVE_TELEPATHY
   // TODO: listen for changes in Account#URISchemes
   private async void check_call_capabilities () {
-    var account_manager = TelepathyGLib.AccountManager.dup ();
+    this.calling_accounts = new Gee.HashMap<string, Account> ();
+    var account_manager = AccountManager.dup ();
 
     try {
       yield account_manager.prepare_async (null);
@@ -318,15 +315,16 @@ public class Contacts.Store : GLib.Object {
       account_manager.account_enabled.connect (this.check_account_caps);
       account_manager.account_disabled.connect (this.check_account_caps);
 
-      foreach (var account in account_manager.dup_valid_accounts ())
-        yield this.check_account_caps (account);
+      foreach (var account in account_manager.get_valid_accounts ()) {
+	yield this.check_account_caps (account);
+      }
     } catch (GLib.Error e) {
       warning ("Unable to check accounts caps %s", e.message);
     }
   }
 
-  private async void check_account_caps (TelepathyGLib.Account account) {
-    GLib.Quark addressing = TelepathyGLib.Account.get_feature_quark_addressing ();
+  private async void check_account_caps (Account account) {
+    GLib.Quark addressing = Account.get_feature_quark_addressing ();
     if (!account.is_prepared (addressing)) {
       GLib.Quark[] features = { addressing };
       try {
@@ -337,9 +335,13 @@ public class Contacts.Store : GLib.Object {
     }
 
     if (account.is_prepared (addressing)) {
-      if (account.is_enabled () && account.associated_with_uri_scheme ("tel"))
-        this.caller_account = account;
+      var k = account.get_object_path ();
+      if (account.is_enabled () &&
+	  account.associated_with_uri_scheme ("tel")) {
+	this.calling_accounts.set (k, account);
+      } else {
+	this.calling_accounts.unset (k);
+      }
     }
   }
-#endif
 }

@@ -17,32 +17,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CHEESE_FLASH_H_
-#define CHEESE_FLASH_H_
+#ifndef _CHEESE_FLASH_H_
+#define _CHEESE_FLASH_H_
 
-#include <gtk/gtk.h>
 #include <glib-object.h>
 
 G_BEGIN_DECLS
 
-/**
- * CheeseFlash:
- *
- * Use the accessor functions below.
- */
-struct _CheeseFlash
-{
-  /*< private >*/
-  GtkWindow parent_instance;
-  void *unused;
-};
-
 #define CHEESE_TYPE_FLASH (cheese_flash_get_type ())
-G_DECLARE_FINAL_TYPE (CheeseFlash, cheese_flash, CHEESE, FLASH, GtkWindow)
+#define CHEESE_FLASH(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_FLASH, CheeseFlash))
+#define CHEESE_FLASH_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_FLASH, CheeseFlashClass))
+#define CHEESE_IS_FLASH(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_FLASH))
+#define CHEESE_IS_FLASH_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_FLASH))
+#define CHEESE_FLASH_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_FLASH, CheeseFlashClass))
 
-CheeseFlash *cheese_flash_new (GtkWidget *parent);
-void cheese_flash_fire (CheeseFlash *flash);
+typedef struct
+{
+  GObjectClass parent_class;
+} CheeseFlashClass;
+
+typedef struct
+{
+  GObject parent_instance;
+} CheeseFlash;
+
+GType        cheese_flash_get_type (void) G_GNUC_CONST;
+CheeseFlash *cheese_flash_new (void);
+
+void cheese_flash_fire (CheeseFlash *flash,
+                        GdkRectangle *rect);
+
+#include <cheese/cheese-widget.h>
+
+GObject   *cheese_widget_get_camera (CheeseWidget *widget);
 
 G_END_DECLS
 
-#endif /* CHEESE_FLASH_H_ */
+#endif /* _CHEESE_FLASH_H_ */

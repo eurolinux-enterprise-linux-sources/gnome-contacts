@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.gnome.Contacts
-Exec=@bindir@/gnome-contacts --gapplication-service

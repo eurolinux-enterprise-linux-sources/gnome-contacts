@@ -1,147 +1,130 @@
-/*
- * Copyright (C) 2011 Alexander Larsson <alexl@redhat.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 using Gee;
-using Folks;
 
-[DBus (name = "org.gnome.Shell.SearchProvider2")]
+[DBus (name = "org.gnome.Shell.SearchProvider")]
 public class Contacts.SearchProvider : Object {
-  private SearchProviderApp app;
-  private IndividualAggregator aggregator;
-  private SimpleQuery query;
-  private Variant serialized_fallback_icon;
+  SearchProviderApp app;
+  Store store;
+  Gee.HashMap<string, Contact> contacts_map;
+  private uint next_id;
 
   public SearchProvider (SearchProviderApp app) {
-    // Do this first, since this will be the slowest (and is async anyway)
-    this.aggregator = IndividualAggregator.dup ();
-    this.aggregator.prepare.begin ();
-
     this.app = app;
-    this.serialized_fallback_icon = new ThemedIcon.from_names ({"avatar-default-symbolic"}).serialize ();;
+    ensure_eds_accounts ();
+    store = new Store ();
+    contacts_map = new Gee.HashMap<string, Contact> ();
+    next_id = 0;
 
-    var matched_fields = Query.MATCH_FIELDS_NAMES;
-    foreach (var field in Query.MATCH_FIELDS_ADDRESSES)
-      matched_fields += field;
-    this.query = new SimpleQuery ("", matched_fields);
-
-    if (!ensure_eds_accounts (false))
-      this.app.quit ();
+    store.changed.connect ( (c) => {
+      contacts_map.set(c.get_data<string> ("search-id"), c);
+    });
+    store.added.connect ( (c) => {
+      var id = next_id++.to_string ();
+      c.set_data ("search-id", id);
+      contacts_map.set(id, c);
+    });
+    store.removed.connect ( (c) => {
+      contacts_map.unset(c.get_data<string> ("search-id"));
+    });
   }
 
-  public async string[] GetInitialResultSet (string[] terms) {
-    return yield do_search (terms);
+  private static int compare_contacts (Contact a, Contact b) {
+    int a_prio = a.is_main ? 0 : -1;
+    int b_prio = b.is_main ? 0 : -1;
+
+    if (a_prio > b_prio)
+        return -1;
+    if (a_prio < b_prio)
+        return 1;
+
+    if (is_set (a.display_name) && is_set (b.display_name))
+      return a.display_name.collate (b.display_name);
+
+    // Sort empty names last
+    if (is_set (a.display_name))
+      return -1;
+    if (is_set (b.display_name))
+      return 1;
+
+    return 0;
   }
 
-  public async string[] GetSubsearchResultSet (string[] previous_results, string[] new_terms) {
-    return yield do_search (new_terms);
-  }
+  private string[] do_search (string[] terms) {
+    app.hold ();
+    string[] normalized_terms =
+        Utils.canonicalize_for_search (string.joinv(" ", terms)).split(" ");
 
-  private async string[] do_search (string[] terms) {
-    this.app.hold ();
+    var matches = new ArrayList<Contact> ();
+    foreach (var c in store.get_contacts ()) {
+      if (c.is_hidden)
+          continue;
 
-    // Make the query and search view
-    query.query_string = string.joinv(" ", terms);
-    var search_view = new SearchView (aggregator, query);
-    try {
-      yield search_view.prepare ();
-    } catch (Error e) {
-      error ("Couldn't load SearchView: %s", e.message);
+      if (c.contains_strings (normalized_terms))
+          matches.add (c);
     }
-    var results = new string[search_view.individuals.size];
-    var i = 0;
-    foreach (var individual in search_view.individuals) {
-      results[i] = individual.id;
-      i++;
-    }
 
-    this.app.release ();
+    matches.sort((CompareDataFunc<Contact>) compare_contacts);
+
+    var results = new string[matches.size];
+    for (int i = 0; i < matches.size; i++)
+        results[i] = matches[i].get_data ("search-id");
+    app.release ();
     return results;
   }
 
-  public async HashTable<string, Variant>[] GetResultMetas (string[] ids) {
-    return yield get_metas (ids);
+  public string[] GetInitialResultSet (string[] terms) {
+    return do_search (terms);
   }
 
-  private async HashTable<string, Variant>[] get_metas (owned string[] ids) {
-    this.app.hold ();
+  public string[] GetSubsearchResultSet (string[] previous_results,
+                                         string[] new_terms) {
+    return do_search (new_terms);
+  }
 
+  public HashTable<string, Variant>[] GetResultMetas (string[] ids) {
+    app.hold ();
     var results = new ArrayList<HashTable> ();
     foreach (var id in ids) {
-      Individual indiv = null;
-      try {
-        indiv = yield aggregator.look_up_individual (id);
-      } catch (Error e) {
-        continue;
-      }
-      if (indiv == null)
+      var contact = contacts_map.get (id);
+
+      if (contact == null)
         continue;
 
       var meta = new HashTable<string, Variant> (str_hash, str_equal);
-      meta["id"] = new Variant.string (id);
-      meta["name"] = new Variant.string (indiv.display_name);
-      meta["icon"] = (indiv.avatar != null)? indiv.avatar.serialize () : serialized_fallback_icon;
+      meta.insert ("id", new Variant.string (id));
 
-      // Make a description based the first email address/phone nr/... we can find
-      var description = new StringBuilder ();
+      meta.insert ("name", new Variant.string (contact.display_name));
 
-      var email = Utils.get_first<EmailFieldDetails> (indiv.email_addresses);
-      if (email != null && email.value != null && email.value != "")
-        description.append (email.value);
-
-      var phone = Utils.get_first<PhoneFieldDetails> (indiv.phone_numbers);
-      if (phone != null && phone.value != null && phone.value != "") {
-        if (description.len > 0)
-          description.append (" / ");
-        description.append (phone.value);
-      }
-
-      meta["description"] = description.str;
-
+      if (contact.serializable_avatar_icon != null)
+        meta.insert ("gicon", new Variant.string (contact.serializable_avatar_icon.to_string ()));
+      else if (contact.avatar_icon_data != null)
+        meta.insert ("icon-data", contact.avatar_icon_data);
+      else
+        meta.insert ("gicon", new Variant.string (new ThemedIcon ("avatar-default").to_string ()));
       results.add (meta);
     }
-    this.app.release ();
+    app.release ();
     return results.to_array ();
   }
 
-  public void ActivateResult (string id, string[] terms, uint32 timestamp) {
-    this.app.hold ();
+  public void ActivateResult (string search_id) {
+    app.hold ();
 
+    var contact = contacts_map.get (search_id);
+
+    if (contact == null) {
+      app.release ();
+      return;
+    }
+
+    string id = contact.individual.id;
     try {
-      Process.spawn_command_line_async ("gnome-contacts -i " + id);
+      if (!Process.spawn_command_line_async ("gnome-contacts -i " + id))
+        stderr.printf ("Failed to launch contact with id '%s'\n", id);
     } catch (SpawnError e) {
-      stderr.printf ("Failed to launch contact with id '%s': %s\n.", id, e.message);
-    }
-    this.app.release ();
-  }
-
-  public void LaunchSearch (string[] terms, uint32 timestamp) {
-    this.app.hold ();
-
-    debug ("LaunchSearch (%s)", string.joinv (", ", terms));
-
-    try {
-      string[] args = { "gnome-contacts", "--search" };
-      args += string.joinv (" ", terms);
-      Process.spawn_async (null, args, null, SpawnFlags.SEARCH_PATH, null, null);
-    } catch (SpawnError error) {
-      stderr.printf ("Failed to launch Contacts for search\n");
+      stderr.printf ("Failed to launch contact with id '%s'\n", id);
     }
 
-    this.app.release ();
+    app.release ();
   }
 }
 

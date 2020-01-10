@@ -1,0 +1,44 @@
+From 23ba9b75ee77fc3eebfec7daffef9310063b3fb0 Mon Sep 17 00:00:00 2001
+From: David King <dking@redhat.com>
+Date: Wed, 17 Dec 2014 14:25:17 +0000
+Subject: [PATCH] Show address fields when adding the first contact
+
+The new contact dialog iterates over the list of address fields, which
+are declared as static in the Contact class. Static data in Vala is
+implemented by initializing the data during class_init(), or in other
+words, the first time that the class is instantiated. When adding the
+first contact, there are no instances of Contact, and so the address
+fields have not been initialized. This leads to a blank space in the new
+contact dialog, where the list of address fields should be.
+
+Ensure that class_init() of the Contact class has been called by
+calling g_type_class_ref() on the Type before iterating over the address
+fields.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=702810
+---
+ src/contacts-new-contact-dialog.vala | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/src/contacts-new-contact-dialog.vala b/src/contacts-new-contact-dialog.vala
+index 816c863..c98f305 100644
+--- a/src/contacts-new-contact-dialog.vala
++++ b/src/contacts-new-contact-dialog.vala
+@@ -176,6 +176,14 @@ public class Contacts.NewContactDialog : Dialog {
+     sub_grid.set_hexpand (true);
+     entries.add (sub_grid);
+ 
++    /* Ensure that class_init() of Contact has been called, to initialize the
++     * static members, including postal_element_props. */
++    var contact_type = Type.from_name ("ContactsContact");
++    if (contact_type != 0) {
++      // Type has been registered, make sure that class_init() has been called.
++      contact_type.class_ref ();
++    }
++
+     for (int i = 0; i < Contact.postal_element_props.length; i++) {
+       var entry = new Entry ();
+       entry.set ("placeholder-text", Contact.postal_element_names[i]);
+-- 
+1.8.3.1
+
