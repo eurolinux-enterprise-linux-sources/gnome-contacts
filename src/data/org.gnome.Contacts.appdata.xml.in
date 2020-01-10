@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <id type="desktop">org.gnome.Contacts.desktop</id>
+  <licence>CC0</licence>
+  <description>
+    <_p>
+      Contacts keeps and organize your contacts information. You can create,
+      edit, delete and link together pieces of information about your contacts.
+      Contacts aggregates the details from all your sources providing a
+      centralized place for managing your contacts.
+    </_p>
+    <_p>
+      Contacts will also integrate with online address books and automatically
+      link contacts from different online sources.
+    </_p>
+  </description>
+  <screenshots>
+    <screenshot type="default" width="800" height="575">
+      https://wiki.gnome.org/Apps/Contacts?action=AttachFile&amp;do=get&amp;target=appdata.png
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://wiki.gnome.org/Apps/Contacts</url>
+  <updatecontact>erickpc@gnome.org</updatecontact>
+</application>

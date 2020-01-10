@@ -1,0 +1,21 @@
+data/org.gnome.Contacts.appdata.xml.in
+data/org.gnome.Contacts.desktop.in.in
+[type: gettext/ini]data/org.gnome.Contacts.search-provider.ini.in.in
+src/contacts-accounts-list.vala
+src/contacts-app.vala
+src/contacts-avatar-dialog.vala
+src/contacts-contact-editor.vala
+src/contacts-contact-pane.vala
+src/contacts-contact-sheet.vala
+src/contacts-contact-frame.vala
+src/contacts-contact.vala
+src/contacts-esd-setup.c
+src/contacts-linked-accounts-dialog.vala
+src/contacts-types.vala
+src/contacts-view.vala
+src/contacts-window.vala
+[type: gettext/glade]data/ui/app-menu.ui
+[type: gettext/glade]data/ui/contacts-list-pane.ui
+[type: gettext/glade]data/ui/contacts-window.ui
+src/main.vala
+src/org.gnome.Contacts.gschema.xml.in

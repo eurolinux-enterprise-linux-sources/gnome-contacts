@@ -1,0 +1,13 @@
+diff --git a/po/ne.po b/po/ne.po
+index deeaa8e..6ad8ae7 100644
+--- a/po/ne.po
++++ b/po/ne.po
+@@ -44,7 +44,7 @@ msgstr "जिनोमको लागि एक समपर्क प्र
+ 
+ #: ../data/org.gnome.Contacts.desktop.in.in.h:3
+ msgid "friends;address book;"
+-msgstr "मित्र;ठेगाना पूस्तिका"
++msgstr "मित्र;ठेगाना;पूस्तिका;"
+ 
+ #: ../src/contacts-accounts-list.vala:48
+ msgid "Online Accounts"

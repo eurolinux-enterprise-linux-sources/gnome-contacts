@@ -1,0 +1,913 @@
+# Danish translation for gnome-contacts.
+# Copyright (C) 2011 gnome-contacts's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-contacts package.
+#
+# Kris Thomsen <mail@kristhomsen.dk>, 2011-2013.
+# Kenneth Nielsen <k.nielsen81@gmail.com>, 2012, 2014.
+#
+# Ordliste:
+# link (i forb. med kontaktpersoner)   sammenkæde
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-contacts master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-16 19:57+0200\n"
+"PO-Revision-Date: 2014-09-16 19:56+0200\n"
+"Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/org.gnome.Contacts.appdata.xml.in.h:1
+msgid ""
+"Contacts keeps and organize your contacts information. You can create, edit, "
+"delete and link together pieces of information about your contacts. Contacts "
+"aggregates the details from all your sources providing a centralized place "
+"for managing your contacts."
+msgstr ""
+"Programmet Kontakter opbevarer og organiserer kontaktperson-information. Du "
+"kan oprette, redigere og sammenkæde stykker af information om dine "
+"kontaktpersoner. Kontakter samler detaljerne fra alle dine kilder og giver "
+"derved et centraliseret sted for håndtering af dine kontaktpersoner."
+
+#: ../data/org.gnome.Contacts.appdata.xml.in.h:2
+msgid ""
+"Contacts will also integrate with online address books and automatically "
+"link contacts from different online sources."
+msgstr ""
+"Kontakter kan også integrere sig med adressebøger på nettet og automatisk "
+"sammenkæde kontaktpersoner fra forskellige kilder på nettet."
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:1 ../src/main.vala:28
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:2
+msgid "A contacts manager for GNOME"
+msgstr "En kontaktpersonhåndtering til GNOME"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:3
+msgid "friends;address book;"
+msgstr "venner;adressebog;"
+
+#: ../src/contacts-accounts-list.vala:48
+msgid "Online Accounts"
+msgstr "Online konti"
+
+#: ../src/contacts-accounts-list.vala:174 ../src/contacts-esd-setup.c:118
+msgid "Local Address Book"
+msgstr "Lokal adressebog"
+
+#: ../src/contacts-app.vala:46
+#, c-format
+msgid "No contact with id %s found"
+msgstr "Ingen kontakt med id %s fundet"
+
+#: ../src/contacts-app.vala:47 ../src/contacts-app.vala:149
+msgid "Contact not found"
+msgstr "Kontakt ikke fundet"
+
+#: ../src/contacts-app.vala:56
+msgid "Change Address Book"
+msgstr "Skift adressebog"
+
+#: ../src/contacts-app.vala:61
+msgid "Change"
+msgstr "Ændr"
+
+#: ../src/contacts-app.vala:62 ../src/contacts-avatar-dialog.vala:255
+#: ../data/ui/contacts-window.ui.h:5
+msgid "Cancel"
+msgstr "Annuller"
+
+#: ../src/contacts-app.vala:71
+msgid ""
+"New contacts will be added to the selected address book.\n"
+"You are able to view and edit contacts from other address books."
+msgstr ""
+"Nye kontakter vil blive tilføjet den valgte adressebog.\n"
+"Du kan se og redigere kontakter fra andre adressebøger."
+
+#: ../src/contacts-app.vala:128
+msgid "translator-credits"
+msgstr ""
+"Kris Thomsen\n"
+"Kenneth Nielsen\n"
+"\n"
+"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Mere info: http://www.dansk-gruppen.dk"
+
+#: ../src/contacts-app.vala:129
+msgid "GNOME Contacts"
+msgstr "GNOME Kontakter"
+
+#: ../src/contacts-app.vala:130
+msgid "About GNOME Contacts"
+msgstr "Om GNOME Kontakter"
+
+#: ../src/contacts-app.vala:131
+msgid "Contact Management Application"
+msgstr "Kontakthåndteringsprogram"
+
+#: ../src/contacts-app.vala:148
+#, c-format
+msgid "No contact with email address %s found"
+msgstr "Ingen kontakt med e-mailadressen %s fundet"
+
+#: ../src/contacts-app.vala:307
+msgid "Show contact with this individual id"
+msgstr "Vis kontakt med dette individuelle id"
+
+#: ../src/contacts-app.vala:309
+msgid "Show contact with this email address"
+msgstr "Vis kontakt med denne e-mailadresse"
+
+#: ../src/contacts-app.vala:316
+msgid "— contact management"
+msgstr "— kontakthåndtering"
+
+#: ../src/contacts-avatar-dialog.vala:200
+msgid "Browse for more pictures"
+msgstr "Gennemse for flere billeder"
+
+#: ../src/contacts-avatar-dialog.vala:203
+msgid "_Cancel"
+msgstr "_Annullér"
+
+#: ../src/contacts-avatar-dialog.vala:204
+msgid "_Open"
+msgstr "_Åbn"
+
+#: ../src/contacts-avatar-dialog.vala:249
+msgid "Select Picture"
+msgstr "Vælg billede"
+
+#: ../src/contacts-avatar-dialog.vala:253 ../src/contacts-window.vala:198
+#: ../src/contacts-window.vala:224
+msgid "Select"
+msgstr "Vælg"
+
+#: ../src/contacts-avatar-dialog.vala:281 ../src/contacts-window.vala:315
+msgid "New Contact"
+msgstr "Ny kontakt"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Street"
+msgstr "Gade"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Extension"
+msgstr "Udvidelse"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "City"
+msgstr "By"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "State/Province"
+msgstr "Stat/Provins"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Zip/Postal Code"
+msgstr "Postnummer"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "PO box"
+msgstr "Postboks"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Country"
+msgstr "Land"
+
+#: ../src/contacts-contact-editor.vala:293
+msgid "Add email"
+msgstr "Tilføj e-mail"
+
+#: ../src/contacts-contact-editor.vala:295
+msgid "Add number"
+msgstr "Tilføj telefonnummer"
+
+#: ../src/contacts-contact-editor.vala:299
+#: ../src/contacts-contact-editor.vala:330
+#: ../src/contacts-contact-editor.vala:365
+#: ../src/contacts-contact-editor.vala:428
+#: ../src/contacts-contact-editor.vala:478
+msgid "Delete field"
+msgstr "Slet felt"
+
+#: ../src/contacts-contact-editor.vala:400
+msgid "January"
+msgstr "Januar"
+
+#: ../src/contacts-contact-editor.vala:401
+msgid "February"
+msgstr "Februar"
+
+#: ../src/contacts-contact-editor.vala:402
+msgid "March"
+msgstr "Marts"
+
+#: ../src/contacts-contact-editor.vala:403
+msgid "April"
+msgstr "April"
+
+#: ../src/contacts-contact-editor.vala:404
+msgid "May"
+msgstr "Maj"
+
+#: ../src/contacts-contact-editor.vala:405
+msgid "June"
+msgstr "Juni"
+
+#: ../src/contacts-contact-editor.vala:406
+msgid "July"
+msgstr "Juli"
+
+#: ../src/contacts-contact-editor.vala:407
+msgid "August"
+msgstr "August"
+
+#: ../src/contacts-contact-editor.vala:408
+msgid "September"
+msgstr "September"
+
+#: ../src/contacts-contact-editor.vala:409
+msgid "October"
+msgstr "Oktober"
+
+#: ../src/contacts-contact-editor.vala:410
+msgid "November"
+msgstr "November"
+
+#: ../src/contacts-contact-editor.vala:411
+msgid "December"
+msgstr "December"
+
+#: ../src/contacts-contact-editor.vala:561
+#: ../src/contacts-contact-editor.vala:568
+#: ../src/contacts-contact-sheet.vala:190 ../data/ui/app-menu.ui.h:10
+msgid "Website"
+msgstr "Webside"
+
+#: ../src/contacts-contact-editor.vala:587
+#: ../src/contacts-contact-editor.vala:594
+#: ../src/contacts-contact-sheet.vala:196 ../data/ui/app-menu.ui.h:11
+msgid "Nickname"
+msgstr "Kaldenavn"
+
+#: ../src/contacts-contact-editor.vala:620
+#: ../src/contacts-contact-editor.vala:627
+#: ../src/contacts-contact-sheet.vala:203 ../data/ui/app-menu.ui.h:12
+msgid "Birthday"
+msgstr "Fødselsdag"
+
+#: ../src/contacts-contact-editor.vala:642
+#: ../src/contacts-contact-editor.vala:649
+#: ../src/contacts-contact-sheet.vala:210
+msgid "Note"
+msgstr "Note"
+
+#: ../src/contacts-contact-editor.vala:774
+msgid "New Detail"
+msgstr "Ny detalje"
+
+#: ../src/contacts-contact-editor.vala:780
+#: ../src/contacts-linked-accounts-dialog.vala:36
+msgid "Linked Accounts"
+msgstr "Sammenkædede konti"
+
+#: ../src/contacts-contact-editor.vala:783
+msgid "Remove Contact"
+msgstr "Fjern kontakt"
+
+#: ../src/contacts-contact-editor.vala:841
+#: ../src/contacts-contact-editor.vala:1041
+msgid "Add name"
+msgstr "Tilføj navn"
+
+# _("Does %s from %s belong here?").printf (c.display_name, c.format_persona_stores ());
+#: ../src/contacts-contact-pane.vala:137
+#, c-format
+msgid "Does %s from %s belong here?"
+msgstr "Hører %s fra %s hjemme her?"
+
+#: ../src/contacts-contact-pane.vala:139
+#, c-format
+msgid "Do these details belong to %s?"
+msgstr "Tilhører disse detaljer %s?"
+
+#: ../src/contacts-contact-pane.vala:151
+msgid "Yes"
+msgstr "Ja"
+
+#: ../src/contacts-contact-pane.vala:152
+msgid "No"
+msgstr "Nej"
+
+#: ../src/contacts-contact-pane.vala:323
+msgid "Select a contact"
+msgstr "Vælg en kontakt"
+
+#: ../src/contacts-contact-pane.vala:455
+msgid "You need to enter some data"
+msgstr "Du er nødt til at indtaste nogle data"
+
+#: ../src/contacts-contact-pane.vala:467
+msgid "No primary addressbook configured"
+msgstr "Ingen primær adressebog konfigureret"
+
+#: ../src/contacts-contact-pane.vala:486
+#, c-format
+msgid "Unable to create new contacts: %s"
+msgstr "Kunne ikke oprette nye kontakter: %s"
+
+#: ../src/contacts-contact-pane.vala:497
+msgid "Unable to find newly created contact"
+msgstr "Kunne ikke finde nyligt oprettet kontakt"
+
+#: ../src/contacts-contact-frame.vala:40
+msgid "Change avatar"
+msgstr "Ændr profilbillede"
+
+#: ../src/contacts-contact.vala:729
+msgid "Google Talk"
+msgstr "Google Talk"
+
+#: ../src/contacts-contact.vala:730
+msgid "Ovi Chat"
+msgstr "Ovi Chat"
+
+#: ../src/contacts-contact.vala:731
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ../src/contacts-contact.vala:732
+msgid "Livejournal"
+msgstr "Livejournal"
+
+#: ../src/contacts-contact.vala:733
+msgid "AOL Instant Messenger"
+msgstr "AOL Instant Messenger"
+
+#: ../src/contacts-contact.vala:734
+msgid "Gadu-Gadu"
+msgstr "Gadu-Gadu"
+
+#: ../src/contacts-contact.vala:735
+msgid "Novell Groupwise"
+msgstr "Novell Groupwise"
+
+#: ../src/contacts-contact.vala:736
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/contacts-contact.vala:737
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/contacts-contact.vala:738
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ../src/contacts-contact.vala:739
+msgid "Local network"
+msgstr "Lokalt netværk"
+
+#: ../src/contacts-contact.vala:740
+msgid "Windows Live Messenger"
+msgstr "Windows Live Messenger"
+
+#: ../src/contacts-contact.vala:741
+msgid "MySpace"
+msgstr "MySpace"
+
+#: ../src/contacts-contact.vala:742
+msgid "MXit"
+msgstr "MXit"
+
+#: ../src/contacts-contact.vala:743
+msgid "Napster"
+msgstr "Napster"
+
+#: ../src/contacts-contact.vala:744
+msgid "Tencent QQ"
+msgstr "Tencent QQ"
+
+#: ../src/contacts-contact.vala:745
+msgid "IBM Lotus Sametime"
+msgstr "IBM Lotus Sametime"
+
+#: ../src/contacts-contact.vala:746
+msgid "SILC"
+msgstr "SILC"
+
+#: ../src/contacts-contact.vala:747
+msgid "sip"
+msgstr "sip"
+
+#: ../src/contacts-contact.vala:748
+msgid "Skype"
+msgstr "Skype"
+
+#: ../src/contacts-contact.vala:749
+msgid "Telephony"
+msgstr "Telephony"
+
+#: ../src/contacts-contact.vala:750
+msgid "Trepia"
+msgstr "Trepia"
+
+#: ../src/contacts-contact.vala:751 ../src/contacts-contact.vala:752
+msgid "Yahoo! Messenger"
+msgstr "Yahoo! Messenger"
+
+#: ../src/contacts-contact.vala:753
+msgid "Zephyr"
+msgstr "Zephyr"
+
+#: ../src/contacts-contact.vala:1053
+msgid "Unexpected internal error: created contact was not found"
+msgstr "Uventet intern fejl: oprettet kontakt blev ikke fundet"
+
+#: ../src/contacts-contact.vala:1238
+msgid "Google Circles"
+msgstr "Google-cirkler"
+
+#: ../src/contacts-contact.vala:1240 ../src/contacts-esd-setup.c:121
+#: ../src/contacts-esd-setup.c:149
+msgid "Google"
+msgstr "Google"
+
+#: ../src/contacts-esd-setup.c:146
+msgid "Local Contact"
+msgstr "Lokal kontakt"
+
+#: ../src/contacts-linked-accounts-dialog.vala:35
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/contacts-linked-accounts-dialog.vala:60
+msgid "You can link contacts by selecting them from the contacts list"
+msgstr "Du kan sammenkæde kontakter ved at vælge dem fra kontaktlisten"
+
+#: ../src/contacts-linked-accounts-dialog.vala:104
+msgid "Unlink"
+msgstr "Fjern sammenkædning"
+
+#. Refers to the type of the detail, could be Home, Work or Other for email, and the same
+#. * for phone numbers, addresses, etc.
+#: ../src/contacts-types.vala:115 ../src/contacts-types.vala:127
+#: ../src/contacts-types.vala:228 ../src/contacts-types.vala:341
+msgid "Other"
+msgstr "Andet"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:283 ../src/contacts-types.vala:337
+msgid "Home"
+msgstr "Hjem"
+
+#: ../src/contacts-types.vala:284 ../src/contacts-types.vala:307
+#: ../src/contacts-types.vala:332
+msgid "Work"
+msgstr "Arbejde"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:306
+msgid "Personal"
+msgstr "Personlig"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:331
+msgid "Assistant"
+msgstr "Assistent"
+
+#: ../src/contacts-types.vala:333
+msgid "Work Fax"
+msgstr "Arbejdsfax"
+
+#: ../src/contacts-types.vala:334
+msgid "Callback"
+msgstr "Tilbagekald"
+
+#: ../src/contacts-types.vala:335
+msgid "Car"
+msgstr "Bil"
+
+#: ../src/contacts-types.vala:336
+msgid "Company"
+msgstr "Firma"
+
+#: ../src/contacts-types.vala:338
+msgid "Home Fax"
+msgstr "Hjemmefax"
+
+#: ../src/contacts-types.vala:339
+msgid "ISDN"
+msgstr "ISDN"
+
+#: ../src/contacts-types.vala:340
+msgid "Mobile"
+msgstr "Mobil"
+
+#: ../src/contacts-types.vala:342
+msgid "Fax"
+msgstr "Fax"
+
+#: ../src/contacts-types.vala:343
+msgid "Pager"
+msgstr "Personsøger"
+
+#: ../src/contacts-types.vala:344
+msgid "Radio"
+msgstr "Radio"
+
+#: ../src/contacts-types.vala:345
+msgid "Telex"
+msgstr "Telex"
+
+#. To translators: TTY is Teletypewriter
+#: ../src/contacts-types.vala:347
+msgid "TTY"
+msgstr "TTY"
+
+#: ../src/contacts-view.vala:194
+msgid "No results matched search"
+msgstr "Ingen resultater matchede søgningen"
+
+#: ../src/contacts-view.vala:298
+msgid "Suggestions"
+msgstr "Forslag"
+
+#: ../src/contacts-view.vala:323
+msgid "Other Contacts"
+msgstr "Andre Kontakter"
+
+#: ../src/contacts-window.vala:200
+#, c-format
+msgid "%d Selected"
+msgid_plural "%d Selected"
+msgstr[0] "%d valgt"
+msgstr[1] "%d valgte"
+
+#: ../src/contacts-window.vala:233 ../data/ui/contacts-window.ui.h:2
+msgid "All Contacts"
+msgstr "Alle kontakter"
+
+#: ../src/contacts-window.vala:250
+#, c-format
+msgid "Editing %s"
+msgstr "Redigerer %s"
+
+#: ../src/contacts-window.vala:265 ../data/ui/contacts-window.ui.h:7
+msgid "Done"
+msgstr "Udført"
+
+#: ../src/contacts-window.vala:320
+msgid "Add"
+msgstr "Tilføj"
+
+#: ../src/contacts-window.vala:407
+#, c-format
+msgid "%d contacts linked"
+msgid_plural "%d contacts linked"
+msgstr[0] "%d kontakt sammenkædet"
+msgstr[1] "%d kontakter sammenkædet"
+
+#: ../src/contacts-window.vala:411 ../src/contacts-window.vala:443
+#: ../src/contacts-window.vala:485 ../src/contacts-window.vala:521
+msgid "_Undo"
+msgstr "_Fortryd"
+
+#: ../src/contacts-window.vala:439
+#, c-format
+msgid "%d contact deleted"
+msgid_plural "%d contacts deleted"
+msgstr[0] "%d kontakt slettet"
+msgstr[1] "%d kontakter slettet"
+
+#: ../src/contacts-window.vala:482
+#, c-format
+msgid "Contact deleted: \"%s\""
+msgstr "Kontakt slettet: \"%s\""
+
+#: ../src/contacts-window.vala:517
+#, c-format
+msgid "%s linked to %s"
+msgstr "%s sammenkædet til %s"
+
+#: ../src/contacts-window.vala:519
+#, c-format
+msgid "%s linked to the contact"
+msgstr "%s sammenkædet til kontakten"
+
+#: ../data/ui/app-menu.ui.h:1
+msgid "_Change Address Book..."
+msgstr "_Skift adressebog..."
+
+#: ../data/ui/app-menu.ui.h:2
+msgid "_Help"
+msgstr "_Hjælp"
+
+#: ../data/ui/app-menu.ui.h:3
+msgid "_About"
+msgstr "_Om"
+
+#: ../data/ui/app-menu.ui.h:4
+msgid "_Quit"
+msgstr "_Afslut"
+
+#: ../data/ui/app-menu.ui.h:5
+msgid "Personal email"
+msgstr "Personlig e-mail"
+
+#: ../data/ui/app-menu.ui.h:6
+msgid "Work email"
+msgstr "Arbejds-e-mail"
+
+#: ../data/ui/app-menu.ui.h:7
+msgid "Mobile phone"
+msgstr "Mobiltelefon"
+
+#: ../data/ui/app-menu.ui.h:8
+msgid "Home phone"
+msgstr "Hjemmetelefon"
+
+#: ../data/ui/app-menu.ui.h:9
+msgid "Work phone"
+msgstr "Arbejdstelefon"
+
+#: ../data/ui/app-menu.ui.h:13
+msgid "Home address"
+msgstr "Hjemmeadresse"
+
+#: ../data/ui/app-menu.ui.h:14
+msgid "Work address"
+msgstr "Arbejdsadresse"
+
+#: ../data/ui/app-menu.ui.h:15
+msgid "Notes"
+msgstr "Noter"
+
+#: ../data/ui/contacts-list-pane.ui.h:1
+msgid "Type to search"
+msgstr "Skriv for at søge"
+
+#. Link refers to the verb, from linking contacts together
+#: ../data/ui/contacts-list-pane.ui.h:3
+msgid "Link"
+msgstr "Henvisning"
+
+#: ../data/ui/contacts-list-pane.ui.h:4
+msgid "Delete"
+msgstr "Slet"
+
+#: ../data/ui/contacts-window.ui.h:1
+msgid "Loading"
+msgstr "Indlæser"
+
+#: ../data/ui/contacts-window.ui.h:3
+msgid "Add contact"
+msgstr "Tilføj kontakt"
+
+#: ../data/ui/contacts-window.ui.h:4
+msgid "Selection mode"
+msgstr "Markeringstilstand"
+
+#: ../data/ui/contacts-window.ui.h:6
+msgid "Edit"
+msgstr "Redigér"
+
+#: ../data/ui/contacts-window.ui.h:8
+msgid "Select Address Book"
+msgstr "Vælg adressebog"
+
+#: ../data/ui/contacts-window.ui.h:9
+msgid "Cancel setup"
+msgstr "Afbryd opsætning"
+
+#: ../data/ui/contacts-window.ui.h:10
+msgid "Setup complete"
+msgstr "Opsætning færdiggjort"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:1
+msgid "First-time setup done."
+msgstr "Førstegangsindstilling er færdig."
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:2
+msgid "Set to true when the user ran the first-time setup wizard."
+msgstr "Sæt til sand når brugeren har kørt førstegangs-indstillingsguiden."
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:3
+msgid "View subset"
+msgstr "Vis delmængde"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:4
+msgid "View contacts subset"
+msgstr "Vis kontaktdelmængde"
+
+#~ msgid "Primary Contacts Account"
+#~ msgstr "Primær kontaktkonto"
+
+#~ msgid "Close"
+#~ msgstr "Luk"
+
+#~ msgid "Twitter"
+#~ msgstr "Twitter"
+
+#~ msgid "Google Profile"
+#~ msgstr "Google-profil"
+
+#~ msgid "Google Other Contact"
+#~ msgstr "Anden Google-kontakt"
+
+#~ msgid "%s - Linked Accounts"
+#~ msgstr "%s - Sammenkædede konti"
+
+#~ msgid "Create Contact"
+#~ msgstr "Opret kontakt"
+
+#~ msgid ""
+#~ "Add or \n"
+#~ "select a picture"
+#~ msgstr ""
+#~ "Tilføj eller \n"
+#~ "vælg et billede"
+
+#~ msgid "Contact Name"
+#~ msgstr "Kontaktnavn"
+
+#~ msgid "Email"
+#~ msgstr "E-post"
+
+#~ msgid "Phone"
+#~ msgstr "Telefon"
+
+#~ msgid "You must specify a contact name"
+#~ msgstr "Du skal angive et kontaktnavn"
+
+#~ msgid "Contacts Setup"
+#~ msgstr "Indstillinger for Kontakter"
+
+#~ msgid "Please select your primary contacts account"
+#~ msgstr "Vælg venligst din primære kontaktkonto"
+
+#~ msgid "_About Contacts"
+#~ msgstr "_Om Kontakter"
+
+#~ msgid "Remove"
+#~ msgstr "Fjern"
+
+#~ msgid "View"
+#~ msgstr "Vis"
+
+#~ msgid "Main contacts"
+#~ msgstr "Primære kontakter"
+
+# Koden antyder at der åbnes en dialog til an ny kontakt
+#~ msgid "New"
+#~ msgstr "Ny"
+
+#~ msgid ""
+#~ "Welcome to Contacts! Please select where you want to keep your address "
+#~ "book:"
+#~ msgstr ""
+#~ "Velkomment til Kontakter! Vælg venligst hvor du ønsker at opbevare din "
+#~ "adressebog:"
+
+#~ msgid "Online Account Settings"
+#~ msgstr "Indstillinger for online-konti"
+
+#~ msgid "Setup an online account or use a local address book"
+#~ msgstr "Opret en online-konto eller brug en lokal adressebog"
+
+#~ msgid "Use Local Address Book"
+#~ msgstr "Brug lokal adressebog"
+
+#~ msgctxt "Addresses on the Web"
+#~ msgid "Links"
+#~ msgstr "Links"
+
+#~ msgctxt "Web address"
+#~ msgid "Link"
+#~ msgstr "Link"
+
+#~ msgid "Chat"
+#~ msgstr "Chat"
+
+#~ msgid "Addresses"
+#~ msgstr "Adresser"
+
+#~ msgid "Add to My Contacts"
+#~ msgstr "Tilføj til mine kontakter"
+
+#~ msgid "Add detail..."
+#~ msgstr "Tilføj detalje..."
+
+#~ msgid "Select detail to add to %s"
+#~ msgstr "Vælg detaljer som skal føjes til %s"
+
+#~ msgid "Select email address"
+#~ msgstr "Vælg e-post-adresse"
+
+#~ msgid "Select what to call"
+#~ msgstr "Vælg hvad der ringes til"
+
+#~ msgid "Add/Remove Linked Contacts..."
+#~ msgstr "Tilføj/fjern koblede kontakter..."
+
+#~ msgctxt "contacts link action"
+#~ msgid "Link"
+#~ msgstr "Sammenkæd"
+
+#~ msgid "Link contacts to %s"
+#~ msgstr "Sammenkæd kontakter med %s"
+
+#~ msgid "Custom..."
+#~ msgstr "Tilpasset..."
+
+#~ msgid "Unknown status"
+#~ msgstr "Ukendt status"
+
+#~ msgid "Offline"
+#~ msgstr "Afkoblet"
+
+#~ msgid "Error"
+#~ msgstr "Fejl"
+
+#~ msgid "Available"
+#~ msgstr "Tilgængelig"
+
+#~ msgid "Away"
+#~ msgstr "Borte"
+
+#~ msgid "Extended away"
+#~ msgstr "Udvidet borte"
+
+#~ msgid "Busy"
+#~ msgstr "Optaget"
+
+#~ msgid "Hidden"
+#~ msgstr "Skjult"
+
+#~ msgid "<span weight='bold'>Link contacts to %s</span>"
+#~ msgstr "<span weight='bold'>Sammenkæd kontakter med %s</span>"
+
+#~ msgid "Browse for more pictures..."
+#~ msgstr "Gennemse for flere billeder..."
+
+#~ msgid "Add contact data to %s\n"
+#~ msgstr "Føj kontaktdata til %s\n"
+
+#~ msgctxt "link-contacts-button"
+#~ msgid "Link"
+#~ msgstr "Sammenkæd"
+
+#~ msgid "Currently linked:"
+#~ msgstr "I øjeblikket sammenkædet:"
+
+#~ msgid ""
+#~ "Connect to an account,\n"
+#~ "import or add contacts"
+#~ msgstr ""
+#~ "Forbind til en konto,\n"
+#~ "importér eller tilføj kontakter"
+
+#~ msgid "Enter nickname"
+#~ msgstr "Indtast kaldenavn"
+
+#~ msgid "Alias"
+#~ msgstr "Dæknavn"
+
+#~ msgid "Enter alias"
+#~ msgstr "Indtast dæknavn"
+
+#~ msgid "Enter phone number"
+#~ msgstr "Indtast telefonnummer"
+
+#~ msgid "Enter name"
+#~ msgstr "Indtast navn"
+
+#~ msgid "Address copied to clipboard"
+#~ msgstr "Adresse kopieret til udklipsholder"
+
+#~ msgid "Department"
+#~ msgstr "Afdeling"
+
+#~ msgid "Profession"
+#~ msgstr "Profession"
+
+#~ msgid "Title"
+#~ msgstr "Titel"
+
+#~ msgid "Manager"
+#~ msgstr "Chef"
+
+#~ msgid "More"
+#~ msgstr "Mere"
+
+#~ msgid "Send..."
+#~ msgstr "Send..."

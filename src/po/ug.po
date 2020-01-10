@@ -1,0 +1,665 @@
+# Uyghur translation for gnome-contacts.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gheyret Kenji <gheyret@gmail.com>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-contacts\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-contacts&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-03-31 15:20+0000\n"
+"PO-Revision-Date: 2013-04-06 19:11+0900\n"
+"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/gnome-contacts.desktop.in.in.h:1 ../src/contacts-app.vala:285
+#: ../src/main.vala:28
+msgid "Contacts"
+msgstr "ئالاقەداشلار"
+
+#: ../data/gnome-contacts.desktop.in.in.h:2
+msgid "friends;address book;"
+msgstr "دوستلار;ئادرېس دەپتىرى;friends;address book;"
+
+#: ../src/app-menu.ui.h:1
+msgid "View"
+msgstr "كۆرۈنۈش"
+
+#: ../src/app-menu.ui.h:2
+msgid "Main contacts"
+msgstr "ئاساسلىق ئالاقەداشلار"
+
+#: ../src/app-menu.ui.h:3
+msgid "All contacts"
+msgstr "بارلىق ئالاقەداشلار"
+
+#: ../src/app-menu.ui.h:4
+msgid "_Change Address Book..."
+msgstr "ئادرېس دەپتىرىنى ئۆزگەرت(_C)…"
+
+#: ../src/app-menu.ui.h:5
+msgid "_About Contacts"
+msgstr "ئالاقەداشلار ھەققىدە(_A)"
+
+#: ../src/app-menu.ui.h:6
+msgid "_Help"
+msgstr "ياردەم(_H)"
+
+#: ../src/app-menu.ui.h:7
+msgid "_Quit"
+msgstr "ئاخىرلاشتۇر(_Q)"
+
+#: ../src/contacts-app.vala:108
+#, c-format
+msgid "No contact with id %s found"
+msgstr "كىملىكى %s بولغان ئالاقەداش تېپىلمىدى"
+
+#: ../src/contacts-app.vala:109 ../src/contacts-app.vala:233
+msgid "Contact not found"
+msgstr "ئالاقەداش تېپىلمىدى"
+
+#: ../src/contacts-app.vala:118
+msgid "Change Address Book"
+msgstr "ئادرېس دەپتىرىنى ئۆزگەرتىش"
+
+#: ../src/contacts-app.vala:123 ../src/contacts-setup-window.vala:152
+msgid "Select"
+msgstr "تاللا"
+
+#: ../src/contacts-app.vala:211
+msgid "translator-credits"
+msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
+"Sahran<sahran@live.com>\n"
+"Muhemmed Erdem <misran_erdem@hotmail.com>"
+
+#: ../src/contacts-app.vala:212
+msgid "GNOME Contacts"
+msgstr "گىنوم ئالاقەداشلىرى"
+
+#: ../src/contacts-app.vala:213
+msgid "About GNOME Contacts"
+msgstr "گىنوم ئالاقەداشلىرى ھەققىدە"
+
+#: ../src/contacts-app.vala:214
+msgid "Contact Management Application"
+msgstr "ئالاقەداشلارنى باشقۇرۇش پروگراممىسى"
+
+#: ../src/contacts-app.vala:232
+#, c-format
+msgid "No contact with email address %s found"
+msgstr "ئېلخەت ئادرېسى %s بولغان ئالاقەداش تېپىلمىدى"
+
+#: ../src/contacts-app.vala:299
+msgid "New"
+msgstr "يېڭى"
+
+#: ../src/contacts-app.vala:326
+msgid "Edit"
+msgstr "تەھرىرلەش"
+
+#: ../src/contacts-app.vala:332
+msgid "Done"
+msgstr "تامام"
+
+#: ../src/contacts-app.vala:381
+msgid "Editing"
+msgstr "تەھرىرلەۋاتىدۇ"
+
+#: ../src/contacts-app.vala:498
+#, c-format
+msgid "%d contacts linked"
+msgid_plural "%d contacts linked"
+msgstr[0] "%d ئالاقەداش ئۇلاندى"
+
+#: ../src/contacts-app.vala:529
+#, c-format
+msgid "%d contact deleted"
+msgid_plural "%d contacts deleted"
+msgstr[0] "%d ئالاقەداش ئۆچۈرۈلدى"
+
+#: ../src/contacts-app.vala:570
+#, c-format
+msgid "Contact deleted: \"%s\""
+msgstr "ئالاقەداش ئۆچۈرۈلدى: «%s»"
+
+#: ../src/contacts-app.vala:596
+msgid "Show contact with this individual id"
+msgstr "مۇشۇنداق كىملىكى بار ئالاقەداشنى كۆرسەت"
+
+#: ../src/contacts-app.vala:598
+msgid "Show contact with this email address"
+msgstr "مۇشۇنداق ئېلخەت ئادرېسى بار ئالاقەداشنى كۆرسەت"
+
+#: ../src/contacts-app.vala:611
+#, c-format
+msgid "%s linked to %s"
+msgstr "%s نى %s غا ئۇلىدى"
+
+#: ../src/contacts-app.vala:613
+#, c-format
+msgid "%s linked to the contact"
+msgstr "%s بۇ ئالاقەداشقا ئۇلاندى"
+
+#: ../src/contacts-app.vala:630
+msgid "— contact management"
+msgstr "— ئالاقەداش باشقۇرۇش"
+
+#: ../src/contacts-avatar-dialog.vala:197
+msgid "Browse for more pictures"
+msgstr "تېخىمۇ كۆپ سۈرەتكە كۆز يۈگۈرت"
+
+#: ../src/contacts-avatar-dialog.vala:244
+msgid "Select Picture"
+msgstr "سۈرەت تاللا"
+
+#: ../src/contacts-avatar-dialog.vala:247
+#: ../src/contacts-linked-accounts-dialog.vala:37
+msgid "Close"
+msgstr "ياپ"
+
+#: ../src/contacts-contact-editor.vala:352
+msgid "January"
+msgstr "قەھرىتان"
+
+#: ../src/contacts-contact-editor.vala:353
+msgid "February"
+msgstr "ھۇت"
+
+#: ../src/contacts-contact-editor.vala:354
+msgid "March"
+msgstr "نەۋرۇز"
+
+#: ../src/contacts-contact-editor.vala:355
+msgid "April"
+msgstr "ئۈمىد"
+
+#: ../src/contacts-contact-editor.vala:356
+msgid "May"
+msgstr "باھار"
+
+#: ../src/contacts-contact-editor.vala:357
+msgid "June"
+msgstr "سەپەر"
+
+#: ../src/contacts-contact-editor.vala:358
+msgid "July"
+msgstr "چىللە"
+
+#: ../src/contacts-contact-editor.vala:359
+msgid "August"
+msgstr "تومۇز"
+
+#: ../src/contacts-contact-editor.vala:360
+msgid "September"
+msgstr "مىزان"
+
+#: ../src/contacts-contact-editor.vala:361
+msgid "October"
+msgstr "ئوغۇز"
+
+#: ../src/contacts-contact-editor.vala:362
+msgid "November"
+msgstr "ئوغلاق"
+
+#: ../src/contacts-contact-editor.vala:363
+msgid "December"
+msgstr "كۆنەك"
+
+#: ../src/contacts-contact-editor.vala:489
+#: ../src/contacts-contact-editor.vala:496
+#: ../src/contacts-contact-sheet.vala:169
+msgid "Website"
+msgstr "تورتۇرا"
+
+#: ../src/contacts-contact-editor.vala:515
+#: ../src/contacts-contact-editor.vala:522
+#: ../src/contacts-contact-pane.vala:395
+#: ../src/contacts-contact-sheet.vala:179
+msgid "Nickname"
+msgstr "تەخەللۇس"
+
+#: ../src/contacts-contact-editor.vala:542
+#: ../src/contacts-contact-editor.vala:549
+#: ../src/contacts-contact-pane.vala:400
+#: ../src/contacts-contact-sheet.vala:186
+msgid "Birthday"
+msgstr "تۇغۇلغان كۈن"
+
+#: ../src/contacts-contact-editor.vala:569
+#: ../src/contacts-contact-editor.vala:576
+#: ../src/contacts-contact-sheet.vala:193
+msgid "Note"
+msgstr "ئىزاھات"
+
+#: ../src/contacts-contact-pane.vala:183
+#, c-format
+msgid "Does %s from %s belong here?"
+msgstr "%s (%s) بۇ يەرگە تەۋەمۇ؟"
+
+#: ../src/contacts-contact-pane.vala:185
+#, c-format
+msgid "Do these details belong to %s?"
+msgstr "بۇ تەپسىلاتلار %s نىڭغا تەۋەمۇ؟"
+
+#: ../src/contacts-contact-pane.vala:196
+msgid "Yes"
+msgstr "ھەئە"
+
+#: ../src/contacts-contact-pane.vala:197
+msgid "No"
+msgstr "ياق"
+
+#: ../src/contacts-contact-pane.vala:349
+msgid "New Detail"
+msgstr "يېڭى تەپسىلات"
+
+#. building menu
+#: ../src/contacts-contact-pane.vala:363
+msgid "Personal email"
+msgstr "شەخسىي ئېلخەت"
+
+#: ../src/contacts-contact-pane.vala:368
+msgid "Work email"
+msgstr "خىزمەتتىكى ئېلخەت"
+
+#: ../src/contacts-contact-pane.vala:374
+msgid "Mobile phone"
+msgstr "يانفون"
+
+#: ../src/contacts-contact-pane.vala:379
+msgid "Home phone"
+msgstr "ئۆي تېلېفونى"
+
+#: ../src/contacts-contact-pane.vala:384
+msgid "Work phone"
+msgstr "خىزمەت تېلېفونى"
+
+#: ../src/contacts-contact-pane.vala:390 ../src/contacts-list-pane.vala:140
+msgid "Link"
+msgstr "ئۇلانما"
+
+#: ../src/contacts-contact-pane.vala:406
+msgid "Home address"
+msgstr "ئۆي ئادرېسى"
+
+#: ../src/contacts-contact-pane.vala:411
+msgid "Work address"
+msgstr "خىزمەت ئادرېسى"
+
+#: ../src/contacts-contact-pane.vala:417
+msgid "Notes"
+msgstr "ئىزاھ"
+
+#: ../src/contacts-contact-pane.vala:434
+msgid "Linked Accounts"
+msgstr "ئۇلانغان ھېساباتلار"
+
+#: ../src/contacts-contact-pane.vala:446
+msgid "Remove Contact"
+msgstr "ئالاقەداش ئۆچۈر"
+
+#: ../src/contacts-contact-pane.vala:505
+#| msgid "New contact"
+msgid "Select a contact"
+msgstr "ئالاقەداش تاللاڭ"
+
+#: ../src/contacts-contact.vala:675
+msgid "Street"
+msgstr "كوچا"
+
+#: ../src/contacts-contact.vala:675
+msgid "Extension"
+msgstr "كېڭەيتىلمە"
+
+#: ../src/contacts-contact.vala:675
+msgid "City"
+msgstr "شەھەر"
+
+#: ../src/contacts-contact.vala:675
+msgid "State/Province"
+msgstr "ئىشتات/ئۆلكە"
+
+#: ../src/contacts-contact.vala:675
+msgid "Zip/Postal Code"
+msgstr "پوچتا نومۇرى"
+
+#: ../src/contacts-contact.vala:675
+msgid "PO box"
+msgstr "خەت ساندۇقى"
+
+#: ../src/contacts-contact.vala:675
+msgid "Country"
+msgstr "دۆلەت"
+
+#: ../src/contacts-contact.vala:731
+msgid "Google Talk"
+msgstr "گۇگىل سۆھبەت(Google Talk)"
+
+#: ../src/contacts-contact.vala:732
+msgid "Ovi Chat"
+msgstr "ئوۋى پاراڭ(Ovi Chat)"
+
+#: ../src/contacts-contact.vala:733 ../src/contacts-contact.vala:1017
+msgid "Facebook"
+msgstr "فېيىسبۇك(Facebook)"
+
+#: ../src/contacts-contact.vala:734
+msgid "Livejournal"
+msgstr "Livejournal"
+
+#: ../src/contacts-contact.vala:735
+msgid "AOL Instant Messenger"
+msgstr "ئا ئو ل (AOL) مۇڭداشقۇسى"
+
+#: ../src/contacts-contact.vala:736
+msgid "Gadu-Gadu"
+msgstr "گادۇ-گادۇ(Gadu-Gadu)"
+
+#: ../src/contacts-contact.vala:737
+msgid "Novell Groupwise"
+msgstr "Novell Groupwise"
+
+#: ../src/contacts-contact.vala:738
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/contacts-contact.vala:739
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/contacts-contact.vala:740
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ../src/contacts-contact.vala:741
+msgid "Local network"
+msgstr "يەرلىك تور"
+
+#: ../src/contacts-contact.vala:742
+msgid "Windows Live Messenger"
+msgstr "Windows Live Messenger"
+
+#: ../src/contacts-contact.vala:743
+msgid "MySpace"
+msgstr "MySpace"
+
+#: ../src/contacts-contact.vala:744
+msgid "MXit"
+msgstr "MXit"
+
+#: ../src/contacts-contact.vala:745
+msgid "Napster"
+msgstr "Napster"
+
+#: ../src/contacts-contact.vala:746
+msgid "Tencent QQ"
+msgstr "تىڭشۈن QQ"
+
+#: ../src/contacts-contact.vala:747
+msgid "IBM Lotus Sametime"
+msgstr "IBM Lotus Sametime"
+
+#: ../src/contacts-contact.vala:748
+msgid "SILC"
+msgstr "SILC"
+
+#: ../src/contacts-contact.vala:749
+msgid "sip"
+msgstr "sip"
+
+#: ../src/contacts-contact.vala:750
+msgid "Skype"
+msgstr "Skype"
+
+#: ../src/contacts-contact.vala:751
+msgid "Telephony"
+msgstr "تېلېفون"
+
+#: ../src/contacts-contact.vala:752
+msgid "Trepia"
+msgstr "Trepia"
+
+#: ../src/contacts-contact.vala:753 ../src/contacts-contact.vala:754
+msgid "Yahoo! Messenger"
+msgstr "Yahoo! Messenger"
+
+#: ../src/contacts-contact.vala:755
+msgid "Zephyr"
+msgstr "Zephyr"
+
+#: ../src/contacts-contact.vala:1020
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ../src/contacts-contact.vala:1023
+msgid "Google Profile"
+msgstr "Google Profile"
+
+#: ../src/contacts-contact.vala:1087
+msgid "Unexpected internal error: created contact was not found"
+msgstr "ئىچكى خاتالىق: ياسالغان ئالاقەداش تېپىلمىدى"
+
+#: ../src/contacts-contact.vala:1261
+msgid "Google Circles"
+msgstr "Google Circles"
+
+#: ../src/contacts-contact.vala:1263
+msgid "Google Other Contact"
+msgstr "Google Other Contact"
+
+#: ../src/contacts-esd-setup.c:114
+msgid "Local Address Book"
+msgstr "يەرلىك ئادرېس دەپتىرى"
+
+#: ../src/contacts-esd-setup.c:117 ../src/contacts-esd-setup.c:145
+msgid "Google"
+msgstr "گۇگىل(Google)"
+
+#: ../src/contacts-esd-setup.c:142
+msgid "Local Contact"
+msgstr "يەرلىك ئالاقەداش"
+
+#: ../src/contacts-linked-accounts-dialog.vala:32
+#, c-format
+msgid "%s - Linked Accounts"
+msgstr "%s - ئۇلانغان ھېساباتلار"
+
+#: ../src/contacts-linked-accounts-dialog.vala:56
+msgid "You can manually link contacts from the contacts list"
+msgstr "ئالاقەداشلار تىزىمىدىكى ئالاقەداشلارنى قولدا ئۇلىيالايسىز"
+
+#: ../src/contacts-linked-accounts-dialog.vala:102
+msgid "Remove"
+msgstr "چىقىرىۋەت"
+
+#: ../src/contacts-list-pane.vala:143
+msgid "Delete"
+msgstr "ئۆچۈر"
+
+#: ../src/contacts-new-contact-dialog.vala:35
+msgid "New contact"
+msgstr "يېڭى ئالاقەداش"
+
+#: ../src/contacts-new-contact-dialog.vala:41
+msgid "Create Contact"
+msgstr "ئالاقەداش قۇر"
+
+#: ../src/contacts-new-contact-dialog.vala:67
+msgid ""
+"Add or \n"
+"select a picture"
+msgstr "سۈرەت قوشۇڭ ياكى تاللاڭ"
+
+#: ../src/contacts-new-contact-dialog.vala:78
+msgid "Contact Name"
+msgstr "ئالاقەداش ئاتى"
+
+#: ../src/contacts-new-contact-dialog.vala:86
+#: ../src/contacts-new-contact-dialog.vala:121
+msgid "Email"
+msgstr "ئېلخەت"
+
+#: ../src/contacts-new-contact-dialog.vala:95
+#: ../src/contacts-new-contact-dialog.vala:126
+msgid "Phone"
+msgstr "تېلېفون"
+
+#: ../src/contacts-new-contact-dialog.vala:104
+#: ../src/contacts-new-contact-dialog.vala:131
+msgid "Address"
+msgstr "ئادرېس"
+
+#: ../src/contacts-new-contact-dialog.vala:113
+msgid "Add Detail"
+msgstr "تەپسىلات قوش"
+
+#: ../src/contacts-new-contact-dialog.vala:212
+msgid "You must specify a contact name"
+msgstr "بىر ئالاقەداش ئاتىنى كۆرسىتىپ بېرىڭ."
+
+#: ../src/contacts-new-contact-dialog.vala:320
+msgid "No primary addressbook configured\n"
+msgstr "ئاساسلىق ئادرېس دەپتىرى سەپلەنمەپتۇ\n"
+
+#: ../src/contacts-new-contact-dialog.vala:341
+#, c-format
+msgid "Unable to create new contacts: %s\n"
+msgstr "يېڭى ئالاقەداش قۇرالمىدى: %s\n"
+
+#: ../src/contacts-new-contact-dialog.vala:352
+msgid "Unable to find newly created contact\n"
+msgstr "يېڭىدىن قۇرغان ئالاقەداشنى تاپالمىدى\n"
+
+#: ../src/contacts-setup-window.vala:36
+msgid ""
+"Welcome to Contacts! Please select where you want to keep your address book:"
+msgstr "ئالاقەداشلارغا مەرھابا! ئادرېس دەپتىرىنى قەيەردە ساقلايسىز تاللاڭ:"
+
+#: ../src/contacts-setup-window.vala:81
+msgid "Online Account Settings"
+msgstr "توردىكى ھېسابات تەڭشىكى"
+
+#: ../src/contacts-setup-window.vala:86
+msgid "Setup an online account or use a local address book"
+msgstr "توردا بىر ھېساب ئېچىڭ ياكى يەرلىك ئادرېس دەپتىرىنى ئىشلىتىڭ"
+
+#: ../src/contacts-setup-window.vala:89
+msgid "Online Accounts"
+msgstr "توردىكى ھېساباتلار"
+
+#: ../src/contacts-setup-window.vala:92
+msgid "Use Local Address Book"
+msgstr "يەرلىك ئادرېس دەپتىرى"
+
+#: ../src/contacts-setup-window.vala:125 ../src/contacts-setup-window.vala:146
+msgid "Contacts Setup"
+msgstr "ئالاقەداشلار تەڭشىكى"
+
+#: ../src/contacts-setup-window.vala:137
+msgid "Cancel"
+msgstr "ئەمەلدىن قالدۇر"
+
+#. Refers to the type of the detail, could be Home, Work or Other for email, and the same
+#. * for phone numbers, addresses, etc.
+#: ../src/contacts-types.vala:115 ../src/contacts-types.vala:127
+#: ../src/contacts-types.vala:228 ../src/contacts-types.vala:341
+msgid "Other"
+msgstr "باشقا"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:283 ../src/contacts-types.vala:337
+msgid "Home"
+msgstr "ماكان"
+
+#: ../src/contacts-types.vala:284 ../src/contacts-types.vala:307
+#: ../src/contacts-types.vala:332
+msgid "Work"
+msgstr "ئىش"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:306
+msgid "Personal"
+msgstr "شەخسىي"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:331
+msgid "Assistant"
+msgstr "ياردەمچى"
+
+#: ../src/contacts-types.vala:333
+msgid "Work Fax"
+msgstr "خىزمەتتىكى فاكىس"
+
+#: ../src/contacts-types.vala:334
+msgid "Callback"
+msgstr "قايتۇرما چاقىرىق"
+
+#: ../src/contacts-types.vala:335
+msgid "Car"
+msgstr "ماشىنا"
+
+#: ../src/contacts-types.vala:336
+msgid "Company"
+msgstr "شىركەت"
+
+#: ../src/contacts-types.vala:338
+msgid "Home Fax"
+msgstr "ئوي فاكىسى"
+
+#: ../src/contacts-types.vala:339
+msgid "ISDN"
+msgstr "ISDN"
+
+#: ../src/contacts-types.vala:340
+msgid "Mobile"
+msgstr "يانفون"
+
+#: ../src/contacts-types.vala:342
+msgid "Fax"
+msgstr "فاكىس"
+
+#: ../src/contacts-types.vala:343
+msgid "Pager"
+msgstr "چاقىرغۇ"
+
+#: ../src/contacts-types.vala:344
+msgid "Radio"
+msgstr "رادىئو"
+
+#: ../src/contacts-types.vala:345
+msgid "Telex"
+msgstr "تېلېگرامما"
+
+#. To translators: TTY is Teletypewriter
+#: ../src/contacts-types.vala:347
+msgid "TTY"
+msgstr "TTY"
+
+#: ../src/contacts-view.vala:294
+msgid "Suggestions"
+msgstr "نامزاتلار"
+
+#: ../src/contacts-view.vala:319
+msgid "Other Contacts"
+msgstr "باشقا ئالاقەداشلار"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:1
+msgid "First-time setup done."
+msgstr "تۇنجى قېتىملىق تەڭشەش تاماملاندى."
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:2
+msgid "Set to true when the user ran the first-time setup wizard."
+msgstr "ئىشلەتكۈچى دەسلەپكى تەڭشەش ئېلىپ بارسا، true تەڭشىلىدۇ."
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:3
+msgid "View subset"
+msgstr "تارماق توپنى كۆرۈش"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:4
+msgid "View contacts subset"
+msgstr "ئالاقەداشلار تارماق توپىنى كۆرۈش"

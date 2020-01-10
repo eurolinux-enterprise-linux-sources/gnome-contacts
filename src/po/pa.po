@@ -1,0 +1,1461 @@
+# translation of gnome-session.HEAD.po to Punjabi
+# Copyright (C) 2004 THE gnome-session'S COPYRIGHT HOLDER
+#
+#
+# Amanpreet Singh Alam <amanliunx@netscapet.net>, 2004.
+# Amanpreet Singh Alam <aalam@users.sf.net>, 2005, 2007, 2008.
+# A S Alam <aalam@users.sf.net>, 2009, 2010, 2011, 2012, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session.HEAD\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"contacts&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-09-08 18:16+0000\n"
+"PO-Revision-Date: 2014-09-08 19:55-0500\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
+"Language: pa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../data/org.gnome.Contacts.appdata.xml.in.h:1
+msgid ""
+"Contacts keeps and organize your contacts information. You can create, edit, "
+"delete and link together pieces of information about your contacts. Contacts "
+"aggregates the details from all your sources providing a centralized place "
+"for managing your contacts."
+msgstr ""
+"ਸੰਪਰਕ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਸੰਭਾਲਦੀ ਅਤੇ ਉਹਨਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰਦੀ ਹੈ। "
+"ਤੁਸੀਂ ਆਪਣੇ ਸੰਪਰਕਾਂ "
+"ਬਾਰੇ ਜਾਣਕਾਰੀ ਦੇ ਭਾਗਾਂ ਨੂੰ ਬਣਾਉਣ, ਸੋਧਣ, ਹਟਾਉਣ ਅਤੇ ਆਪਸ ਵਿੱਚ ਜੋੜ ਸਕਦੇ ਹੋ। ਸੰਪਰਕ "
+"ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ "
+"ਦੇ ਪ੍ਰਬੰਧ ਲਈ ਇੱਕ ਸਾਂਝੀ ਥਾਂ ਉਪਲੱਬਧ ਕਰਵਾਉਣ ਤੁਹਾਡੇ ਸਭ ਸਰੋਤਾਂ ਤੋਂ ਵੇਰਵੇ ਨੂੰ ਇੱਕਠਾ "
+"ਕਰਦੇ ਹਨ।"
+
+#: ../data/org.gnome.Contacts.appdata.xml.in.h:2
+msgid ""
+"Contacts will also integrate with online address books and automatically "
+"link contacts from different online sources."
+msgstr ""
+"ਸੰਪਰਕ ਆਨਲਾਈਨ ਸਿਰਨਾਵਾਂ ਕਿਤਾਬਾਂ ਨਾਲ ਜੁੜ ਸਕਦੀ ਹੈ ਅਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਵੱਖ-ਵੱਖ ਆਨਲਾਈਨ "
+"ਸਰੋਤਾਂ ਤੋਂ ਆਪਣੇ-"
+"ਆਪ ਲਿੰਕ ਕਰ ਸਕੇਗਾ।"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:1 ../src/main.vala:28
+msgid "Contacts"
+msgstr "ਸੰਪਰਕ"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:2
+msgid "A contacts manager for GNOME"
+msgstr "ਗਨੋਮ ਲਈ ਸੰਪਰਕ ਮੈਨੇਜਰ"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:3
+msgid "friends;address book;"
+msgstr "ਦੋਸਤ;ਮਿੱਤਰ;ਐਡਰੈਸਬੁੱਕ;ਸਿਰਨਾਵਾਂ;friends;address book;"
+
+#: ../src/contacts-accounts-list.vala:48
+msgid "Online Accounts"
+msgstr "ਆਨਲਾਈਨ ਅਕਾਊਂਟ"
+
+#: ../src/contacts-accounts-list.vala:174 ../src/contacts-esd-setup.c:118
+msgid "Local Address Book"
+msgstr "ਲੋਕਲ ਐਡਰੈਸ ਬੁੱਕ"
+
+#: ../src/contacts-app.vala:46
+#, c-format
+msgid "No contact with id %s found"
+msgstr "id %s ਨਾਲ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਲੱਭਿਆ"
+
+#: ../src/contacts-app.vala:47 ../src/contacts-app.vala:146
+msgid "Contact not found"
+msgstr "ਸੰਪਰਕ ਨਹੀਂ ਲੱਭਿਆ"
+
+#: ../src/contacts-app.vala:56
+msgid "Change Address Book"
+msgstr "ਐਡਰੈਸ ਬੁੱਕ ਬਦਲੋ"
+
+#: ../src/contacts-app.vala:61
+msgid "Change"
+msgstr "ਬਦਲੋ"
+
+# gnome-session/splash.c:69
+#: ../src/contacts-app.vala:62 ../src/contacts-avatar-dialog.vala:255
+#: ../data/ui/contacts-window.ui.h:5
+msgid "Cancel"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#: ../src/contacts-app.vala:71
+msgid ""
+"New contacts will be added to the selected address book.\n"
+"You are able to view and edit contacts from other address books."
+msgstr ""
+"ਨਵੇਂ ਸੰਪਰਕ ਨੂੰ ਚੁਣੀ ਐਡਰੈਸ ਬੁੱਕ ਵਿੱਚ ਜੋੜਿਆ ਜਾਵੇਗਾ।\n"
+"ਤੁਸੀਂ ਹੋਰ ਐਡਰੈਸ ਬੁੱਕ ਤੋਂ ਸੰਫਰਕ ਵੇਖ ਅਤੇ ਸੋਧ ਸਕਦੇ ਹੋ।"
+
+#: ../src/contacts-app.vala:125
+msgid "translator-credits"
+msgstr ""
+"ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ\n"
+"ਪੰਜਾਬੀ ਓਪਨਸੋਰਸ ਟੀਮ (POST)"
+
+#: ../src/contacts-app.vala:126
+msgid "GNOME Contacts"
+msgstr "ਗਨੋਮ ਸੰਪਰਕ"
+
+#: ../src/contacts-app.vala:127
+msgid "About GNOME Contacts"
+msgstr "ਗਨੋਮ ਸੰਪਰਕ ਬਾਰੇ"
+
+# gnome-session/session-properties-capplet.c:332
+#: ../src/contacts-app.vala:128
+msgid "Contact Management Application"
+msgstr "ਸੰਪਰਕ ਪਰਬੰਧ ਐਪਲੀਕੇਸ਼ਨ"
+
+#: ../src/contacts-app.vala:145
+#, c-format
+msgid "No contact with email address %s found"
+msgstr "%s ਈਮੇਲ ਐਡਰੈਸ ਨਾਲ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਲੱਭਿਆ"
+
+#: ../src/contacts-app.vala:304
+msgid "Show contact with this individual id"
+msgstr "ਇਹ ਵਿਲੱਖਣ id ਨਾਲ ਸੰਪਰਕ ਵੇਖਾਓ"
+
+#: ../src/contacts-app.vala:306
+msgid "Show contact with this email address"
+msgstr "ਇਸ ਈਮੇਲ ਐਡਰੈਸ ਨਾਲ ਸੰਪਰਕ ਵੇਖਾਓ"
+
+#: ../src/contacts-app.vala:313
+msgid "— contact management"
+msgstr "— ਸੰਪਰਕ ਮੈਨਜੇਮੈਂਟ"
+
+#: ../src/contacts-avatar-dialog.vala:200
+msgid "Browse for more pictures"
+msgstr "ਹੋਰ ਤਸਵੀਰਾਂ ਵੇਖੋ"
+
+# gnome-session/splash.c:69
+#: ../src/contacts-avatar-dialog.vala:203
+msgid "_Cancel"
+msgstr "ਰੱਦ ਕਰੋ(_C)"
+
+#: ../src/contacts-avatar-dialog.vala:204
+msgid "_Open"
+msgstr "ਖੋਲ੍ਹੋ(_O)"
+
+#: ../src/contacts-avatar-dialog.vala:249
+msgid "Select Picture"
+msgstr "ਤਸਵੀਰ ਚੁਣੋ"
+
+#: ../src/contacts-avatar-dialog.vala:253 ../src/contacts-window.vala:198
+#: ../src/contacts-window.vala:224
+msgid "Select"
+msgstr "ਚੁਣੋ"
+
+#: ../src/contacts-avatar-dialog.vala:281 ../src/contacts-window.vala:315
+#| msgid "New contact"
+msgid "New Contact"
+msgstr "ਨਵਾਂ ਸੰਪਰਕ"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Street"
+msgstr "ਗਲੀ"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Extension"
+msgstr "ਇਕਸਟੈਨਸ਼ਨ"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "City"
+msgstr "ਸ਼ਹਿਰ"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "State/Province"
+msgstr "ਸੂਬਾ/ਖਿੱਤਾ"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Zip/Postal Code"
+msgstr "ਜ਼ਿੱਪ/ਡਾਕ ਕੋਡ"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "PO box"
+msgstr "PO ਬਾਕਸ"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Country"
+msgstr "ਦੇਸ਼"
+
+#: ../src/contacts-contact-editor.vala:293
+#| msgid "Add Detail"
+msgid "Add email"
+msgstr "ਈਮੇਲ ਸ਼ਾਮਿਲ"
+
+#: ../src/contacts-contact-editor.vala:295
+#| msgid "Phone number"
+msgid "Add number"
+msgstr "ਫੋਨ ਨੰਬਰ"
+
+#: ../src/contacts-contact-editor.vala:299
+#: ../src/contacts-contact-editor.vala:330
+#: ../src/contacts-contact-editor.vala:365
+#: ../src/contacts-contact-editor.vala:428
+#: ../src/contacts-contact-editor.vala:478
+#| msgid "Delete"
+msgid "Delete field"
+msgstr "ਖੇਤਰ ਹਟਾਓ"
+
+#: ../src/contacts-contact-editor.vala:400
+msgid "January"
+msgstr "ਜਨਵਰੀ"
+
+#: ../src/contacts-contact-editor.vala:401
+msgid "February"
+msgstr "ਫਰਵਰੀ"
+
+#: ../src/contacts-contact-editor.vala:402
+msgid "March"
+msgstr "ਮਾਰਚ"
+
+#: ../src/contacts-contact-editor.vala:403
+msgid "April"
+msgstr "ਅਪਰੈਲ"
+
+#: ../src/contacts-contact-editor.vala:404
+msgid "May"
+msgstr "ਮਈ"
+
+#: ../src/contacts-contact-editor.vala:405
+msgid "June"
+msgstr "ਜੂਨ"
+
+#: ../src/contacts-contact-editor.vala:406
+msgid "July"
+msgstr "ਜੁਲਾਈ"
+
+#: ../src/contacts-contact-editor.vala:407
+msgid "August"
+msgstr "ਅਗਸਤ"
+
+#: ../src/contacts-contact-editor.vala:408
+msgid "September"
+msgstr "ਸਤੰਬਰ"
+
+#: ../src/contacts-contact-editor.vala:409
+msgid "October"
+msgstr "ਅਕਤੂਬਰ"
+
+#: ../src/contacts-contact-editor.vala:410
+msgid "November"
+msgstr "ਨਵੰਬਰ"
+
+#: ../src/contacts-contact-editor.vala:411
+msgid "December"
+msgstr "ਦਸੰਬਰ"
+
+#: ../src/contacts-contact-editor.vala:561
+#: ../src/contacts-contact-editor.vala:568
+#: ../src/contacts-contact-sheet.vala:190 ../data/ui/app-menu.ui.h:10
+msgid "Website"
+msgstr "ਵੈੱਬਸਾਈਟ"
+
+#: ../src/contacts-contact-editor.vala:587
+#: ../src/contacts-contact-editor.vala:594
+#: ../src/contacts-contact-sheet.vala:196 ../data/ui/app-menu.ui.h:11
+msgid "Nickname"
+msgstr "ਆਮ ਨਾਂ"
+
+#: ../src/contacts-contact-editor.vala:620
+#: ../src/contacts-contact-editor.vala:627
+#: ../src/contacts-contact-sheet.vala:203 ../data/ui/app-menu.ui.h:12
+msgid "Birthday"
+msgstr "ਜਨਮਦਿਨ"
+
+#: ../src/contacts-contact-editor.vala:642
+#: ../src/contacts-contact-editor.vala:649
+#: ../src/contacts-contact-sheet.vala:210
+msgid "Note"
+msgstr "ਨੋਟ"
+
+#: ../src/contacts-contact-editor.vala:774
+msgid "New Detail"
+msgstr "ਨਵਾਂ ਵੇਰਵਾ"
+
+#: ../src/contacts-contact-editor.vala:780
+#: ../src/contacts-linked-accounts-dialog.vala:36
+msgid "Linked Accounts"
+msgstr "ਲਿੰਕ ਕੀਤੇ ਅਕਾਊਂਟ"
+
+#: ../src/contacts-contact-editor.vala:783
+msgid "Remove Contact"
+msgstr "ਸੰਪਰਕ ਹਟਾਓ"
+
+#: ../src/contacts-contact-editor.vala:841
+#: ../src/contacts-contact-editor.vala:1041
+msgid "Add name"
+msgstr "ਨਾਂ ਸ਼ਾਮਿਲ"
+
+#: ../src/contacts-contact-pane.vala:137
+#, c-format
+msgid "Does %s from %s belong here?"
+msgstr "ਕੀ %s %s ਤੋਂ ਇਸ ਨਾਲ ਸਬੰਧਿਤ ਹੈ?"
+
+#: ../src/contacts-contact-pane.vala:139
+#, c-format
+msgid "Do these details belong to %s?"
+msgstr "ਕੀ ਇਹ ਵੇਰਵਾ %s ਨਾਲ ਸਬੰਧਿਤ ਹੈ?"
+
+#: ../src/contacts-contact-pane.vala:151
+msgid "Yes"
+msgstr "ਹਾਂ"
+
+#: ../src/contacts-contact-pane.vala:152
+msgid "No"
+msgstr "ਨਹੀਂ"
+
+#: ../src/contacts-contact-pane.vala:323
+msgid "Select a contact"
+msgstr "ਸੰਪਰਕ ਚੁਣੋ"
+
+#: ../src/contacts-contact-pane.vala:455
+msgid "You need to enter some data"
+msgstr "ਤੁਹਾਨੂੰ ਕੁਝ ਡਾਟਾ ਦੇਣਾ ਚਾਹੀਦਾ ਹੈ"
+
+#: ../src/contacts-contact-pane.vala:467
+#| msgid "No primary addressbook configured\n"
+msgid "No primary addressbook configured"
+msgstr "ਕੋਈ ਪ੍ਰਾਇਮਰੀ ਐਡਰੈਸ ਬੁੱਕ ਸੰਰਚਿਤ ਨਹੀਂ ਹੈ"
+
+#: ../src/contacts-contact-pane.vala:486
+#, c-format
+#| msgid "Unable to create new contacts: %s\n"
+msgid "Unable to create new contacts: %s"
+msgstr "ਨਵੇਂ ਸੰਪਰਕ ਬਣਾਉਣ ਲਈ ਅਸਮਰੱਥ: %s"
+
+#: ../src/contacts-contact-pane.vala:497
+#| msgid "Unable to find newly created contact\n"
+msgid "Unable to find newly created contact"
+msgstr "ਨਵਾਂ ਬਣਾਇਆ ਸੰਪਰਕ ਲੱਭਣ ਲਈ ਅਸਮਰੱਥ"
+
+#: ../src/contacts-contact-frame.vala:40
+msgid "Change avatar"
+msgstr "ਅਵਤਾਰ ਬਦਲੋ"
+
+#: ../src/contacts-contact.vala:727
+msgid "Google Talk"
+msgstr "ਗੂਗਲ ਟਾਕ"
+
+#: ../src/contacts-contact.vala:728
+msgid "Ovi Chat"
+msgstr "Ovi ਚੈਟ"
+
+#: ../src/contacts-contact.vala:729
+msgid "Facebook"
+msgstr "ਫੇਸਬੁੱਕ"
+
+#: ../src/contacts-contact.vala:730
+msgid "Livejournal"
+msgstr "ਲਾਈਵਜਰਨਲ"
+
+#: ../src/contacts-contact.vala:731
+msgid "AOL Instant Messenger"
+msgstr "AOL ਤੁਰੰਤ ਮੈਸੈਂਜ਼ਰ"
+
+#: ../src/contacts-contact.vala:732
+msgid "Gadu-Gadu"
+msgstr "ਗਡੂ-ਗਡੂ"
+
+#: ../src/contacts-contact.vala:733
+msgid "Novell Groupwise"
+msgstr "Novell GroupWise"
+
+#: ../src/contacts-contact.vala:734
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/contacts-contact.vala:735
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/contacts-contact.vala:736
+msgid "Jabber"
+msgstr "ਜਾਬਰ"
+
+#: ../src/contacts-contact.vala:737
+msgid "Local network"
+msgstr "ਲੋਕਲ ਨੈੱਟਵਰਕ"
+
+# gnome-session/splash.c:71
+#: ../src/contacts-contact.vala:738
+msgid "Windows Live Messenger"
+msgstr "ਵਿੰਡੋਜ਼ ਲਾਈਵ ਮੈਸੈਂਜ਼ਰ"
+
+#: ../src/contacts-contact.vala:739
+msgid "MySpace"
+msgstr "ਮਾਈਸਪੇਸ"
+
+#: ../src/contacts-contact.vala:740
+msgid "MXit"
+msgstr "MXit"
+
+#: ../src/contacts-contact.vala:741
+msgid "Napster"
+msgstr "ਨੇਪਸਟਰ"
+
+#: ../src/contacts-contact.vala:742
+msgid "Tencent QQ"
+msgstr "ਟੇਂਸੈਂਟ QQ"
+
+#: ../src/contacts-contact.vala:743
+msgid "IBM Lotus Sametime"
+msgstr "IBM ਲੋਟਸ ਸੇਮਟਾਈਮ"
+
+#: ../src/contacts-contact.vala:744
+msgid "SILC"
+msgstr "SILC"
+
+#: ../src/contacts-contact.vala:745
+msgid "sip"
+msgstr "ਸਿਪ"
+
+#: ../src/contacts-contact.vala:746
+msgid "Skype"
+msgstr "ਸਕਾਈਪੀ"
+
+#: ../src/contacts-contact.vala:747
+msgid "Telephony"
+msgstr "ਟੈਲੀਫੋਨੀ"
+
+#: ../src/contacts-contact.vala:748
+msgid "Trepia"
+msgstr "ਟਰਿਪੀਆ"
+
+#: ../src/contacts-contact.vala:749 ../src/contacts-contact.vala:750
+msgid "Yahoo! Messenger"
+msgstr "ਯਾਹੂ! ਮੈਸੈਂਜ਼ਰ"
+
+#: ../src/contacts-contact.vala:751
+msgid "Zephyr"
+msgstr "ਜਾਈਫਰ"
+
+#: ../src/contacts-contact.vala:1051
+msgid "Unexpected internal error: created contact was not found"
+msgstr "ਅਚਾਨਕ ਅੰਦਰੂਨੀ ਗਲਤੀ: ਬਣਾਇਆ ਗਿਆ ਸੰਪਰਕ ਨਹੀਂ ਲੱਭਿਆ"
+
+#: ../src/contacts-contact.vala:1233
+msgid "Google Circles"
+msgstr "ਗੂਗਲ ਚੱਕਰ"
+
+#: ../src/contacts-contact.vala:1235 ../src/contacts-esd-setup.c:121
+#: ../src/contacts-esd-setup.c:149
+msgid "Google"
+msgstr "ਗੂਗਲ"
+
+#: ../src/contacts-esd-setup.c:146
+msgid "Local Contact"
+msgstr "ਲੋਕਲ ਸੰਪਰਕ"
+
+#: ../src/contacts-linked-accounts-dialog.vala:35
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/contacts-linked-accounts-dialog.vala:60
+#| msgid "You can manually link contacts from the contacts list"
+msgid "You can link contacts by selecting them from the contacts list"
+msgstr "ਤੁਸੀਂ ਸੰਪਰਕ ਸੂਚੀ ਵਿੱਚੋਂ ਖੁਦ ਸੰਪਰਕਾਂ ਨੂੰ ਚੁਣ ਕੇ ਲਿੰਕ ਕਰ ਸਕਦੇ ਹੋ"
+
+#: ../src/contacts-linked-accounts-dialog.vala:104
+msgid "Unlink"
+msgstr "ਅਣ-ਲਿੰਕ"
+
+#. Refers to the type of the detail, could be Home, Work or Other for email, and the same
+#. * for phone numbers, addresses, etc.
+#: ../src/contacts-types.vala:115 ../src/contacts-types.vala:127
+#: ../src/contacts-types.vala:228 ../src/contacts-types.vala:341
+msgid "Other"
+msgstr "ਹੋਰ"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:283 ../src/contacts-types.vala:337
+msgid "Home"
+msgstr "ਘਰ"
+
+#: ../src/contacts-types.vala:284 ../src/contacts-types.vala:307
+#: ../src/contacts-types.vala:332
+msgid "Work"
+msgstr "ਕੰਮ"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:306
+msgid "Personal"
+msgstr "ਨਿੱਜੀ"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:331
+msgid "Assistant"
+msgstr "ਸਹਾਇਕ"
+
+#: ../src/contacts-types.vala:333
+msgid "Work Fax"
+msgstr "ਕੰਮ ਫੈਕਸ"
+
+#: ../src/contacts-types.vala:334
+msgid "Callback"
+msgstr "ਕਾਲਬੈਕ"
+
+#: ../src/contacts-types.vala:335
+msgid "Car"
+msgstr "ਕਾਰ"
+
+# gnome-session/session-properties-capplet.c:362
+#: ../src/contacts-types.vala:336
+msgid "Company"
+msgstr "ਕੰਪਨੀ"
+
+#: ../src/contacts-types.vala:338
+msgid "Home Fax"
+msgstr "ਘਰ ਫੈਕਸ"
+
+#: ../src/contacts-types.vala:339
+msgid "ISDN"
+msgstr "ISDN"
+
+#: ../src/contacts-types.vala:340
+msgid "Mobile"
+msgstr "ਮੋਬਾਈਲ"
+
+#: ../src/contacts-types.vala:342
+msgid "Fax"
+msgstr "ਫੈਕਸ"
+
+# gnome-session/splash.c:69
+#: ../src/contacts-types.vala:343
+msgid "Pager"
+msgstr "ਪੇਜ਼ਰ"
+
+#: ../src/contacts-types.vala:344
+msgid "Radio"
+msgstr "ਰੇਡੀਓ"
+
+#: ../src/contacts-types.vala:345
+msgid "Telex"
+msgstr "ਟੈਲੀਕਸ"
+
+#. To translators: TTY is Teletypewriter
+#: ../src/contacts-types.vala:347
+msgid "TTY"
+msgstr "TTY"
+
+#: ../src/contacts-view.vala:194
+msgid "No results matched search"
+msgstr "ਕੋਈ ਨਤੀਜਾ ਖੋਜ ਨਾਲ ਨਹੀਂ ਮਿਲਦਾ"
+
+#: ../src/contacts-view.vala:298
+msgid "Suggestions"
+msgstr "ਸੁਝਾਅ"
+
+#: ../src/contacts-view.vala:323
+msgid "Other Contacts"
+msgstr "ਹੋਰ ਸੰਪਰਕ"
+
+#: ../src/contacts-window.vala:200
+#, c-format
+msgid "%d Selected"
+msgid_plural "%d Selected"
+msgstr[0] "%d ਚੁਣਿਆ"
+msgstr[1] "%d ਚੁਣੇ"
+
+#: ../src/contacts-window.vala:233 ../data/ui/contacts-window.ui.h:2
+msgid "All Contacts"
+msgstr "ਸਭ ਸੰਪਰਕ"
+
+#: ../src/contacts-window.vala:250
+#, c-format
+msgid "Editing %s"
+msgstr "%s ਸੋਧ ਜਾਰੀ"
+
+#: ../src/contacts-window.vala:265 ../data/ui/contacts-window.ui.h:7
+msgid "Done"
+msgstr "ਮੁਕੰਮਲ"
+
+#: ../src/contacts-window.vala:320
+#| msgid "Address"
+msgid "Add"
+msgstr "ਸ਼ਾਮਿਲ"
+
+#: ../src/contacts-window.vala:407
+#, c-format
+msgid "%d contacts linked"
+msgid_plural "%d contacts linked"
+msgstr[0] "%d ਸੰਪਰਕ ਲਿੰਕ ਕੀਤੇ"
+msgstr[1] "%d ਸੰਪਰਕ ਲਿੰਕ ਕੀਤੇ"
+
+#: ../src/contacts-window.vala:411 ../src/contacts-window.vala:443
+#: ../src/contacts-window.vala:485 ../src/contacts-window.vala:521
+msgid "_Undo"
+msgstr "ਵਾਪਸ(_U)"
+
+#: ../src/contacts-window.vala:439
+#, c-format
+msgid "%d contact deleted"
+msgid_plural "%d contacts deleted"
+msgstr[0] "%d ਸੰਪਰਕ ਹਟਾਇਆ"
+msgstr[1] "%d ਸੰਪਰਕ ਹਟਾਏ"
+
+#: ../src/contacts-window.vala:482
+#, c-format
+msgid "Contact deleted: \"%s\""
+msgstr "ਸੰਪਰਕ ਹਟਾਇਆ ਗਿਆ: \"%s\""
+
+#: ../src/contacts-window.vala:517
+#, c-format
+msgid "%s linked to %s"
+msgstr "%s %s ਨਾਲ ਲਿੰਕ ਹੈ"
+
+#: ../src/contacts-window.vala:519
+#, c-format
+msgid "%s linked to the contact"
+msgstr "%s ਸੰਪਰਕ ਨਾਲ ਲਿੰਕ ਹੈ"
+
+#: ../data/ui/app-menu.ui.h:1
+msgid "_Change Address Book..."
+msgstr "...ਐਡਰੈਸ ਬੁੱਕ ਬਦਲੋ(_C)"
+
+#: ../data/ui/app-menu.ui.h:2
+msgid "_Help"
+msgstr "ਮੱਦਦ(_H)"
+
+#: ../data/ui/app-menu.ui.h:3
+msgid "_About"
+msgstr "ਇਸ ਬਾਰੇ(_A)"
+
+#: ../data/ui/app-menu.ui.h:4
+msgid "_Quit"
+msgstr "ਬੰਦ ਕਰੋ(_Q)"
+
+#: ../data/ui/app-menu.ui.h:5
+msgid "Personal email"
+msgstr "ਨਿੱਜੀ ਈਮੇਲ"
+
+#: ../data/ui/app-menu.ui.h:6
+msgid "Work email"
+msgstr "ਕੰਮਕਾਜੀ ਈਮੇਲ"
+
+#: ../data/ui/app-menu.ui.h:7
+msgid "Mobile phone"
+msgstr "ਮੋਬਾਈਲ ਫੋਨ"
+
+#: ../data/ui/app-menu.ui.h:8
+msgid "Home phone"
+msgstr "ਘਰ ਫੋਨ"
+
+#: ../data/ui/app-menu.ui.h:9
+msgid "Work phone"
+msgstr "ਕੰਮ ਫੋਨ"
+
+#: ../data/ui/app-menu.ui.h:13
+msgid "Home address"
+msgstr "ਘਰ ਐਡਰੈੱਸ"
+
+#: ../data/ui/app-menu.ui.h:14
+msgid "Work address"
+msgstr "ਕੰਮ ਐਡਰੈੱਸ"
+
+#: ../data/ui/app-menu.ui.h:15
+msgid "Notes"
+msgstr "ਨੋਟ"
+
+#: ../data/ui/contacts-list-pane.ui.h:1
+msgid "Type to search"
+msgstr "ਲੱਭਣ ਲਈ ਲਿਖੋ"
+
+#. Link refers to the verb, from linking contacts together
+#: ../data/ui/contacts-list-pane.ui.h:3
+msgid "Link"
+msgstr "ਲਿੰਕ"
+
+#: ../data/ui/contacts-list-pane.ui.h:4
+msgid "Delete"
+msgstr "ਹਟਾਓ"
+
+#: ../data/ui/contacts-window.ui.h:1
+msgid "Loading"
+msgstr "ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../data/ui/contacts-window.ui.h:3
+#| msgid "New contact"
+msgid "Add contact"
+msgstr "ਨਵਾਂ ਸੰਪਰਕ"
+
+# gnome-session/session-properties-capplet.c:362
+#: ../data/ui/contacts-window.ui.h:4
+#| msgid "Select Command"
+msgid "Selection mode"
+msgstr "ਚੋਣ ਢੰਗ"
+
+#: ../data/ui/contacts-window.ui.h:6
+msgid "Edit"
+msgstr "ਸੋਧ"
+
+#: ../data/ui/contacts-window.ui.h:8
+#| msgid "Local Address Book"
+msgid "Select Address Book"
+msgstr "ਐਡਰੈਸ ਬੁੱਕ ਚੁਣੋ"
+
+# gnome-session/splash.c:69
+#: ../data/ui/contacts-window.ui.h:9
+#| msgid "Cancel"
+msgid "Cancel setup"
+msgstr "ਸੈਟਅੱਪ ਰੱਦ ਕਰੋ"
+
+#: ../data/ui/contacts-window.ui.h:10
+msgid "Setup complete"
+msgstr "ਸੈਟਅੱਪ ਪੂਰਾ"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:1
+msgid "First-time setup done."
+msgstr "ਪਹਿਲੀ-ਵਾਰ ਸੈਟਅੱਪ ਪੂਰਾ ਹੋਇਆ।"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:2
+msgid "Set to true when the user ran the first-time setup wizard."
+msgstr "ਸਹੀਂ ਸੈੱਟ ਕਰੋ, ਜੇ ਯੂਜ਼ਰ ਪਹਿਲੀ ਵਾਰ ਸੈੱਟਅੱਪ ਸਹਾਇਕ ਚਲਾਵੇ।"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:3
+msgid "View subset"
+msgstr "ਸਬ-ਸੈੱਟ ਵੇਖੋ"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:4
+msgid "View contacts subset"
+msgstr "ਸੰਪਰਕ ਸਬ-ਸੈੱਟ ਵੇਖੋ"
+
+#~ msgid "Primary Contacts Account"
+#~ msgstr "ਮੁੱਢਲਾ (ਪ੍ਰਾਇਮਰੀ) ਸੰਪਰਕ ਅਕਾਊਂਟ"
+
+#~ msgid "Close"
+#~ msgstr "ਬੰਦ ਕਰੋ"
+
+#~ msgid "Twitter"
+#~ msgstr "ਟਵਿੱਟਰ"
+
+#~ msgid "Google Profile"
+#~ msgstr "ਗੂਗਲ ਪਰੋਫਾਇਲ"
+
+#~ msgid "Google Other Contact"
+#~ msgstr "ਗੂਗਲ ਹੋਰ ਸੰਪਰਕ"
+
+#~ msgid "%s - Linked Accounts"
+#~ msgstr "%s - ਲਿੰਕ ਕੀਤੇ ਅਕਾਊਂਟ"
+
+#~ msgid "Create Contact"
+#~ msgstr "ਸੰਪਰਕ ਬਣਾਓ"
+
+#~ msgid ""
+#~ "Add or \n"
+#~ "select a picture"
+#~ msgstr ""
+#~ "ਤਸਵੀਰ\n"
+#~ "ਸ਼ਾਮਿਲ ਕਰੋ ਜਾਂ ਚੁਣੋ"
+
+#~ msgid "Contact Name"
+#~ msgstr "ਸੰਪਰਕ ਨਾਂ"
+
+#~ msgid "Email"
+#~ msgstr "ਈ-ਮੇਲ"
+
+#~ msgid "Phone"
+#~ msgstr "ਫੋਨ"
+
+#~ msgid "You must specify a contact name"
+#~ msgstr "ਤੁਹਾਨੂੰ ਸੰਪਰਕ ਨਾਂ ਦੇਣਾ ਪਵੇਗਾ"
+
+#~ msgid "Contacts Setup"
+#~ msgstr "ਸੰਪਰਕ ਸੈਟਅੱਪ"
+
+#~ msgid "Please select your primary contacts account"
+#~ msgstr "ਆਪਣਾ ਮੁੱਢਲਾ ਸੰਪਰਕ ਅਕਾਊਂਟ ਚੁਣੀ ਜੀ"
+
+#~ msgid "_About Contacts"
+#~ msgstr "ਸੰਪਰਕ ਬਾਰੇ(_A)"
+
+#~ msgid "Remove"
+#~ msgstr "ਹਟਾਓ"
+
+#~ msgid "View"
+#~ msgstr "ਵੇਖੋ"
+
+#~| msgid "Link Contact"
+#~ msgid "Main contacts"
+#~ msgstr "ਮੁੱਖ ਸੰਪਰਕ"
+
+#~ msgid "New"
+#~ msgstr "ਨਵਾਂ"
+
+#~ msgid ""
+#~ "Welcome to Contacts! Please select where you want to keep your address "
+#~ "book:"
+#~ msgstr ""
+#~ "ਸੰਪਰਕ (ਕੋਨਟੈਕਟਸ) ਵਲੋਂ ਜੀ ਆਇਆਂ ਨੂੰ! ਚੁਣੋ ਕਿ ਤੁਸੀਂ ਆਪਣੀ ਐਡਰੈਸ ਬੁੱਕ ਨੂੰ ਕਿੱਥੇ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ:"
+
+#~ msgid "Online Account Settings"
+#~ msgstr "ਆਨਲਾਈਨ ਅਕਾਊਂਟ ਸੈਟਿੰਗ"
+
+#~ msgid "Setup an online account or use a local address book"
+#~ msgstr "ਇੱਕ ਆਨਲਾਈਨ ਅਕਾਊਂਟ ਸੈਟਅੱਪ ਕਰੋ ਜਾਂ ਲੋਕਲ ਐਡਰੈਸ ਬੁੱਕ ਵਰਤੋਂ"
+
+#~ msgid "Use Local Address Book"
+#~ msgstr "ਲੋਕਲ ਐਡਰੈਸ ਬੁੱਕ ਵਰਤੋਂ"
+
+#~ msgctxt "Addresses on the Web"
+#~ msgid "Links"
+#~ msgstr "ਲਿੰਕ"
+
+#~ msgctxt "Web address"
+#~ msgid "Link"
+#~ msgstr "ਲਿੰਕ"
+
+#~ msgid "Chat"
+#~ msgstr "ਗੱਲਬਾਤ"
+
+#~ msgid "Addresses"
+#~ msgstr "ਐਡਰੈੱਸ"
+
+#~ msgid "Add to My Contacts"
+#~ msgstr "ਮੇਰੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਿਲ"
+
+#~ msgid "Add detail..."
+#~ msgstr "ਵੇਰਵਾ ਸ਼ਾਮਲ..."
+
+#~ msgid "Select detail to add to %s"
+#~ msgstr "%s ਵਿੱਚ ਜੋੜਨ ਲਈ ਵੇਰਵਾ ਚੁਣੋ"
+
+#~ msgid "Select email address"
+#~ msgstr "ਈਮੇਲ ਐਡਰੈਸ ਚੁਣੋ"
+
+#~ msgid "Select what to call"
+#~ msgstr "ਚੁਣੋ ਕਿ ਕੀ ਕਾਲ ਕਰਨਾ ਹੈ"
+
+#~ msgid "Add/Remove Linked Contacts..."
+#~ msgstr "ਲਿੰਕ ਕੀਤੇ ਸੰਪਰਕ ਸ਼ਾਮਲ ਕਰੋ/ਹਟਾਓ..."
+
+#~ msgctxt "contacts link action"
+#~ msgid "Link"
+#~ msgstr "ਲਿੰਕ"
+
+#~| msgid "Link Contact"
+#~ msgid "Link contacts to %s"
+#~ msgstr "%s ਨਾਲ ਸੰਪਰਕ ਲਿੰਕ ਕਰੋ"
+
+#~ msgid "Custom..."
+#~ msgstr "ਕਸਟਮ..."
+
+#~ msgid "Unknown status"
+#~ msgstr "ਅਣਜਾਣ ਹਾਲਤ"
+
+#~ msgid "Offline"
+#~ msgstr "ਆਫਲਾਈਨ"
+
+#~ msgid "Error"
+#~ msgstr "ਗਲਤੀ"
+
+#~ msgid "Available"
+#~ msgstr "ਉਪਲੱਬਧ"
+
+#~ msgid "Away"
+#~ msgstr "ਦੂਰ"
+
+#~ msgid "Extended away"
+#~ msgstr "ਪਹੁੰਚ ਤੋਂ ਦੂਰ"
+
+#~ msgid "Busy"
+#~ msgstr "ਰੁਝਿਆ"
+
+#~ msgid "Hidden"
+#~ msgstr "ਲੁਕਵਾਂ"
+
+#~ msgid "<span weight='bold'>Link contacts to %s</span>"
+#~ msgstr "<span weight='bold'>%s ਨਾਲ ਸੰਪਰਕ ਲਿੰਕ ਕਰੋ</span>"
+
+#~ msgid "Enter nickname"
+#~ msgstr "ਨਾਂ ਦਿਓ"
+
+#~ msgid "Alias"
+#~ msgstr "ਏਲੀਆਸ"
+
+#~ msgid "Enter alias"
+#~ msgstr "ਉਪ ਨਾਂ ਦਿਓ"
+
+#~ msgid "Enter phone number"
+#~ msgstr "ਫੋਨ ਨੰਬਰ ਦਿਓ"
+
+#~ msgid "Browse for more pictures..."
+#~ msgstr "...ਹੋਰ ਤਸਵੀਰਾਂ ਦੀ ਝਲਕ"
+
+#~ msgid "Enter name"
+#~ msgstr "ਨਾਂ ਦਿਓ"
+
+#~ msgid "Address copied to clipboard"
+#~ msgstr "ਐਡਰੈੱਸ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕੀਤਾ"
+
+#~ msgid "Department"
+#~ msgstr "ਵਿਭਾਗ"
+
+#~ msgid "Profession"
+#~ msgstr "ਕਿੱਤਾ"
+
+#~ msgid "Title"
+#~ msgstr "ਟਾਈਟਲ"
+
+# gnome-session/splash.c:71
+#~ msgid "Manager"
+#~ msgstr "ਮੈਨੇਜਰ"
+
+#~ msgid "More"
+#~ msgstr "ਹੋਰ"
+
+#~ msgctxt "link-contacts-button"
+#~ msgid "Link"
+#~ msgstr "ਲਿੰਕ"
+
+#~ msgid "Currently linked:"
+#~ msgstr "ਮੌਜੂਦਾ ਲਿੰਕ ਕੀਤੇ:"
+
+#~ msgid ""
+#~ "Connect to an account,\n"
+#~ "import or add contacts"
+#~ msgstr ""
+#~ "ਇੱਕ ਅਕਾਊਂਟ ਨਾਲ ਕੁਨੈਕਟ ਕਰੋ,\n"
+#~ "ਇੰਪੋਰਟ ਕਰੋ ਜਾਂ ਸੰਪਰਕ ਸ਼ਾਮਲ ਕਰੋ"
+
+# gnome-session/startup-programs.c:392
+#~ msgid "Add Startup Program"
+#~ msgstr "ਸਟਾਰਟਅੱਪ ਪਰੋਗਰਾਮ ਸ਼ਾਮਲ"
+
+# gnome-session/startup-programs.c:392
+#~ msgid "Edit Startup Program"
+#~ msgstr "ਸਟਾਰਟਅੱਪ ਪਰੋਗਰਾਮ ਸੋਧ"
+
+# gnome-session/startup-programs.c:332
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "ਸ਼ੁਰੂਆਤੀ ਕਮਾਂਡ ਖਾਲੀ ਨਹੀ ਹੋ ਸਕਦੀ ਹੈ"
+
+# gnome-session/startup-programs.c:332
+#~ msgid "The startup command is not valid"
+#~ msgstr "ਸ਼ੁਰੂਆਤੀ ਕਮਾਂਡ ਠੀਕ ਨਹੀਂ ਹੈ"
+
+#~ msgid "Enabled"
+#~ msgstr "ਯੋਗ"
+
+# gnome-session/logout.c:266
+#~ msgid "Icon"
+#~ msgstr "ਆਈਕਾਨ"
+
+# gnome-session/gsm-client-list.c:111
+#~ msgid "Program"
+#~ msgstr "ਪਰੋਗਰਾਮ"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "ਸ਼ੁਰੂਆਤੀ ਐਪਲੀਕੇਸ਼ਨ ਪਸੰਦ"
+
+#~ msgid "No description"
+#~ msgstr "ਕੋਈ ਵੇਰਵਾ ਨਹੀਂ"
+
+#~ msgid "Version of this application"
+#~ msgstr "ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਦਾ ਵਰਜਨ"
+
+#~ msgid "Could not display help document"
+#~ msgstr "ਮੱਦਦ ਡੌਕੂਮੈਂਟ ਨੂੰ ਵੇਖਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
+
+#~ msgid "GNOME"
+#~ msgstr "ਗਨੋਮ"
+
+#~ msgid "This session logs you into GNOME"
+#~ msgstr "ਇਹ ਸ਼ੈਸ਼ਨ ਤੁਹਾਨੂੰ ਗਨੋਮ ਵਿੱਚ ਲਾਗ ਕਰਦਾ ਹੈ"
+
+#~ msgid "<b>Some programs are still running:</b>"
+#~ msgstr "<b>ਕੁਝ ਪਰੋਗਰਾਮ ਹਾਲੇ ਵੀ ਚੱਲਦੇ ਹਨ:</b>"
+
+#~ msgid ""
+#~ "Waiting for the program to finish.  Interrupting the program may cause "
+#~ "you to lose work."
+#~ msgstr ""
+#~ "ਪਰੋਗਰਾਮ ਨੂੰ ਪੂਰਾ ਹੋਣ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਇਹ ਪਰੋਗਰਾਮਾਂ 'ਚ ਦਖਲ ਦੇਣ ਨਾਲ ਤੁਹਾਡਾ ਕੰਮ "
+#~ "ਗੁਆਚ ਸਕਦਾ ਹੈ।"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr "ਚੁਣੋ ਕਿ ਕਿਹੜੀਆਂ ਐਪਲੀਕੇਸ਼ਨਾਂ ਤੁਸੀਂ ਲਾਗਇਨ ਸਮੇਂ ਸ਼ੁਰੂ ਕਰਨੀਆਂ ਚਾਹੁੰਦੇ ਹੋ"
+
+#~ msgid "Startup Applications"
+#~ msgstr "ਸ਼ੁਰੂਆਤੀ ਐਪਲੀਕੇਸ਼ਨ"
+
+# gnome-session/startup-programs.c:372
+#~ msgid "Additional startup _programs:"
+#~ msgstr "ਹੋਰ ਸਟਾਰਟਅੱਪ ਪਰੋਗਰਾਮ(_P):"
+
+#~ msgid "Browse…"
+#~ msgstr "ਝਲਕ..."
+
+# gnome-session/session-properties-capplet.c:362
+#~ msgid "Comm_ent:"
+#~ msgstr "ਟਿੱਪਣੀ(_e):"
+
+# gnome-session/session-properties-capplet.c:332
+#~ msgid "Options"
+#~ msgstr "ਚੋਣਾਂ"
+
+# gnome-session/session-properties-capplet.c:399
+#~ msgid "Startup Programs"
+#~ msgstr "ਸਟਾਰਟਅੱਪ ਪਰੋਗਰਾਮ"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "ਜਦੋਂ ਲਾਗ ਆਉਟ ਹੋਵੋ ਤਾਂ ਚੱਲਦੇ ਐਪਲੀਕੇਸ਼ਨ ਆਟੋਮੈਟਿਕ ਹੀ ਯਾਦ ਰੱਖੋ(_A)"
+
+#~ msgid "_Name:"
+#~ msgstr "ਨਾਂ(_N):"
+
+#~ msgid "_Remember Currently Running Application"
+#~ msgstr "ਇਸ ਸਮੇਂ ਚੱਲਦੇ ਐਪਲੀਕੇਸ਼ਨ ਯਾਦ ਰੱਖੋ(_R)"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "ਫਾਇਲ ਢੁੱਕਵੀਂ .desktop ਫਾਇਲ ਨਹੀਂ ਹੈ"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "ਅਣਜਾਣ ਡੈਸਕਟਾਪ ਫਾਇਲ ਵਰਜਨ '%s'"
+
+# gnome-session/gsm-client-row.c:34
+#~ msgid "Starting %s"
+#~ msgstr "%s ਸ਼ੁਰੂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "ਐਪਲੀਕੇਸ਼ਨ ਕਮਾਂਡ ਲਾਈਨ ਉੱਤੇ ਡੌਕੂਮੈਂਟ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦੀ ਹੈ।"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "ਅਣਜਾਣ ਲਾਂਚ ਚੋਣ: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr "ਇੱਕ 'Type=Link' ਡੈਸਕਟਾਪ ਐਂਟਰੀ ਲਈ ਡੌਕੂਮੈਂਟ URI ਨਹੀਂ ਦਿੱਤਾ ਜਾ ਸਕਦਾ"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "ਚਲਾਉਣਯੋਗ ਆਈਟਮ ਨਹੀਂ ਹੈ"
+
+# gnome-session/save-session.c:112
+#~ msgid "Disable connection to session manager"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਨਾਲ ਕੁਨੈਕਸ਼ਨ ਆਯੋਗ"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "ਸੰਭਾਲੀ ਸੰਰਚਨਾ ਰੱਖਣ ਵਾਲੀ ਫਾਇਲ ਦਿਓ"
+
+#~ msgid "FILE"
+#~ msgstr "ਫਾਇਲ"
+
+# gnome-session/main.c:66
+#~ msgid "Specify session management ID"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਪਰਬੰਧ ID ਦਿਓ"
+
+# gnome-session/session-properties-capplet.c:332
+#~ msgid "Show session management options"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਪਰਬੰਧਕ ਚੋਣਾਂ ਵੇਖੋ"
+
+#~ msgid "A program is still running:"
+#~ msgstr "ਇੱਕ ਪਰੋਗਰਾਮ ਹਾਲੇ ਵੀ ਚੱਲ ਰਿਹਾ ਹੈ:"
+
+#~ msgid "Some programs are still running:"
+#~ msgstr "ਕੁਝ ਪਰੋਗਰਾਮ ਹਾਲੇ ਵੀ ਚੱਲ ਰਹੇ ਹਨ:"
+
+#~ msgid ""
+#~ "Waiting for programs to finish.  Interrupting these programs may cause "
+#~ "you to lose work."
+#~ msgstr ""
+#~ "ਪਰੋਗਰਾਮ ਨੂੰ ਪੂਰਾ ਹੋਣ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਇਹ ਪਰੋਗਰਾਮਾਂ 'ਚ ਦਖਲ ਦੇਣ ਨਾਲ ਤੁਹਾਡਾ ਕੰਮ "
+#~ "ਗੁਆਚ ਸਕਦਾ ਹੈ।"
+
+#~ msgid "Switch User Anyway"
+#~ msgstr "ਕਿਵੇਂ ਵੀ ਯੂਜ਼ਰ ਬਦਲੋ"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "ਕਿਵੇਂ ਵੀ ਲਾਗ-ਆਉਟ ਕਰੋ"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "ਕਿਵੇਂ ਵੀ ਸਸਪੈਂਡ"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "ਕਿਵੇਂ ਵੀ ਹਾਈਬਰਨੇਟ"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "ਕਿਵੇਂ ਵੀ ਬੰਦ ਕਰੋ"
+
+#, fuzzy
+#~| msgid "Reboot Anyway"
+#~ msgid "Restart Anyway"
+#~ msgstr "ਕਿਵੇਂ ਵੀ ਮੁੜ-ਚਾਲੂ ਕਰੋ"
+
+#~ msgid "Lock Screen"
+#~ msgstr "ਸਕਰੀਨ ਲਾਕ ਕਰੋ"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "ਤੁਹਾਨੂੰ %d ਸਕਿੰਟ ਬਾਅਦ ਆਟੋਮੈਟਿਕ ਲਾਗਆਉਟ ਕੀਤਾ ਜਾਵੇਗਾ।"
+#~ msgstr[1] "ਤੁਹਾਨੂੰ %d ਸਕਿੰਟਾਂ ਬਾਅਦ ਆਟੋਮੈਟਿਕ ਲਾਗਆਉਟ ਕੀਤਾ ਜਾਵੇਗਾ।"
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "ਇਹ ਸਿਸਟਮ %d ਸਕਿੰਟ ਬਾਅਦ ਆਟੋਮੈਟਿਕ ਬੰਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
+#~ msgstr[1] "ਇਹ ਸਿਸਟਮ %d ਸਕਿੰਟਾਂ ਬਾਅਦ ਆਟੋਮੈਟਿਕ ਬੰਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "ਹੁਣ ਤੁਸੀਂ  \"%s\" ਵਜੋਂ ਲਾਗਇਨ ਹੋ।"
+
+# msgid "You are currently logged in as \"%s\"."
+# msgstr "ਤੁਸੀਂ ਇਸ ਵੇਲੇ "%s\" ਵਜੋਂ ਲਾਗਇਨ ਹੋ।"
+#~ msgid "Log out of this system now?"
+#~ msgstr "ਇਸ ਸਿਸਟਮ ਲਈ ਹੁਣੇ ਲਾਗ ਆਉਟ ਕਰਨਾ ਹੈ?"
+
+#~ msgid "_Switch User"
+#~ msgstr "ਯੂਜ਼ਰ ਬਦਲੋ(_S)"
+
+# gnome-session/logout.c:274
+#~ msgid "_Log Out"
+#~ msgstr "ਲਾਗ-ਆਉਟ(_L)"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "ਕੀ ਸਿਸਟਮ ਹੁਣੇ ਬੰਦ ਕਰਨਾ ਹੈ?"
+
+#~ msgid "S_uspend"
+#~ msgstr "ਸਸਪੈਂਡ(_u)"
+
+#~ msgid "_Hibernate"
+#~ msgstr "ਹਾਈਬਰਨੇਟ(_H)"
+
+# gnome-session/session-properties.c:173
+#~ msgid "_Restart"
+#~ msgstr "ਰੀ-ਸਟਾਰਟ(_R)"
+
+# gnome-session/logout.c:277
+#~ msgid "_Shut Down"
+#~ msgstr "ਬੰਦ ਕਰੋ(_S)"
+
+#~ msgid "Oh no!  Something has gone wrong."
+#~ msgstr "ਓਹ ਹੋ! ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ।"
+
+#, fuzzy
+#~| msgid ""
+#~| "A problem has occurred and the system can't recover.\n"
+#~| "Please log out and try again."
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Please contact a "
+#~ "system administrator"
+#~ msgstr ""
+#~ "ਇੱਕ ਸਮੱਸਿਆ ਆਈ ਹੈ ਅਤੇ ਸਿਸਟਮ ਇਸ ਤੋਂ ਉਭਰ ਨਹੀਂ ਸਕਿਆ।\n"
+#~ "ਲਾਗ ਆਉਟ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#, fuzzy
+#~| msgid ""
+#~| "A problem has occurred and the system can't recover.\n"
+#~| "Please log out and try again."
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "ਇੱਕ ਸਮੱਸਿਆ ਆਈ ਹੈ ਅਤੇ ਸਿਸਟਮ ਇਸ ਤੋਂ ਉਭਰ ਨਹੀਂ ਸਕਿਆ।\n"
+#~ "ਲਾਗ ਆਉਟ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "ਇੱਕ ਸਮੱਸਿਆ ਆਈ ਹੈ ਅਤੇ ਸਿਸਟਮ ਇਸ ਤੋਂ ਉਭਰ ਨਹੀਂ ਸਕਿਆ।\n"
+#~ "ਲਾਗ ਆਉਟ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#~ msgid "Exited with code %d"
+#~ msgstr "ਕੋਡ %d ਨਾਲ ਬੰਦ ਹੋ ਗਿਆ"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "ਸਿਗਨਲ %d ਰਾਹੀਂ ਕਿੱਲ ਕੀਤਾ"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "ਸਿਗਨਲ %d ਰਾਹੀਂ ਰੁਕਿਆ"
+
+#~ msgid "GNOME 3 Failed to Load"
+#~ msgstr "ਗਨੋਮ ੩ ਲੋਡ ਕਰਨ ਲਈ ਫੇਲ੍ਹ"
+
+#~ msgid ""
+#~ "Unfortunately GNOME 3 failed to start properly and started in the "
+#~ "<i>fallback mode</i>.\n"
+#~ "\n"
+#~ "This most likely means your system (graphics hardware or driver) is not "
+#~ "capable of delivering the full GNOME 3 experience."
+#~ msgstr ""
+#~ "ਅਫਸੋਸ ਹੈ ਕਿ ਗਨੋਮ ੩ ਠੀਕ ਤਰ੍ਹਾਂ ਚੱਲਣ ਲਈ ਫੇਲ੍ਹ ਹੋਇਆ ਹੈ ਅਤੇ <i>ਫਾਲਬੈਕ ਮੋਡ</i> ਵਿੱਚ ਚੱਲ ਸਕਿਆ "
+#~ "ਹੈ।\n"
+#~ "\n"
+#~ "ਇਹ ਦਾ ਸਭ ਤੋਂ ਆਮ ਕਾਰਨ ਹੈ ਕਿ ਤੁਹਾਡਾ ਸਿਸਟਮ (ਗਰਾਫਿਕਸ ਹਾਰਡਵੇਅਰ ਜਾਂ ਡਰਾਇਵਰ) ਗਨੋਮ ੩ ਨੂੰ "
+#~ "ਠੀਕ ਤਰ੍ਹਾਂ ਚਲਾਉਣ ਲਈ ਸਮਰੱਥ ਨਹੀਂ ਹੈ।"
+
+#~ msgid "Learn more about GNOME 3"
+#~ msgstr "ਗਨੋਮ ੩ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਵੋ"
+
+#~ msgid "Not responding"
+#~ msgstr "ਕੋਈ ਜਵਾਬ ਨਹੀਂ"
+
+#, fuzzy
+#~| msgid "_Remember Currently Running Application"
+#~ msgid "Remembered Application"
+#~ msgstr "ਇਸ ਸਮੇਂ ਚੱਲਦੇ ਐਪਲੀਕੇਸ਼ਨ ਯਾਦ ਰੱਖੋ(_R)"
+
+#~ msgid "This program is blocking logout."
+#~ msgstr "ਇਹ ਪਰੋਗਰਾਮ ਲਾਗ-ਆਉਟ ਨੂੰ ਰੋਕ ਰਿਹਾ ਹੈ।"
+
+#~ msgid ""
+#~ "Refusing new client connection because the session is currently being "
+#~ "shut down\n"
+#~ msgstr "ਨਵਾਂ ਕਲਾਇਟ ਕੁਨੈਕਸ਼ਨ ਤੋਂ ਇਨਕਾਰ ਕੀਤਾ ਗਿਆ ਹੈ, ਕਿਉਂਕਿ ਸ਼ੈਸ਼ਨ ਬੰਦ ਹੋ ਰਿਹਾ ਹੈ\n"
+
+#~ msgid "Could not create ICE listening socket: %s"
+#~ msgstr "ICE ਲਿਸਨਿੰਗ ਸਾਕਟ ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕੀ: %s"
+
+#~ msgid ""
+#~ "Unable to start login session (and unable to connect to the X server)"
+#~ msgstr "ਲਾਗਇਨ ਸ਼ੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਅਸਮਰੱਥ (ਅਤੇ X ਸਰਵਰ ਨਾਲ ਕੁਨੈਕਟ ਕਰਨ ਲਈ ਵੀ ਅਸਮਰੱਥ)"
+
+#~ msgid "Override standard autostart directories"
+#~ msgstr "ਸਟੈਂਡਰਡ ਆਟੋ-ਸਟਾਰਟ ਡਾਇਰੈਕਟਰੀਆਂ ਅਣਡਿੱਠੀਆਂ"
+
+# gnome-session/session-properties.c:272
+#~ msgid "Session to use"
+#~ msgstr "ਵਰਤਣ ਲਈ ਸ਼ੈਸ਼ਨ"
+
+#~ msgid "Enable debugging code"
+#~ msgstr "ਡੀਬੱਗ ਕੋਡ ਯੋਗ"
+
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "ਯੂਜ਼ਰ-ਖਾਸ ਐਪਲੀਕੇਸ਼ਨ ਲੋਡ ਨਾ ਕਰੋ"
+
+#~ msgid " - the GNOME session manager"
+#~ msgstr "- ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ"
+
+# gnome-session/logout.c:274
+#~ msgid "Log out"
+#~ msgstr "ਲਾਗ-ਆਉਟ"
+
+#~ msgid "Power off"
+#~ msgstr "ਬੰਦ ਕਰੋ"
+
+#~ msgid "Ignoring any existing inhibitors"
+#~ msgstr "ਕਿਸੇ ਵੀ ਮੌਜੂਦ ਇੰਹੈਬੇਟਰ ਨੂੰ ਅਣਡਿੱਠਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ"
+
+#~ msgid "Don't prompt for user confirmation"
+#~ msgstr "ਯੂਜ਼ਰ ਪੁਸ਼ਟੀ ਲਈ ਨਾ ਪੁੱਛੋ"
+
+# gnome-session/save-session.c:112
+#~ msgid "Could not connect to the session manager"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
+
+#~ msgid "Program called with conflicting options"
+#~ msgstr "ਪਰੋਗਰਾਮ ਨੂੰ ਚੋਣਾਂ ਨਾਲ ਅਪਵਾਦ ਮਿਲਿਆ"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "ਸੰਰਚਨਾ ਸਰਵਰ ਨਾਲ ਇੱਕ ਸਮੱਸਿਆ ਆਈ ਹੈ।\n"
+#~ "(%s ਹਾਲਤ %d ਨਾਲ ਬੰਦ ਹੋਇਆ)"
+
+# gnome-session/save-session.c:43
+#~ msgid "Default session"
+#~ msgstr "ਡਿਫਾਲਟ ਸ਼ੈਸ਼ਨ"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will prompt the user before ending a session."
+#~ msgstr "ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ, ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰਨ ਵੇਲੇ ਯੂਜ਼ਰ ਨੂੰ ਪੁੱਛੇ।"
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "ਜੇ ਚੋਣ ਕੀਤੀ ਤਾਂ ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਆਟੋਮੈਟਿਕ ਹੀ ਸ਼ੈਸ਼ਨ ਨੂੰ ਸੰਭਾਲ ਲਵੇਗਾ।"
+
+#~ msgid "List of applications that are part of the default session."
+#~ msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ ਦੀ ਲਿਸਟ, ਜੋ ਕਿ ਡਿਫਾਲਟ ਸ਼ੈਸ਼ਨ ਦਾ ਭਾਗ ਹਨ।"
+
+#~ msgid ""
+#~ "List of components that are required as part of the session. (Each "
+#~ "element names a key under \"/desktop/gnome/session/required_components"
+#~ "\"). The Startup Applications preferences tool will not normally allow "
+#~ "users to remove a required component from the session, and the session "
+#~ "manager will automatically add the required components back to the "
+#~ "session at login time if they do get removed."
+#~ msgstr ""
+#~ "ਭਾਗਾਂ ਦੀ ਲਿਸਟ, ਜੋ ਕਿ ਗਨੋਮ ਦੇ ਭਾਗ ਵਜੋਂ ਲੋੜੀਦੇ ਹਨ। (ਹਰ ਭਾਗ ਨੂੰ \"/desktop/gnome/"
+#~ "session/required_components\" ਵਿੱਚ ਰੱਖਿਆ ਹੈ)। ਸ਼ੁਰੂਆਤ ਐਪਲੀਕੇਸ਼ਨ ਪਸੰਦ ਟੂਲ ਯੂਜ਼ਰ ਨੂੰ ਆਮ "
+#~ "ਤੌਰ ਉੱਤੇ ਸ਼ੈਸ਼ਨ ਵਿੱਚੋਂ ਲੋੜੀਦੇ ਭਾਗ ਹਟਾਉਣ ਨਹੀਂ ਦੇਵੇਗਾ ਅਤੇ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਆਟੋਮੈਟਿਕ ਲੋੜੀਦੇ ਭਾਗਾਂ ਨੂੰ ਸ਼ੈਸ਼ਨ "
+#~ "ਵਿੱਚ ਲਾਗਇਨ ਸਮੇਂ ਜੋੜ ਦੇਵੇਗਾ, ਜੇ ਉਹ ਹਟਾਏ ਗਏ ਹੋਣ।"
+
+#~ msgid "Logout prompt"
+#~ msgstr "ਲਾਗਆਉਟ ਪੁਸ਼ਟੀ"
+
+#~ msgid "Required session components"
+#~ msgstr "ਲੋੜੀਦੇ ਸ਼ੈਸ਼ਨ ਭਾਗ"
+
+# gnome-session/session-properties.c:272
+#~ msgid "Save sessions"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਸੰਭਾਲੋ"
+
+#~ msgid ""
+#~ "The file manager provides the desktop icons and allows you to interact "
+#~ "with your saved files."
+#~ msgstr ""
+#~ "ਫਾਇਲ ਮੈਨੇਜਰ ਡੈਸਕਟਾਪ ਆਈਕਾਨ ਦਿੰਦਾ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਤੁਹਾਡੀਆਂ ਸੰਭਾਲੀਆਂ ਫਾਇਲਾਂ ਵਰਤਣ ਲਈ ਸਹਾਇਕ ਹੈ।"
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr "ਗ਼ੈਰ-ਸਰਗਰਮੀ ਦੇ ਮਿੰਟਾਂ ਦੀ ਗਿਣਤੀ, ਜਦੋਂ ਕਿ ਸ਼ੈਸ਼ਨ ਨੂੰ ਵੇਹਲਾ ਗਿਣਿਆ ਜਾਵੇ।"
+
+#~ msgid ""
+#~ "The panel provides the bar at the top or bottom of the screen containing "
+#~ "menus, the window list, status icons, the clock, etc."
+#~ msgstr ""
+#~ "ਪੈਨਲ ਸਕਰੀਨ ਦੇ ਉੱਤੇ ਜਾਂ ਥੱਲੇ ਇੱਕ ਪੱਟੀ ਦਿੰਦਾ ਹੈ, ਜਿਸ ਵਿੱਚ ਮੇਨੂ, ਵਿੰਡੋ ਲਿਸਟ, ਹਾਲਤ ਆਈਕਾਨ ਅਤੇ "
+#~ "ਘੜੀ ਆਦਿ ਹੁੰਦੇ ਹਨ।"
+
+#~ msgid ""
+#~ "The window manager is the program that draws the title bar and borders "
+#~ "around windows, and allows you to move and resize windows."
+#~ msgstr ""
+#~ "ਵਿੰਡੋ ਮੈਨੇਜਰ ਪਰੋਗਰਾਮ ਹੈ, ਜੋ ਕਿ ਵਿੰਡੋ ਦੇ ਦੁਆਲੇ ਟਾਈਟਲ-ਪੱਟੀ ਅਤੇ ਬਾਰਡਰ ਬਣਾਉਦਾ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਵਿੰਡੋ "
+#~ "ਹਿਲਾਉਣ ਅਤੇਸਾਈਜ਼ ਬਦਲਣ ਦੇ ਕੰਮ ਆਉਦਾ ਹੈ।"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "ਵੇਹਲਾ ਗਿਣਨ ਤੋਂ ਪਹਿਲਾਂ ਸ਼ੈਸ਼ਨ ਦਾ ਸਮਾਂ"
+
+#~| msgid "GConf key used to lookup default session"
+#~ msgid "GConf key used to look up default session"
+#~ msgstr "ਜੀਕਾਨਫ਼ ਕੀ ਡਿਫਾਲਟ ਸ਼ੈਸ਼ਨ ਖੋਜ ਲਈ ਵਰਤੀ"
+
+#~ msgid "Show logout dialog"
+#~ msgstr "ਲਾਗਆਉਟ ਡਾਈਲਾਗ ਵੇਖੋ"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "ਬੰਦ ਕਰੋ ਡਾਈਲਾਗ ਵੇਖੋ"
+
+# gnome-session/save-session.c:44
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "ਗਲਤੀਆਂ ਲਈ ਡਾਈਲਾਗ ਬਕਸੇ ਵਰਤੋਂ"
+
+# gnome-session/session-properties-capplet.c:259
+#~ msgid "Set the current session name"
+#~ msgstr "ਮੌਜੂਦਾ ਸ਼ੈਸ਼ਨ ਨਾਂ ਸੈੱਟ ਕਰੋ"
+
+#~ msgid "NAME"
+#~ msgstr "ਨਾਂ"
+
+# gnome-session/save-session.c:43
+#~ msgid "Kill session"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰੋ"
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "ਪਰੋਗਰਾਮ ਦੇ ਖਤਮ ਹੋਣ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਪਰੋਗਰਾਮ 'ਚ ਦਖਣ ਦੇਣ ਨਾਲ ਤੁਹਾਡਾ ਕੰਮ ਖਰਾਬ "
+#~ "ਹੋ ਸਕਦਾ ਹੈ।"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "ਗਨੋਮ ਸੈਟਿੰਗ ਡੈਮਨ ਸਹਾਇਕ"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "ਜੇ ਚਾਲੂ ਹੈ, ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਆਪੇ ਸ਼ੈਸ਼ਨ ਨੂੰ ਸੰਭਾਲੇਗਾ। ਨਹੀ ਤਾਂ, ਲਾਗਆਉਟ ਸਮੇਂ ਸ਼ੈਸ਼ਨ ਸੰਭਾਲਣ ਦੀ ਚੋਣ ਉਪਲਬਧ "
+#~ "ਹੋਵੇਗੀ।"
+
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "ਲਾਗਇਨ ਸਵਾਗਤੀ ਸਕਰੀਨ ਲਈ ਪਸੰਦੀਦਾ ਚਿੱਤਰ"
+
+# gnome-session/session-properties-capplet.c:227
+#~ msgid "Show the splash screen"
+#~ msgstr "ਸਵਾਗਤੀ ਸਕਰੀਨ ਵੇਖੋ"
+
+# gnome-session/session-properties-capplet.c:227
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰਨ ਵੇਲੇ ਸਵਾਗਤੀ ਸਕਰੀਨ ਵੇਖੋ"
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "ਇਹ $datadir/pixmaps/ directory ਦੇ ਅਧਾਰ ਤੇ ਅਨੁਸਾਰੀ ਮਾਰਗ ਮੁੱਲ ਹੈ। ਸਬ-ਡਾਇਰੈਕਟਰੀਆਂ ਅਤੇ "
+#~ "ਚਿੱਤਰ ਨਾਂ ਠੀਕ ਮੁੱਲ ਹਨ। ਇਹਨਾਂ ਵਿੱਚ ਤਬਦੀਲੀ ਸਿਰਫ਼ ਅਗਲੇ ਸ਼ੈਸ਼ਨ ਤੋਂ ਹੀ ਹੋ ਸਕੇਗੀ।"
+
+# gnome-session/session-properties-capplet.c:227
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- ਗਨੋਮ ਸਕਰੀਨ ਵੇਖੋ"
+
+# gnome-session/session-properties-capplet.c:227
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "ਗਨੋਮ ਸ਼ੁਰੂਆਤੀ ਸਕਰੀਨ"
+
+# gnome-session/startup-programs.c:332
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "ਸ਼ੁਰੂਆਤੀ ਪਰੋਗਰਾਮ ਦਾ ਨਾਂ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ"
+
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "ਸਹਾਇਕ ਤਕਨਾਲੋਜੀ ਸਹਿਯੋਗ ਸ਼ੈਸ਼ਨ ਲਈ ਮੰਗਿਆ ਗਿਆ ਹੈ, ਪਰ ਸਹਾਇਕ ਰਜਿਸਟਰੀ ਨਹੀਂ ਮਿਲੀ ਹੈ। ਜਾਂਚ "
+#~ "ਕਰੋ ਕਿ AT-SPI ਪੈਕੇਜ ਇੰਸਟਾਲ ਹੈ। ਤੁਹਾਡਾ ਸ਼ੈਸ਼ਨ ਸਹਾਇਕ ਤਕਨਾਲੋਜੀ ਤੋਂ ਬਿਨਾਂ ਸ਼ੁਰੂ ਕੀਤਾ ਜਾਵੇਗਾ।"
+
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "AT SPI ਰਜਿਸਟਰ ਰੈਪਰ"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਪਸੰਦ"
+
+#~ msgid "GNOME Keyring Daemon Wrapper"
+#~ msgstr "ਗਨੋਮ ਕੀਰਿੰਗ ਡੈਮਨ ਰੈਪਰ"
+
+#~ msgid "Selected option in the log out dialog"
+#~ msgstr "ਲਾਗਆਉਣ ਡਾਈਲਾਗ ਵਿੱਚ ਚੁਣੀ ਚੋਣ"
+
+#~ msgid ""
+#~ "This is the option that will be selected in the logout dialog, valid "
+#~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
+#~ "system and \"restart\" for restarting the system."
+#~ msgstr ""
+#~ "ਇਹ ਚੋਣ ਹੈ, ਜੋ ਕਿ ਲਾਗ-ਆਉਣ ਡਾਈਲਾਗ ਵਿੱਚ ਵੇਖਾਈ ਜਾਵੇਗੀ, ਠੀਕ ਮੁੱਲ ਲਾਗ-ਆਉਣ ਲਈ \"ਲਾਗ-ਆਉਟ"
+#~ "\", ਸਿਸਟਮ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ \"ਬੰਦ ਕਰੋ\", ਅਤੇ ਮੁੜ-ਚਲਾਉਣ ਲਈ \"ਮੁੜ-ਚਲਾਓ\" ਹਨ।"
+
+#~ msgid "Configure your sessions"
+#~ msgstr "ਆਪਣੇ ਸ਼ੈਸ਼ਨ ਦੀ ਸੰਰਚਨਾ ਕਰੋ"
+
+#~ msgid "GNOME GUI Library + EggSMClient"
+#~ msgstr "GNOME GUI ਲਾਇਬਰੇਰੀ + EggSMClient"
+
+# gnome-session/save-session.c:112
+#~ msgid "Could not connect to the session manager\n"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ\n"
+
+# gnome-session/session-properties-capplet.c:259
+#~ msgid " - Save the current session"
+#~ msgstr "- ਮੌਜੂਦਾ ਸ਼ੈਸ਼ਨ ਸੰਭਾਲੋ"
+
+#~ msgid "Play logout sound instead of login"
+#~ msgstr "ਲਾਗਇਨ ਦੀ ਬਜਾਏ ਲਾਗਆਉਟ ਸਾਊਡ ਚਲਾਓ"
+
+#~ msgid "- GNOME login/logout sound"
+#~ msgstr "- GNOME ਲਾਗਇਨ/ਲਾਗਆਉਟ ਸਾਊਂਡ"
+
+#~ msgid "Allow TCP connections"
+#~ msgstr "TCP ਕੁਨੈਕਸ਼ਨ ਮਨਜ਼ੂਰ"
+
+#~ msgid ""
+#~ "For security reasons, on platforms which have _IceTcpTransNoListen() "
+#~ "(XFree86 systems), gnome-session does not listen for connections on TCP "
+#~ "ports. This option will allow connections from (authorized) remote hosts. "
+#~ "gnome-session must be restarted for this to take effect."
+#~ msgstr ""
+#~ "ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ , ਪਲੇਟਫਾਰਮ ਜੋ ਕਿ IceTcpTransNoListen() (XFree86 ਸਿਸਟਮ) ਹਨ, "
+#~ "ਗਨੋਮ-ਸ਼ੈਸ਼ਨ TCP ਪੋਰਟ ਤੇ ਸਬੰਧ ਨਹੀ ਸੁਣਦਾ। ਇਸ ਚੋਣ ਰਿਮੋਟ ਮੇਜ਼ਬਾਨ ਤੋ ਸਬੰਧ ਦੀ ਇਜ਼ਾਜਤ "
+#~ "(ਪ੍ਰਮਾਣਿਕ)ਦਿੰਦੀ ਹੈ। ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਇਸ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਮੁੜ ਚਾਲੂ ਹੋ ਰਿਹਾ ਹੈ।"

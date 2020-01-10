@@ -1,0 +1,906 @@
+# Thai translation for gnome-contacts.
+# Copyright (C) 2011-2014 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-contacts package.
+#
+# Akom Chotiphantawanon <knight2000@gmail.com>, 2011-2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-contacts master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"contacts&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-09-16 17:25+0000\n"
+"PO-Revision-Date: 2014-09-18 10:58+0700\n"
+"Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
+"Language-Team: Thai <thai-l10n@googlegroups.com>\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: ../data/org.gnome.Contacts.appdata.xml.in.h:1
+msgid ""
+"Contacts keeps and organize your contacts information. You can create, edit, "
+"delete and link together pieces of information about your contacts. Contacts "
+"aggregates the details from all your sources providing a centralized place "
+"for managing your contacts."
+msgstr ""
+"สมุดผู้ติดต่อจะเก็บและจัดการข้อมูลผู้ติดต่อของคุณ คุณสามารถสร้าง, แก้ไข, ลบ, "
+"และเชื่อมโยงข้อมูลส่วนต่างๆ ของผู้ติดต่อของคุณเข้าด้วยกัน "
+"สมุดผู้ติดต่อรวบรวมรายละเอียดจากแหล่งทั้งหมดของคุณให้มารวมศูนย์ที่แห่งเดียว "
+"เพื่อการจัดการผู้ติดต่อของคุณ"
+
+#: ../data/org.gnome.Contacts.appdata.xml.in.h:2
+msgid ""
+"Contacts will also integrate with online address books and automatically "
+"link contacts from different online sources."
+msgstr ""
+"นอกจากนี้ สมุดผู้ติดต่อยังเชื่อมรวมกับสมุดที่อยู่ออนไลน์ และเชื่อมโยงผู้ติดต่อจากแหล่งออนไลน์ต่างๆ "
+"โดยอัตโนมัติ"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:1 ../src/main.vala:28
+msgid "Contacts"
+msgstr "สมุดผู้ติดต่อ"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:2
+msgid "A contacts manager for GNOME"
+msgstr "โปรแกรมจัดการสมุดผู้ติดต่อสำหรับ GNOME"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:3
+msgid "friends;address book;"
+msgstr "เพื่อน;สมุดที่อยู่;"
+
+#: ../src/contacts-accounts-list.vala:48
+msgid "Online Accounts"
+msgstr "บัญชีออนไลน์"
+
+#: ../src/contacts-accounts-list.vala:174 ../src/contacts-esd-setup.c:118
+msgid "Local Address Book"
+msgstr "สมุดที่อยู่ในเครื่อง"
+
+#: ../src/contacts-app.vala:46
+#, c-format
+msgid "No contact with id %s found"
+msgstr "ไม่พบผู้ติดต่อที่มี id เป็น %s"
+
+#: ../src/contacts-app.vala:47 ../src/contacts-app.vala:149
+msgid "Contact not found"
+msgstr "ไม่พบผู้ติดต่อ"
+
+#: ../src/contacts-app.vala:56
+msgid "Change Address Book"
+msgstr "เปลี่ยนสมุดที่อยู่"
+
+#: ../src/contacts-app.vala:61
+msgid "Change"
+msgstr "เปลี่ยน"
+
+#: ../src/contacts-app.vala:62 ../src/contacts-avatar-dialog.vala:255
+#: ../data/ui/contacts-window.ui.h:5
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: ../src/contacts-app.vala:71
+msgid ""
+"New contacts will be added to the selected address book.\n"
+"You are able to view and edit contacts from other address books."
+msgstr ""
+"ผู้ติดต่อใหม่จะถูกเพิ่มเข้าในสมุดที่อยู่ที่เลือกไว้\n"
+"คุณสามารถดูและแก้ไขผู้ติดต่อจากสมุดที่อยู่อื่นได้"
+
+#: ../src/contacts-app.vala:128
+msgid "translator-credits"
+msgstr "Akom Chotiphantawanon <knight2000@gmail.com>"
+
+#: ../src/contacts-app.vala:129
+msgid "GNOME Contacts"
+msgstr "สมุดผู้ติดต่อของ GNOME"
+
+#: ../src/contacts-app.vala:130
+msgid "About GNOME Contacts"
+msgstr "เกี่ยวกับสมุดผู้ติดต่อของ GNOME"
+
+#: ../src/contacts-app.vala:131
+msgid "Contact Management Application"
+msgstr "โปรแกรมจัดการผู้ติดต่อ"
+
+#: ../src/contacts-app.vala:148
+#, c-format
+msgid "No contact with email address %s found"
+msgstr "ไม่พบผู้ติดต่อที่มีที่อยู่อีเมล %s"
+
+#: ../src/contacts-app.vala:307
+msgid "Show contact with this individual id"
+msgstr "แสดงผู้ติดต่อที่มี id นี้"
+
+#: ../src/contacts-app.vala:309
+msgid "Show contact with this email address"
+msgstr "แสดงผู้ติดต่อที่มีที่อยู่อีเมลนี้"
+
+#: ../src/contacts-app.vala:316
+msgid "— contact management"
+msgstr "— การจัดการผู้ติดต่อ"
+
+#: ../src/contacts-avatar-dialog.vala:200
+msgid "Browse for more pictures"
+msgstr "เรียกดูภาพเพิ่มเติม"
+
+#: ../src/contacts-avatar-dialog.vala:203
+msgid "_Cancel"
+msgstr "_ยกเลิก"
+
+#: ../src/contacts-avatar-dialog.vala:204
+msgid "_Open"
+msgstr "_เปิด"
+
+#: ../src/contacts-avatar-dialog.vala:249
+msgid "Select Picture"
+msgstr "เลือกภาพ"
+
+#: ../src/contacts-avatar-dialog.vala:253 ../src/contacts-window.vala:198
+#: ../src/contacts-window.vala:224
+msgid "Select"
+msgstr "เลือก"
+
+#: ../src/contacts-avatar-dialog.vala:281 ../src/contacts-window.vala:315
+msgid "New Contact"
+msgstr "ผู้ติดต่อใหม่"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Street"
+msgstr "ถนน"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Extension"
+msgstr "Extension"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "City"
+msgstr "เมือง"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "State/Province"
+msgstr "รัฐ/จังหวัด"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Zip/Postal Code"
+msgstr "รหัสไปรษณีย์"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "PO box"
+msgstr "ตู้ ป.ณ."
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Country"
+msgstr "ประเทศ"
+
+#: ../src/contacts-contact-editor.vala:293
+msgid "Add email"
+msgstr "เพิ่มอีเมล"
+
+#: ../src/contacts-contact-editor.vala:295
+msgid "Add number"
+msgstr "เพิ่มหมายเลข"
+
+#: ../src/contacts-contact-editor.vala:299
+#: ../src/contacts-contact-editor.vala:330
+#: ../src/contacts-contact-editor.vala:365
+#: ../src/contacts-contact-editor.vala:428
+#: ../src/contacts-contact-editor.vala:478
+msgid "Delete field"
+msgstr "ลบช่องข้อมูล"
+
+#: ../src/contacts-contact-editor.vala:400
+msgid "January"
+msgstr "มกราคม"
+
+#: ../src/contacts-contact-editor.vala:401
+msgid "February"
+msgstr "กุมภาพันธ์"
+
+#: ../src/contacts-contact-editor.vala:402
+msgid "March"
+msgstr "มีนาคม"
+
+#: ../src/contacts-contact-editor.vala:403
+msgid "April"
+msgstr "เมษายน"
+
+#: ../src/contacts-contact-editor.vala:404
+msgid "May"
+msgstr "พฤษภาคม"
+
+#: ../src/contacts-contact-editor.vala:405
+msgid "June"
+msgstr "มิถุนายน"
+
+#: ../src/contacts-contact-editor.vala:406
+msgid "July"
+msgstr "กรกฎาคม"
+
+#: ../src/contacts-contact-editor.vala:407
+msgid "August"
+msgstr "สิงหาคม"
+
+#: ../src/contacts-contact-editor.vala:408
+msgid "September"
+msgstr "กันยายน"
+
+#: ../src/contacts-contact-editor.vala:409
+msgid "October"
+msgstr "ตุลาคม"
+
+#: ../src/contacts-contact-editor.vala:410
+msgid "November"
+msgstr "พฤศจิกายน"
+
+#: ../src/contacts-contact-editor.vala:411
+msgid "December"
+msgstr "ธันวาคม"
+
+#: ../src/contacts-contact-editor.vala:561
+#: ../src/contacts-contact-editor.vala:568
+#: ../src/contacts-contact-sheet.vala:190 ../data/ui/app-menu.ui.h:10
+msgid "Website"
+msgstr "เว็บไซต์"
+
+#: ../src/contacts-contact-editor.vala:587
+#: ../src/contacts-contact-editor.vala:594
+#: ../src/contacts-contact-sheet.vala:196 ../data/ui/app-menu.ui.h:11
+msgid "Nickname"
+msgstr "ชื่อเล่น"
+
+#: ../src/contacts-contact-editor.vala:620
+#: ../src/contacts-contact-editor.vala:627
+#: ../src/contacts-contact-sheet.vala:203 ../data/ui/app-menu.ui.h:12
+msgid "Birthday"
+msgstr "วันเกิด"
+
+#: ../src/contacts-contact-editor.vala:642
+#: ../src/contacts-contact-editor.vala:649
+#: ../src/contacts-contact-sheet.vala:210
+msgid "Note"
+msgstr "หมายเหตุ"
+
+#: ../src/contacts-contact-editor.vala:774
+msgid "New Detail"
+msgstr "รายละเอียดใหม่"
+
+#: ../src/contacts-contact-editor.vala:780
+#: ../src/contacts-linked-accounts-dialog.vala:36
+msgid "Linked Accounts"
+msgstr "บัญชีที่เชื่อมโยง"
+
+#: ../src/contacts-contact-editor.vala:783
+msgid "Remove Contact"
+msgstr "ลบผู้ติดต่อ"
+
+#: ../src/contacts-contact-editor.vala:841
+#: ../src/contacts-contact-editor.vala:1041
+msgid "Add name"
+msgstr "เพิ่มชื่อ"
+
+#: ../src/contacts-contact-pane.vala:137
+#, c-format
+msgid "Does %s from %s belong here?"
+msgstr "%s จาก %s ควรอยู่ที่นี่หรือไม่?"
+
+#: ../src/contacts-contact-pane.vala:139
+#, c-format
+msgid "Do these details belong to %s?"
+msgstr "รายละเอียดเหล่านี้เป็นของ %s หรือไม่?"
+
+#: ../src/contacts-contact-pane.vala:151
+msgid "Yes"
+msgstr "ใช่"
+
+#: ../src/contacts-contact-pane.vala:152
+msgid "No"
+msgstr "ไม่"
+
+#: ../src/contacts-contact-pane.vala:323
+msgid "Select a contact"
+msgstr "เลือกผู้ติดต่อ"
+
+#: ../src/contacts-contact-pane.vala:455
+msgid "You need to enter some data"
+msgstr "คุณต้องป้อนข้อมูลด้วย"
+
+#: ../src/contacts-contact-pane.vala:467
+msgid "No primary addressbook configured"
+msgstr "ไม่มีการตั้งค่าสมุดที่อยู่หลัก"
+
+# c-format
+#: ../src/contacts-contact-pane.vala:486
+#, c-format
+msgid "Unable to create new contacts: %s"
+msgstr "ไม่สามารถสร้างผู้ติดต่อใหม่: %s"
+
+#: ../src/contacts-contact-pane.vala:497
+msgid "Unable to find newly created contact"
+msgstr "หาผู้ติดต่อที่เพิ่งสร้างใหม่ไม่พบ"
+
+#: ../src/contacts-contact-frame.vala:40
+msgid "Change avatar"
+msgstr "เปลี่ยนรูปแทนตัว"
+
+#: ../src/contacts-contact.vala:729
+msgid "Google Talk"
+msgstr "Google Talk"
+
+#: ../src/contacts-contact.vala:730
+msgid "Ovi Chat"
+msgstr "Ovi Chat"
+
+#: ../src/contacts-contact.vala:731
+msgid "Facebook"
+msgstr "เฟซบุ๊ก"
+
+#: ../src/contacts-contact.vala:732
+msgid "Livejournal"
+msgstr "Livejournal"
+
+#: ../src/contacts-contact.vala:733
+msgid "AOL Instant Messenger"
+msgstr "AOL Instant Messenger"
+
+#: ../src/contacts-contact.vala:734
+msgid "Gadu-Gadu"
+msgstr "Gadu-Gadu"
+
+#: ../src/contacts-contact.vala:735
+msgid "Novell Groupwise"
+msgstr "Novell Groupwise"
+
+#: ../src/contacts-contact.vala:736
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/contacts-contact.vala:737
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/contacts-contact.vala:738
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ../src/contacts-contact.vala:739
+msgid "Local network"
+msgstr "เครือข่ายเฉพาะที่"
+
+#: ../src/contacts-contact.vala:740
+msgid "Windows Live Messenger"
+msgstr "Windows Live Messenger"
+
+#: ../src/contacts-contact.vala:741
+msgid "MySpace"
+msgstr "MySpace"
+
+#: ../src/contacts-contact.vala:742
+msgid "MXit"
+msgstr "MXit"
+
+#: ../src/contacts-contact.vala:743
+msgid "Napster"
+msgstr "Napster"
+
+#: ../src/contacts-contact.vala:744
+msgid "Tencent QQ"
+msgstr "Tencent QQ"
+
+#: ../src/contacts-contact.vala:745
+msgid "IBM Lotus Sametime"
+msgstr "IBM Lotus Sametime"
+
+#: ../src/contacts-contact.vala:746
+msgid "SILC"
+msgstr "SILC"
+
+#: ../src/contacts-contact.vala:747
+msgid "sip"
+msgstr "sip"
+
+#: ../src/contacts-contact.vala:748
+msgid "Skype"
+msgstr "Skype"
+
+#: ../src/contacts-contact.vala:749
+msgid "Telephony"
+msgstr "Telephony"
+
+#: ../src/contacts-contact.vala:750
+msgid "Trepia"
+msgstr "Trepia"
+
+#: ../src/contacts-contact.vala:751 ../src/contacts-contact.vala:752
+msgid "Yahoo! Messenger"
+msgstr "Yahoo! Messenger"
+
+#: ../src/contacts-contact.vala:753
+msgid "Zephyr"
+msgstr "Zephyr"
+
+#: ../src/contacts-contact.vala:1053
+msgid "Unexpected internal error: created contact was not found"
+msgstr "ข้อผิดพลาดภายในที่ไม่คาดคิด: ไม่พบผู้ติดต่อที่สร้างไว้"
+
+#: ../src/contacts-contact.vala:1238
+msgid "Google Circles"
+msgstr "แวดวง Google"
+
+#: ../src/contacts-contact.vala:1240 ../src/contacts-esd-setup.c:121
+#: ../src/contacts-esd-setup.c:149
+msgid "Google"
+msgstr "Google"
+
+#: ../src/contacts-esd-setup.c:146
+msgid "Local Contact"
+msgstr "ผู้ติดต่อในเครื่อง"
+
+#: ../src/contacts-linked-accounts-dialog.vala:35
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/contacts-linked-accounts-dialog.vala:60
+msgid "You can link contacts by selecting them from the contacts list"
+msgstr "คุณสามารถเชื่อมโยงผู้ติดต่อเข้าหากันได้โดยเลือกจากรายชื่อผู้ติดต่อ"
+
+#: ../src/contacts-linked-accounts-dialog.vala:104
+msgid "Unlink"
+msgstr "ตัดการเชื่อมโยง"
+
+#. Refers to the type of the detail, could be Home, Work or Other for email, and the same
+#. * for phone numbers, addresses, etc.
+#: ../src/contacts-types.vala:115 ../src/contacts-types.vala:127
+#: ../src/contacts-types.vala:228 ../src/contacts-types.vala:341
+msgid "Other"
+msgstr "อื่นๆ"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:283 ../src/contacts-types.vala:337
+msgid "Home"
+msgstr "บ้าน"
+
+#: ../src/contacts-types.vala:284 ../src/contacts-types.vala:307
+#: ../src/contacts-types.vala:332
+msgid "Work"
+msgstr "ที่ทำงาน"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:306
+msgid "Personal"
+msgstr "ส่วนบุคคล"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:331
+msgid "Assistant"
+msgstr "ผู้ช่วย"
+
+#: ../src/contacts-types.vala:333
+msgid "Work Fax"
+msgstr "โทรสารที่ทำงาน"
+
+#: ../src/contacts-types.vala:334
+msgid "Callback"
+msgstr "โทรกลับ"
+
+#: ../src/contacts-types.vala:335
+msgid "Car"
+msgstr "รถยนต์"
+
+#: ../src/contacts-types.vala:336
+msgid "Company"
+msgstr "บริษัท"
+
+#: ../src/contacts-types.vala:338
+msgid "Home Fax"
+msgstr "โทรสารที่บ้าน"
+
+#: ../src/contacts-types.vala:339
+msgid "ISDN"
+msgstr "ISDN"
+
+#: ../src/contacts-types.vala:340
+msgid "Mobile"
+msgstr "มือถือ"
+
+#: ../src/contacts-types.vala:342
+msgid "Fax"
+msgstr "โทรสาร"
+
+#: ../src/contacts-types.vala:343
+msgid "Pager"
+msgstr "เพจเจอร์"
+
+#: ../src/contacts-types.vala:344
+msgid "Radio"
+msgstr "วิทยุ"
+
+#: ../src/contacts-types.vala:345
+msgid "Telex"
+msgstr "เทเล็กซ์"
+
+#. To translators: TTY is Teletypewriter
+#: ../src/contacts-types.vala:347
+msgid "TTY"
+msgstr "TTY"
+
+#: ../src/contacts-view.vala:194
+msgid "No results matched search"
+msgstr "ไม่มีผลลัพธ์ตรงกับที่ค้นหา"
+
+#: ../src/contacts-view.vala:298
+msgid "Suggestions"
+msgstr "แนะนำ"
+
+#: ../src/contacts-view.vala:323
+msgid "Other Contacts"
+msgstr "ผู้ติดต่ออื่น"
+
+#: ../src/contacts-window.vala:200
+#, c-format
+msgid "%d Selected"
+msgid_plural "%d Selected"
+msgstr[0] "เลือกอยู่ %d รายการ"
+
+#: ../src/contacts-window.vala:233 ../data/ui/contacts-window.ui.h:2
+msgid "All Contacts"
+msgstr "ผู้ติดต่อทั้งหมด"
+
+#: ../src/contacts-window.vala:250
+#, c-format
+msgid "Editing %s"
+msgstr "กำลังแก้ไข %s"
+
+#: ../src/contacts-window.vala:265 ../data/ui/contacts-window.ui.h:7
+msgid "Done"
+msgstr "เสร็จ"
+
+#: ../src/contacts-window.vala:320
+msgid "Add"
+msgstr "เพิ่ม"
+
+#: ../src/contacts-window.vala:407
+#, c-format
+msgid "%d contacts linked"
+msgid_plural "%d contacts linked"
+msgstr[0] "เชื่อมโยงผู้ติดต่อ %d รายเสร็จแล้ว"
+
+#: ../src/contacts-window.vala:411 ../src/contacts-window.vala:443
+#: ../src/contacts-window.vala:485 ../src/contacts-window.vala:521
+msgid "_Undo"
+msgstr "เรี_ยกคืน"
+
+#: ../src/contacts-window.vala:439
+#, c-format
+msgid "%d contact deleted"
+msgid_plural "%d contacts deleted"
+msgstr[0] "ลบผู้ติดต่อ %d รายเสร็จแล้ว"
+
+#: ../src/contacts-window.vala:482
+#, c-format
+msgid "Contact deleted: \"%s\""
+msgstr "ลบผู้ติดต่อแล้ว: \"%s\""
+
+#: ../src/contacts-window.vala:517
+#, c-format
+msgid "%s linked to %s"
+msgstr "%s เชื่อมโยงไปยัง %s"
+
+#: ../src/contacts-window.vala:519
+#, c-format
+msgid "%s linked to the contact"
+msgstr "%s เชื่อมโยงกับผู้ติดต่อ"
+
+#: ../data/ui/app-menu.ui.h:1
+msgid "_Change Address Book..."
+msgstr "เ_ปลี่ยนสมุดที่อยู่..."
+
+#: ../data/ui/app-menu.ui.h:2
+msgid "_Help"
+msgstr "_วิธีใช้"
+
+#: ../data/ui/app-menu.ui.h:3
+msgid "_About"
+msgstr "เ_กี่ยวกับ"
+
+#: ../data/ui/app-menu.ui.h:4
+msgid "_Quit"
+msgstr "_ออก"
+
+#: ../data/ui/app-menu.ui.h:5
+msgid "Personal email"
+msgstr "อีเมลส่วนบุคคล"
+
+#: ../data/ui/app-menu.ui.h:6
+msgid "Work email"
+msgstr "อีเมลที่ทำงาน"
+
+#: ../data/ui/app-menu.ui.h:7
+msgid "Mobile phone"
+msgstr "โทรศัพท์มือถือ"
+
+#: ../data/ui/app-menu.ui.h:8
+msgid "Home phone"
+msgstr "โทรศัพท์บ้าน"
+
+#: ../data/ui/app-menu.ui.h:9
+msgid "Work phone"
+msgstr "โทรศัพท์ที่ทำงาน"
+
+#: ../data/ui/app-menu.ui.h:13
+msgid "Home address"
+msgstr "ที่อยู่บ้าน"
+
+#: ../data/ui/app-menu.ui.h:14
+msgid "Work address"
+msgstr "ที่อยู่ที่ทำงาน"
+
+#: ../data/ui/app-menu.ui.h:15
+msgid "Notes"
+msgstr "หมายเหตุ"
+
+#: ../data/ui/contacts-list-pane.ui.h:1
+msgid "Type to search"
+msgstr "พิมพ์เพื่อค้นหา"
+
+#. Link refers to the verb, from linking contacts together
+#: ../data/ui/contacts-list-pane.ui.h:3
+msgid "Link"
+msgstr "ลิงก์"
+
+#: ../data/ui/contacts-list-pane.ui.h:4
+msgid "Delete"
+msgstr "ลบ"
+
+#: ../data/ui/contacts-window.ui.h:1
+msgid "Loading"
+msgstr "การโหลด"
+
+#: ../data/ui/contacts-window.ui.h:3
+msgid "Add contact"
+msgstr "เพิ่มผู้ติดต่อ"
+
+#: ../data/ui/contacts-window.ui.h:4
+msgid "Selection mode"
+msgstr "โหมดการเลือก"
+
+#: ../data/ui/contacts-window.ui.h:6
+msgid "Edit"
+msgstr "แก้ไข"
+
+#: ../data/ui/contacts-window.ui.h:8
+msgid "Select Address Book"
+msgstr "เลือกสมุดที่อยู่"
+
+#: ../data/ui/contacts-window.ui.h:9
+msgid "Cancel setup"
+msgstr "ยกเลิกการตั้งค่า"
+
+#: ../data/ui/contacts-window.ui.h:10
+msgid "Setup complete"
+msgstr "ตั้งค่าเสร็จแล้ว"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:1
+msgid "First-time setup done."
+msgstr "ตั้งค่าครั้งแรกเสร็จแล้ว"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:2
+msgid "Set to true when the user ran the first-time setup wizard."
+msgstr "ตั้งค่าเป็นจริงเมื่อผู้ใช้เรียกเครื่องมือช่วยตั้งค่าในการใช้งานครั้งแรก"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:3
+msgid "View subset"
+msgstr "แสดงกลุ่มย่อย"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:4
+msgid "View contacts subset"
+msgstr "แสดงผู้ติดต่อกลุ่มย่อย"
+
+#~ msgid "Create Contact"
+#~ msgstr "สร้างผู้ติดต่อ"
+
+#~ msgid ""
+#~ "Add or \n"
+#~ "select a picture"
+#~ msgstr ""
+#~ "เพิ่มหรือ \n"
+#~ "เลือกภาพ"
+
+#~ msgid "Contact Name"
+#~ msgstr "ชื่อผู้ติดต่อ"
+
+#~ msgid "Email"
+#~ msgstr "อีเมล"
+
+#~ msgid "Phone"
+#~ msgstr "โทรศัพท์"
+
+#~ msgid "You must specify a contact name"
+#~ msgstr "คุณต้องระบุชื่อผู้ติดต่อ"
+
+#~ msgid "Contacts Setup"
+#~ msgstr "ตั้งค่าสมุดผู้ติดต่อ"
+
+#~ msgid "Please select your primary contacts account"
+#~ msgstr "กรุณาเลือกบัญชีหลักของคุณสำหรับเก็บข้อมูลผู้ติดต่อ"
+
+#~ msgid "Twitter"
+#~ msgstr "Twitter"
+
+#~ msgid "Google Profile"
+#~ msgstr "โพรไฟล์ Google"
+
+#~ msgid "Google Other Contact"
+#~ msgstr "ผู้ติดต่ออื่นของ Google"
+
+#~ msgid "Primary Contacts Account"
+#~ msgstr "บัญชีหลักสำหรับข้อมูลผู้ติดต่อ"
+
+#~ msgid "Close"
+#~ msgstr "ปิด"
+
+#~ msgid "%s - Linked Accounts"
+#~ msgstr "%s - บัญชีที่เชื่อมโยง"
+
+#~ msgid "Remove"
+#~ msgstr "ลบ"
+
+#~ msgid "_About Contacts"
+#~ msgstr "เ_กี่ยวกับผู้ติดต่อ"
+
+#~ msgid "View"
+#~ msgstr "มุมมอง"
+
+#~ msgid "Main contacts"
+#~ msgstr "ผู้ติดต่อหลัก"
+
+#~ msgid "Add an Online Account"
+#~ msgstr "เพิ่มบัญชีออนไลน์"
+
+#~ msgid "Keep contacts on this computer only"
+#~ msgstr "เก็บข้อมูลผู้ติดต่อในคอมพิวเตอร์นี้เท่านั้น"
+
+#~ msgid "New"
+#~ msgstr "ใหม่"
+
+#~ msgid ""
+#~ "Welcome to Contacts! Please select where you want to keep your address "
+#~ "book:"
+#~ msgstr "ยินดีต้อนรับสู่สมุดผู้ติดต่อ! กรุณาเลือกตำแหน่งที่คุณต้องการเก็บสมุดที่อยู่ของคุณ:"
+
+#~ msgid "Online Account Settings"
+#~ msgstr "ตั้งค่าบัญชีออนไลน์"
+
+#~ msgid "Setup an online account or use a local address book"
+#~ msgstr "ตั้งค่าบัญชีออนไลน์หรือใช้สมุดที่อยู่ในเครื่อง"
+
+#~ msgid "Use Local Address Book"
+#~ msgstr "ใช้สมุดที่อยู่ในเครื่อง"
+
+#~ msgctxt "contacts link action"
+#~ msgid "Link"
+#~ msgstr "เชื่อมโยง"
+
+#~ msgid "Link contacts to %s"
+#~ msgstr "เชื่อมโยงผู้ติดต่อไปยัง %s"
+
+#~ msgctxt "Addresses on the Web"
+#~ msgid "Links"
+#~ msgstr "ลิงก์"
+
+#~ msgctxt "Web address"
+#~ msgid "Link"
+#~ msgstr "ลิงก์"
+
+#~ msgid "Chat"
+#~ msgstr "สนทนา"
+
+#~ msgid "Addresses"
+#~ msgstr "ที่อยู่"
+
+#~ msgid "Add to My Contacts"
+#~ msgstr "เพิ่มเข้าในสมุดผู้ติดต่อของฉัน"
+
+#~ msgid "Add detail..."
+#~ msgstr "เพิ่มรายละเอียด..."
+
+#~ msgid "Select detail to add to %s"
+#~ msgstr "เลือกรายละเอียดที่จะเพิ่มให้กับ %s"
+
+#~ msgid "Select email address"
+#~ msgstr "เลือกที่อยู่อีเมล"
+
+#~ msgid "Select what to call"
+#~ msgstr "เลือกเป้าหมายที่จะเรียกสาย"
+
+#~ msgid "Add/Remove Linked Contacts..."
+#~ msgstr "เพิ่ม/ลบการเชื่อมโยงผู้ติดต่อ..."
+
+#~ msgid "Custom..."
+#~ msgstr "กำหนดเอง..."
+
+#~ msgid "Unknown status"
+#~ msgstr "ไม่ทราบสถานะ"
+
+#~ msgid "Offline"
+#~ msgstr "ออฟไลน์"
+
+#~ msgid "Error"
+#~ msgstr "ผิดพลาด"
+
+#~ msgid "Available"
+#~ msgstr "อยู่"
+
+#~ msgid "Away"
+#~ msgstr "ไม่อยู่"
+
+#~ msgid "Extended away"
+#~ msgstr "ไม่อยู่ต่อเนื่อง"
+
+#~ msgid "Busy"
+#~ msgstr "ไม่ว่าง"
+
+#~ msgid "Hidden"
+#~ msgstr "ซ่อนตัว"
+
+#~ msgid "<span weight='bold'>Link contacts to %s</span>"
+#~ msgstr "<span weight='bold'>เชื่อมโยงผู้ติดต่อไปยัง %s</span>"
+
+#~ msgid "Browse for more pictures..."
+#~ msgstr "เรียกดูภาพเพิ่มเติม..."
+
+#~ msgid "Add contact data to %s\n"
+#~ msgstr "เพิ่มข้อมูลผู้ติดต่อให้กับ %s\n"
+
+#~ msgctxt "link-contacts-button"
+#~ msgid "Link"
+#~ msgstr "เชื่อมโยง"
+
+#~ msgid "Currently linked:"
+#~ msgstr "ที่เชื่อมโยงอยู่ขณะนี้:"
+
+#~ msgid ""
+#~ "Connect to an account,\n"
+#~ "import or add contacts"
+#~ msgstr ""
+#~ "เชื่อมต่อกับบัญชี\n"
+#~ "นำเข้าหรือเพิ่มผู้ติดต่อ"
+
+#~ msgid "Enter nickname"
+#~ msgstr "ป้อนชื่อเล่น"
+
+#~ msgid "Alias"
+#~ msgstr "นามแฝง"
+
+#~ msgid "Enter alias"
+#~ msgstr "ป้อนนามแฝง"
+
+#~ msgid "Enter phone number"
+#~ msgstr "ป้อนหมายเลขโทรศัพท์"
+
+#~ msgid "Enter name"
+#~ msgstr "ป้อนชื่อ"
+
+#~ msgid "Address copied to clipboard"
+#~ msgstr "คัดลอกที่อยู่ไปยังคลิปบอร์ดแล้ว"
+
+#~ msgid "Department"
+#~ msgstr "แผนก"
+
+#~ msgid "Profession"
+#~ msgstr "วิชาชีพ"
+
+#~ msgid "Title"
+#~ msgstr "คำนำหน้าชื่อ"
+
+#~ msgid "Manager"
+#~ msgstr "ผู้จัดการ"
+
+#~ msgid "More"
+#~ msgstr "เพิ่มเติม"
+
+#~ msgid "Send..."
+#~ msgstr "ส่ง..."

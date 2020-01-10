@@ -1,0 +1,700 @@
+# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2011, 2013, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-contacts.master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"contacts&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-05-03 06:12+0000\n"
+"PO-Revision-Date: 2012-09-21 20:05+0300\n"
+"Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
+"Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
+"Language: be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../data/gnome-contacts.appdata.xml.in.h:1
+msgid ""
+"Contacts keeps and organize your contacts information. You can create, edit, "
+"delete and link together pieces of information about your contacts. Contacts "
+"aggregates the details from all your sources providing a centralized place "
+"for managing your contacts."
+msgstr ""
+"Кіраўнік кантактаў захоўвае і парадкуе вашы кантакты. З яго дапамогай можна "
+"ствараць, рэдагаваць, выдаляць і аб'ядноўваць звесткі аб вашых кантактах. "
+"Кіраўнік збірае звесткі з усіх магчымых крыніц і прадастаўляе цэнтралізаваны "
+"спосаб кіравання кантактамі."
+
+#: ../data/gnome-contacts.appdata.xml.in.h:2
+msgid ""
+"Contacts will also integrate with online address books and automatically "
+"link contacts from different online sources."
+msgstr ""
+"Кіраўнік кантактаў таксама інтэграваны з сеціўнымі адраснымі кнігамі і "
+"аўтаматычна аб'ядноўвае кантакты з розных сеціўных крыніц."
+
+#: ../data/gnome-contacts.desktop.in.in.h:1 ../src/main.vala:28
+msgid "Contacts"
+msgstr "Кантакты"
+
+#: ../data/gnome-contacts.desktop.in.in.h:2
+msgid "A contacts manager for GNOME"
+msgstr "Кіраўнік кантактаў для GNOME"
+
+#: ../data/gnome-contacts.desktop.in.in.h:3
+msgid "friends;address book;"
+msgstr "сябры;прыяцелі;таварышы;адрасная кніга;"
+
+#: ../src/app-menu.ui.h:1
+msgid "_Change Address Book..."
+msgstr "_Змяніць адрасную кнігу..."
+
+#: ../src/app-menu.ui.h:2
+msgid "_Help"
+msgstr "_Дапамога"
+
+#: ../src/app-menu.ui.h:3
+msgid "_About"
+msgstr "_Аб праграме"
+
+#: ../src/app-menu.ui.h:4
+msgid "_Quit"
+msgstr "_Выйсці"
+
+#: ../src/contacts-accounts-list.vala:48
+msgid "Online Accounts"
+msgstr "Сеціўныя конты"
+
+#: ../src/contacts-accounts-list.vala:175 ../src/contacts-esd-setup.c:118
+msgid "Local Address Book"
+msgstr "Мясцовая адрасная кніга"
+
+#: ../src/contacts-app.vala:100
+#, c-format
+msgid "No contact with id %s found"
+msgstr "Кантакт з ідэнтыфікатарам %s не знойдзены"
+
+#: ../src/contacts-app.vala:101 ../src/contacts-app.vala:207
+msgid "Contact not found"
+msgstr "Кантакт не знойдзены"
+
+#: ../src/contacts-app.vala:118
+msgid "Primary Contacts Account"
+msgstr "Галоўны конт для кантактаў"
+
+#: ../src/contacts-app.vala:119 ../src/contacts-setup-window.vala:41
+msgid "Cancel"
+msgstr "Скасаваць"
+
+#: ../src/contacts-app.vala:129 ../src/contacts-setup-window.vala:55
+#: ../src/contacts-window.ui.h:3
+msgid "Done"
+msgstr "Зроблена"
+
+#: ../src/contacts-app.vala:186
+msgid "translator-credits"
+msgstr "Ігар Грачышка <ihar.hrachyshka@gmail.com>"
+
+#: ../src/contacts-app.vala:187
+msgid "GNOME Contacts"
+msgstr "Кантакты GNOME"
+
+#: ../src/contacts-app.vala:188
+msgid "About GNOME Contacts"
+msgstr "Аб Кантактах GNOME"
+
+#: ../src/contacts-app.vala:189
+msgid "Contact Management Application"
+msgstr "Праграма для кіравання кантактамі"
+
+#: ../src/contacts-app.vala:206
+#, c-format
+msgid "No contact with email address %s found"
+msgstr "Кантакт з адрасам электроннай пошты %s не знойдзены"
+
+#: ../src/contacts-app.vala:263 ../src/contacts-window.vala:85
+msgid "Select"
+msgstr "Вылучыць"
+
+#: ../src/contacts-app.vala:265
+#, c-format
+msgid "%d Selected"
+msgid_plural "%d Selected"
+msgstr[0] "Вылучаны %d кантакт"
+msgstr[1] "Вылучана %d кантакты"
+msgstr[2] "Вылучана %d кантактаў"
+
+#: ../src/contacts-app.vala:294
+#, c-format
+msgid "Editing %s"
+msgstr "Рэдагаванне %s"
+
+#: ../src/contacts-app.vala:420
+#, c-format
+msgid "%d contacts linked"
+msgid_plural "%d contacts linked"
+msgstr[0] "Аб'яднаны %d кантакт"
+msgstr[1] "Аб'яднаныя %d кантакты"
+msgstr[2] "Аб'яднаныя %d кантактаў"
+
+#: ../src/contacts-app.vala:424 ../src/contacts-app.vala:456
+#: ../src/contacts-app.vala:497 ../src/contacts-app.vala:542
+msgid "_Undo"
+msgstr "_Адрабіць назад"
+
+#: ../src/contacts-app.vala:452
+#, c-format
+msgid "%d contact deleted"
+msgid_plural "%d contacts deleted"
+msgstr[0] "Выдалены %d кантакт"
+msgstr[1] "Выдаленыя %d кантакты"
+msgstr[2] "Выдаленыя %d кантактаў"
+
+#: ../src/contacts-app.vala:494
+#, c-format
+msgid "Contact deleted: \"%s\""
+msgstr "Кантакт выдалены: \"%s\""
+
+#: ../src/contacts-app.vala:522
+msgid "Show contact with this individual id"
+msgstr "Паказаць кантакт з пададзеным асабістым ідэнтыфікатарам"
+
+#: ../src/contacts-app.vala:524
+msgid "Show contact with this email address"
+msgstr "Паказаць кантакт з пададзеным электронным паштовым адрасам"
+
+#: ../src/contacts-app.vala:538
+#, c-format
+msgid "%s linked to %s"
+msgstr "Кантакт %s звязаны з %s"
+
+#: ../src/contacts-app.vala:540
+#, c-format
+msgid "%s linked to the contact"
+msgstr "%s звязаны з кантактам"
+
+#: ../src/contacts-app.vala:557
+msgid "— contact management"
+msgstr "- кіраванне кантактамі"
+
+#: ../src/contacts-avatar-dialog.vala:197
+msgid "Browse for more pictures"
+msgstr "Агляд выяў"
+
+#: ../src/contacts-avatar-dialog.vala:200
+#: ../src/contacts-new-contact-dialog.vala:50
+msgid "_Cancel"
+msgstr "_Скасаваць"
+
+#: ../src/contacts-avatar-dialog.vala:201
+msgid "_Open"
+msgstr "_Адкрыць"
+
+#: ../src/contacts-avatar-dialog.vala:244
+msgid "Select Picture"
+msgstr "Выбар выявы"
+
+#: ../src/contacts-avatar-dialog.vala:247
+#: ../src/contacts-linked-accounts-dialog.vala:37
+msgid "Close"
+msgstr "Закрыць"
+
+#: ../src/contacts-contact-editor.vala:354
+msgid "January"
+msgstr "Студзень"
+
+#: ../src/contacts-contact-editor.vala:355
+msgid "February"
+msgstr "Люты"
+
+#: ../src/contacts-contact-editor.vala:356
+msgid "March"
+msgstr "Сакавік"
+
+#: ../src/contacts-contact-editor.vala:357
+msgid "April"
+msgstr "Красавік"
+
+#: ../src/contacts-contact-editor.vala:358
+msgid "May"
+msgstr "Май"
+
+#: ../src/contacts-contact-editor.vala:359
+msgid "June"
+msgstr "Чэрвень"
+
+#: ../src/contacts-contact-editor.vala:360
+msgid "July"
+msgstr "Ліпень"
+
+#: ../src/contacts-contact-editor.vala:361
+msgid "August"
+msgstr "Жнівень"
+
+#: ../src/contacts-contact-editor.vala:362
+msgid "September"
+msgstr "Верасень"
+
+#: ../src/contacts-contact-editor.vala:363
+msgid "October"
+msgstr "Кастрычнік"
+
+#: ../src/contacts-contact-editor.vala:364
+msgid "November"
+msgstr "Лістапад"
+
+#: ../src/contacts-contact-editor.vala:365
+msgid "December"
+msgstr "Снежань"
+
+#: ../src/contacts-contact-editor.vala:491
+#: ../src/contacts-contact-editor.vala:498
+#: ../src/contacts-contact-pane.vala:393
+#: ../src/contacts-contact-sheet.vala:172
+msgid "Website"
+msgstr "Сеціўная пляцоўка"
+
+#: ../src/contacts-contact-editor.vala:517
+#: ../src/contacts-contact-editor.vala:524
+#: ../src/contacts-contact-pane.vala:398
+#: ../src/contacts-contact-sheet.vala:186
+msgid "Nickname"
+msgstr "Мянушка"
+
+#: ../src/contacts-contact-editor.vala:544
+#: ../src/contacts-contact-editor.vala:551
+#: ../src/contacts-contact-pane.vala:403
+#: ../src/contacts-contact-sheet.vala:193
+msgid "Birthday"
+msgstr "Дзень нараджэння"
+
+#: ../src/contacts-contact-editor.vala:565
+#: ../src/contacts-contact-editor.vala:572
+#: ../src/contacts-contact-sheet.vala:200
+msgid "Note"
+msgstr "Заўвага"
+
+#: ../src/contacts-contact-pane.vala:186
+#, c-format
+msgid "Does %s from %s belong here?"
+msgstr "Ці пасуе тут %s з %s?"
+
+#: ../src/contacts-contact-pane.vala:188
+#, c-format
+msgid "Do these details belong to %s?"
+msgstr "Ці датычаць гэтыя падрабязнасці да %s?"
+
+#: ../src/contacts-contact-pane.vala:199
+msgid "Yes"
+msgstr "Так"
+
+#: ../src/contacts-contact-pane.vala:200
+msgid "No"
+msgstr "Не"
+
+#: ../src/contacts-contact-pane.vala:352
+msgid "New Detail"
+msgstr "Новыя падрабязнасці"
+
+#. building menu
+#: ../src/contacts-contact-pane.vala:366
+msgid "Personal email"
+msgstr "Асабістая электронная пошта"
+
+#: ../src/contacts-contact-pane.vala:371
+msgid "Work email"
+msgstr "Працоўная электронная пошта"
+
+#: ../src/contacts-contact-pane.vala:377
+msgid "Mobile phone"
+msgstr "Мабільны тэлефон"
+
+#: ../src/contacts-contact-pane.vala:382
+msgid "Home phone"
+msgstr "Дамашні тэлефон"
+
+#: ../src/contacts-contact-pane.vala:387
+msgid "Work phone"
+msgstr "Працоўны тэлефон"
+
+#: ../src/contacts-contact-pane.vala:409
+msgid "Home address"
+msgstr "Дамашні адрас"
+
+#: ../src/contacts-contact-pane.vala:414
+msgid "Work address"
+msgstr "Працоўны адрас"
+
+#: ../src/contacts-contact-pane.vala:420
+msgid "Notes"
+msgstr "Заўвагі"
+
+#: ../src/contacts-contact-pane.vala:436
+msgid "Linked Accounts"
+msgstr "Аб'яднаныя конты"
+
+#: ../src/contacts-contact-pane.vala:448
+msgid "Remove Contact"
+msgstr "Выдаліць кантакт"
+
+#: ../src/contacts-contact-pane.vala:514
+msgid "Select a contact"
+msgstr "Выберыце кантакт"
+
+#: ../src/contacts-contact.vala:674
+msgid "Street"
+msgstr "Вуліца"
+
+#: ../src/contacts-contact.vala:674
+msgid "Extension"
+msgstr "Пашырэнне"
+
+#: ../src/contacts-contact.vala:674
+msgid "City"
+msgstr "Горад"
+
+#: ../src/contacts-contact.vala:674
+msgid "State/Province"
+msgstr "Штат ці правінцыя"
+
+#: ../src/contacts-contact.vala:674
+msgid "Zip/Postal Code"
+msgstr "Паштовы індэкс/ZIP"
+
+#: ../src/contacts-contact.vala:674
+msgid "PO box"
+msgstr "Абаненцкая скрыня"
+
+#: ../src/contacts-contact.vala:674
+msgid "Country"
+msgstr "Краіна"
+
+#: ../src/contacts-contact.vala:730
+msgid "Google Talk"
+msgstr "Google Talk"
+
+#: ../src/contacts-contact.vala:731
+msgid "Ovi Chat"
+msgstr "Ovi Chat"
+
+#: ../src/contacts-contact.vala:732 ../src/contacts-contact.vala:1016
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ../src/contacts-contact.vala:733
+msgid "Livejournal"
+msgstr "Livejournal"
+
+#: ../src/contacts-contact.vala:734
+msgid "AOL Instant Messenger"
+msgstr "AOL Instant Messenger"
+
+#: ../src/contacts-contact.vala:735
+msgid "Gadu-Gadu"
+msgstr "Gadu-Gadu"
+
+#: ../src/contacts-contact.vala:736
+msgid "Novell Groupwise"
+msgstr "Novell Groupwise"
+
+#: ../src/contacts-contact.vala:737
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/contacts-contact.vala:738
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/contacts-contact.vala:739
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ../src/contacts-contact.vala:740
+msgid "Local network"
+msgstr "Мясцовая сетка"
+
+#: ../src/contacts-contact.vala:741
+msgid "Windows Live Messenger"
+msgstr "Windows Live Messenger"
+
+#: ../src/contacts-contact.vala:742
+msgid "MySpace"
+msgstr "MySpace"
+
+#: ../src/contacts-contact.vala:743
+msgid "MXit"
+msgstr "MXit"
+
+#: ../src/contacts-contact.vala:744
+msgid "Napster"
+msgstr "Napster"
+
+#: ../src/contacts-contact.vala:745
+msgid "Tencent QQ"
+msgstr "Tencent QQ"
+
+#: ../src/contacts-contact.vala:746
+msgid "IBM Lotus Sametime"
+msgstr "IBM Lotus Sametime"
+
+#: ../src/contacts-contact.vala:747
+msgid "SILC"
+msgstr "SILC"
+
+#: ../src/contacts-contact.vala:748
+msgid "sip"
+msgstr "sip"
+
+#: ../src/contacts-contact.vala:749
+msgid "Skype"
+msgstr "Skype"
+
+#: ../src/contacts-contact.vala:750
+msgid "Telephony"
+msgstr "Telephony"
+
+#: ../src/contacts-contact.vala:751
+msgid "Trepia"
+msgstr "Trepia"
+
+#: ../src/contacts-contact.vala:752 ../src/contacts-contact.vala:753
+msgid "Yahoo! Messenger"
+msgstr "Yahoo! Messenger"
+
+#: ../src/contacts-contact.vala:754
+msgid "Zephyr"
+msgstr "Zephyr"
+
+#: ../src/contacts-contact.vala:1019
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ../src/contacts-contact.vala:1022
+msgid "Google Profile"
+msgstr "Профіль Google"
+
+#: ../src/contacts-contact.vala:1086
+msgid "Unexpected internal error: created contact was not found"
+msgstr "Нечаканая ўнутраная памылка: створаны кантакт не знойдзены"
+
+#: ../src/contacts-contact.vala:1260
+msgid "Google Circles"
+msgstr "Колы Google"
+
+#: ../src/contacts-contact.vala:1262
+msgid "Google Other Contact"
+msgstr "Іншы кантакт Google"
+
+#: ../src/contacts-esd-setup.c:121 ../src/contacts-esd-setup.c:149
+msgid "Google"
+msgstr "Google"
+
+#: ../src/contacts-esd-setup.c:146
+msgid "Local Contact"
+msgstr "Мясцовы кантакт"
+
+#: ../src/contacts-linked-accounts-dialog.vala:32
+#, c-format
+msgid "%s - Linked Accounts"
+msgstr "%s - Аб'яднаныя конты"
+
+#: ../src/contacts-linked-accounts-dialog.vala:56
+msgid "You can manually link contacts from the contacts list"
+msgstr "Вы можаце ўручную аб'ядноўваць кантакты з іх спіса"
+
+#: ../src/contacts-linked-accounts-dialog.vala:102
+msgid "Unlink"
+msgstr "Раз'яднаць"
+
+#: ../src/contacts-list-pane.vala:84
+msgid "Type to search"
+msgstr "Увядзіце тэкст для пошуку"
+
+#. To translators: Link refers to the verb, from linking contacts together
+#: ../src/contacts-list-pane.vala:126
+msgid "Link"
+msgstr "Спасылка"
+
+#: ../src/contacts-list-pane.vala:129
+msgid "Delete"
+msgstr "Выдаліць"
+
+#: ../src/contacts-new-contact-dialog.vala:45
+msgid "New contact"
+msgstr "Новы кантакт"
+
+#: ../src/contacts-new-contact-dialog.vala:51
+msgid "Create Contact"
+msgstr "Стварэнне кантакту"
+
+#: ../src/contacts-new-contact-dialog.vala:77
+msgid ""
+"Add or \n"
+"select a picture"
+msgstr ""
+"Дадайце ці \n"
+"выберыце выяву"
+
+#: ../src/contacts-new-contact-dialog.vala:88
+msgid "Contact Name"
+msgstr "Назва кантакта"
+
+#: ../src/contacts-new-contact-dialog.vala:96
+#: ../src/contacts-new-contact-dialog.vala:132
+msgid "Email"
+msgstr "Электронная пошта"
+
+#: ../src/contacts-new-contact-dialog.vala:105
+#: ../src/contacts-new-contact-dialog.vala:137
+msgid "Phone"
+msgstr "Тэлефон"
+
+#: ../src/contacts-new-contact-dialog.vala:114
+#: ../src/contacts-new-contact-dialog.vala:142
+msgid "Address"
+msgstr "Адрас"
+
+#: ../src/contacts-new-contact-dialog.vala:124
+msgid "Add Detail"
+msgstr "Даданне падрабязнасцяў"
+
+#: ../src/contacts-new-contact-dialog.vala:227
+msgid "You must specify a contact name"
+msgstr "Трэба вызначыць імя кантакту"
+
+#: ../src/contacts-new-contact-dialog.vala:337
+msgid "No primary addressbook configured\n"
+msgstr "Галоўная адрасная кніга не настроена\n"
+
+#: ../src/contacts-new-contact-dialog.vala:358
+#, c-format
+msgid "Unable to create new contacts: %s\n"
+msgstr "Не ўдалося стварыць новыя кантакты: %s\n"
+
+#: ../src/contacts-new-contact-dialog.vala:369
+msgid "Unable to find newly created contact\n"
+msgstr "Не ўдалося адшукаць наваствораны кантакт\n"
+
+#: ../src/contacts-setup-window.vala:38
+msgid "Contacts Setup"
+msgstr "Настройка кантактаў"
+
+#: ../src/contacts-setup-window.vala:71
+msgid "Please select your primary contacts account"
+msgstr "Выберыце галоўны конт для кантактаў"
+
+#. Refers to the type of the detail, could be Home, Work or Other for email, and the same
+#. * for phone numbers, addresses, etc.
+#: ../src/contacts-types.vala:115 ../src/contacts-types.vala:127
+#: ../src/contacts-types.vala:228 ../src/contacts-types.vala:341
+msgid "Other"
+msgstr "Іншае"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:283 ../src/contacts-types.vala:337
+msgid "Home"
+msgstr "Дом"
+
+#: ../src/contacts-types.vala:284 ../src/contacts-types.vala:307
+#: ../src/contacts-types.vala:332
+msgid "Work"
+msgstr "Праца"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:306
+msgid "Personal"
+msgstr "Асабістая"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:331
+msgid "Assistant"
+msgstr "Сакратар"
+
+#: ../src/contacts-types.vala:333
+msgid "Work Fax"
+msgstr "Працоўны факс"
+
+#: ../src/contacts-types.vala:334
+msgid "Callback"
+msgstr "Callback"
+
+#: ../src/contacts-types.vala:335
+msgid "Car"
+msgstr "У аўтамабіле"
+
+#: ../src/contacts-types.vala:336
+msgid "Company"
+msgstr "Фірма"
+
+#: ../src/contacts-types.vala:338
+msgid "Home Fax"
+msgstr "Дамашні факс"
+
+#: ../src/contacts-types.vala:339
+msgid "ISDN"
+msgstr "ISDN"
+
+#: ../src/contacts-types.vala:340
+msgid "Mobile"
+msgstr "Мабільны тэлефон"
+
+#: ../src/contacts-types.vala:342
+msgid "Fax"
+msgstr "Факс"
+
+#: ../src/contacts-types.vala:343
+msgid "Pager"
+msgstr "Пэйджар"
+
+#: ../src/contacts-types.vala:344
+msgid "Radio"
+msgstr "Радыётэлефон"
+
+#: ../src/contacts-types.vala:345
+msgid "Telex"
+msgstr "Тэлекс"
+
+#. To translators: TTY is Teletypewriter
+#: ../src/contacts-types.vala:347
+msgid "TTY"
+msgstr "Тэлетайп"
+
+#: ../src/contacts-view.vala:193
+msgid "No results matched search"
+msgstr "Паводле крытэрыяў пошуку нічога не знойдзена"
+
+#: ../src/contacts-view.vala:297
+msgid "Suggestions"
+msgstr "Прапановы"
+
+#: ../src/contacts-view.vala:322
+msgid "Other Contacts"
+msgstr "Іншыя кантакты"
+
+#: ../src/contacts-window.ui.h:1 ../src/contacts-window.vala:92
+msgid "All Contacts"
+msgstr "Усе кантакты"
+
+#: ../src/contacts-window.ui.h:2
+msgid "Edit"
+msgstr "Рэдагаваць"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:1
+msgid "First-time setup done."
+msgstr "Пачатковая настройка скончана."
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:2
+msgid "Set to true when the user ran the first-time setup wizard."
+msgstr "Уключыце, калі карыстальнік прайшоў памочніка пачатковай настройкі."
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:3
+msgid "View subset"
+msgstr "Падмноства для прагляду"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:4
+msgid "View contacts subset"
+msgstr "Падмноства кантактаў для прагляду"
+

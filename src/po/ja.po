@@ -1,0 +1,873 @@
+# Japanese translation for gnome-contacts.
+# Copyright (C) 2011,2012 gnome-contacts's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-contacts package.
+# Hajime Taira <htaira@redhat.com>, 2011.
+# Mako N <mako@pasero.net>, 2012.
+# Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
+# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013, 2014.
+# Ikuya Awashiro <ikuya@fruitsbasket.info>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-contacts master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-contacts&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-04-10 19:46+0000\n"
+"PO-Revision-Date: 2014-03-30 16:46+0900\n"
+"Last-Translator: Ikuya Awashiro <ikuya@fruitsbasket.info>\n"
+"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/gnome-contacts.appdata.xml.in.h:1
+msgid "Contacts keeps and organize your contacts information. You can create, edit, delete and link together pieces of information about your contacts. Contacts aggregates the details from all your sources providing a centralized place for managing your contacts."
+msgstr ""
+
+#: ../data/gnome-contacts.appdata.xml.in.h:2
+msgid "Contacts will also integrate with online address books and automatically link contacts from different online sources."
+msgstr ""
+
+#: ../data/gnome-contacts.desktop.in.in.h:1 ../src/main.vala:28
+msgid "Contacts"
+msgstr "連絡先"
+
+#: ../data/gnome-contacts.desktop.in.in.h:2
+msgid "A contacts manager for GNOME"
+msgstr "GNOME の連絡先管理ツール"
+
+#: ../data/gnome-contacts.desktop.in.in.h:3
+msgid "friends;address book;"
+msgstr "friends;address book;友達;アドレス帳;contacts;"
+
+#: ../src/app-menu.ui.h:1
+msgid "_Change Address Book..."
+msgstr "アドレス帳を変更...(_C)"
+
+#: ../src/app-menu.ui.h:2
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: ../src/app-menu.ui.h:3
+msgid "_About"
+msgstr "このアプリケーションについて(_A)"
+
+#: ../src/app-menu.ui.h:4
+msgid "_Quit"
+msgstr "終了(_Q)"
+
+#: ../src/app-menu.ui.h:5
+msgid "Personal email"
+msgstr "個人のメール"
+
+#: ../src/app-menu.ui.h:6
+msgid "Work email"
+msgstr "職場のメール"
+
+#: ../src/app-menu.ui.h:7
+msgid "Mobile phone"
+msgstr "携帯電話"
+
+#: ../src/app-menu.ui.h:8
+msgid "Home phone"
+msgstr "自宅の電話"
+
+#: ../src/app-menu.ui.h:9
+msgid "Work phone"
+msgstr "職場の電話"
+
+#: ../src/app-menu.ui.h:10 ../src/contacts-contact-editor.vala:505
+#: ../src/contacts-contact-editor.vala:512
+#: ../src/contacts-contact-sheet.vala:190
+msgid "Website"
+msgstr "ウェブサイト"
+
+#: ../src/app-menu.ui.h:11 ../src/contacts-contact-editor.vala:531
+#: ../src/contacts-contact-editor.vala:538
+#: ../src/contacts-contact-sheet.vala:196
+msgid "Nickname"
+msgstr "ニックネーム"
+
+#: ../src/app-menu.ui.h:12 ../src/contacts-contact-editor.vala:564
+#: ../src/contacts-contact-editor.vala:571
+#: ../src/contacts-contact-sheet.vala:203
+msgid "Birthday"
+msgstr "誕生日"
+
+#: ../src/app-menu.ui.h:13
+msgid "Home address"
+msgstr "自宅の住所"
+
+#: ../src/app-menu.ui.h:14
+msgid "Work address"
+msgstr "職場の住所"
+
+#: ../src/app-menu.ui.h:15
+msgid "Notes"
+msgstr "メモ"
+
+#: ../src/contacts-accounts-list.vala:48
+msgid "Online Accounts"
+msgstr "オンラインアカウント"
+
+#: ../src/contacts-accounts-list.vala:180 ../src/contacts-esd-setup.c:118
+msgid "Local Address Book"
+msgstr "ローカルのアドレス帳"
+
+#: ../src/contacts-app.vala:100
+#, c-format
+msgid "No contact with id %s found"
+msgstr "ID %s に該当する連絡先はありません。"
+
+#: ../src/contacts-app.vala:101 ../src/contacts-app.vala:200
+msgid "Contact not found"
+msgstr "連絡先が見つかりません"
+
+#: ../src/contacts-app.vala:110
+msgid "Change Address Book"
+msgstr "アドレス帳を変更"
+
+#: ../src/contacts-app.vala:115
+msgid "Change"
+msgstr ""
+
+#: ../src/contacts-app.vala:116 ../src/contacts-setup-window.vala:41
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: ../src/contacts-app.vala:125
+msgid ""
+"New contacts will be added to the selected address book.\n"
+"You are able to view and edit contacts from other address books."
+msgstr ""
+
+#: ../src/contacts-app.vala:179
+msgid "translator-credits"
+msgstr ""
+"Hajime Taira <htaira@redhat.com>\n"
+"Mako N <mako@pasero.net>\n"
+"松澤 二郎 <jmatsuzawa@gnome.org>"
+
+#: ../src/contacts-app.vala:180
+msgid "GNOME Contacts"
+msgstr "GNOME Contacts"
+
+#: ../src/contacts-app.vala:181
+msgid "About GNOME Contacts"
+msgstr "このアプリケーションについて"
+
+#: ../src/contacts-app.vala:182
+msgid "Contact Management Application"
+msgstr "連絡先管理アプリケーション"
+
+#: ../src/contacts-app.vala:199
+#, c-format
+msgid "No contact with email address %s found"
+msgstr "メールアドレス %s に該当する連絡先はありません"
+
+#: ../src/contacts-app.vala:256 ../src/contacts-window.vala:85
+msgid "Select"
+msgstr "選択"
+
+#: ../src/contacts-app.vala:258
+#, c-format
+msgid "%d Selected"
+msgid_plural "%d Selected"
+msgstr[0] "%d 件選択"
+
+#: ../src/contacts-app.vala:287
+#, c-format
+msgid "Editing %s"
+msgstr "%s の編集"
+
+#: ../src/contacts-app.vala:413
+#, c-format
+msgid "%d contacts linked"
+msgid_plural "%d contacts linked"
+msgstr[0] "連絡先を %d 件リンクしました"
+
+#: ../src/contacts-app.vala:417 ../src/contacts-app.vala:449
+#: ../src/contacts-app.vala:490 ../src/contacts-app.vala:535
+msgid "_Undo"
+msgstr "戻す(_U)"
+
+#: ../src/contacts-app.vala:445
+#, c-format
+msgid "%d contact deleted"
+msgid_plural "%d contacts deleted"
+msgstr[0] "連絡先を %d 件削除しました"
+
+#: ../src/contacts-app.vala:487
+#, c-format
+msgid "Contact deleted: \"%s\""
+msgstr "連絡先を削除しました: \"%s\""
+
+#: ../src/contacts-app.vala:515
+msgid "Show contact with this individual id"
+msgstr "この個別IDで連絡先を表示"
+
+#: ../src/contacts-app.vala:517
+msgid "Show contact with this email address"
+msgstr "このメールアドレスで連絡先を表示"
+
+#: ../src/contacts-app.vala:531
+#, c-format
+msgid "%s linked to %s"
+msgstr "%s を %s にリンク"
+
+#: ../src/contacts-app.vala:533
+#, c-format
+msgid "%s linked to the contact"
+msgstr "%s をこの連絡先にリンク"
+
+#: ../src/contacts-app.vala:550
+msgid "— contact management"
+msgstr "— 連絡先の管理"
+
+#: ../src/contacts-avatar-dialog.vala:197
+msgid "Browse for more pictures"
+msgstr "もっと写真を見る"
+
+#: ../src/contacts-avatar-dialog.vala:200
+#: ../src/contacts-new-contact-dialog.vala:50
+msgid "_Cancel"
+msgstr "キャンセル(_C)"
+
+#: ../src/contacts-avatar-dialog.vala:201
+msgid "_Open"
+msgstr "開く(_O)"
+
+#: ../src/contacts-avatar-dialog.vala:246
+msgid "Select Picture"
+msgstr "写真を選択"
+
+#: ../src/contacts-contact-editor.vala:262
+#: ../src/contacts-contact-editor.vala:295
+#: ../src/contacts-contact-editor.vala:332
+#: ../src/contacts-contact-editor.vala:391
+#: ../src/contacts-contact-editor.vala:421
+#, fuzzy
+#| msgid "Delete"
+msgid "Delete field"
+msgstr "削除"
+
+#: ../src/contacts-contact-editor.vala:367
+msgid "January"
+msgstr "1月"
+
+#: ../src/contacts-contact-editor.vala:368
+msgid "February"
+msgstr "2月"
+
+#: ../src/contacts-contact-editor.vala:369
+msgid "March"
+msgstr "3月"
+
+#: ../src/contacts-contact-editor.vala:370
+msgid "April"
+msgstr "4月"
+
+#: ../src/contacts-contact-editor.vala:371
+msgid "May"
+msgstr "5月"
+
+#: ../src/contacts-contact-editor.vala:372
+msgid "June"
+msgstr "6月"
+
+#: ../src/contacts-contact-editor.vala:373
+msgid "July"
+msgstr "7月"
+
+#: ../src/contacts-contact-editor.vala:374
+msgid "August"
+msgstr "8月"
+
+#: ../src/contacts-contact-editor.vala:375
+msgid "September"
+msgstr "9月"
+
+#: ../src/contacts-contact-editor.vala:376
+msgid "October"
+msgstr "10月"
+
+#: ../src/contacts-contact-editor.vala:377
+msgid "November"
+msgstr "11月"
+
+#: ../src/contacts-contact-editor.vala:378
+msgid "December"
+msgstr "12月"
+
+#: ../src/contacts-contact-editor.vala:586
+#: ../src/contacts-contact-editor.vala:593
+#: ../src/contacts-contact-sheet.vala:210
+msgid "Note"
+msgstr "メモ"
+
+#: ../src/contacts-contact-pane.vala:143
+#, c-format
+msgid "Does %s from %s belong here?"
+msgstr "%s (%s) が属するのはここですか?"
+
+#: ../src/contacts-contact-pane.vala:145
+#, c-format
+msgid "Do these details belong to %s?"
+msgstr "これらの詳細情報は %s に関するものですか?"
+
+#: ../src/contacts-contact-pane.vala:157
+msgid "Yes"
+msgstr "はい"
+
+#: ../src/contacts-contact-pane.vala:158
+msgid "No"
+msgstr "いいえ"
+
+#: ../src/contacts-contact-pane.vala:307
+msgid "New Detail"
+msgstr "詳細を追加"
+
+#: ../src/contacts-contact-pane.vala:313
+#: ../src/contacts-linked-accounts-dialog.vala:36
+msgid "Linked Accounts"
+msgstr "リンク済みアカウント"
+
+#: ../src/contacts-contact-pane.vala:317
+msgid "Remove Contact"
+msgstr "連絡先を削除"
+
+#: ../src/contacts-contact-pane.vala:413
+msgid "Select a contact"
+msgstr "連絡先を選択してください"
+
+#: ../src/contacts-contact-frame.vala:40
+msgid "Change avatar"
+msgstr ""
+
+#: ../src/contacts-contact.vala:674
+msgid "Street"
+msgstr "町丁名"
+
+#: ../src/contacts-contact.vala:674
+msgid "Extension"
+msgstr "番地"
+
+#: ../src/contacts-contact.vala:674
+msgid "City"
+msgstr "市(区町村)"
+
+#: ../src/contacts-contact.vala:674
+msgid "State/Province"
+msgstr "県(州)"
+
+#: ../src/contacts-contact.vala:674
+msgid "Zip/Postal Code"
+msgstr "郵便番号"
+
+#: ../src/contacts-contact.vala:674
+msgid "PO box"
+msgstr "私書箱"
+
+#: ../src/contacts-contact.vala:674
+msgid "Country"
+msgstr "国"
+
+#: ../src/contacts-contact.vala:730
+msgid "Google Talk"
+msgstr "Google トーク"
+
+#: ../src/contacts-contact.vala:731
+msgid "Ovi Chat"
+msgstr "Ovi Chat"
+
+#: ../src/contacts-contact.vala:732 ../src/contacts-contact.vala:1016
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ../src/contacts-contact.vala:733
+msgid "Livejournal"
+msgstr "Livejournal"
+
+#: ../src/contacts-contact.vala:734
+msgid "AOL Instant Messenger"
+msgstr "AOL インスタントメッセンジャー"
+
+#: ../src/contacts-contact.vala:735
+msgid "Gadu-Gadu"
+msgstr "Gadu-Gadu"
+
+#: ../src/contacts-contact.vala:736
+msgid "Novell Groupwise"
+msgstr "Novell Groupwise"
+
+#: ../src/contacts-contact.vala:737
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/contacts-contact.vala:738
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/contacts-contact.vala:739
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ../src/contacts-contact.vala:740
+msgid "Local network"
+msgstr "ローカルネットワーク"
+
+#: ../src/contacts-contact.vala:741
+msgid "Windows Live Messenger"
+msgstr "Windows Live メッセンジャー"
+
+#: ../src/contacts-contact.vala:742
+msgid "MySpace"
+msgstr "MySpace"
+
+#: ../src/contacts-contact.vala:743
+msgid "MXit"
+msgstr "MXit"
+
+#: ../src/contacts-contact.vala:744
+msgid "Napster"
+msgstr "Napster"
+
+#: ../src/contacts-contact.vala:745
+msgid "Tencent QQ"
+msgstr "Tencent QQ"
+
+#: ../src/contacts-contact.vala:746
+msgid "IBM Lotus Sametime"
+msgstr "IBM Lotus Sametime"
+
+#: ../src/contacts-contact.vala:747
+msgid "SILC"
+msgstr "SILC"
+
+#: ../src/contacts-contact.vala:748
+msgid "sip"
+msgstr "sip"
+
+#: ../src/contacts-contact.vala:749
+msgid "Skype"
+msgstr "Skype"
+
+#: ../src/contacts-contact.vala:750
+msgid "Telephony"
+msgstr "テレフォニー"
+
+#: ../src/contacts-contact.vala:751
+msgid "Trepia"
+msgstr "Trepia"
+
+#: ../src/contacts-contact.vala:752 ../src/contacts-contact.vala:753
+msgid "Yahoo! Messenger"
+msgstr "Yahoo! メッセンジャー"
+
+#: ../src/contacts-contact.vala:754
+msgid "Zephyr"
+msgstr "Zephyr"
+
+#: ../src/contacts-contact.vala:1019
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ../src/contacts-contact.vala:1022
+msgid "Google Profile"
+msgstr "Google プロフィール"
+
+#: ../src/contacts-contact.vala:1086
+msgid "Unexpected internal error: created contact was not found"
+msgstr "予期しない内部エラー: 新しく作成した連絡先が見つかりませんでした"
+
+#: ../src/contacts-contact.vala:1260
+msgid "Google Circles"
+msgstr "Google サークル"
+
+#: ../src/contacts-contact.vala:1262
+msgid "Google Other Contact"
+msgstr "Google のその他の連絡先"
+
+#: ../src/contacts-esd-setup.c:121 ../src/contacts-esd-setup.c:149
+msgid "Google"
+msgstr "Google"
+
+#: ../src/contacts-esd-setup.c:146
+msgid "Local Contact"
+msgstr "ローカルの連絡先"
+
+#: ../src/contacts-linked-accounts-dialog.vala:35
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: ../src/contacts-linked-accounts-dialog.vala:59
+msgid "You can manually link contacts from the contacts list"
+msgstr "連絡先リストから手動で連絡先をリンクできます"
+
+#: ../src/contacts-linked-accounts-dialog.vala:105
+msgid "Unlink"
+msgstr "リンク解除"
+
+#: ../src/contacts-list-pane.vala:84
+msgid "Type to search"
+msgstr "検索ワードを入力"
+
+#. To translators: Link refers to the verb, from linking contacts together
+#: ../src/contacts-list-pane.vala:126
+msgid "Link"
+msgstr "リンク"
+
+#: ../src/contacts-list-pane.vala:129
+msgid "Delete"
+msgstr "削除"
+
+#: ../src/contacts-new-contact-dialog.vala:45
+#, fuzzy
+#| msgid "New contact"
+msgid "New Contact"
+msgstr "新しい連絡先"
+
+#: ../src/contacts-new-contact-dialog.vala:51
+msgid "Create Contact"
+msgstr "連絡先を作成"
+
+#: ../src/contacts-new-contact-dialog.vala:77
+msgid ""
+"Add or \n"
+"select a picture"
+msgstr ""
+"写真を追加\n"
+"または選択"
+
+#: ../src/contacts-new-contact-dialog.vala:88
+msgid "Contact Name"
+msgstr "連絡先名"
+
+#: ../src/contacts-new-contact-dialog.vala:96
+#: ../src/contacts-new-contact-dialog.vala:132
+msgid "Email"
+msgstr "メール"
+
+#: ../src/contacts-new-contact-dialog.vala:105
+#: ../src/contacts-new-contact-dialog.vala:137
+msgid "Phone"
+msgstr "電話"
+
+#: ../src/contacts-new-contact-dialog.vala:114
+#: ../src/contacts-new-contact-dialog.vala:142
+msgid "Address"
+msgstr "住所"
+
+#: ../src/contacts-new-contact-dialog.vala:124
+msgid "Add Detail"
+msgstr "詳細を追加"
+
+#: ../src/contacts-new-contact-dialog.vala:227
+msgid "You must specify a contact name"
+msgstr "連絡先名を指定する必要があります"
+
+#: ../src/contacts-new-contact-dialog.vala:337
+msgid "No primary addressbook configured\n"
+msgstr "使用するアドレス帳が設定されていません\n"
+
+#: ../src/contacts-new-contact-dialog.vala:358
+#, c-format
+msgid "Unable to create new contacts: %s\n"
+msgstr "新しい連絡先を作ることができません: %s\n"
+
+#: ../src/contacts-new-contact-dialog.vala:369
+msgid "Unable to find newly created contact\n"
+msgstr "新しく作成した連絡先を見つけることができません。\n"
+
+#: ../src/contacts-setup-window.vala:38
+msgid "Contacts Setup"
+msgstr "連絡先の設定"
+
+#: ../src/contacts-setup-window.vala:55 ../src/contacts-window.ui.h:5
+msgid "Done"
+msgstr "完了"
+
+#: ../src/contacts-setup-window.vala:71
+msgid "Please select your primary contacts account"
+msgstr "使用する連絡先アカウントを選択してください"
+
+#. Refers to the type of the detail, could be Home, Work or Other for email, and the same
+#. * for phone numbers, addresses, etc.
+#: ../src/contacts-types.vala:115 ../src/contacts-types.vala:127
+#: ../src/contacts-types.vala:228 ../src/contacts-types.vala:341
+msgid "Other"
+msgstr "その他"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:283 ../src/contacts-types.vala:337
+msgid "Home"
+msgstr "自宅"
+
+#: ../src/contacts-types.vala:284 ../src/contacts-types.vala:307
+#: ../src/contacts-types.vala:332
+msgid "Work"
+msgstr "仕事"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:306
+msgid "Personal"
+msgstr "個人"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:331
+msgid "Assistant"
+msgstr "アシスタント"
+
+#: ../src/contacts-types.vala:333
+msgid "Work Fax"
+msgstr "職場 Fax"
+
+#: ../src/contacts-types.vala:334
+msgid "Callback"
+msgstr "コールバック"
+
+#: ../src/contacts-types.vala:335
+msgid "Car"
+msgstr "自動車電話"
+
+#: ../src/contacts-types.vala:336
+msgid "Company"
+msgstr "会社"
+
+#: ../src/contacts-types.vala:338
+msgid "Home Fax"
+msgstr "自宅 Fax"
+
+#: ../src/contacts-types.vala:339
+msgid "ISDN"
+msgstr "ISDN"
+
+#: ../src/contacts-types.vala:340
+msgid "Mobile"
+msgstr "携帯電話"
+
+#: ../src/contacts-types.vala:342
+msgid "Fax"
+msgstr "Fax"
+
+#: ../src/contacts-types.vala:343
+msgid "Pager"
+msgstr "ポケベル"
+
+#: ../src/contacts-types.vala:344
+msgid "Radio"
+msgstr "ラジオ"
+
+#: ../src/contacts-types.vala:345
+msgid "Telex"
+msgstr "テレックス"
+
+#. To translators: TTY is Teletypewriter
+#: ../src/contacts-types.vala:347
+msgid "TTY"
+msgstr "テレタイプライター"
+
+#: ../src/contacts-view.vala:193
+msgid "No results matched search"
+msgstr "一致するものがありません"
+
+#: ../src/contacts-view.vala:297
+msgid "Suggestions"
+msgstr "提案"
+
+#: ../src/contacts-view.vala:322
+msgid "Other Contacts"
+msgstr "その他の連絡先"
+
+#: ../src/contacts-window.ui.h:1 ../src/contacts-window.vala:92
+msgid "All Contacts"
+msgstr "すべての連絡先"
+
+#: ../src/contacts-window.ui.h:2
+#, fuzzy
+#| msgid "New contact"
+msgid "Add contact"
+msgstr "新しい連絡先"
+
+#: ../src/contacts-window.ui.h:3
+#, fuzzy
+#| msgid "Select"
+msgid "Selection mode"
+msgstr "選択"
+
+#: ../src/contacts-window.ui.h:4
+msgid "Edit"
+msgstr "編集"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:1
+msgid "First-time setup done."
+msgstr "初期設定を完了しました。"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:2
+msgid "Set to true when the user ran the first-time setup wizard."
+msgstr "ユーザーが初期設定ウィザードを実行すると、true に設定されます。"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:3
+msgid "View subset"
+msgstr "表示するサブセット"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:4
+msgid "View contacts subset"
+msgstr "表示する連絡先のサブセットを設定します。"
+
+#~ msgid "Primary Contacts Account"
+#~ msgstr "使用する連絡先アカウント"
+
+#~ msgid "Close"
+#~ msgstr "閉じる"
+
+#~ msgid "%s - Linked Accounts"
+#~ msgstr "%s - リンク済みアカウント"
+
+#~ msgid "_About Contacts"
+#~ msgstr "このアプリケーションについて(_A)"
+
+#~ msgid "Remove"
+#~ msgstr "削除"
+
+#~ msgid "New"
+#~ msgstr "新規"
+
+#~ msgctxt "Addresses on the Web"
+#~ msgid "Links"
+#~ msgstr "リンク"
+
+#~ msgctxt "Web address"
+#~ msgid "Link"
+#~ msgstr "リンク"
+
+#~ msgid "Phone number"
+#~ msgstr "電話番号"
+
+#~ msgid "Chat"
+#~ msgstr "チャット"
+
+#~ msgid "Addresses"
+#~ msgstr "住所"
+
+#~ msgid "Add to My Contacts"
+#~ msgstr "連絡先に追加"
+
+#~ msgid "Add detail..."
+#~ msgstr "詳細を追加..."
+
+#~ msgid "Select detail to add to %s"
+#~ msgstr "%s に追加する詳細情報を選択"
+
+#~ msgid "Select email address"
+#~ msgstr "Eメールアドレスを選択"
+
+#~ msgid "Select what to call"
+#~ msgstr "何を呼び出すか選択する"
+
+#~ msgid "Add/Remove Linked Contacts..."
+#~ msgstr "リンクされた連絡先の追加と削除..."
+
+#~ msgctxt "contacts link action"
+#~ msgid "Link"
+#~ msgstr "リンク"
+
+#~ msgid "Link Contact"
+#~ msgstr "連絡先をリンク"
+
+#~ msgid "Link contacts to %s"
+#~ msgstr "連絡先を %s にリンクする"
+
+#~ msgid "Welcome to Contacts! Please select where you want to keep your address book:"
+#~ msgstr "ようこそ! アドレス帳の保存先を選択してください。"
+
+#~ msgid "Online Account Settings"
+#~ msgstr "オンラインアカウント設定"
+
+#~ msgid "Setup an online account or use a local address book"
+#~ msgstr "オンラインアカウントを設定するか、ローカルのアドレス帳を使用します"
+
+#~ msgid "Use Local Address Book"
+#~ msgstr "ローカルのアドレス帳を使う"
+
+#~ msgid "Custom..."
+#~ msgstr "カスタム..."
+
+#~ msgid "Unknown status"
+#~ msgstr "不明な在席状況"
+
+#~ msgid "Offline"
+#~ msgstr "オフライン"
+
+#~ msgid "Error"
+#~ msgstr "エラー"
+
+#~ msgid "Available"
+#~ msgstr "在席中"
+
+#~ msgid "Away"
+#~ msgstr "離席中"
+
+#~ msgid "Extended away"
+#~ msgstr "長期不在"
+
+#~ msgid "Busy"
+#~ msgstr "取り込み中"
+
+#~ msgid "Hidden"
+#~ msgstr "隠れ中"
+
+#~ msgid "<span weight='bold'>Link contacts to %s</span>"
+#~ msgstr "<span weight='bold'>連絡先を %s にリンク</span>"
+
+#~ msgid "Enter nickname"
+#~ msgstr "あだ名を入力"
+
+#~ msgid "Alias"
+#~ msgstr "別名"
+
+#~ msgid "Enter alias"
+#~ msgstr "別名を入力"
+
+#~ msgid "Enter phone number"
+#~ msgstr "電話番号を入力"
+
+#~ msgid "Browse for more pictures..."
+#~ msgstr "もっと写真を見る..."
+
+#~ msgid "Enter name"
+#~ msgstr "名前を入力"
+
+#~ msgid "Address copied to clipboard"
+#~ msgstr "住所をクリップボードへコピーしました。"
+
+#~ msgid "Department"
+#~ msgstr "担当部署"
+
+#~ msgid "Profession"
+#~ msgstr "団体"
+
+#~ msgid "Title"
+#~ msgstr "役職"
+
+#~ msgid "Manager"
+#~ msgstr "マネージャー"
+
+#~ msgid "More"
+#~ msgstr "詳細"
+
+#~ msgctxt "link-contacts-button"
+#~ msgid "Link"
+#~ msgstr "リンク"
+
+#~ msgid "Currently linked:"
+#~ msgstr "現在リンク済み:"
+
+#~ msgid ""
+#~ "Connect to an account,\n"
+#~ "import or add contacts"
+#~ msgstr ""
+#~ "アカウントへ接続する。\n"
+#~ "連絡先をインポートもしくは追加する。"

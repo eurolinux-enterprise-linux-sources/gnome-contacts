@@ -1,0 +1,837 @@
+# Hungarian translation of gnome-contacts
+# Copyright (C) 2011, 2012. Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-contacts package.
+#
+# n0m4dm4n <n0m4dm4n at gmail dot com>, 2011.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2011, 2012.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-contacts master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"contacts&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-09-14 06:20+0000\n"
+"PO-Revision-Date: 2014-09-14 16:19+0200\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: ../data/org.gnome.Contacts.appdata.xml.in.h:1
+msgid ""
+"Contacts keeps and organize your contacts information. You can create, edit, "
+"delete and link together pieces of information about your contacts. Contacts "
+"aggregates the details from all your sources providing a centralized place "
+"for managing your contacts."
+msgstr ""
+"A Névjegyek tárolja és rendezi a névjegyek információit. Létrehozhat, "
+"szerkeszthet, törölhet névjegyeket és információkat köthet össze velük "
+"kapcsolatban. A Névjegyek összegyűjti minden forrás részleteit egy központi "
+"helyet biztosítva azok kezeléséhez."
+
+#: ../data/org.gnome.Contacts.appdata.xml.in.h:2
+msgid ""
+"Contacts will also integrate with online address books and automatically "
+"link contacts from different online sources."
+msgstr ""
+"A Névjegyek egyesülni fog az online címjegyzékekkel és automatikusan "
+"összekapcsolja a különböző online forrásokból származó névjegyeket."
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:1 ../src/main.vala:28
+msgid "Contacts"
+msgstr "Névjegyek"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:2
+msgid "A contacts manager for GNOME"
+msgstr "Egy névjegykezelő a GNOME-hoz"
+
+#: ../data/org.gnome.Contacts.desktop.in.in.h:3
+msgid "friends;address book;"
+msgstr "barátok;címjegyzék;"
+
+#: ../src/contacts-accounts-list.vala:48
+msgid "Online Accounts"
+msgstr "Online fiókok"
+
+#: ../src/contacts-accounts-list.vala:174 ../src/contacts-esd-setup.c:118
+msgid "Local Address Book"
+msgstr "Helyi címjegyzék"
+
+#: ../src/contacts-app.vala:46
+#, c-format
+msgid "No contact with id %s found"
+msgstr "Nem található %s azonosítójú névjegy"
+
+#: ../src/contacts-app.vala:47 ../src/contacts-app.vala:146
+msgid "Contact not found"
+msgstr "A névjegy nem található"
+
+#: ../src/contacts-app.vala:56
+msgid "Change Address Book"
+msgstr "Címjegyzék váltása"
+
+#: ../src/contacts-app.vala:61
+msgid "Change"
+msgstr "Módosítás"
+
+#: ../src/contacts-app.vala:62 ../src/contacts-avatar-dialog.vala:255
+#: ../data/ui/contacts-window.ui.h:5
+msgid "Cancel"
+msgstr "Mégse"
+
+#: ../src/contacts-app.vala:71
+msgid ""
+"New contacts will be added to the selected address book.\n"
+"You are able to view and edit contacts from other address books."
+msgstr ""
+"Az új névjegyek hozzá lesznek adva a kijelölt címjegyzékhez.\n"
+"Ön képes névjegyeket megtekinteni és szerkeszteni más címjegyzékekből."
+
+#: ../src/contacts-app.vala:125
+msgid "translator-credits"
+msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
+
+#: ../src/contacts-app.vala:126
+msgid "GNOME Contacts"
+msgstr "GNOME Névjegyek"
+
+#: ../src/contacts-app.vala:127
+msgid "About GNOME Contacts"
+msgstr "A GNOME Névjegyek névjegye"
+
+#: ../src/contacts-app.vala:128
+msgid "Contact Management Application"
+msgstr "Névjegykezelő alkalmazás"
+
+#: ../src/contacts-app.vala:145
+#, c-format
+msgid "No contact with email address %s found"
+msgstr "Nem található %s e-mail című névjegy"
+
+#: ../src/contacts-app.vala:304
+msgid "Show contact with this individual id"
+msgstr "Ezen egyedi azonosítójú névjegy megjelenítése"
+
+#: ../src/contacts-app.vala:306
+msgid "Show contact with this email address"
+msgstr "Ezen e-mail című névjegy megjelenítése"
+
+#: ../src/contacts-app.vala:313
+msgid "— contact management"
+msgstr "– névjegykezelés"
+
+#: ../src/contacts-avatar-dialog.vala:200
+msgid "Browse for more pictures"
+msgstr "További képek tallózása"
+
+#: ../src/contacts-avatar-dialog.vala:203
+msgid "_Cancel"
+msgstr "_Mégse"
+
+#: ../src/contacts-avatar-dialog.vala:204
+msgid "_Open"
+msgstr "Me_gnyitás"
+
+#: ../src/contacts-avatar-dialog.vala:249
+msgid "Select Picture"
+msgstr "Válasszon egy képet"
+
+#: ../src/contacts-avatar-dialog.vala:253 ../src/contacts-window.vala:198
+#: ../src/contacts-window.vala:224
+msgid "Select"
+msgstr "Válasszon"
+
+#: ../src/contacts-avatar-dialog.vala:281 ../src/contacts-window.vala:315
+#| msgid "New contact"
+msgid "New Contact"
+msgstr "Új névjegy"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Street"
+msgstr "Utca"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Extension"
+msgstr "Kiterjesztés"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "City"
+msgstr "Város"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "State/Province"
+msgstr "Állam/megye"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Zip/Postal Code"
+msgstr "Irányítószám"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "PO box"
+msgstr "Postafiók"
+
+#: ../src/contacts-contact-editor.vala:28
+msgid "Country"
+msgstr "Ország"
+
+#: ../src/contacts-contact-editor.vala:293
+#| msgid "Add Detail"
+msgid "Add email"
+msgstr "E-mail hozzáadása"
+
+#: ../src/contacts-contact-editor.vala:295
+#| msgid "Phone number"
+msgid "Add number"
+msgstr "Szám hozzáadása"
+
+#: ../src/contacts-contact-editor.vala:299
+#: ../src/contacts-contact-editor.vala:330
+#: ../src/contacts-contact-editor.vala:365
+#: ../src/contacts-contact-editor.vala:428
+#: ../src/contacts-contact-editor.vala:478
+#| msgid "Delete"
+msgid "Delete field"
+msgstr "Mező törlése"
+
+#: ../src/contacts-contact-editor.vala:400
+msgid "January"
+msgstr "Január"
+
+#: ../src/contacts-contact-editor.vala:401
+msgid "February"
+msgstr "Február"
+
+#: ../src/contacts-contact-editor.vala:402
+msgid "March"
+msgstr "Március"
+
+#: ../src/contacts-contact-editor.vala:403
+msgid "April"
+msgstr "Április"
+
+#: ../src/contacts-contact-editor.vala:404
+msgid "May"
+msgstr "Május"
+
+#: ../src/contacts-contact-editor.vala:405
+msgid "June"
+msgstr "Június"
+
+#: ../src/contacts-contact-editor.vala:406
+msgid "July"
+msgstr "Július"
+
+#: ../src/contacts-contact-editor.vala:407
+msgid "August"
+msgstr "Augusztus"
+
+#: ../src/contacts-contact-editor.vala:408
+msgid "September"
+msgstr "Szeptember"
+
+#: ../src/contacts-contact-editor.vala:409
+msgid "October"
+msgstr "Október"
+
+#: ../src/contacts-contact-editor.vala:410
+msgid "November"
+msgstr "November"
+
+#: ../src/contacts-contact-editor.vala:411
+msgid "December"
+msgstr "December"
+
+#: ../src/contacts-contact-editor.vala:561
+#: ../src/contacts-contact-editor.vala:568
+#: ../src/contacts-contact-sheet.vala:190 ../data/ui/app-menu.ui.h:10
+msgid "Website"
+msgstr "Weboldal"
+
+#: ../src/contacts-contact-editor.vala:587
+#: ../src/contacts-contact-editor.vala:594
+#: ../src/contacts-contact-sheet.vala:196 ../data/ui/app-menu.ui.h:11
+msgid "Nickname"
+msgstr "Becenév"
+
+#: ../src/contacts-contact-editor.vala:620
+#: ../src/contacts-contact-editor.vala:627
+#: ../src/contacts-contact-sheet.vala:203 ../data/ui/app-menu.ui.h:12
+msgid "Birthday"
+msgstr "Születésnap"
+
+#: ../src/contacts-contact-editor.vala:642
+#: ../src/contacts-contact-editor.vala:649
+#: ../src/contacts-contact-sheet.vala:210
+msgid "Note"
+msgstr "Jegyzet"
+
+#: ../src/contacts-contact-editor.vala:774
+msgid "New Detail"
+msgstr "Új részlet"
+
+#: ../src/contacts-contact-editor.vala:780
+#: ../src/contacts-linked-accounts-dialog.vala:36
+msgid "Linked Accounts"
+msgstr "Kapcsolt fiókok"
+
+#: ../src/contacts-contact-editor.vala:783
+msgid "Remove Contact"
+msgstr "Névjegy eltávolítása"
+
+#: ../src/contacts-contact-editor.vala:841
+#: ../src/contacts-contact-editor.vala:1041
+msgid "Add name"
+msgstr "Név hozzáadása"
+
+#: ../src/contacts-contact-pane.vala:137
+#, c-format
+msgid "Does %s from %s belong here?"
+msgstr "%s ebből: %s ide tartozik?"
+
+#: ../src/contacts-contact-pane.vala:139
+#, c-format
+msgid "Do these details belong to %s?"
+msgstr "Ezek a részletek hozzá tartoznak: %s?"
+
+#: ../src/contacts-contact-pane.vala:151
+msgid "Yes"
+msgstr "Igen"
+
+#: ../src/contacts-contact-pane.vala:152
+msgid "No"
+msgstr "Nem"
+
+#: ../src/contacts-contact-pane.vala:323
+msgid "Select a contact"
+msgstr "Válasszon névjegyet"
+
+#: ../src/contacts-contact-pane.vala:455
+msgid "You need to enter some data"
+msgstr "Meg kell adnia néhány adatot"
+
+#: ../src/contacts-contact-pane.vala:467
+#| msgid "No primary addressbook configured\n"
+msgid "No primary addressbook configured"
+msgstr "Nincs beállítva elsődleges címjegyzék"
+
+#: ../src/contacts-contact-pane.vala:486
+#, c-format
+#| msgid "Unable to create new contacts: %s\n"
+msgid "Unable to create new contacts: %s"
+msgstr "Nem hozhatók létre új névjegyek: %s"
+
+#: ../src/contacts-contact-pane.vala:497
+#| msgid "Unable to find newly created contact\n"
+msgid "Unable to find newly created contact"
+msgstr "Nem található az újonnan létrejött névjegy"
+
+#: ../src/contacts-contact-frame.vala:40
+msgid "Change avatar"
+msgstr "Avatar megváltoztatása"
+
+#: ../src/contacts-contact.vala:727
+msgid "Google Talk"
+msgstr "Google Talk"
+
+#: ../src/contacts-contact.vala:728
+msgid "Ovi Chat"
+msgstr "Ovi Chat"
+
+#: ../src/contacts-contact.vala:729
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ../src/contacts-contact.vala:730
+msgid "Livejournal"
+msgstr "Livejournal"
+
+#: ../src/contacts-contact.vala:731
+msgid "AOL Instant Messenger"
+msgstr "AOL Azonnali üzenetküldő"
+
+#: ../src/contacts-contact.vala:732
+msgid "Gadu-Gadu"
+msgstr "Gadu-Gadu"
+
+#: ../src/contacts-contact.vala:733
+msgid "Novell Groupwise"
+msgstr "Novell Groupwise"
+
+#: ../src/contacts-contact.vala:734
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/contacts-contact.vala:735
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/contacts-contact.vala:736
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ../src/contacts-contact.vala:737
+msgid "Local network"
+msgstr "Helyi hálózat"
+
+#: ../src/contacts-contact.vala:738
+msgid "Windows Live Messenger"
+msgstr "Windows Live Messenger"
+
+#: ../src/contacts-contact.vala:739
+msgid "MySpace"
+msgstr "MySpace"
+
+#: ../src/contacts-contact.vala:740
+msgid "MXit"
+msgstr "MXit"
+
+#: ../src/contacts-contact.vala:741
+msgid "Napster"
+msgstr "Napster"
+
+#: ../src/contacts-contact.vala:742
+msgid "Tencent QQ"
+msgstr "Tencent QQ"
+
+#: ../src/contacts-contact.vala:743
+msgid "IBM Lotus Sametime"
+msgstr "IBM Lotus Sametime"
+
+#: ../src/contacts-contact.vala:744
+msgid "SILC"
+msgstr "SILC"
+
+#: ../src/contacts-contact.vala:745
+msgid "sip"
+msgstr "SIP"
+
+#: ../src/contacts-contact.vala:746
+msgid "Skype"
+msgstr "Skype"
+
+#: ../src/contacts-contact.vala:747
+msgid "Telephony"
+msgstr "Telephony"
+
+#: ../src/contacts-contact.vala:748
+msgid "Trepia"
+msgstr "Trepia"
+
+#: ../src/contacts-contact.vala:749 ../src/contacts-contact.vala:750
+msgid "Yahoo! Messenger"
+msgstr "Yahoo! Messenger"
+
+#: ../src/contacts-contact.vala:751
+msgid "Zephyr"
+msgstr "Zephyr"
+
+#: ../src/contacts-contact.vala:1051
+msgid "Unexpected internal error: created contact was not found"
+msgstr "Váratlan belső hiba: a létrehozott névjegy nem található"
+
+#: ../src/contacts-contact.vala:1233
+msgid "Google Circles"
+msgstr "Google körök"
+
+#: ../src/contacts-contact.vala:1235 ../src/contacts-esd-setup.c:121
+#: ../src/contacts-esd-setup.c:149
+msgid "Google"
+msgstr "Google"
+
+#: ../src/contacts-esd-setup.c:146
+msgid "Local Contact"
+msgstr "Helyi névjegy"
+
+#: ../src/contacts-linked-accounts-dialog.vala:35
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/contacts-linked-accounts-dialog.vala:60
+#| msgid "You can manually link contacts from the contacts list"
+msgid "You can link contacts by selecting them from the contacts list"
+msgstr ""
+"Összekapcsolhatja a névjegyeket a névjegyek listájából való kijelöléssel"
+
+#: ../src/contacts-linked-accounts-dialog.vala:104
+msgid "Unlink"
+msgstr "Kapcsolat törlése"
+
+#. Refers to the type of the detail, could be Home, Work or Other for email, and the same
+#. * for phone numbers, addresses, etc.
+#: ../src/contacts-types.vala:115 ../src/contacts-types.vala:127
+#: ../src/contacts-types.vala:228 ../src/contacts-types.vala:341
+msgid "Other"
+msgstr "Egyéb"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:283 ../src/contacts-types.vala:337
+msgid "Home"
+msgstr "Otthoni"
+
+#: ../src/contacts-types.vala:284 ../src/contacts-types.vala:307
+#: ../src/contacts-types.vala:332
+msgid "Work"
+msgstr "Munkahelyi"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:306
+msgid "Personal"
+msgstr "Személyes"
+
+#. List most specific first, always in upper case
+#: ../src/contacts-types.vala:331
+msgid "Assistant"
+msgstr "Asszisztens"
+
+#: ../src/contacts-types.vala:333
+msgid "Work Fax"
+msgstr "Munkahelyi fax"
+
+#: ../src/contacts-types.vala:334
+msgid "Callback"
+msgstr "Visszahívás"
+
+#: ../src/contacts-types.vala:335
+msgid "Car"
+msgstr "Autó"
+
+#: ../src/contacts-types.vala:336
+msgid "Company"
+msgstr "Cég"
+
+#: ../src/contacts-types.vala:338
+msgid "Home Fax"
+msgstr "Otthoni fax"
+
+#: ../src/contacts-types.vala:339
+msgid "ISDN"
+msgstr "ISDN"
+
+#: ../src/contacts-types.vala:340
+msgid "Mobile"
+msgstr "Mobil"
+
+#: ../src/contacts-types.vala:342
+msgid "Fax"
+msgstr "Fax"
+
+#: ../src/contacts-types.vala:343
+msgid "Pager"
+msgstr "Személyhívó"
+
+#: ../src/contacts-types.vala:344
+msgid "Radio"
+msgstr "Rádió"
+
+#: ../src/contacts-types.vala:345
+msgid "Telex"
+msgstr "Telex"
+
+#. To translators: TTY is Teletypewriter
+#: ../src/contacts-types.vala:347
+msgid "TTY"
+msgstr "TTY"
+
+#: ../src/contacts-view.vala:194
+msgid "No results matched search"
+msgstr "Nincs a keresésre illeszkedő találat"
+
+#: ../src/contacts-view.vala:298
+msgid "Suggestions"
+msgstr "Javaslatok"
+
+#: ../src/contacts-view.vala:323
+msgid "Other Contacts"
+msgstr "Egyéb névjegyek"
+
+#: ../src/contacts-window.vala:200
+#, c-format
+msgid "%d Selected"
+msgid_plural "%d Selected"
+msgstr[0] "%d kiválasztva"
+msgstr[1] "%d kiválasztva"
+
+#: ../src/contacts-window.vala:233 ../data/ui/contacts-window.ui.h:2
+msgid "All Contacts"
+msgstr "Összes névjegy"
+
+#: ../src/contacts-window.vala:250
+#, c-format
+msgid "Editing %s"
+msgstr "%s szerkesztése"
+
+#: ../src/contacts-window.vala:265 ../data/ui/contacts-window.ui.h:7
+msgid "Done"
+msgstr "Kész"
+
+#: ../src/contacts-window.vala:320
+#| msgid "Address"
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: ../src/contacts-window.vala:407
+#, c-format
+msgid "%d contacts linked"
+msgid_plural "%d contacts linked"
+msgstr[0] "%d névjegy összekapcsolva"
+msgstr[1] "%d névjegy összekapcsolva"
+
+#: ../src/contacts-window.vala:411 ../src/contacts-window.vala:443
+#: ../src/contacts-window.vala:485 ../src/contacts-window.vala:521
+msgid "_Undo"
+msgstr "_Visszavonás"
+
+#: ../src/contacts-window.vala:439
+#, c-format
+msgid "%d contact deleted"
+msgid_plural "%d contacts deleted"
+msgstr[0] "%d névjegy törölve"
+msgstr[1] "%d névjegy törölve"
+
+#: ../src/contacts-window.vala:482
+#, c-format
+msgid "Contact deleted: \"%s\""
+msgstr "Névjegy törölve: „%s”"
+
+#: ../src/contacts-window.vala:517
+#, c-format
+msgid "%s linked to %s"
+msgstr "%s a következőhöz kapcsolva: %s"
+
+#: ../src/contacts-window.vala:519
+#, c-format
+msgid "%s linked to the contact"
+msgstr "%s a névjegyhez kapcsolva"
+
+#: ../data/ui/app-menu.ui.h:1
+msgid "_Change Address Book..."
+msgstr "Címjegyzék _váltása…"
+
+#: ../data/ui/app-menu.ui.h:2
+msgid "_Help"
+msgstr "_Súgó"
+
+#: ../data/ui/app-menu.ui.h:3
+msgid "_About"
+msgstr "_Névjegy"
+
+#: ../data/ui/app-menu.ui.h:4
+msgid "_Quit"
+msgstr "_Kilépés"
+
+#: ../data/ui/app-menu.ui.h:5
+msgid "Personal email"
+msgstr "Személyes e-mail"
+
+#: ../data/ui/app-menu.ui.h:6
+msgid "Work email"
+msgstr "Munkahelyi e-mail"
+
+#: ../data/ui/app-menu.ui.h:7
+msgid "Mobile phone"
+msgstr "Rádiótelefon"
+
+#: ../data/ui/app-menu.ui.h:8
+msgid "Home phone"
+msgstr "Otthoni telefon"
+
+#: ../data/ui/app-menu.ui.h:9
+msgid "Work phone"
+msgstr "Munkahelyi telefon"
+
+#: ../data/ui/app-menu.ui.h:13
+msgid "Home address"
+msgstr "Otthoni cím"
+
+#: ../data/ui/app-menu.ui.h:14
+msgid "Work address"
+msgstr "Munkahelyi cím"
+
+#: ../data/ui/app-menu.ui.h:15
+msgid "Notes"
+msgstr "Jegyzetek"
+
+#: ../data/ui/contacts-list-pane.ui.h:1
+msgid "Type to search"
+msgstr "Gépeljen a kereséshez"
+
+#. Link refers to the verb, from linking contacts together
+#: ../data/ui/contacts-list-pane.ui.h:3
+msgid "Link"
+msgstr "Összekapcsolás"
+
+#: ../data/ui/contacts-list-pane.ui.h:4
+msgid "Delete"
+msgstr "Törlés"
+
+#: ../data/ui/contacts-window.ui.h:1
+msgid "Loading"
+msgstr "Betöltés"
+
+#: ../data/ui/contacts-window.ui.h:3
+#| msgid "New contact"
+msgid "Add contact"
+msgstr "Névjegy hozzáadása"
+
+#: ../data/ui/contacts-window.ui.h:4
+#| msgid "Select"
+msgid "Selection mode"
+msgstr "Kijelölési mód"
+
+#: ../data/ui/contacts-window.ui.h:6
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: ../data/ui/contacts-window.ui.h:8
+#| msgid "Local Address Book"
+msgid "Select Address Book"
+msgstr "Válasszon címjegyzéket"
+
+#: ../data/ui/contacts-window.ui.h:9
+#| msgid "Cancel"
+msgid "Cancel setup"
+msgstr "Beállítás megszakítása"
+
+#: ../data/ui/contacts-window.ui.h:10
+msgid "Setup complete"
+msgstr "A beállítás befejeződött"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:1
+msgid "First-time setup done."
+msgstr "A kezdeti beállítás kész."
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:2
+msgid "Set to true when the user ran the first-time setup wizard."
+msgstr "Igaz, ha a felhasználó lefuttatta a kezdeti beállítóvarázslót."
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:3
+msgid "View subset"
+msgstr "Részhalmaz megtekintése"
+
+#: ../src/org.gnome.Contacts.gschema.xml.in.h:4
+msgid "View contacts subset"
+msgstr "Névjegy részhalmaz megtekintése"
+
+#~ msgid "Primary Contacts Account"
+#~ msgstr "Elsődleges névjegyek fiók"
+
+#~ msgid "Close"
+#~ msgstr "Bezárás"
+
+#~ msgid "Twitter"
+#~ msgstr "Twitter"
+
+#~ msgid "Google Profile"
+#~ msgstr "Google profil"
+
+#~ msgid "Google Other Contact"
+#~ msgstr "Más Google névjegy"
+
+#~ msgid "%s - Linked Accounts"
+#~ msgstr "%s - Kapcsolt fiókok"
+
+#~ msgid "Create Contact"
+#~ msgstr "Névjegy létrehozása"
+
+#~ msgid ""
+#~ "Add or \n"
+#~ "select a picture"
+#~ msgstr ""
+#~ "Kép hozzáadása\n"
+#~ "vagy kiválasztása"
+
+#~ msgid "Contact Name"
+#~ msgstr "Névjegy neve"
+
+#~ msgid "Email"
+#~ msgstr "E-mail"
+
+#~ msgid "Phone"
+#~ msgstr "Telefon"
+
+#~ msgid "You must specify a contact name"
+#~ msgstr "Meg kell adnia egy névjegynevet"
+
+#~ msgid "Contacts Setup"
+#~ msgstr "Névjegyek beállítása"
+
+#~ msgid "Please select your primary contacts account"
+#~ msgstr "Válassza ki az elsődleges névjegyek fiókot"
+
+#~ msgid "_About Contacts"
+#~ msgstr "A _Névjegyek névjegye"
+
+#~ msgid "Remove"
+#~ msgstr "Eltávolítás"
+
+#~ msgid "View"
+#~ msgstr "Nézet"
+
+#~ msgid "Main contacts"
+#~ msgstr "Fő névjegyek"
+
+#~ msgid "New"
+#~ msgstr "Új"
+
+#~ msgid ""
+#~ "Welcome to Contacts! Please select where you want to keep your address "
+#~ "book:"
+#~ msgstr ""
+#~ "Üdvözli a Névjegyek! Válassza ki, hogy hol szeretné tárolni a "
+#~ "címjegyzékét:"
+
+#~ msgid "Online Account Settings"
+#~ msgstr "Online fiókbeállítások"
+
+#~ msgid "Setup an online account or use a local address book"
+#~ msgstr "Online fiók beállítása, vagy helyi címjegyzék használata"
+
+#~ msgid "Use Local Address Book"
+#~ msgstr "Helyi címjegyzék használata"
+
+#~ msgctxt "contacts link action"
+#~ msgid "Link"
+#~ msgstr "Összekapcsolás"
+
+#~ msgid "Link contacts to %s"
+#~ msgstr "Névjegyek összekapcsolása ezzel: %s"
+
+#~ msgctxt "Addresses on the Web"
+#~ msgid "Links"
+#~ msgstr "Hivatkozások"
+
+#~ msgctxt "Web address"
+#~ msgid "Link"
+#~ msgstr "Hivatkozás"
+
+#~ msgid "Chat"
+#~ msgstr "Csevegés"
+
+#~ msgid "Addresses"
+#~ msgstr "Címek"
+
+#~ msgid "Add to My Contacts"
+#~ msgstr "Hozzáadás a névjegyeimhez"
+
+#~ msgid "Add detail..."
+#~ msgstr "Részlet hozzáadása…"
+
+#~ msgid "Select detail to add to %s"
+#~ msgstr "Válassza ki a következőhöz adandó részletet: %s"
+
+#~ msgid "Select email address"
+#~ msgstr "Válasszon e-mail címet"
+
+#~ msgid "Select what to call"
+#~ msgstr "Válassza ki a hívandót"
+
+#~ msgid "Add/Remove Linked Contacts..."
+#~ msgstr "Csatolt névjegyek hozzáadása/eltávolítása…"
+
+#~ msgid "Custom..."
+#~ msgstr "Egyéni…"
