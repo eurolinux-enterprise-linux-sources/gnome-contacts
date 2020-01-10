@@ -2,7 +2,7 @@
 
 Name:           gnome-contacts
 Version:        3.14.2
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Contacts manager for GNOME
 
 License:        GPLv2+
@@ -12,6 +12,9 @@ Source0:        http://download.gnome.org/sources/%{name}/3.14/%{name}-%{version
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=736791
 Patch0:         gnome-contacts-desktop-file-keywords.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=1053667
+Patch1:         gnome-contacts-added-home-to-emails-type.patch
+Patch2:         translations.patch
 
 BuildRequires:  folks-devel
 BuildRequires:  gtk3-devel >= %{gtk3_version}
@@ -34,6 +37,8 @@ Provides: contacts
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %configure
@@ -68,6 +73,15 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 
 
 %changelog
+* Wed Jun 29 2016 Matthias Clasen <mclasen@redhat.com> - 3.14.2-4
+- Update translations
+- Resolves: #1049777
+
+* Wed Jun 17 2015 Alexander Larsson <alexl@redhat.com> - 3.14.2-3
+- Fix home email address
+- Resolves: #1053667
+- Related: #1174711
+
 * Thu May 21 2015 Matthias Clasen <mclasen@redhat.com> - 3.14.2-2
 - Rebuild against new gnome-desktop3
 Related: #1174711
