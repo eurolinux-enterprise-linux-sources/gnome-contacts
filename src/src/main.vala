@@ -25,12 +25,10 @@ main (string[] args) {
   Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
   Intl.textdomain (Config.GETTEXT_PACKAGE);
 
-  Notify.init (_("Contacts"));
-
 #if HAVE_CHEESE
   Cheese.gtk_init (ref args);
 #else
-  Gtk.init (ref args);
+  GtkClutter.init (ref args);
 #endif
 
   var app = new App ();

@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: gnome-contacts\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "contacts&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-10-13 13:57+0000\n"
+"POT-Creation-Date: 2014-10-06 18:23+0000\n"
 "PO-Revision-Date: 2014-10-24 11:22+0200\n"
 "Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
@@ -33,19 +33,18 @@ msgid ""
 "aggregates the details from all your sources providing a centralized place "
 "for managing your contacts."
 msgstr ""
-"Contacten slaat de informatie over uw contacten op en "
-"organiseert die. U kunt informatie over uw contacten aanmaken, "
-"bewerken, wissen en samenvoegen. Contacten verzamelt de details uit al "
-"uw informatiebronnen waarmee het een centrale plaats biedt van waaruit u uw "
-"contacten kunt beheren."
+"Contacten slaat de informatie over uw contacten op en organiseert die. U "
+"kunt informatie over uw contacten aanmaken, bewerken, wissen en samenvoegen. "
+"Contacten verzamelt de details uit al uw informatiebronnen waarmee het een "
+"centrale plaats biedt van waaruit u uw contacten kunt beheren."
 
 #: ../data/org.gnome.Contacts.appdata.xml.in.h:2
 msgid ""
 "Contacts will also integrate with online address books and automatically "
 "link contacts from different online sources."
 msgstr ""
-"Contacten integreert ook met online adresboeken en koppelt "
-"automatisch contacten uit verschillende online bronnen."
+"Contacten integreert ook met online adresboeken en koppelt automatisch "
+"contacten uit verschillende online bronnen."
 
 #: ../data/org.gnome.Contacts.desktop.in.in.h:1 ../src/main.vala:28
 msgid "Contacts"
@@ -163,7 +162,6 @@ msgid "Select"
 msgstr "Selecteren"
 
 #: ../src/contacts-avatar-dialog.vala:281 ../src/contacts-window.vala:315
-#| msgid "New contact"
 msgid "New Contact"
 msgstr "Nieuw contact"
 
@@ -196,7 +194,6 @@ msgid "Country"
 msgstr "Land"
 
 #: ../src/contacts-contact-editor.vala:293
-#| msgid "Add Detail"
 msgid "Add email"
 msgstr "E-mail toevoegen"
 
@@ -209,7 +206,6 @@ msgstr "Nummer toevoegen"
 #: ../src/contacts-contact-editor.vala:365
 #: ../src/contacts-contact-editor.vala:428
 #: ../src/contacts-contact-editor.vala:478
-#| msgid "Delete"
 msgid "Delete field"
 msgstr "Veld verwijderen"
 
@@ -330,18 +326,15 @@ msgid "You need to enter some data"
 msgstr "U dient enkele gegevens in te voeren"
 
 #: ../src/contacts-contact-pane.vala:467
-#| msgid "No primary addressbook configured\n"
 msgid "No primary addressbook configured"
 msgstr "Geen voorkeursadresboek ingesteld"
 
 #: ../src/contacts-contact-pane.vala:486
 #, c-format
-#| msgid "Unable to create new contacts: %s\n"
 msgid "Unable to create new contacts: %s"
 msgstr "Aanmaken nieuwe contacten is mislukt: %s"
 
 #: ../src/contacts-contact-pane.vala:497
-#| msgid "Unable to find newly created contact\n"
 msgid "Unable to find newly created contact"
 msgstr "Nieuw aangemaakt contact is niet gevonden"
 
@@ -468,7 +461,6 @@ msgid "%s"
 msgstr "%s"
 
 #: ../src/contacts-linked-accounts-dialog.vala:60
-#| msgid "You can manually link contacts from the contacts list"
 msgid "You can link contacts by selecting them from the contacts list"
 msgstr "Contacten kunnen handmatig gekoppeld worden vanuit het overzicht"
 
@@ -585,7 +577,6 @@ msgid "Done"
 msgstr "Klaar"
 
 #: ../src/contacts-window.vala:320
-#| msgid "Address"
 msgid "Add"
 msgstr "Toevoegen"
 
@@ -689,12 +680,10 @@ msgid "Loading"
 msgstr "Laden"
 
 #: ../data/ui/contacts-window.ui.h:3
-#| msgid "New contact"
 msgid "Add contact"
 msgstr "Contact toevoegen"
 
 #: ../data/ui/contacts-window.ui.h:4
-#| msgid "Select"
 msgid "Selection mode"
 msgstr "Selectiemodus"
 
@@ -703,12 +692,10 @@ msgid "Edit"
 msgstr "Bewerken"
 
 #: ../data/ui/contacts-window.ui.h:8
-#| msgid "Local Address Book"
 msgid "Select Address Book"
 msgstr "Adresboek selecteren"
 
 #: ../data/ui/contacts-window.ui.h:9
-#| msgid "Cancel"
 msgid "Cancel setup"
 msgstr "Installatie annuleren"
 

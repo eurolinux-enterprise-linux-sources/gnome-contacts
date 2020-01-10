@@ -1,5 +1,5 @@
 AC_PREREQ([2.67])
-AC_INIT([gnome-contacts],[3.14.2],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-contacts])
+AC_INIT([gnome-contacts],[3.22.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-contacts])
 AC_CONFIG_SRCDIR([src/main.vala])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -37,23 +37,27 @@ AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Gettext Package])
 AC_SUBST(GETTEXT_PACKAGE)
 
 
-pkg_modules="gtk+-3.0 >= 3.12.0
+pkg_modules="gtk+-3.0 >= 3.20.0
 	     glib-2.0 >= 2.37.6
 	     gmodule-export-2.0
 	     gnome-desktop-3.0
+	     gio-unix-2.0
 	     folks >= 0.9.5
 	     folks-telepathy
 	     folks-eds
-	     libnotify
 	     telepathy-glib >= 0.17.5
-	     libebook-1.2 >= 3.5.3
-	     libedataserver-1.2 >= 3.5.3
+	     libebook-1.2 >= 3.13.90
+	     libedataserver-1.2 >= 3.13.90
+	     libedataserverui-1.2 >= 3.13.90
 	     goa-1.0
 	     gee-0.8
+	     champlain-0.12
+	     clutter-gtk-1.0
+	     geocode-glib-1.0 >= 3.15.3
 	     "
 PKG_CHECK_MODULES(CONTACTS, [$pkg_modules])
 
-CONTACTS_PACKAGES="--pkg gtk+-3.0 --pkg gio-2.0 --pkg gio-unix-2.0 --pkg folks --pkg folks-telepathy --pkg folks-eds --pkg libnotify"
+CONTACTS_PACKAGES="--pkg gtk+-3.0 --pkg gio-2.0 --pkg gio-unix-2.0 --pkg folks --pkg folks-telepathy --pkg folks-eds --pkg clutter-1.0 --pkg clutter-gtk-1.0 --pkg champlain-0.12 --pkg geocode-glib-1.0"
 AC_SUBST(CONTACTS_PACKAGES)
 
 # Optional dependency for the user accounts panel
@@ -85,17 +89,28 @@ AC_SUBST(GLIB_COMPILE_RESOURCES)
 # Documentation #
 #################
 
-AC_ARG_ENABLE(man-pages,
-              AC_HELP_STRING([--enable-man-pages],
-                             [build man pages]),,
-              enable_documentation=yes)
-if test x$enable_man_pages = xyes; then
-   AC_PATH_PROG([XSLTPROC], [xsltproc])
-   if test x$XSLTPROC = x; then
-      AC_MSG_ERROR([xsltproc is required to build man pages])
-   fi
-fi
-AM_CONDITIONAL(BUILD_MAN_PAGES, test x$enable_man_pages = xyes)
+AC_ARG_ENABLE([man-pages],
+              [AS_HELP_STRING([--disable-man-pages],
+                              [disable building man pages])])
+AS_IF([test "x$enable_man_pages" != "xno"],
+      [AC_PATH_PROG([XSLTPROC], [xsltproc])
+       AS_IF([test "xac_cv_path_XSLTPROC" = "x"], [have_xsltproc=no],
+             [have_xsltproc=yes])
+       JH_CHECK_XML_CATALOG([-//OASIS//DTD DocBook XML V4.2//EN],
+                            [DocBook XML DTD V4.2], [have_docbookdtd=yes],
+                            [have_docbookdtd=no])
+       JH_CHECK_XML_CATALOG([http://docbook.sourceforge.net/release/xsl/current/html/refentry.xsl],
+                            [DocBook XSL Stylesheets], [have_docbookxsl=yes],
+                            [have_docbookxsl=no])
+       AS_IF([test "x$have_xsltproc" = "xyes" -a "x$have_docbookdtd" = "xyes" \
+              -a "x$have_docbookxsl" = "xyes"],
+             [have_manutils=yes],
+             [AS_IF([test "x$enable_man_pages" = "xyes"],
+                    [AC_MSG_ERROR([man page requested but required utilities were not found])])
+              have_manutils=no])],
+      [have_manutils=no])
+
+AM_CONDITIONAL([BUILD_MAN_PAGES], [test "x$have_manutils" = "xyes"])
 
 
 dnl libgd

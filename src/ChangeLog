@@ -1,3 +1,2135 @@
+commit 36fad80d444d08c3a60a09360dea0a5cb5847fa3
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Mon Sep 19 14:20:29 2016 +0200
+
+    Update Basque language
+
+ po/eu.po | 64
+ +++++++++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 39 insertions(+), 25 deletions(-)
+
+commit a0ebed036f858befa8d80e57204ab4460b5da0b5
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Sat Sep 17 16:58:47 2016 +0300
+
+    Updated Ukrainian translation
+
+ po/uk.po | 36 ++++++++++++++++++++++++------------
+ 1 file changed, 24 insertions(+), 12 deletions(-)
+
+commit 093fba8bbe7e785b31c8a06b38d80c6b992a263d
+Author: David King <amigadave@amigadave.com>
+Date:   Tue Sep 6 16:46:30 2016 +0200
+
+    Update British English translation
+
+ po/en_GB.po | 873
+ +++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 534 insertions(+), 339 deletions(-)
+
+commit c14304068fad33f4cb0dcdceb3983d0c362c96c0
+Author: Fran Dieguez <fran.dieguez@mabishu.com>
+Date:   Mon Sep 5 00:16:02 2016 +0200
+
+    Updated Galician translations
+
+ po/gl.po | 115
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 62 insertions(+), 53 deletions(-)
+
+commit 6d5d3616fbbfb7430ad63744daa01fcdbc859999
+Author: Seong-ho Cho <shcho@gnome.org>
+Date:   Sat Sep 3 09:37:36 2016 +0000
+
+    Updated Korean translation
+
+ po/ko.po | 112
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 61 insertions(+), 51 deletions(-)
+
+commit 146488956e88e1aaaedafdd9e6c2d9427a4e142c
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Fri Aug 26 11:27:29 2016 +0700
+
+    Updated Thai translation
+
+ po/th.po | 110
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 59 insertions(+), 51 deletions(-)
+
+commit 0f97eb97831a3bd6fa03c9108ff26eeab20dcf32
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Tue Aug 23 00:15:27 2016 +0200
+
+    Updated Polish translation
+
+ po/pl.po | 52 ++++++++++++++++++++++++----------------------------
+ 1 file changed, 24 insertions(+), 28 deletions(-)
+
+commit 1dcd5e1b868821cdf649f96465a2db2b3212690d
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Tue Aug 9 21:30:20 2016 +0300
+
+    Updated Hebrew translation
+
+ po/he.po | 114
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 62 insertions(+), 52 deletions(-)
+
+commit b4e4cae2bb065ba299aa53bdab4f48c4668bf71c
+Author: વિશાલ ભલાણી <vishalbhalani89@gmail.com>
+Date:   Wed Aug 3 12:28:19 2016 +0000
+
+    Updated Gujarati translation
+
+ po/gu.po | 272
+ ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 129 insertions(+), 143 deletions(-)
+
+commit 675675b2c67ff333c4d22f1764d5bca916fcb47f
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Sun Jul 17 21:33:26 2016 +0200
+
+    Add Language headers to po files
+
+    Future versions of gettext will fail if this header is missing.
+
+ po/as.po          | 2 +-
+ po/bn_IN.po       | 2 +-
+ po/ca@valencia.po | 2 +-
+ po/de.po          | 2 +-
+ po/es.po          | 2 +-
+ po/fa.po          | 2 +-
+ po/fr.po          | 2 +-
+ po/gu.po          | 2 +-
+ po/he.po          | 2 +-
+ po/mk.po          | 1 +
+ po/nb.po          | 2 +-
+ po/sr@latin.po    | 2 +-
+ po/te.po          | 2 +-
+ po/ug.po          | 2 +-
+ po/zh_HK.po       | 2 +-
+ 15 files changed, 15 insertions(+), 14 deletions(-)
+
+commit 3840be98f6abe760acf1c887c0c33da11d062b31
+Author: Muhammet Kara <muhammetk@gmail.com>
+Date:   Mon Jun 6 18:47:45 2016 +0000
+
+    Updated Turkish translation
+
+ po/tr.po | 128
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 70 insertions(+), 58 deletions(-)
+
+commit 921d9b12cdf513a0a1c475fa9c8d0ccb65e8cbbd
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Fri Jun 3 10:14:05 2016 +0000
+
+    Updated French translation
+
+ po/fr.po | 109
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 60 insertions(+), 49 deletions(-)
+
+commit a1fc29b09603161e338c1993ae96a1f52a23641e
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Mon May 30 20:13:40 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+commit fa6a62d8d160e4fc5bc3eae4003ad078875e798f
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Fri May 27 09:56:33 2016 +0000
+
+    Updated Indonesian translation
+
+ po/id.po | 119
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 65 insertions(+), 54 deletions(-)
+
+commit ead7a3a594d652444d7bfb5a080cc75e2ad4ada3
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Mon May 23 19:38:36 2016 +0200
+
+    Updated Norwegian bokmål translation.
+
+ po/nb.po | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit 8d1a43ceadd8499e34c8cb76aeb0586417d6fe37
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Mon May 23 19:38:10 2016 +0200
+
+    Updated Norwegian bokmål translation.
+
+ po/nb.po | 121
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 66 insertions(+), 55 deletions(-)
+
+commit 6662e48f3609f4edce304e11b3b2b300a91481d6
+Author: Michael Catanzaro <mcatanzaro@gnome.org>
+Date:   Tue May 17 13:28:33 2016 -0500
+
+    Bump version for release 3.20.0
+
+ NEWS         | 3 +++
+ configure.ac | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit ae47cdc0506bcf6a8f1cc69886bde7a290499ad7
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Tue May 17 10:19:45 2016 +0000
+
+    Updated Kazakh translation
+
+ po/kk.po | 125
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 68 insertions(+), 57 deletions(-)
+
+commit 5a78eb387c938c80039dbda8de50b57ca21e772f
+Author: Sveinn í Felli <sv1@fellsnet.is>
+Date:   Sat May 14 22:45:46 2016 +0000
+
+    Updated Icelandic translation
+
+ po/is.po | 129
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 71 insertions(+), 58 deletions(-)
+
+commit 44b2e1d985bdec4e205f2d34ced4736ce69f4713
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Mon May 9 16:08:42 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 162
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 88 insertions(+), 74 deletions(-)
+
+commit 786609aa7029cb6bfffb2f1d66cc8d1a8c39896f
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Sun May 8 17:37:18 2016 +0300
+
+    Updated Lithuanian translation
+
+ po/lt.po | 59 ++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 36 insertions(+), 23 deletions(-)
+
+commit ca00e225ab5b93718e2f87fe06a511f8ff5954a4
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Mon May 2 22:16:45 2016 +0200
+
+    Updated Slovenian translation
+
+ po/sl.po | 118
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 64 insertions(+), 54 deletions(-)
+
+commit 1b68e32252aa41cc920219cc087da345aea76747
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sun May 1 14:49:55 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
+
+commit 891a4d157f2316b6d81d6e1c2ebadde9157d2540
+Author: Tiago Santos <tiagofsantos81@sapo.pt>
+Date:   Sat Apr 30 14:35:12 2016 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 37 ++++++++++++++++++++++++-------------
+ 1 file changed, 24 insertions(+), 13 deletions(-)
+
+commit 6a689935de34bc45732b9cd1739ae0df47b7cff2
+Author: GNOME Translation Robot <gnome-sysadmin@gnome.org>
+Date:   Fri Apr 29 10:31:12 2016 +0000
+
+    Updated Scottish Gaelic translation
+
+ po/gd.po | 63
+ ++++++++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 38 insertions(+), 25 deletions(-)
+
+commit 7e9d7dcb83c817a5f9e8d7803f1e6f36b0a86a56
+Author: GNOME Translation Robot <gnome-sysadmin@gnome.org>
+Date:   Wed Apr 27 19:14:29 2016 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 98
+ +++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 50 insertions(+), 48 deletions(-)
+
+commit 95eb0341f02d38d8c8cf8941dc6708622819ac90
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Sun Apr 24 16:06:36 2016 +0300
+
+    Update Latvian translation
+
+ po/lv.po | 117
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 65 insertions(+), 52 deletions(-)
+
+commit a0e3a91b1186d4054d73ebe0c1f07dcc51f72f03
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Thu Apr 21 09:41:26 2016 +0000
+
+    Updated Spanish translation
+
+ po/es.po | 120
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 66 insertions(+), 54 deletions(-)
+
+commit fefba769d9173a4cad9d882b7dad16efd28a591d
+Author: Andreas Henriksson <andreas@fatal.se>
+Date:   Wed Apr 20 14:07:24 2016 +0200
+
+    Bump gtk+ dependency to >= 3.20
+
+    Uses gtk_widget_set_focus_on_click API which is new in 3.20.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=765147
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f3dafaeb52010efd22aedd6d55730f49ee14d4a8
+Author: Arash Mousavi <mousavi.arash@gmail.com>
+Date:   Mon Apr 18 12:30:00 2016 +0430
+
+    Update Persian translations
+
+ po/fa.po | 115
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 63 insertions(+), 52 deletions(-)
+
+commit 1ed7f161a632951e60c4c60eabb09672f6870ae3
+Author: GNOME Translation Robot <gnome-sysadmin@gnome.org>
+Date:   Sun Apr 17 07:22:55 2016 +0000
+
+    Updated Japanese translation
+
+ po/ja.po | 193
+ ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 111 insertions(+), 82 deletions(-)
+
+commit fd694bdb79894c92be2d19f0b3cbda9b863a0796
+Author: Stas Solovey <whats_up@tut.by>
+Date:   Wed Apr 13 17:39:03 2016 +0000
+
+    Updated Russian translation
+
+ po/ru.po | 120
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 66 insertions(+), 54 deletions(-)
+
+commit c51d2e766758538fea5ef23c2c4f1bfef0627568
+Author: Marek Černocký <marek@manet.cz>
+Date:   Wed Apr 13 11:37:09 2016 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 125
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 66 insertions(+), 59 deletions(-)
+
+commit af1b1f59d21d09f42d1d73ff1677fe3d488ccc05
+Author: Gábor Kelemen <kelemeng@openscope.org>
+Date:   Tue Apr 12 09:08:49 2016 +0000
+
+    Updated Hungarian translation
+
+ po/hu.po | 37 ++++++++++++++++++++++++-------------
+ 1 file changed, 24 insertions(+), 13 deletions(-)
+
+commit 48e019084d05819e61f52111a5ea6581d8aec2a7
+Author: Марко Костић <marko.m.kostic@gmail.com>
+Date:   Mon Apr 11 19:27:22 2016 +0000
+
+    Updated Serbian translation
+
+ po/sr.po | 123
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 66 insertions(+), 57 deletions(-)
+
+commit e999ca40b0483af222c774cb2d5920711bcf4e54
+Author: Milo Casagrande <milo@ubuntu.com>
+Date:   Mon Apr 11 09:00:58 2016 +0000
+
+    Updated Italian translation
+
+ po/it.po | 119
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 63 insertions(+), 56 deletions(-)
+
+commit 108b66f21df8786cffb827966c03eea307c4571d
+Author: Ask Hjorth Larsen <asklarsen@gmail.com>
+Date:   Sun Apr 10 23:07:23 2016 +0200
+
+    Updated Danish translation
+
+ po/da.po | 110
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 60 insertions(+), 50 deletions(-)
+
+commit c3e1c14d09c065eff60921385aebecfdf8a89498
+Author: Anders Jonsson <anders.jonsson@norsjovallen.se>
+Date:   Sun Apr 10 16:36:53 2016 +0000
+
+    Updated Swedish translation
+
+ po/sv.po | 114
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 62 insertions(+), 52 deletions(-)
+
+commit 2dd4a5866b7f3d2a97e7d354789cb8f31e1874f7
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Sun Apr 10 18:27:36 2016 +0200
+
+    Update Arabic translation
+
+ po/ar.po | 806
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 434 insertions(+), 372 deletions(-)
+
+commit c1e3224435ac8dd9a66ceeffb3087b8a32605bdc
+Author: Jiri Grönroos <jiri.gronroos@iki.fi>
+Date:   Sun Apr 10 15:46:55 2016 +0000
+
+    Updated Finnish translation
+
+ po/fi.po | 122
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 67 insertions(+), 55 deletions(-)
+
+commit 4a8315325d53d3f2847192afdb16f1bd9bb5b7a3
+Author: Rafael Fontenelle <rafaelff@gnome.org>
+Date:   Sun Apr 10 13:38:16 2016 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 124
+ +++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 68 insertions(+), 56 deletions(-)
+
+commit afee1f8ad952fc01d0a391c285d739a86daa40a1
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   Sun Apr 10 09:02:39 2016 +0700
+
+    Updated Vietnamese translation
+
+    Signed-off-by: Trần Ngọc Quân <vnwildman@gmail.com>
+
+ po/vi.po | 120
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 65 insertions(+), 55 deletions(-)
+
+commit abf766b437577744d2a3593b5ff1d838264763b8
+Author: Dušan Kazik <prescott66@gmail.com>
+Date:   Sat Apr 9 19:04:47 2016 +0000
+
+    Updated Slovak translation
+
+ po/sk.po | 33 +++++++++++++++++++++------------
+ 1 file changed, 21 insertions(+), 12 deletions(-)
+
+commit 1b7eb06ec03d66f35768a2397f3586a54452fbc8
+Author: Mario Blättermann <mario.blaettermann@gmail.com>
+Date:   Sat Apr 9 20:32:06 2016 +0200
+
+    Updated German translation
+
+ po/de.po | 131
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 71 insertions(+), 60 deletions(-)
+
+commit 95091e1f0f4d19c296aa8ab93fd03d8a5926e3c4
+Author: Tom Tryfonidis <tomtryf@gnome.org>
+Date:   Sat Apr 9 15:22:42 2016 +0000
+
+    Updated Greek translation
+
+ po/el.po | 34 +++++++++++++++++++++-------------
+ 1 file changed, 21 insertions(+), 13 deletions(-)
+
+commit e15839b6818100990cc485f3371799bd0002a1d7
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Sat Apr 9 16:29:28 2016 +0200
+
+    Updated Polish translation
+
+ po/pl.po | 116
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 63 insertions(+), 53 deletions(-)
+
+commit dd847fe30d0c20b303d8ffcaab4d5c063f593fc3
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Wed Mar 30 12:10:46 2016 +0200
+
+    Mark string for translation
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=764356
+
+ data/ui/contacts-window.ui | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 78f45f6b671d10a613862782f9583d7d834df766
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sun Apr 3 08:18:12 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 96
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 49 insertions(+), 47 deletions(-)
+
+commit 5a495627d19a4c0914d506900e5714a6b40b5e33
+Author: Dušan Kazik <prescott66@gmail.com>
+Date:   Tue Mar 29 15:24:07 2016 +0000
+
+    Updated Slovak translation
+
+ po/sk.po | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 9fb657675218e0a348268291685a68d6aa995231
+Author: Gábor Kelemen <kelemeng@openscope.org>
+Date:   Sun Mar 20 23:02:32 2016 +0000
+
+    Updated Hungarian translation
+
+ po/hu.po | 107
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 54 insertions(+), 53 deletions(-)
+
+commit 6d8bc9f948b601587ed8644b8a597dc86528cdf4
+Author: Efstathios Iosifidis <eiosifidis@gnome.org>
+Date:   Thu Mar 17 13:45:07 2016 +0000
+
+    Updated Greek translation
+
+ po/el.po | 98
+ +++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 50 insertions(+), 48 deletions(-)
+
+commit 441ecbb0bf2d3e680820f800621cffb8d9a127fb
+Author: Dušan Kazik <prescott66@gmail.com>
+Date:   Sun Mar 6 08:24:23 2016 +0000
+
+    Updated Slovak translation
+
+ po/sk.po | 177
+ ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 101 insertions(+), 76 deletions(-)
+
+commit a5649a87bce4231f5605df7da8698246f455eb23
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Fri Mar 4 12:53:33 2016 +0200
+
+    Updated Ukrainian translation
+
+ po/uk.po | 138
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 72 insertions(+), 66 deletions(-)
+
+commit 937ecf9505f606eb67f0f63e6f646c6db6c7b3c7
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Thu Mar 3 19:00:05 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 969
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 491 insertions(+), 478 deletions(-)
+
+commit 2228890a50c4bdc27c9ff1246344c7189008f1a4
+Author: Erick Perez Castellanos <erick.red@gmail.com>
+Date:   Thu Feb 25 09:55:38 2016 -0600
+
+    Bump version for release 3.19.90
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 43283ea3a45ec9bccfe6355a4de319dc62a59f07
+Author: Felipe Borges <felipeborges@gnome.org>
+Date:   Tue Feb 16 14:42:09 2016 +0100
+
+    window: make content_header_bar a GtkGrid
+
+    The recent port of GtkBox to Gadgets caused a misalignment of the
+    left_toolbar and the app sidebar. GtkGrid handles the size group
+    alignment properly.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=761759
+
+ data/ui/contacts-window.ui | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1ad0302ed5fca8d1f594a1f3dc3b9240f39e4931
+Author: Erick Perez Castellanos <erick.red@gmail.com>
+Date:   Thu Feb 25 09:50:06 2016 -0600
+
+    Fix ui changes breaking the build
+
+ src/contacts-window.vala | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit eb8ecf0c3236fbd86a9917300716ef600602402c
+Author: Emmanuele Bassi <ebassi@gnome.org>
+Date:   Thu Feb 25 08:35:27 2016 +0000
+
+    Revert "window: make content_header_bar a GtkGrid"
+
+    This reverts commit 779912c2912e63ebf6c50e0722798f9ecfedc617.
+
+    The commit breaks the build in Continuous (and locally), because of a
+    reference to `content_header_bar` being a Gtk.Box:
+
+    contacts-window.vala:54.3-54.32: error: cannot convert from Gtk child
+    type `Gtk.Grid' to `Gtk.Box'
+      private Box content_header_bar;
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        Compilation failed: 1 error(s), 140 warning(s)
+
+    I'm reverting the commit as per:
+
+      https://mail.gnome.org/archives/desktop-devel-list/2016-January/msg00015.html
+
+    because the Continuous break has been failing for more than 4 hours.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=761759
+
+ data/ui/contacts-window.ui | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 619689122fd65081771f404426381bcdfe656c7a
+Author: Erick Perez Castellanos <erick.red@gmail.com>
+Date:   Wed Feb 24 22:16:23 2016 -0600
+
+    Bump version to 3.19.90 for release
+
+ NEWS         | 4 ++++
+ configure.ac | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit 779912c2912e63ebf6c50e0722798f9ecfedc617
+Author: Felipe Borges <felipeborges@gnome.org>
+Date:   Tue Feb 16 14:42:09 2016 +0100
+
+    window: make content_header_bar a GtkGrid
+
+    The recent port of GtkBox to Gadgets caused a misalignment of the
+    left_toolbar and the app sidebar. GtkGrid handles the size group
+    alignment properly.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=761759
+
+ data/ui/contacts-window.ui | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9079d4432ca65136af11f3fbaa47798861a84a2a
+Author: Alexander Shopov <ash@kambanaria.org>
+Date:   Sat Feb 6 22:24:28 2016 +0200
+
+    Updated Bulgarian translation
+
+ po/bg.po | 151
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 75 insertions(+), 76 deletions(-)
+
+commit 3ad02fc6aa1c31ca506eac75168c4e588a3689e7
+Author: Richard Hughes <richard@hughsie.com>
+Date:   Mon Jan 25 15:57:19 2016 +0000
+
+    Add a missing tag to the AppData file
+
+ data/org.gnome.Contacts.appdata.xml.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 55e184c588f2a1c296b4620ebf96a9caf89b665f
+Author: Richard Hughes <richard@hughsie.com>
+Date:   Fri Jan 22 20:14:21 2016 +0000
+
+    Update the AppData file to spec version 0.7+
+
+ data/org.gnome.Contacts.appdata.xml.in | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
+
+commit e9ba0fe7bb5cfad71ff983059919a977baa8522d
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Sun Jan 17 21:33:19 2016 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+commit e9ec662e060353942df4a9a9168b401b6806989f
+Author: Erick Perez Castellanos <erick.red@gmail.com>
+Date:   Mon Dec 21 20:25:43 2015 -0600
+
+    appdata: added kudos
+
+ data/org.gnome.Contacts.appdata.xml.in | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit c90c2b334016ead4af7444486b5ccafaacbb9e1a
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   Tue Nov 17 10:02:05 2015 -0500
+
+    search-provider: Don't dump core on timeout
+
+    g_error is documented as "This function will result in a core dump".
+    It will get picked up by crash collection systems and cause noise
+    there, which is not helpful. Just log a warning and move on.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=758230
+
+ src/contacts-esd-setup.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ad9501024c407b8e0f9a985303075b6b590507bb
+Author: GNOME Translation Robot <gnome-sysadmin@gnome.org>
+Date:   Mon Nov 16 16:12:12 2015 +0000
+
+    Updated Scottish Gaelic translation
+
+ po/gd.po | 140
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 71 insertions(+), 69 deletions(-)
+
+commit 669c40ee42bcd060e4225622cdcb3255f6b3c331
+Author: David King <amigadave@amigadave.com>
+Date:   Thu Nov 12 08:46:56 2015 +0000
+
+    Bump version to 3.18.1 for release
+
+ NEWS         | 5 +++++
+ configure.ac | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+commit 1a91a9b4c7b9e3aaf25e4fdcee3230c984b0a652
+Author: YunQiang Su <yqsu@src.gnome.org>
+Date:   Wed Nov 4 17:46:47 2015 +0800
+
+    update zh_CN translation
+
+ po/zh_CN.po | 124
+ +++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 65 insertions(+), 59 deletions(-)
+
+commit d8bfac1c20345956a1e23fafc19c70460574f8d9
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Tue Nov 3 21:27:48 2015 +0200
+
+    Fix error in Lithuanian translation
+
+ po/lt.po | 63
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 31 insertions(+), 32 deletions(-)
+
+commit 1f78187355969766e3f2410b8fd91394ecc6940c
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Wed Oct 14 11:59:58 2015 +0200
+
+    Updated Basque language
+
+ po/eu.po | 124
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 63 insertions(+), 61 deletions(-)
+
+commit 092bb89b789f113a3aeee03c268da08fbec3ede0
+Author: David King <dking@redhat.com>
+Date:   Mon Oct 5 16:14:38 2015 -0400
+
+    Remove Contact.serializable_avatar_icon
+
+    There is no need to provide two ways to serialize the icon, when
+    avatar_icon_data (which uses g_icon_serialize) is sufficient.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=756098
+
+ src/contacts-contact.vala | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+commit 97125eb29dba7cf1f9c844da1f3e3531c31de5cd
+Author: David King <dking@redhat.com>
+Date:   Mon Oct 5 16:09:38 2015 -0400
+
+    Simplify search provider icon passing
+
+    Avoid a Vala bug (GNOME Bugzilla #756090) by passing a serialized
+    GIcon
+    to the shell in the search provider. As a bonus, remove the old code,
+    which serialized a GdkPixbuf to a string (or passed it over D-Bus as a
+    bytestring).
+
+    https://bugzilla.redhat.com/show_bug.cgi?id=1244256
+    https://bugzilla.gnome.org/show_bug.cgi?id=756098
+
+ src/contacts-contact.vala               | 15 +--------------
+ src/contacts-shell-search-provider.vala |  8 +++-----
+ 2 files changed, 4 insertions(+), 19 deletions(-)
+
+commit 79fc31d29dcff45e9c0089eaa2b6becb1ec6f775
+Author: Javier Jardón <jjardon@gnome.org>
+Date:   Tue Oct 6 01:02:44 2015 +0100
+
+    configure.ac: Remove unused libnotify dependency
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=756101
+
+ configure.ac  | 3 +--
+ src/main.vala | 2 --
+ 2 files changed, 1 insertion(+), 4 deletions(-)
+
+commit 984e9f3255e4fb1db7ba3d9754d43736440ca4a8
+Author: David King <dking@redhat.com>
+Date:   Mon Oct 5 18:01:42 2015 -0400
+
+    Add gio-unix-2.0 to the pkg-config check
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=747570
+
+ configure.ac | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 3c8a8ac843fcac644d5931d46162e49d415407c3
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   Fri Sep 25 15:05:46 2015 +0700
+
+    Updated Vietnamese translation
+
+    Signed-off-by: Trần Ngọc Quân <vnwildman@gmail.com>
+
+ po/vi.po | 76
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 40 insertions(+), 36 deletions(-)
+
+commit fa736997cc7ec8df89458502c0a181090def64e9
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   Tue Sep 22 18:50:33 2015 -0400
+
+    3.18.0
+
+ NEWS         | 6 ++++++
+ configure.ac | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit 0ab9d55fad1d4e7376e342b0318839a1d8a04717
+Author: Милош Поповић <gpopac@gmail.com>
+Date:   Tue Sep 22 16:21:07 2015 +0000
+
+    Updated Serbian Latin translation
+
+ po/sr@latin.po | 102
+ +++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 55 insertions(+), 47 deletions(-)
+
+commit d25336ff93815b4541d0cde5701d523b4a394dc6
+Author: Марко Костић <marko.m.kostic@gmail.com>
+Date:   Tue Sep 22 16:20:30 2015 +0000
+
+    Updated Serbian translation
+
+ po/sr.po | 106
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 57 insertions(+), 49 deletions(-)
+
+commit ca83344279f184da9ecfb61a000a9a8d42084bde
+Author: Ask Hjorth Larsen <asklarsen@gmail.com>
+Date:   Sun Sep 20 20:21:28 2015 +0200
+
+    Updated Danish translation
+
+ po/da.po | 64
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 34 insertions(+), 30 deletions(-)
+
+commit 8b4f666c3a8ee313318e98aa15c11ac867cd8ba4
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Fri Sep 18 22:24:18 2015 +0300
+
+    Updated Latvian translation
+
+ po/lv.po | 260
+ ++++++++-------------------------------------------------------
+ 1 file changed, 32 insertions(+), 228 deletions(-)
+
+commit bac91159cae1e4b8109647f19f3cb45087b1f0b6
+Author: Arash Mousavi <mousavi.arash@gmail.com>
+Date:   Sat Sep 12 23:26:46 2015 +0430
+
+    Update Persian translations
+
+ po/fa.po | 175
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 87 insertions(+), 88 deletions(-)
+
+commit 664a488726884f216ab74f56c45100e1597d601d
+Author: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>
+Date:   Thu Sep 10 18:44:40 2015 +0300
+
+    Finnish translation update
+
+ po/fi.po | 67
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 36 insertions(+), 31 deletions(-)
+
+commit 197a608caee03cf5d9283935bd808c225208d422
+Author: Seong-ho Cho <shcho@gnome.org>
+Date:   Mon Sep 7 20:05:38 2015 +0900
+
+    Updated Korean translation
+
+ po/ko.po | 64
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 34 insertions(+), 30 deletions(-)
+
+commit 0fb98330bf225dae8b46a9bb562ccc7b2ab920a1
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Fri Sep 4 16:28:04 2015 +0000
+
+    Updated Kazakh translation
+
+ po/kk.po | 66
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 35 insertions(+), 31 deletions(-)
+
+commit 0530f9f607779fbd64158f8542634e03eab19d26
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Thu Sep 3 14:50:39 2015 +0300
+
+    Updated Lithuanian translation
+
+ po/lt.po | 67
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 36 insertions(+), 31 deletions(-)
+
+commit b30668d9037741667c07bd0b984c815716d2b139
+Author: Claudio Arseni <claudio.arseni@gmail.com>
+Date:   Thu Sep 3 08:43:12 2015 +0000
+
+    Updated Italian translation
+
+ po/it.po | 70
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 37 insertions(+), 33 deletions(-)
+
+commit 5e23fa2c64748fd465d719962f7c6d97fd19dda5
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Sat Aug 29 21:10:00 2015 +0200
+
+    Updated Polish translation
+
+ po/pl.po | 73
+ ++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 37 insertions(+), 36 deletions(-)
+
+commit 7f696ad08d3d6d9a873e760a22058b9ec6af94d0
+Author: Tom Tryfonidis <tomtryf@gmail.com>
+Date:   Fri Aug 28 20:58:16 2015 +0000
+
+    Updated Greek translation
+
+ po/el.po | 78
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 41 insertions(+), 37 deletions(-)
+
+commit 27d5795aab861daa2db1d4dce209eab84f4b80fb
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Tue Aug 25 13:07:05 2015 +0000
+
+    Updated Chinese (Taiwan) translation
+
+ po/zh_TW.po | 72
+ ++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 38 insertions(+), 34 deletions(-)
+
+commit b19f924494a5a7037002f213604128e6ba385093
+Author: Fran Dieguez <fran@openhost.es>
+Date:   Wed Aug 19 01:03:03 2015 +0200
+
+    Updated Galician translations
+
+ po/gl.po | 69
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 37 insertions(+), 32 deletions(-)
+
+commit dafe9987066cde9aa39673ca28bd6421cd8bc1bc
+Author: Anders Jonsson <anders.jonsson@norsjovallen.se>
+Date:   Tue Aug 18 22:49:51 2015 +0000
+
+    Updated Swedish translation
+
+ po/sv.po | 79
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 42 insertions(+), 37 deletions(-)
+
+commit f6c5eb850f45c3301dc982090c999047d0627f67
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Sat Aug 15 11:40:59 2015 +0000
+
+    Updated French translation
+
+ po/fr.po | 62
+ +++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 33 insertions(+), 29 deletions(-)
+
+commit 8661a53676602a3e4da8a841c2af05640a62b1c7
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Mon Aug 3 07:18:36 2015 +0000
+
+    Updated Indonesian translation
+
+ po/id.po | 61
+ +++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 31 insertions(+), 30 deletions(-)
+
+commit 2cac625ab5e126c6c9396c8c066ad03dda40c939
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Tue Jul 28 13:59:32 2015 +0700
+
+    Updated Thai translation
+
+ po/th.po | 66
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 35 insertions(+), 31 deletions(-)
+
+commit fc4a497758b0d9f37b5efd554f86c63fc7d41626
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sun Jul 26 16:39:59 2015 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 97
+ +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 45 insertions(+), 52 deletions(-)
+
+commit 7353ffb10a933d674cde25d921cad5db5df5c535
+Author: Felipe Braga <fbobraga@gmail.com>
+Date:   Sat Jul 4 15:59:36 2015 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 83
+ +++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 45 insertions(+), 38 deletions(-)
+
+commit 8f75bd03b8805b47e767cd61d217d2a9cd23196f
+Author: Pedro Albuquerque <palbuquerque73@gmail.com>
+Date:   Mon Jun 29 22:31:56 2015 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 217
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 108 insertions(+), 109 deletions(-)
+
+commit 8cde66945e172afd043ad6474558026953bbc838
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Sun Jun 28 20:08:29 2015 -0500
+
+    build: up Gtk+ requirement
+
+    Bug: https://bugzilla.gnome.org/show_bug.cgi?id=751011
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2be74bc881fe07bbd21ef87e5f7f4bbcaf61010a
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Sun Jun 28 19:58:47 2015 -0500
+
+    app: move Contacts to a proper desktop category
+
+    Move it from Utility to Office;ContactManagement
+
+    Bug: https://bugzilla.gnome.org/show_bug.cgi?id=751570
+
+ data/org.gnome.Contacts.desktop.in.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2c5b8eacea56e8417f64de0a9bbf4ee549c87738
+Author: Alexander Larsson <alexl@redhat.com>
+Date:   Thu Jun 11 18:29:49 2015 +0200
+
+    Don't show authentication UI from the search provide
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=750724
+
+ src/contacts-app.vala                   | 2 +-
+ src/contacts-esd-setup.c                | 5 ++++-
+ src/contacts-esd-setup.h                | 2 +-
+ src/contacts-shell-search-provider.vala | 2 +-
+ vapi/custom.vapi                        | 2 +-
+ 5 files changed, 8 insertions(+), 5 deletions(-)
+
+commit efca1c7c912e85e7ccbfd3e76f54952509d35caa
+Author: Stas Solovey <whats_up@tut.by>
+Date:   Tue Jun 23 21:49:39 2015 +0000
+
+    Updated Russian translation
+
+ po/ru.po | 67
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 36 insertions(+), 31 deletions(-)
+
+commit 5ca3050765047705bc7662372d08b4c0b7f9d8f3
+Author: Balázs Úr <urbalazs@gmail.com>
+Date:   Mon Jun 22 21:05:10 2015 +0000
+
+    Updated Hungarian translation
+
+ po/hu.po | 67
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 36 insertions(+), 31 deletions(-)
+
+commit d932100e2147c707655ecdcea9ff3025e012e706
+Author: Benjamin Steinwender <b@stbe.at>
+Date:   Sat Jun 20 06:16:59 2015 +0000
+
+    Updated German translation
+
+ po/de.po | 64
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 34 insertions(+), 30 deletions(-)
+
+commit 210827a927535d1959fdf6cc8e4bbd13c27c3c8a
+Author: Necdet Yücel <necdetyucel@gmail.com>
+Date:   Fri Jun 19 07:22:44 2015 +0000
+
+    Updated Turkish translation
+
+ po/tr.po | 111
+ +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 66 insertions(+), 45 deletions(-)
+
+commit 02a27777db72aed90b85e91cf5349a300cb53dc7
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Tue May 26 19:27:17 2015 +0200
+
+    Updated Spanish translation
+
+ po/es.po | 63
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 34 insertions(+), 29 deletions(-)
+
+commit d266573f1d53bfd88896cc0bf623cbf4d5c0d916
+Author: Jordi Mas <jmas@softcatala.org>
+Date:   Thu May 21 21:52:19 2015 +0200
+
+    Fix to Catalan translation
+
+ po/ca.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1fc59a3b882b17df3df1947448a30b3bca989708
+Author: Dušan Kazik <prescott66@gmail.com>
+Date:   Tue May 19 09:55:06 2015 +0000
+
+    Updated Slovak translation
+
+ po/sk.po | 67
+ +++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 37 insertions(+), 30 deletions(-)
+
+commit e47c3c4853063ca1be715b553364ec72badb87b9
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Sun May 17 20:43:00 2015 +0200
+
+    Updated Slovenian translation
+
+ po/sl.po | 74
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 39 insertions(+), 35 deletions(-)
+
+commit 22456e8e5445e407b5ce95947d99c8ae8e725ca7
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Sun May 17 08:50:08 2015 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 1553
+ +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 877 insertions(+), 676 deletions(-)
+
+commit 71a3f5ecde20ee864a98a31400e4b99abd341608
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Thu May 14 15:41:57 2015 +0200
+
+    Updated Norwegian bokmål translation.
+
+ po/nb.po | 65
+ ++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 33 insertions(+), 32 deletions(-)
+
+commit 1a8bb9eee50b5d48be55ec07b7e5648442838f03
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Thu May 7 04:58:58 2015 +0000
+
+    Updated Tajik translation
+
+ po/tg.po | 75
+ ++++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 35 insertions(+), 40 deletions(-)
+
+commit 2639a05ec7b5dd5f6308b285d0b31744c84a9b15
+Author: osfans <waxaca@163.com>
+Date:   Sun May 3 14:20:08 2015 +0800
+
+    update zh_CN translation
+
+ po/zh_CN.po | 97
+ +++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 50 insertions(+), 47 deletions(-)
+
+commit d841ab5c2c8791df016f7465e18f6ff3806d7251
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Fri May 1 12:03:18 2015 +0300
+
+    Updated Hebrew translation
+
+ po/he.po | 64
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 34 insertions(+), 30 deletions(-)
+
+commit 317dfb8eed294a5600390b3af02f89ecfe0f1d75
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Thu Apr 30 00:04:48 2015 -0400
+
+    app: exit properly on eds connection failure
+
+    Bug: https://bugzilla.gnome.org/show_bug.cgi?id=726733
+
+ src/contacts-app.vala                   |  4 +++-
+ src/contacts-esd-setup.c                | 11 ++++++++---
+ src/contacts-esd-setup.h                |  2 +-
+ src/contacts-shell-search-provider.vala |  3 ++-
+ vapi/custom.vapi                        |  2 +-
+ 5 files changed, 15 insertions(+), 7 deletions(-)
+
+commit 8b63c967ba67ae84f5242e15a041b1b631ac4f76
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Tue Apr 28 13:30:51 2015 +0000
+
+    Added Occitan translation
+
+ po/LINGUAS |   1 +
+ po/oc.po   | 676
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 677 insertions(+)
+
+commit 698d1b51374ae8a223537a0899e480b288bd9469
+Author: Marek Černocký <marek@manet.cz>
+Date:   Sat Apr 25 08:00:32 2015 +0200
+
+    Updated Czech translation
+
+ po/cs.po | 56 ++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 30 insertions(+), 26 deletions(-)
+
+commit 404af76f31229cb22e2f146db5a95021b57b1423
+Author: Sveinn í Felli <sv1@fellsnet.is>
+Date:   Fri Apr 24 13:48:42 2015 +0000
+
+    Added Icelandic translation
+
+ po/LINGUAS |   1 +
+ po/is.po   | 708
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 709 insertions(+)
+
+commit 2b3c2432e9395be9a225f414aca4059a43d65cb1
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Thu Apr 23 12:25:34 2015 -0400
+
+    types: change Personal by Home
+
+    Google does not support Personal as a type for emails, it uses
+    Home instead.
+    We're moving to use home in order to use the same terminology
+
+ data/ui/app-menu.ui            | 4 ++--
+ src/contacts-contact-pane.vala | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 1333a956082a4d14b0de2880fe595e10e20496c7
+Author: Dimitrios Christidis <dchristidis@mykolab.com>
+Date:   Wed Apr 22 15:38:46 2015 +0300
+
+    Added support for searching by phone
+
+ src/contacts-contact.vala | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit 3e361a9bdc5ec54f03ce37c61756028ac12970ba
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Thu Apr 23 02:03:12 2015 -0400
+
+    types: added home to emails type
+
+ src/contacts-types.vala | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit ee6e4786de4e1f63b876aabe4eb4bafd9866139d
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Tue Apr 21 23:18:33 2015 -0400
+
+    app: initialize Clutter for addresses' use
+
+    Bug: https://bugzilla.gnome.org/show_bug.cgi?id=747977
+
+ src/main.vala | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d5bdbc7bd710c5dbad7be8f9fe47106f28806558
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Thu Apr 16 00:20:50 2015 -0400
+
+    Bump version to 3.16.1 for release
+
+    NEWS: updated
+
+ NEWS         | 3 +++
+ configure.ac | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit f854f35e0f05befef5b52daf429432d8dda6143e
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Thu Apr 16 00:10:27 2015 -0400
+
+    dist: fix with automake-1.15
+
+ po/POTFILES.skip | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit b6ae3975e4041ab392f3410eecf875e9e497ecf9
+Author: Hajime Taira <htaira@redhat.com>
+Date:   Tue Apr 14 07:33:00 2015 +0900
+
+    l10n: Update Japanese translation
+
+ po/ja.po | 100
+ ++++++++++++++++++---------------------------------------------
+ 1 file changed, 28 insertions(+), 72 deletions(-)
+
+commit ed6f1d7fd33a441ce77555a668ac2eebfca9a4c4
+Author: A S Alam <aalam@users.sf.net>
+Date:   Sat Mar 28 19:31:13 2015 -0500
+
+    Translation pa updated for Gnome
+
+ po/pa.po | 132
+ ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 62 insertions(+), 70 deletions(-)
+
+commit 825505d742524e7c3020e18337975fa5e9642754
+Author: Zhou Fang <houshuu@live.jp>
+Date:   Sat Mar 21 14:20:28 2015 +0000
+
+    Updated Japanese translation
+
+ po/ja.po | 754
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 407 insertions(+), 347 deletions(-)
+
+commit 5d3e71d1ad9e5241a7e3e79f78bd11f020c5b2cd
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Sat Mar 21 12:27:12 2015 +0100
+
+    Updated Basque language
+
+ po/eu.po | 82
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 43 insertions(+), 39 deletions(-)
+
+commit 487608114fdd5a93b0626bc47e51d262a89d57a1
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Fri Mar 20 13:42:48 2015 -0400
+
+    Bump version to 3.16.0 for release
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fee1f172d1d66cfc9aa106b50c0bb53fc0c1a3c2
+Author: Andika Triwidada <andika@gmail.com>
+Date:   Fri Mar 20 06:40:39 2015 +0000
+
+    Updated Indonesian translation
+
+ po/id.po | 130
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 67 insertions(+), 63 deletions(-)
+
+commit c1d16c219b8a4b801df30a913aad8cb37cf1896c
+Author: Akom Chotiphantawanon <knight2000@gmail.com>
+Date:   Fri Mar 20 10:11:01 2015 +0700
+
+    Updated Thai translation
+
+ po/th.po | 111
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 58 insertions(+), 53 deletions(-)
+
+commit 1ed4f96ca6a4e863501fd06c18388504c69f205e
+Author: Benjamin Steinwender <b@stbe.at>
+Date:   Thu Mar 19 21:43:36 2015 +0000
+
+    Updated German translation
+
+ po/de.po | 132
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 68 insertions(+), 64 deletions(-)
+
+commit 9e4166be5db132138ec8e3e65bbfa7bffc99742f
+Author: Kalev Lember <kalevlember@gmail.com>
+Date:   Wed Mar 18 11:12:13 2015 +0100
+
+    Fix a syntax error in desktop file keywords Bosnian translation
+
+ po/bs.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d53961319cd5626c6475c7c7b1443ab250fe98af
+Author: Kalev Lember <kalevlember@gmail.com>
+Date:   Wed Mar 18 11:10:46 2015 +0100
+
+    Fix a syntax error in desktop file keywords Nepali translation
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=736791
+
+ po/ne.po | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f9d25e64171d2090fd355dba45afefcae3c1ca82
+Author: Claudio Arseni <claudio.arseni@gmail.com>
+Date:   Tue Mar 17 07:35:12 2015 +0000
+
+    Updated Italian translation
+
+ po/it.po | 185
+ ++++++++++++++++++++++-----------------------------------------
+ 1 file changed, 63 insertions(+), 122 deletions(-)
+
+commit 758bde6a78da0a41b1d59ec1b456f26343ee7615
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Mar 16 13:44:02 2015 -0400
+
+    Bump version to 3.15.92 for release
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1d2df1857c3c97142920327503ee66f5212d757c
+Author: Ask Hjorth Larsen <asklarsen@gmail.com>
+Date:   Sun Mar 15 16:42:38 2015 +0100
+
+    Updated Danish translation
+
+ po/da.po | 109
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 57 insertions(+), 52 deletions(-)
+
+commit 8bfb92ec8e6f302aa6be7b30300815a3bc2b92bb
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   Sun Mar 15 14:50:37 2015 +0700
+
+    Updated Vietnamese translation
+
+    Signed-off-by: Trần Ngọc Quân <vnwildman@gmail.com>
+
+ po/vi.po | 99
+ ++++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 52 insertions(+), 47 deletions(-)
+
+commit d5b9496ff7c01ee3e5d35dc37f53ef7667e33497
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Sat Mar 14 05:00:14 2015 +0000
+
+    Updated Tajik translation
+
+ po/tg.po | 717
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 372 insertions(+), 345 deletions(-)
+
+commit 67ba06e0ec7638499b0ed37b4f0d2192aa0fd653
+Author: Samir Ribic <samir.ribic@etf.unsa.ba>
+Date:   Fri Mar 13 17:50:11 2015 +0000
+
+    Added Bosnian translation
+
+ po/LINGUAS |   1 +
+ po/bs.po   | 710
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 711 insertions(+)
+
+commit 8f39f51566232129af847b8f9f7abfb93d7a3008
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Thu Mar 12 21:50:26 2015 +0200
+
+    Updated Latvian translation
+
+ po/lv.po | 93
+ +++++++++++++++++++++++++++++-----------------------------------
+ 1 file changed, 42 insertions(+), 51 deletions(-)
+
+commit a44281bbe85e517e4f8c7ed182843cf1fcb223a3
+Author: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>
+Date:   Wed Mar 11 16:58:11 2015 +0200
+
+    Finnish translation update
+
+ po/fi.po | 132
+ ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 62 insertions(+), 70 deletions(-)
+
+commit 7c06a38dff97b9304f2b24ed9d03b547397d6bc4
+Author: Alexander Shopov <ash@kambanaria.org>
+Date:   Mon Mar 9 19:10:50 2015 +0200
+
+    Updated Bulgarian translation
+
+ po/bg.po | 84
+ +++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 44 insertions(+), 40 deletions(-)
+
+commit e54092c3c7710f63c73b83e153cfabd194750dcb
+Author: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+Date:   Sun Mar 8 03:46:53 2015 +0100
+
+    Updated Esperanto translation
+
+ po/eo.po | 755
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 408 insertions(+), 347 deletions(-)
+
+commit 5739e0433ba8b8b5153de27c47b6ec41f8a13e02
+Author: Seong-ho Cho <shcho@gnome.org>
+Date:   Fri Mar 6 20:25:05 2015 +0900
+
+    Updated Korean translation
+
+ po/ko.po | 123
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 64 insertions(+), 59 deletions(-)
+
+commit 6626c2c08ebe979cecc19157afd79dafc6542fd7
+Author: Paweł Żołnowski <pawel@zolnowski.name>
+Date:   Thu Mar 5 22:55:14 2015 +0100
+
+    Updated Polish translation
+
+ po/pl.po | 115
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 60 insertions(+), 55 deletions(-)
+
+commit e34e2a03ef4184ddd387a46a972049461efb6821
+Author: Мирослав Николић <miroslavnikolic@rocketmail.com>
+Date:   Tue Mar 3 20:31:56 2015 +0100
+
+    Updated Serbian translation
+
+ po/sr.po       | 123
+ ++++++++++++++++++++++++++-------------------------------
+ po/sr@latin.po | 123
+ ++++++++++++++++++++++++++-------------------------------
+ 2 files changed, 114 insertions(+), 132 deletions(-)
+
+commit d70f3b2bdaa8d1980fc090d79f0f441a51a5fae7
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Mar 2 15:07:47 2015 -0500
+
+    Bump version to 3.15.91 for release
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 845f37c4799d0ef46a6dc8c9176e90f8746b34a3
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Sat Feb 28 16:22:58 2015 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 236
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 117 insertions(+), 119 deletions(-)
+
+commit 25883c5b524d0cc431c87d62d790ebadb007d3a4
+Author: Daniel Korostil <ted.korostiled@gmail.com>
+Date:   Thu Feb 26 02:05:02 2015 +0200
+
+    Updated Ukrainian translation
+
+ po/uk.po | 139
+ +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 65 insertions(+), 74 deletions(-)
+
+commit 4d6ee254f2d87dbbf2274e43beaba7dec195f573
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Tue Feb 24 16:12:32 2015 +0000
+
+    Updated Kazakh translation
+
+ po/kk.po | 110
+ +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 50 insertions(+), 60 deletions(-)
+
+commit 3164b18003981a23205040597d6483c0b89dbde9
+Author: Sebastian Rasmussen <sebras@gmail.com>
+Date:   Sun Feb 22 13:36:00 2015 +0000
+
+    Updated Swedish translation
+
+ po/sv.po | 297
+ +++++++++++++--------------------------------------------------
+ 1 file changed, 62 insertions(+), 235 deletions(-)
+
+commit 302b408590ef865f9074520731d6b7c04f1815cc
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Sat Feb 21 10:24:31 2015 +0000
+
+    Updated Chinese (Taiwan) translation
+
+ po/zh_TW.po | 246
+ +++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 119 insertions(+), 127 deletions(-)
+
+commit 6c0a0276995984108a0d5db2595f73fc1384b392
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Thu Feb 19 10:41:03 2015 +0000
+
+    Updated French translation
+
+ po/fr.po | 115
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 60 insertions(+), 55 deletions(-)
+
+commit a7e7b14bb268317b3a05175690c0ae61f64b221f
+Author: Fran Dieguez <fran.dieguez@mabishu.com>
+Date:   Thu Feb 19 11:18:45 2015 +0100
+
+    Updated Galician translations
+
+ po/gl.po | 121
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 63 insertions(+), 58 deletions(-)
+
+commit b5a29c1a6c29be7c12c89b3356884ffa3bf71af4
+Author: Yosef Or Boczko <yoseforb@src.gnome.org>
+Date:   Tue Feb 17 01:23:57 2015 +0200
+
+    Updated Hebrew translation
+
+ po/he.po | 117
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 61 insertions(+), 56 deletions(-)
+
+commit 069ab390dc269618f073c3e9d0d20f975a82c340
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Feb 16 12:53:59 2015 -0500
+
+    Bump version to 3.15.90 for release
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 174bf1dc5690efe68cceafa915985eb85a744fe0
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Feb 16 12:49:30 2015 -0500
+
+    Update NEWS for release
+
+ NEWS | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 18a3565cd64ddc0a742e196859d3519b49f788e0
+Author: Milan Crha <mcrha@redhat.com>
+Date:   Mon Feb 16 11:53:35 2015 -0500
+
+    eds: enable authentication on addressbooks
+
+ configure.ac             |   5 ++-
+ src/contacts-esd-setup.c | 115
+ +++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 118 insertions(+), 2 deletions(-)
+
+commit 7389d000620687f576ebd7c586808590dd5ba905
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   Sun Feb 15 21:12:32 2015 +0100
+
+    Updated Slovenian translation
+
+ po/sl.po | 113
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 59 insertions(+), 54 deletions(-)
+
+commit cdcfdc44fbcc168c837ac6a64b80308983c106c4
+Author: Balázs Úr <urbalazs@gmail.com>
+Date:   Sun Feb 15 12:18:30 2015 +0000
+
+    Updated Hungarian translation
+
+ po/hu.po | 126
+ ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 59 insertions(+), 67 deletions(-)
+
+commit 5fa85e196e9d5feb567bc0857e8fc25598f59351
+Author: Efstathios Iosifidis <iefstathios@gmail.com>
+Date:   Sat Feb 14 17:18:21 2015 +0200
+
+    Updated Greek translation
+
+ po/el.po | 110
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 58 insertions(+), 52 deletions(-)
+
+commit e46225e3b8e4f3f1dea539bb69c84419690898f0
+Author: Muhammet Kara <muhammetk@gmail.com>
+Date:   Sat Feb 14 12:32:07 2015 +0000
+
+    Updated Turkish translation
+
+ po/tr.po | 112
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 59 insertions(+), 53 deletions(-)
+
+commit 207bc1198e3a23ca12af51638781bfd0b50fae6f
+Author: Ryan Lortie <desrt@desrt.ca>
+Date:   Wed Feb 11 17:37:49 2015 -0500
+
+    contacts-types: avoid ambiguous 'ListStore'
+
+    Now that GLib also has a ListStore, we need to explicitly state
+    Gtk.ListStore here to avoid ambiguity.
+
+ src/contacts-types.vala | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit d218ac7b9a96b0bff98acbb487058ad2000a8219
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   Sun Feb 8 19:52:33 2015 +0100
+
+    Updated Norwegian bokmål translation from Åka Sikrom.
+
+ po/nb.po | 251
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 128 insertions(+), 123 deletions(-)
+
+commit bc753fdbbbb4bfddb01c6d46e69898ac271e2da5
+Author: Diogo Campos <diogocamposwd@gmail.com>
+Date:   Thu Feb 5 10:03:29 2015 +0000
+
+    Updated Brazilian Portuguese translation
+
+ po/pt_BR.po | 241
+ ++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 119 insertions(+), 122 deletions(-)
+
+commit f1c6bd5b5683e0adb878765cfbc6940aa55af44e
+Author: Stas Solovey <whats_up@tut.by>
+Date:   Wed Feb 4 12:06:21 2015 +0000
+
+    Updated Russian translation
+
+ po/ru.po | 131
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 65 insertions(+), 66 deletions(-)
+
+commit 2e6b4c92bc84601b34ce772b3f3434e066d48852
+Author: Marek Černocký <marek@manet.cz>
+Date:   Tue Feb 3 19:45:35 2015 +0100
+
+    Updated Czech translation
+
+ po/cs.po | 117
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 61 insertions(+), 56 deletions(-)
+
+commit 63bb88e9af85afff9f8e5df273165dd122f7ee58
+Author: Daniel Mustieles <daniel.mustieles@gmail.com>
+Date:   Mon Feb 2 11:54:55 2015 +0100
+
+    Updated Spanish translation
+
+ po/es.po | 230
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 114 insertions(+), 116 deletions(-)
+
+commit 2ffdf9c9170c8a7e2eeac6028aa4ed9ba0921d13
+Author: Dušan Kazik <prescott66@gmail.com>
+Date:   Sun Feb 1 21:22:18 2015 +0000
+
+    Updated Slovak translation
+
+ po/sk.po | 197
+ +++++++++++++++++++++++++++------------------------------------
+ 1 file changed, 84 insertions(+), 113 deletions(-)
+
+commit 88c2480f01dd537fb9f7ed582ba279afc3bbe4f7
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Sun Feb 1 15:16:39 2015 +0100
+
+    Updated POTFILES.in and POTFILES.skip
+
+ po/POTFILES.in   | 1 +
+ po/POTFILES.skip | 6 +++++-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+commit 05343f94fcea0334b1a46c58ad315eb490796b66
+Author: Jonas Danielsson <jonas@threetimestwo.org>
+Date:   Wed Jan 14 01:59:18 2015 -0500
+
+    contacts-address-map: Go to Maps on button press
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=658553
+
+ src/contacts-address-map.vala | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit fa4f2c798bdf6d7de95ef5f1239b5951edfff60b
+Author: David King <amigadave@amigadave.com>
+Date:   Tue Jan 20 14:30:06 2015 +0000
+
+    Check for stylesheets required for man page
+
+    Macros copied from gtk-doc.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=743255
+
+ configure.ac                      | 10 +++++--
+ m4/gtkdoc_jh_check_xml_catalog.m4 | 16 ++++++++++
+ m4/gtkdoc_jh_path_xml_catalog.m4  | 61
+ +++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 85 insertions(+), 2 deletions(-)
+
+commit 9498561cf61a4f6fa2f2a9b618307ef2198e11d1
+Author: David King <amigadave@amigadave.com>
+Date:   Tue Jan 20 14:24:55 2015 +0000
+
+    Fix man page configure check
+
+    Default to enabling the man page generation.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=743255
+
+ configure.ac | 27 ++++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 11 deletions(-)
+
+commit 2b6c02e814a0323faa4fa76e4904c28d7b9ce792
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Tue Jan 20 20:05:33 2015 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 764
+ +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 429 insertions(+), 335 deletions(-)
+
+commit c88f8ec718b704b3d24e895db01933e7fd17233b
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Jan 19 17:01:39 2015 -0500
+
+    Bump version to 3.15.4 for release
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 80a67cafdd937587187c6464d785e4deaf850036
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Jan 19 16:55:03 2015 -0500
+
+    Update NEWS for release
+
+ NEWS | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 40da240aad484196b92c329bd88182c5316533ea
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Fri Jan 16 11:00:49 2015 -0500
+
+    git: ignore updated
+
+ .gitignore     | 12 ------------
+ src/.gitignore | 13 +++++++++++++
+ 2 files changed, 13 insertions(+), 12 deletions(-)
+
+commit 1453acab673775e3a21a31b7c27df90608f2c7b1
+Author: Jonas Danielsson <jonas@threetimestwo.org>
+Date:   Fri Jan 16 05:49:34 2015 -0500
+
+    contacts-contact-editor: Update all rows on insert
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=742739
+
+ src/contacts-contact-editor.vala | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+commit 3f5a52adb59b34996668e14df2a7101a81835277
+Author: Jonas Danielsson <jonas@threetimestwo.org>
+Date:   Fri Jan 16 05:48:05 2015 -0500
+
+    contacts-contact-editor: Notify for current row
+
+    We can not use the row variable in the change handlers,
+    since the row can change.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=742739
+
+ src/contacts-contact-editor.vala | 35 +++++++++++++++++++++--------------
+ 1 file changed, 21 insertions(+), 14 deletions(-)
+
+commit 61fe4bf7cc38fd8f414e6f540f9c53bb288aab47
+Author: Jonas Danielsson <jonas@threetimestwo.org>
+Date:   Wed Jan 14 01:56:49 2015 -0500
+
+    Add map widget
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=658553
+
+ configure.ac                    |   6 +-
+ data/Makefile.am                |   1 +
+ data/contacts.gresource.xml     |   1 +
+ data/ui/contacts-address-map.ui |  40 ++++++++
+ data/ui/style.css               |   4 +
+ src/Makefile.am                 |   1 +
+ src/contacts-address-map.vala   | 198
+ ++++++++++++++++++++++++++++++++++++++++
+ 7 files changed, 249 insertions(+), 2 deletions(-)
+
+commit 4d94dfe84217b9fda051dee154d3a4aab780e47b
+Author: Jonas Danielsson <jonas@threetimestwo.org>
+Date:   Tue Dec 16 07:44:16 2014 -0500
+
+    Add a map to the contacts sheet
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=658553
+
+ src/contacts-contact-sheet.vala | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 1153339f02ba929ecd7371b4a25f7754d1c97ebb
+Author: Jonas Danielsson <jonas@threetimestwo.org>
+Date:   Tue Dec 16 05:32:17 2014 -0500
+
+    contacts-contact: Add method to geocode a contact
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=658553
+
+ configure.ac              |  3 ++-
+ src/contacts-contact.vala | 34 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 36 insertions(+), 1 deletion(-)
+
+commit 988a7ef95914ff8e7b341ac727890b4ac3c3cd9e
+Author: Jonas Danielsson <jonas@threetimestwo.org>
+Date:   Tue Dec 16 05:29:15 2014 -0500
+
+    contacts-utils: Add activate_action function
+
+    Add a function that activates an action on a given appid.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=658553
+
+ src/contacts-utils.vala | 41 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+commit 8c638fee4af5f03cdee83e33dfb60a9b650ca981
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   Tue Dec 30 15:26:23 2014 +0100
+
+    Updated Basque language
+
+ po/eu.po | 413
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 206 insertions(+), 207 deletions(-)
+
+commit 269331f09dccd7d58afc8448640c1928ff2116b9
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   Tue Nov 18 08:36:48 2014 +0700
+
+    Updated Vietnamese translation
+
+    Signed-off-by: Trần Ngọc Quân <vnwildman@gmail.com>
+
+ po/vi.po | 815
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 451 insertions(+), 364 deletions(-)
+
+commit 61e5d352922732c264c23e330f3950e174c87608
+Author: Pedro Albuquerque <palbuquerque73@gmail.com>
+Date:   Sat Nov 15 22:35:28 2014 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 733
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 395 insertions(+), 338 deletions(-)
+
+commit cadd56008fbda0b62e1bd6980af41bc44a6a8e22
+Author: Hannie Dumoleyn <hannie@ubuntu-nl.org>
+Date:   Fri Oct 24 12:20:51 2014 +0200
+
+    Update Dutch translation master 3.16
+
+ po/nl.po | 778
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 417 insertions(+), 361 deletions(-)
+
+commit 5ce36c9382d4667a0db82d040f546d603994dc14
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Oct 13 08:38:11 2014 -0400
+
+    Bump version to 3.14.1 for release
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d6ca7c0c2a9afa1e2e8e6c464fdfd9daeb2b2915
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Oct 13 08:28:12 2014 -0400
+
+    Update NEWS for release
+
+ NEWS | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit de2ce10b88a5eb2fce972ff2c279604a01844fd2
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Sat Oct 11 14:59:25 2014 +0000
+
+    Updated Kazakh translation
+
+ po/kk.po | 720
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 392 insertions(+), 328 deletions(-)
+
+commit 1abcbfd195320f1fd10e006b3c0ea6b177d282ea
+Author: Arash Mousavi <mousavi.arash@gmail.com>
+Date:   Fri Oct 10 22:04:51 2014 +0330
+
+    Updates Persian Translations
+
+ po/fa.po | 778
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 424 insertions(+), 354 deletions(-)
+
+commit 8349dd14e4e79ba8a01da594340bccaaefe28feb
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Tue Oct 7 21:34:33 2014 +0300
+
+    Updated Latvian translation
+
+ po/lv.po | 742
+ ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 399 insertions(+), 343 deletions(-)
+
+commit 5e7cd99534268073373057e2cc19dbf89d6e814e
+Author: Saibal Ray <sray@redhat.com>
+Date:   Tue Oct 7 11:07:47 2014 +0000
+
+    Updated Bengali (India) translation
+
+ po/bn_IN.po | 854
+ ++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 483 insertions(+), 371 deletions(-)
+
+commit 77b6f7b464ace5bca77f8bb87fb5dc5ac5db1d24
+Author: Krasimir Chonov <mk2616@abv.bg>
+Date:   Sat Oct 4 08:11:11 2014 +0300
+
+    Updated Bulgarian translation
+
+ po/bg.po | 764
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 399 insertions(+), 365 deletions(-)
+
+commit e8370f2f1d4ed2dd0ac69bf3e058564f7679ad83
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Tue Sep 30 09:17:39 2014 -0400
+
+    SearchProvider: remove more debug statements
+
+ src/contacts-shell-search-provider.vala | 6 ------
+ 1 file changed, 6 deletions(-)
+
+commit 0f85ce20657280f35f58c690a9479523b45ea2d9
+Author: Erick Pérez Castellanos <erick.red@gmail.com>
+Date:   Mon Sep 29 11:28:15 2014 -0400
+
+    SearchProvider: remove warning statement
+
+    Fixed: https://bugzilla.gnome.org/show_bug.cgi?id=737526
+
+ src/contacts-shell-search-provider.vala | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 3d6ed21e748a2941d44f09c829f29544ddd3ea22
+Author: Krishnababu Krothapalli <k.meetme@gmail.com>
+Date:   Tue Sep 23 14:55:59 2014 +0000
+
+    Updated Telugu translation
+
+ po/te.po | 893
+ +++++++++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 550 insertions(+), 343 deletions(-)
+
+commit f88defa33aa7f53df6880f4c02106cdbd2ffcf4a
+Author: Praveen Illa <mail2ipn@gmail.com>
+Date:   Tue Sep 23 14:52:01 2014 +0000
+
+    Updated Telugu translation
+
+ po/te.po | 535
+ ++++++++++++++++++++++++++-------------------------------------
+ 1 file changed, 219 insertions(+), 316 deletions(-)
+
+commit 13e210feb6b75bc50066fb086aba6923150d85a3
+Author: Zhou Fang <houshuu@live.jp>
+Date:   Tue Sep 23 19:02:53 2014 +0800
+
+    update zh_CN translation
+
+ po/zh_CN.po | 715
+ ++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 382 insertions(+), 333 deletions(-)
+
+commit 3ee7aa4e23198da7760d2b4501b5b3a45d502465
+Author: GNOME Translation Robot <gnome-sysadmin@gnome.org>
+Date:   Tue Sep 23 10:17:46 2014 +0000
+
+    Updated Scottish Gaelic translation
+
+ po/gd.po | 449
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 224 insertions(+), 225 deletions(-)
+
+commit fecb5843c3e6e358a37bddf9cf86fd1db9f1f977
+Author: Rajesh Ranjan <rajeshkajha@yahoo.com>
+Date:   Tue Sep 23 07:05:38 2014 +0000
+
+    Updated Hindi translation
+
+ po/hi.po | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 8f10eda11a884eedda54cfeb6dc57d1e3429af8c
+Author: Rajesh Ranjan <rajeshkajha@yahoo.com>
+Date:   Tue Sep 23 07:04:15 2014 +0000
+
+    Updated Hindi translation
+
+ po/hi.po | 843
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 470 insertions(+), 373 deletions(-)
+
 commit c5fc0de970cec712b97a00553195f3d9ca9cef4e
 Author: Erick Pérez Castellanos <erick.red@gmail.com>
 Date:   Mon Sep 22 01:44:33 2014 -0400

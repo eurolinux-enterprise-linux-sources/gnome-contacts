@@ -20,6 +20,7 @@ using Gtk;
 using Folks;
 using Gee;
 using TelepathyGLib;
+using Geocode;
 
 public errordomain ContactError {
   NOT_IMPLEMENTED,
@@ -145,22 +146,10 @@ public class Contacts.Contact : GLib.Object  {
     }
   }
 
-  public Icon? serializable_avatar_icon {
-    get {
-      if (individual.avatar != null && individual.avatar.to_string () != null)
-        return individual.avatar;
-
-      return null;
-    }
-  }
-
   private Variant? _avatar_icon_data;
   public Variant? avatar_icon_data {
     get {
       if (individual.avatar == null)
-        return null;
-
-      if (individual.avatar.to_string () != null)
         return null;
 
       if (_avatar_icon_data == null) {
@@ -168,17 +157,7 @@ public class Contacts.Contact : GLib.Object  {
         if (small_avatar == null)
           return null;
 
-        var pixel_data = Variant.new_from_data (VariantType.BYTESTRING,
-                                                small_avatar.get_pixels_with_length (),
-                                                true, small_avatar);
-        _avatar_icon_data = new Variant ("(iiibii@ay)",
-                                         small_avatar.get_width (),
-                                         small_avatar.get_height (),
-                                         small_avatar.get_rowstride (),
-                                         small_avatar.get_has_alpha (),
-                                         small_avatar.get_bits_per_sample (),
-                                         small_avatar.get_n_channels (),
-                                         pixel_data);
+        _avatar_icon_data = small_avatar.serialize ();
       }
       return _avatar_icon_data;
     }
@@ -672,6 +651,39 @@ public class Contacts.Contact : GLib.Object  {
     return res;
   }
 
+  public static async Place geocode_address (PostalAddress addr) {
+    SourceFunc callback = geocode_address.callback;
+    var params = new HashTable<string, GLib.Value?>(str_hash, str_equal);
+
+    if (is_set (addr.street))
+      params.insert("street", addr.street);
+
+    if (is_set (addr.locality))
+      params.insert("locality", addr.locality);
+
+    if (is_set (addr.region))
+      params.insert("region", addr.region);
+
+    if (is_set (addr.country))
+      params.insert("country", addr.country);
+
+    Place? place = null;
+    var forward = new Forward.for_params (params);
+    forward.search_async.begin (null, (object, res) => {
+        try {
+          var places = forward.search_async.end (res);
+
+          place = places.nth_data (0);
+          callback ();
+        } catch (GLib.Error e) {
+          debug ("No geocode result found for contact");
+          callback ();
+        }
+      });
+    yield;
+    return place;
+  }
+
   public static string[] format_address (PostalAddress addr) {
     string[] lines = {};
 
@@ -912,6 +924,11 @@ public class Contacts.Contact : GLib.Object  {
     var emails = individual.email_addresses;
     foreach (var email in emails) {
       builder.append (email.value.casefold ());
+      builder.append_unichar (' ');
+    }
+    var phone_numbers = individual.phone_numbers;
+    foreach (var phone in phone_numbers) {
+      builder.append (phone.value.casefold ());
       builder.append_unichar (' ');
     }
     filter_data = builder.str;

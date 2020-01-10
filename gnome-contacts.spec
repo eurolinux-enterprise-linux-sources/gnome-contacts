@@ -1,53 +1,56 @@
-%global gtk3_version 3.12.0
+%global gtk3_version 3.20.0
+%global geocode_glib_version 3.15.3
 
 Name:           gnome-contacts
-Version:        3.14.2
-Release:        4%{?dist}
+Version:        3.22.1
+Release:        1%{?dist}
 Summary:        Contacts manager for GNOME
 
 License:        GPLv2+
-URL:            https://live.gnome.org/Design/Apps/Contacts
-#VCS: http://git.gnome.org/browse/gnome-contacts/
-Source0:        http://download.gnome.org/sources/%{name}/3.14/%{name}-%{version}.tar.xz
+URL:            https://wiki.gnome.org/Apps/Contacts
+Source0:        https://download.gnome.org/sources/%{name}/3.22/%{name}-%{version}.tar.xz
 
-# https://bugzilla.gnome.org/show_bug.cgi?id=736791
-Patch0:         gnome-contacts-desktop-file-keywords.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=1053667
-Patch1:         gnome-contacts-added-home-to-emails-type.patch
-Patch2:         translations.patch
-
-BuildRequires:  folks-devel
-BuildRequires:  gtk3-devel >= %{gtk3_version}
-BuildRequires:  vala-devel
-BuildRequires:  intltool
-BuildRequires:  libnotify-devel
-BuildRequires:  gnome-desktop3-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  cheese-libs-devel
-BuildRequires:  vala-tools
+BuildRequires:  docbook-dtds
+BuildRequires:  docbook-style-xsl
+BuildRequires:  intltool
+BuildRequires:  vala
+BuildRequires:  vala-devel
+BuildRequires:  /usr/bin/appstream-util
+BuildRequires:  /usr/bin/xsltproc
+BuildRequires:  pkgconfig(champlain-0.12)
+BuildRequires:  pkgconfig(cheese-gtk)
+BuildRequires:  pkgconfig(clutter-gtk-1.0)
+BuildRequires:  pkgconfig(folks)
+BuildRequires:  pkgconfig(folks-eds)
+BuildRequires:  pkgconfig(folks-telepathy)
+BuildRequires:  pkgconfig(gee-0.8)
+BuildRequires:  pkgconfig(geocode-glib-1.0) >= %{geocode_glib_version}
+BuildRequires:  pkgconfig(gnome-desktop-3.0)
+BuildRequires:  pkgconfig(goa-1.0)
+BuildRequires:  pkgconfig(gobject-introspection-1.0)
+BuildRequires:  pkgconfig(gtk+-3.0) >= %{gtk3_version}
 
+Requires:       geocode-glib%{?_isa} >= %{geocode_glib_version}
 Requires:       gtk3%{?_isa} >= %{gtk3_version}
-
-Obsoletes: contacts <= 0.12
-Provides: contacts
 
 %description
 %{name} is a standalone contacts manager for GNOME desktop.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
-%configure
+%configure --enable-man-pages
 make %{?_smp_mflags} V=1
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
-desktop-file-validate %{buildroot}/%{_datadir}/applications/org.gnome.Contacts.desktop
+%make_install
 %find_lang %{name}
+
+%check
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/org.gnome.Contacts.appdata.xml
+desktop-file-validate %{buildroot}/%{_datadir}/applications/org.gnome.Contacts.desktop
 
 %postun
 if [ $1 -eq 0 ]; then
@@ -58,7 +61,8 @@ fi
 glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 
 %files -f %{name}.lang
-%doc AUTHORS COPYING README NEWS
+%doc AUTHORS README NEWS
+%license COPYING
 %{_bindir}/%{name}
 %{_libexecdir}/gnome-contacts-search-provider
 %{_datadir}/appdata/org.gnome.Contacts.appdata.xml
@@ -70,9 +74,14 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 %dir %{_datadir}/gnome-shell
 %dir %{_datadir}/gnome-shell/search-providers
 %{_datadir}/gnome-shell/search-providers/org.gnome.Contacts.search-provider.ini
+%{_mandir}/man1/%{name}.1*
 
 
 %changelog
+* Wed Sep 21 2016 Kalev Lember <klember@redhat.com> - 3.22.1-1
+- Update to 3.22.1
+- Resolves: #1386886
+
 * Wed Jun 29 2016 Matthias Clasen <mclasen@redhat.com> - 3.14.2-4
 - Update translations
 - Resolves: #1049777

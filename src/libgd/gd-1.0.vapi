@@ -12,6 +12,7 @@ namespace Gd {
 		[NoAccessorMethod]
 		public bool show_close_button { get; set construct; }
 		[NoAccessorMethod]
+		[Version (since = "0.1")]
 		public int timeout { get; set construct; }
 		public virtual signal void dismissed ();
 	}
