@@ -1,4 +1,3 @@
-/* -*- Mode: vala; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 8 -*- */
 /*
  * Copyright (C) 2011 Alexander Larsson <alexl@redhat.com>
  *
@@ -19,212 +18,20 @@
 using Gtk;
 using Folks;
 using Gee;
-using TelepathyGLib;
-using Geocode;
 
 public errordomain ContactError {
   NOT_IMPLEMENTED,
   NO_PRIMARY
 }
 
-public class Contacts.ContactPresence : Grid {
-  Contact contact;
-  Image image;
-  Image phone_image;
-  Label label;
-  string last_class;
-
-  private void update_presence_widgets () {
-    PresenceType type;
-    string message;
-    bool is_phone;
-
-    type = contact.presence_type;
-    message = contact.presence_message;
-    is_phone = contact.is_phone;
-
-    if (type == PresenceType.UNSET ||
-	type == PresenceType.ERROR ||
-	type == PresenceType.OFFLINE ||
-	type == PresenceType.UNKNOWN) {
-      image.clear ();
-      image.hide ();
-      label.hide ();
-      label.set_text ("");
-      phone_image.hide ();
-      return;
-    }
-
-    image.set_from_icon_name (Contact.presence_to_icon_full (type), IconSize.MENU);
-    if (last_class != null)
-      image.get_style_context ().remove_class (last_class);
-    last_class = Contact.presence_to_class (type);
-    image.get_style_context ().add_class (last_class);
-    image.show ();
-    label.show ();
-    phone_image.show ();
-    if (message.length == 0)
-      message = PresenceDetails.get_default_message_from_type (type);
-
-    label.set_markup (Markup.printf_escaped ("<span font='11px'>%s</span>", message));
-    label.set_margin_bottom (3);
-
-    if (is_phone)
-      phone_image.show ();
-    else
-      phone_image.hide ();
-  }
-
-  public ContactPresence (Contact contact) {
-    this.contact = contact;
-
-    this.set_column_spacing (4);
-    image = new Image ();
-    image.set_no_show_all (true);
-    this.add (image);
-    label = new Label ("");
-    label.set_no_show_all (true);
-    label.set_ellipsize (Pango.EllipsizeMode.END);
-    label.xalign = 0.0f;
-
-    this.add (label);
-
-    phone_image = new Image ();
-    phone_image.set_no_show_all (true);
-    phone_image.set_from_icon_name ("phone-symbolic", IconSize.MENU);
-    this.add (phone_image);
-
-    update_presence_widgets ();
-
-    var id = contact.presence_changed.connect ( () => {
-	update_presence_widgets ();
-      });
-
-    var id2 = contact.personas_changed.connect ( () => {
-	update_presence_widgets ();
-      });
-
-    this.destroy.connect (() => {
-	contact.disconnect (id);
-	contact.disconnect (id2);
-      });
-  }
-}
-
-
 public class Contacts.Contact : GLib.Object  {
-  public const int LIST_AVATAR_SIZE = 48;
-  public const int SMALL_AVATAR_SIZE = 54;
-
-  public Store store;
+  public weak Store store;
   public bool is_main;
-  public PresenceType presence_type;
-  public string presence_message;
-  public bool is_phone;
-  struct ContactDataRef {
-    void *key;
-    void *data;
-  }
-  private ContactDataRef[] refs;
 
   public Individual individual;
   uint changed_id;
-  bool changed_personas;
 
   public Persona? fake_persona = null;
-
-  private Gdk.Pixbuf? _small_avatar;
-  public Gdk.Pixbuf small_avatar {
-    get {
-      if (_small_avatar == null) {
-	var pixbuf = load_icon (individual.avatar, SMALL_AVATAR_SIZE);
-	if (pixbuf == null)
-	  pixbuf = draw_fallback_avatar (SMALL_AVATAR_SIZE, this);
-	_small_avatar = frame_icon (pixbuf);
-      }
-      return _small_avatar;
-    }
-  }
-
-  private Variant? _avatar_icon_data;
-  public Variant? avatar_icon_data {
-    get {
-      if (individual.avatar == null)
-        return null;
-
-      if (_avatar_icon_data == null) {
-
-        if (small_avatar == null)
-          return null;
-
-        _avatar_icon_data = small_avatar.serialize ();
-      }
-      return _avatar_icon_data;
-    }
-  }
-
-  public string display_name {
-    get {
-      unowned string? name = individual.full_name;
-      if (is_set (name))
-	return name;
-      unowned string? alias = individual.alias;
-      if (is_set (alias))
-	return alias;
-      unowned string? nickname = individual.nickname;
-      if (is_set (nickname))
-	return nickname;
-      foreach (var email in individual.email_addresses) {
-	string? e = email.value;
-	if (is_set (e))
-	  return email.value;
-      }
-      return "";
-    }
-  }
-
-  // Synchronize with get_secondary_string_source ()
-  public string? get_secondary_string (out string [] sources = null) {
-    var nick = individual.nickname;
-    if (is_set (nick)) {
-      sources = new string[1];
-      sources[0] = "nickname";
-      return "\xE2\x80\x9C" + nick + "\xE2\x80\x9D";
-    }
-
-    foreach (var role_detail in individual.roles) {
-      var role = role_detail.value;
-
-      if (is_set (role.organisation_name)) {
-	if (is_set (role.title)) {
-	  sources = new string[2];
-	  sources[0] = "title";
-	  sources[1] = "organisation-name";
-	  return "%s, %s".printf (role.title, role.organisation_name);
-	} else if (is_set (role.role)) {
-	  sources = new string[2];
-	  sources[0] = "role";
-	  sources[1] = "organisation-name";
-	  return "%s, %s".printf (role.role, role.organisation_name);
-	} else {
-	  sources = new string[0];
-	  sources[0] = "organisation-name";
-	  return role.organisation_name;
-	}
-      } else if (is_set (role.title)) {
-	sources = new string[0];
-	sources[0] = "title";
-	return role.title;
-      } else if (is_set (role.role)) {
-	sources = new string[0];
-	sources[0] = "role";
-	return role.role;
-      }
-    }
-
-    sources = null;
-    return null;
-  }
 
   public static bool persona_has_writable_property (Persona persona, string property) {
     // TODO: This should check the writibility on the FakePersona store,
@@ -239,50 +46,7 @@ public class Contacts.Contact : GLib.Object  {
     return false;
   }
 
-  public static string get_display_name_for_persona (Persona persona) {
-    var name_details = persona as NameDetails;
-    var alias_details = persona as AliasDetails;
-    var email_details = persona as EmailDetails;
-
-    if (name_details != null) {
-      unowned string? name = name_details.full_name;
-      if (is_set (name))
-	return name;
-    }
-    if (alias_details != null) {
-      unowned string? alias = alias_details.alias;
-      if (is_set (alias))
-	return alias;
-    }
-    if (name_details != null) {
-      unowned string? nickname = name_details.nickname;
-      if (is_set (nickname))
-	return nickname;
-    }
-    if (email_details != null) {
-      foreach (var email in email_details.email_addresses) {
-	string e = email.value;
-	if (is_set (e))
-	  return e;
-      }
-    }
-    return "";
-  }
-
-  public unichar initial_letter {
-    get {
-      string name = display_name;
-      if (name.length == 0)
-	return 0;
-      return name.get_char ().totitle ();
-    }
-  }
-
-  private string filter_data;
-
-  public signal void presence_changed ();
   public signal void changed ();
-  public signal void personas_changed ();
 
   private bool _is_hidden;
   private bool _is_hidden_uptodate;
@@ -332,72 +96,17 @@ public class Contacts.Contact : GLib.Object  {
   public void hide () {
     _is_hidden_to_delete = true;
 
-    queue_changed (false);
+    queue_changed ();
   }
 
   public void show () {
     _is_hidden_to_delete = false;
 
-    queue_changed (false);
+    queue_changed ();
   }
 
   public static Contact from_individual (Individual i) {
     return i.get_data ("contact");
-  }
-
-  private void persona_notify_cb (ParamSpec pspec) {
-    this.presence_changed ();
-    queue_changed (false);
-  }
-
-  private void connect_persona (Persona p) {
-    p.notify["presence-type"].connect (persona_notify_cb);
-    p.notify["presence-message"].connect (persona_notify_cb);
-    var tp = p as Tpf.Persona;
-    if (tp != null && tp.contact != null)
-      tp.contact.notify["client-types"].connect (persona_notify_cb);
-  }
-
-  private void disconnect_persona (Persona p) {
-    SignalHandler.disconnect_by_func (individual, (void *)persona_notify_cb, this);
-    var tp = p as Tpf.Persona;
-    if (tp != null && tp.contact != null)
-      SignalHandler.disconnect_by_func (tp.contact, (void *)persona_notify_cb, this);
-  }
-
-  public unowned T lookup<T> (void *key) {
-    foreach (unowned ContactDataRef? data_ref in refs) {
-      if (data_ref.key == key)
-	return (T*)data_ref.data;
-    }
-    return null;
-  }
-
-  public void set_lookup<T> (void *key, owned T data) {
-    int i = refs.length;
-    refs.resize(i+1);
-    refs[i].key = key;
-    // Transfer ownership to the array
-    refs[i].data = (void *)(owned)data;
-  }
-
-  public void remove_lookup<T> (void *key) {
-    int i;
-
-    for (i = 0; i < refs.length; i++) {
-      if (refs[i].key == key) {
-	// We need to unref the data so we take a local
-	// owned copy and let it go out of scope
-	T old_val = (owned)refs[i].data;
-	// Reference the variable to avoid warning
-	(void)old_val;
-	for (int j = i + 1; j < refs.length; j++) {
-	  refs[j-1] = refs[j];
-	}
-	refs.resize(refs.length-1);
-	return;
-      }
-    }
   }
 
   public static bool persona_is_main (Persona persona) {
@@ -406,40 +115,23 @@ public class Contacts.Contact : GLib.Object  {
       return false;
 
     // Mark google contacts not in "My Contacts" as non-main
-    if (persona_is_google_other (persona)) {
-      return false;
-    }
-
-    return true;
+    return !persona_is_google_other (persona);
   }
 
   private bool calc_is_main () {
-    var res = false;
-    foreach (var p in individual.personas) {
+    foreach (var p in this.individual.personas)
       if (persona_is_main (p))
-	res = true;
-    }
-    return res;
+        return true;
+
+    return false;
   }
 
   public Contact (Store store, Individual i) {
     this.store = store;
     individual = i;
     individual.set_data ("contact", this);
-    this.refs = new ContactDataRef[0];
 
     is_main = calc_is_main ();
-    foreach (var p in individual.personas) {
-      connect_persona (p);
-    }
-
-    individual.personas_changed.connect ( (added, removed) => {
-	foreach (var p in added)
-	  connect_persona (p);
-	foreach (var p in removed)
-	  disconnect_persona (p);
-	queue_changed (true);
-      });
 
     update ();
 
@@ -447,26 +139,15 @@ public class Contacts.Contact : GLib.Object  {
   }
 
   public void replace_individual (Individual new_individual) {
-    foreach (var p in individual.personas) {
-      disconnect_persona (p);
-    }
     individual.notify.disconnect(notify_cb);
     individual = new_individual;
     individual.set_data ("contact", this);
-    foreach (var p in individual.personas) {
-      connect_persona (p);
-    }
-    _small_avatar = null;
-    _avatar_icon_data = null;
     individual.notify.connect(notify_cb);
-    queue_changed (true);
+    queue_changed ();
   }
 
   public void remove () {
     unqueue_changed ();
-    foreach (var p in individual.personas) {
-      disconnect_persona (p);
-    }
     individual.notify.disconnect(notify_cb);
   }
 
@@ -479,209 +160,57 @@ public class Contacts.Contact : GLib.Object  {
     return false;
   }
 
-  public bool has_birthday () {
-    return individual.birthday != null;
-  }
-
-  public bool has_nickname () {
-    return individual.nickname != null &&
-           individual.nickname != "";
-  }
-
-  public bool has_notes () {
-    foreach (var p in get_personas_for_display ()) {
-      var note_details = p as NoteDetails;
-      if (note_details != null) {
-	foreach (var note in note_details.notes) {
-	  if (note.value != "")
-	    return true;
-	}
-      }
-    }
-    return false;
-  }
-
-  public bool contains_strings (string [] strings) {
-    foreach (string i in strings) {
-      if (! (i in filter_data))
-	return false;
-    }
-    return true;
-  }
-
-  public static string presence_to_icon_symbolic (PresenceType presence) {
-    string? iconname = null;
-    switch (presence) {
-    default:
-    case PresenceType.OFFLINE:
-    case PresenceType.UNSET:
-    case PresenceType.ERROR:
-    case PresenceType.UNKNOWN:
-      break;
-    case PresenceType.AVAILABLE:
-      iconname = "user-available-symbolic";
-      break;
-    case PresenceType.AWAY:
-    case PresenceType.EXTENDED_AWAY:
-      iconname = "user-away-symbolic";
-      break;
-    case PresenceType.BUSY:
-      iconname = "user-busy-symbolic";
-      break;
-    case PresenceType.HIDDEN:
-      iconname = "user-invisible-symbolic";
-      break;
-    }
-    return iconname;
-  }
-
-  public static string presence_to_icon_symbolic_full (PresenceType presence) {
-    string? iconname = presence_to_icon_symbolic (presence);
-    if (iconname != null)
-      return iconname;
-    return "user-offline-symbolic";
-  }
-
-  public static string presence_to_icon (PresenceType presence) {
-    string? iconname = null;
-    switch (presence) {
-    default:
-    case PresenceType.OFFLINE:
-    case PresenceType.UNSET:
-    case PresenceType.ERROR:
-    case PresenceType.UNKNOWN:
-      break;
-    case PresenceType.AVAILABLE:
-      iconname = "user-available";
-      break;
-    case PresenceType.AWAY:
-    case PresenceType.EXTENDED_AWAY:
-      iconname = "user-away";
-      break;
-    case PresenceType.BUSY:
-      iconname = "user-busy";
-      break;
-    case PresenceType.HIDDEN:
-      iconname = "user-invisible";
-      break;
-    }
-    return iconname;
-  }
-
-  public static string presence_to_icon_full (PresenceType presence) {
-    string? iconname = presence_to_icon (presence);
-    if (iconname != null)
-      return iconname;
-    return "user-offline";
-  }
-
-  public static string presence_to_class (PresenceType presence) {
-    string? classname = null;
-    switch (presence) {
-    default:
-    case PresenceType.HIDDEN:
-    case PresenceType.OFFLINE:
-    case PresenceType.UNSET:
-    case PresenceType.ERROR:
-      classname = "presence-icon-offline";
-      break;
-    case PresenceType.AVAILABLE:
-    case PresenceType.UNKNOWN:
-      classname = "presence-icon-available";
-      break;
-    case PresenceType.AWAY:
-    case PresenceType.EXTENDED_AWAY:
-      classname = "presence-icon-away";
-      break;
-    case PresenceType.BUSY:
-      classname = "presence-icon-busy";
-      break;
-    }
-    return classname;
-  }
-
-  static string? get_first_string (Collection<string>? collection) {
-    if (collection != null) {
-      var i = collection.iterator();
-      if (i.next())
-	return i.get();
-    }
-    return null;
-  }
-
   private static bool has_pref (AbstractFieldDetails details) {
-    if (get_first_string (details.get_parameter_values ("x-evolution-ui-slot")) == "1")
+    var evolution_pref = details.get_parameter_values ("x-evolution-ui-slot");
+    if (evolution_pref != null && Utils.get_first (evolution_pref) == "1")
       return true;
-    foreach (var param in details.parameters.get ("type")) {
+
+    foreach (var param in details.parameters["type"]) {
       if (param.ascii_casecmp ("PREF") == 0)
-	return true;
+        return true;
     }
     return false;
   }
 
-  public static int compare_fields (void *_a, void *_b) {
-    AbstractFieldDetails *a = (AbstractFieldDetails *)_a;
-    AbstractFieldDetails *b = (AbstractFieldDetails *)_b;
+  private static TypeSet select_typeset_from_fielddetails (AbstractFieldDetails a) {
+    if (a is EmailFieldDetails)
+      return TypeSet.email;
+    if (a is PhoneFieldDetails)
+      return TypeSet.phone;
+    return TypeSet.general;
+  }
 
-    /* Compare by pref */
-    bool first_a = has_pref (a);
-    bool first_b = has_pref (b);
-    if (first_a != first_b) {
-      if (first_a)
-	return -1;
-      else
-	return 1;
-    }
+  public static int compare_fields (void* _a, void* _b) {
+    var a = (AbstractFieldDetails) _a;
+    var b = (AbstractFieldDetails) _b;
 
-    if (a is EmailFieldDetails || a is PhoneFieldDetails) {
-      var aa = a as AbstractFieldDetails<string>;
-      var bb = b as AbstractFieldDetails<string>;
+    // Fields with a PREF hint always go first (see VCard PREF attribute)
+    var a_has_pref = has_pref (a);
+    if (a_has_pref != has_pref (b))
+      return (a_has_pref)? -1 : 1;
+
+    // sort by field type first (e.g. "Home", "Work")
+    var type_set = select_typeset_from_fielddetails (a);
+    var result = type_set.format_type (a).ascii_casecmp (type_set.format_type (b));
+    if (result != 0)
+      return result;
+
+    // Try to compare by value if types are equal
+    var aa = a as AbstractFieldDetails<string>;
+    var bb = b as AbstractFieldDetails<string>;
+    if (aa != null && bb != null)
       return strcmp (aa.value, bb.value);
-    }
 
+    // No heuristics to fall back to.
     warning ("Unsupported AbstractFieldDetails value type");
-
     return 0;
   }
 
-  public static ArrayList<T> sort_fields<T> (Collection<T> fields) {
+  public static Gee.List<T> sort_fields<T> (Collection<T> fields) {
     var res = new ArrayList<T>();
     res.add_all (fields);
     res.sort (Contact.compare_fields);
     return res;
-  }
-
-  public static async Place geocode_address (PostalAddress addr) {
-    SourceFunc callback = geocode_address.callback;
-    var params = new HashTable<string, GLib.Value?>(str_hash, str_equal);
-
-    if (is_set (addr.street))
-      params.insert("street", addr.street);
-
-    if (is_set (addr.locality))
-      params.insert("locality", addr.locality);
-
-    if (is_set (addr.region))
-      params.insert("region", addr.region);
-
-    if (is_set (addr.country))
-      params.insert("country", addr.country);
-
-    Place? place = null;
-    var forward = new Forward.for_params (params);
-    forward.search_async.begin (null, (object, res) => {
-        try {
-          var places = forward.search_async.end (res);
-
-          place = places.nth_data (0);
-          callback ();
-        } catch (GLib.Error e) {
-          debug ("No geocode result found for contact");
-          callback ();
-        }
-      });
-    yield;
-    return place;
   }
 
   public static string[] format_address (PostalAddress addr) {
@@ -714,6 +243,7 @@ public class Contacts.Contact : GLib.Object  {
     return lines;
   }
 
+#if HAVE_TELEPATHY
   public Tpf.Persona? find_im_persona (string protocol, string im_address) {
     var iid = protocol + ":" + im_address;
     foreach (var p in individual.personas) {
@@ -724,120 +254,13 @@ public class Contacts.Contact : GLib.Object  {
     }
     return null;
   }
-
-  public enum ImDisplay {
-    DEFAULT,           /* $id ($service) */
-    ALIAS_SERVICE      /* $alias ($service) */
-  }
-
-  private struct ImData {
-    unowned string service;
-    unowned string display_name;
-    ImDisplay display;
-  }
-
-  public static string format_im_service (string service, out ImDisplay display) {
-    const ImData[] data = {
-      { "google-talk", N_("Google Talk") },
-      { "ovi-chat", N_("Ovi Chat") },
-      { "facebook", N_("Facebook"), ImDisplay.ALIAS_SERVICE },
-      { "lj-talk", N_("Livejournal") },
-      { "aim", N_("AOL Instant Messenger") },
-      { "gadugadu", N_("Gadu-Gadu") },
-      { "groupwise", N_("Novell Groupwise") },
-      { "icq", N_("ICQ")},
-      { "irc", N_("IRC")},
-      { "jabber", N_("Jabber")},
-      { "local-xmpp", N_("Local network")},
-      { "msn", N_("Windows Live Messenger")},
-      { "myspace", N_("MySpace")},
-      { "mxit", N_("MXit")},
-      { "napster", N_("Napster")},
-      { "qq", N_("Tencent QQ")},
-      { "sametime", N_("IBM Lotus Sametime")},
-      { "silc", N_("SILC")},
-      { "sip", N_("sip")},
-      { "skype", N_("Skype")},
-      { "tel", N_("Telephony")},
-      { "trepia", N_("Trepia")},
-      { "yahoo", N_("Yahoo! Messenger")},
-      { "yahoojp", N_("Yahoo! Messenger")},
-      { "zephyr", N_("Zephyr")}
-    };
-
-    foreach (var d in data) {
-      if (d.service == service) {
-	display = d.display;
-	return dgettext (Config.GETTEXT_PACKAGE, d.display_name);
-      }
-    }
-
-    display = ImDisplay.DEFAULT;
-    return service;
-  }
-
-  public static string format_im_name (Tpf.Persona? persona,
-				       string protocol, string id) {
-    string? service = null;
-    if (persona != null) {
-      var account = (persona.store as Tpf.PersonaStore).account;
-      service = account.service;
-    }
-    if (service == null || service == "")
-      service = protocol;
-
-    ImDisplay display;
-    var display_name = format_im_service (service, out display);
-
-    switch (display) {
-    default:
-    case ImDisplay.DEFAULT:
-      return id + " (" + display_name + ")";
-    case ImDisplay.ALIAS_SERVICE:
-      return persona.alias + " (" + display_name + ")";
-    }
-  }
-
-  public Widget? create_merged_presence_widget () {
-    return new ContactPresence (this);
-  }
-
-  public Widget? create_presence_widget (string protocol, string im_address) {
-    var tp = find_im_persona (protocol, im_address);
-    if (tp == null)
-      return null;
-
-    var i = new Image ();
-    i.set_from_icon_name (presence_to_icon_full (tp.presence_type), IconSize.MENU);
-    string last_class = Contact.presence_to_class (tp.presence_type);
-    i.get_style_context ().add_class (last_class);
-    i.set_tooltip_text (tp.presence_message);
-
-    var id1 = tp.notify["presence-type"].connect ((pspec) => {
-      i.set_from_icon_name (presence_to_icon_full (tp.presence_type), IconSize.MENU);
-      i.get_style_context ().remove_class (last_class);
-      last_class = Contact.presence_to_class (tp.presence_type);
-      i.get_style_context ().add_class (last_class);
-     });
-    var id2 = tp.notify["presence-message"].connect ( (pspec) => {
-	i.set_tooltip_text (tp.presence_message);
-      });
-    i.destroy.connect (() => {
-	tp.disconnect(id1);
-	tp.disconnect(id2);
-      });
-    return i;
-  }
+#endif
 
   private bool changed_cb () {
-    changed_id = 0;
-    var changed_personas = this.changed_personas;
-    this.changed_personas = false;
+    this.changed_id = 0;
     this.is_main = calc_is_main ();
     update ();
     changed ();
-    if (changed_personas)
-      personas_changed ();
     return false;
   }
 
@@ -848,90 +271,15 @@ public class Contacts.Contact : GLib.Object  {
     }
   }
 
-  public void queue_changed (bool is_persona_change) {
-    _is_hidden_uptodate = false;
-    changed_personas |= is_persona_change;
+  public void queue_changed () {
+    this._is_hidden_uptodate = false;
 
-    if (changed_id != 0)
-      return;
-
-    changed_id = Idle.add (changed_cb);
+    if (this.changed_id == 0)
+      this.changed_id = Idle.add (changed_cb);
   }
 
   private void notify_cb (ParamSpec pspec) {
-    if (pspec.get_name () == "avatar") {
-      _small_avatar = null;
-      _avatar_icon_data = null;
-    }
-    queue_changed (false);
-  }
-
-  private static bool get_is_phone (Persona persona) {
-    var tp = persona as Tpf.Persona;
-    if (tp == null || tp.contact == null)
-      return false;
-
-    unowned string[] types = tp.contact.client_types;
-
-    return (types != null && types[0] == "phone");
-  }
-
-  private void update_presence () {
-    presence_message = null;
-    presence_type = Folks.PresenceType.UNSET;
-    is_phone = false;
-
-    /* Choose the most available presence from our personas */
-    foreach (var p in individual.personas) {
-      if (p is PresenceDetails) {
-	unowned PresenceDetails presence = (PresenceDetails) p;
-	var p_is_phone = get_is_phone (p);
-	if (PresenceDetails.typecmp (presence.presence_type,
-				     presence_type) > 0 ||
-	    (presence.presence_type == presence_type &&
-	     is_phone && !p_is_phone)) {
-	  presence_type = presence.presence_type;
-	  presence_message = presence.presence_message;
-	  is_phone = p_is_phone;
-	}
-      }
-    }
-
-    if (presence_message == null)
-      presence_message = "";
-  }
-
-  private void update_filter_data () {
-    var builder = new StringBuilder ();
-    if (individual.alias != null) {
-      builder.append (Utils.canonicalize_for_search (individual.alias));
-      builder.append_unichar (' ');
-    }
-    if (individual.full_name != null) {
-      builder.append (Utils.canonicalize_for_search (individual.full_name));
-      builder.append_unichar (' ');
-    }
-    if (individual.nickname != null) {
-      builder.append (Utils.canonicalize_for_search (individual.nickname));
-      builder.append_unichar (' ');
-    }
-    var im_addresses = individual.im_addresses;
-    foreach (var detail in im_addresses.get_values ()) {
-      var addr = detail.value;
-      builder.append (addr.casefold ());
-      builder.append_unichar (' ');
-    }
-    var emails = individual.email_addresses;
-    foreach (var email in emails) {
-      builder.append (email.value.casefold ());
-      builder.append_unichar (' ');
-    }
-    var phone_numbers = individual.phone_numbers;
-    foreach (var phone in phone_numbers) {
-      builder.append (phone.value.casefold ());
-      builder.append_unichar (' ');
-    }
-    filter_data = builder.str;
+    queue_changed ();
   }
 
   private void update () {
@@ -942,93 +290,22 @@ public class Contacts.Contact : GLib.Object  {
     foreach (var phone in individual.phone_numbers) {
       TypeSet.phone.type_seen (phone);
     }
-
-    update_presence ();
-    update_filter_data ();
-  }
-
-  // TODO: This should be async, but the vala bindings are broken (bug #649875)
-  private Gdk.Pixbuf load_icon (LoadableIcon ?file, int size) {
-    Gdk.Pixbuf? res = null;
-    if (file != null) {
-      try {
-	Cancellable c = new Cancellable ();
-	var stream = file.load (size, null, c);
-	res = new Gdk.Pixbuf.from_stream_at_scale (stream, size, size, true, c);
-      } catch (GLib.Error e) {
-	warning ("error loading avatar %s\n", e.message);
-      }
-    }
-
-    return res;
-  }
-
-  public static Gdk.Pixbuf frame_icon (Gdk.Pixbuf icon) {
-    int w = icon.get_width ();
-    int h = icon.get_height ();
-    var cst = new Cairo.ImageSurface (Cairo.Format.ARGB32, w, h);
-    var cr = new Cairo.Context (cst);
-
-    cr.set_source_rgba (0, 0, 0, 0);
-    cr.rectangle (0, 0, w, h);
-    cr.fill ();
-
-    Gdk.cairo_set_source_pixbuf (cr, icon, 0, 0);
-    Utils.cairo_rounded_box (cr,
-			     0, 0,
-			     w, h, 4);
-    cr.fill ();
-
-    return Gdk.pixbuf_get_from_surface (cst, 0, 0, w, h);
-  }
-
-  private static Gdk.Pixbuf? fallback_pixbuf_default;
-  public static Gdk.Pixbuf draw_fallback_avatar (int size, Contact? contact) {
-    if (size == SMALL_AVATAR_SIZE && fallback_pixbuf_default != null)
-      return fallback_pixbuf_default;
-
-    Gdk.Pixbuf pixbuf = null;
-    try {
-      var cst = new Cairo.ImageSurface (Cairo.Format.ARGB32, size, size);
-      var cr = new Cairo.Context (cst);
-
-      var pat = new Cairo.Pattern.linear (0, 0, 0, size);
-      pat.add_color_stop_rgb (0, 0.937, 0.937, 0.937);
-      pat.add_color_stop_rgb (1, 0.969, 0.969, 0.969);
-
-      cr.set_source (pat);
-      cr.paint ();
-
-      int avatar_size = (int) (size * 0.3);
-      var icon_info = IconTheme.get_default ().lookup_icon ("avatar-default-symbolic", avatar_size,
-							    IconLookupFlags.GENERIC_FALLBACK);
-      if (icon_info != null) {
-	Gdk.cairo_set_source_pixbuf (cr, icon_info.load_icon (), (size - avatar_size) / 2, (size - avatar_size) / 2);
-	cr.rectangle ((size - avatar_size) / 2, (size - avatar_size) / 2, avatar_size, avatar_size);
-	cr.fill ();
-      }
-      pixbuf = Gdk.pixbuf_get_from_surface (cst, 0, 0, size, size);
-    } catch {
-    }
-
-    if (size == SMALL_AVATAR_SIZE)
-      fallback_pixbuf_default = pixbuf;
-
-    if (pixbuf != null)
-      return pixbuf;
-
-    var cst = new Cairo.ImageSurface (Cairo.Format.ARGB32, size, size);
-    return Gdk.pixbuf_get_from_surface (cst, 0, 0, size, size);
   }
 
   /* We claim something is "removable" if at least one persona is removable,
      that will typically unlink the rest. */
   public bool can_remove_personas () {
     foreach (var p in individual.personas) {
+#if HAVE_TELEPATHY
       if (p.store.can_remove_personas == MaybeBool.TRUE &&
 	  !(p is Tpf.Persona)) {
 	return true;
       }
+#else
+      if (p.store.can_remove_personas == MaybeBool.TRUE) {
+        return true;
+      }
+#endif
     }
     return false;
   }
@@ -1036,10 +313,16 @@ public class Contacts.Contact : GLib.Object  {
   public async void remove_personas () throws Folks.PersonaStoreError {
     var personas = new HashSet<Persona> ();
     foreach (var p in individual.personas) {
+#if HAVE_TELEPATHY
       if (p.store.can_remove_personas == MaybeBool.TRUE &&
 	  !(p is Tpf.Persona)) {
 	personas.add (p);
       }
+#else
+      if (p.store.can_remove_personas == MaybeBool.TRUE) {
+        personas.add (p);
+      }
+#endif
     }
     foreach (var persona in personas)  {
       yield persona.store.remove_persona (persona);
@@ -1072,70 +355,52 @@ public class Contacts.Contact : GLib.Object  {
     return p;
   }
 
-
-  public Persona? find_persona_from_store (PersonaStore store) {
-    foreach (var p in individual.personas) {
-      if (p.store == store)
-	return p;
-    }
-    return null;
-  }
-
   public Gee.List<Persona> get_personas_for_display () {
-    CompareDataFunc<Persona> compare_persona_by_store = (a, b) =>
-    {
-      Persona persona_a = (Persona *)a;
-      Persona persona_b = (Persona *)b;
-      var store_a = persona_a.store;
-      var store_b = persona_b.store;
+    CompareDataFunc<Persona> compare_persona_by_store = (a, b) => {
+        var store_a = a.store;
+        var store_b = b.store;
 
-      if (store_a == store_b) {
-	if (persona_is_google (persona_a)) {
-	  /* Non-other google personas rank before others */
-	  if (persona_is_google_other (persona_a) && !persona_is_google_other (persona_b))
-	    return 1;
-	  if (!persona_is_google_other (persona_a) && persona_is_google_other (persona_b))
-	    return -1;
-	}
+        // In the same store, sort Google 'other' contacts last
+        if (store_a == store_b) {
+          if (!persona_is_google (a))
+            return 0;
 
-	return 0;
-      }
+          var a_is_other = persona_is_google_other (a);
+          if (a_is_other != persona_is_google_other (b))
+            return a_is_other? 1 : -1;
+        }
 
-      if (store_a.is_primary_store && store_b.is_primary_store)
-	return 0;
-      if (store_a.is_primary_store)
-	return -1;
-      if (store_b.is_primary_store)
-	return 1;
+        // Sort primary stores before others
+        if (store_a.is_primary_store != store_b.is_primary_store)
+          return (store_a.is_primary_store)? -1 : 1;
 
-      if (store_a.type_id == "eds" && store_b.type_id == "eds")
-	return strcmp (store_a.id, store_b.id);
-      if (store_a.type_id == "eds")
-	return -1;
-      if (store_b.type_id == "eds")
-	return 1;
+        // E-D-S stores get prioritized
+        if ((store_a.type_id == "eds") != (store_b.type_id == "eds"))
+          return (store_a.type_id == "eds")? -1 : 1;
 
-      return strcmp (store_a.id, store_b.id);
-    };
+        // Normal case: use alphabetical sorting
+        return strcmp (store_a.id, store_b.id);
+      };
 
     var persona_list = new ArrayList<Persona>();
-    int i = 0;
-    persona_list.add_all (individual.personas);
-    while (i < persona_list.size) {
-      if (persona_list[i].store.type_id == "key-file")
-	persona_list.remove_at (i);
-      else
-	i++;
-    }
-    persona_list.sort ((owned) compare_persona_by_store);
+    foreach (var persona in individual.personas)
+      if (persona.store.type_id != "key-file")
+        persona_list.add (persona);
 
+    persona_list.sort ((owned) compare_persona_by_store);
     return persona_list;
   }
 
   public Persona? find_primary_persona () {
-    if (store.aggregator.primary_store == null)
+    var primary_store = store.aggregator.primary_store;
+    if (primary_store == null)
       return null;
-    return find_persona_from_store (store.aggregator.primary_store);
+
+    foreach (var p in individual.personas) {
+      if (p.store == primary_store)
+        return p;
+    }
+    return null;
   }
 
   public Persona? find_persona_from_uid (string uid) {
@@ -1163,14 +428,16 @@ public class Contacts.Contact : GLib.Object  {
 
   public static string format_persona_store_name (PersonaStore store) {
     if (store.type_id == "eds") {
-      unowned string? eds_name = lookup_esource_name_by_uid (store.id);
+      string? eds_name = lookup_esource_name_by_uid (store.id);
       if (eds_name != null)
-	return eds_name;
+        return eds_name;
     }
+#if HAVE_TELEPATHY
     if (store.type_id == "telepathy") {
       var account = (store as Tpf.PersonaStore).account;
-      return format_im_service (account.service, null);
+      return Contacts.ImService.get_display_name (account.service);
     }
+#endif
 
     return store.display_name;
   }
@@ -1213,11 +480,7 @@ public class Contacts.Contact : GLib.Object  {
   }
 
   private static bool persona_is_google (Persona persona) {
-    var store = persona.store;
-
-    if (store.type_id == "eds" && esource_uid_is_google (store.id))
-      return true;
-    return false;
+    return persona.store.type_id == "eds" && esource_uid_is_google (persona.store.id);
   }
 
   /**
@@ -1229,9 +492,7 @@ public class Contacts.Contact : GLib.Object  {
       return false;
 
     var p = persona as Edsf.Persona;
-    if (p != null)
-      return !p.in_google_personal_group;
-    return false;
+    return p != null && !p.in_google_personal_group;
   }
 
   public static bool persona_is_google_profile (Persona persona) {
@@ -1256,58 +517,41 @@ public class Contacts.Contact : GLib.Object  {
       else if (persona_is_google_other (persona))
 	return _("Google");
 
-      unowned string? eds_name = lookup_esource_name_by_uid_for_contact (store.id);
+      string? eds_name = lookup_esource_name_by_uid_for_contact (store.id);
       if (eds_name != null)
-	return eds_name;
+        return eds_name;
     }
+#if HAVE_TELEPATHY
     if (store.type_id == "telepathy") {
       var account = (store as Tpf.PersonaStore).account;
-      return format_im_service (account.service, null);
+      return Contacts.ImService.get_display_name (account.service);
     }
+#endif
 
     return store.display_name;
   }
 
-  public static string[] sorted_properties = { "email-addresses" , "phone-numbers" , "im-addresses", "urls", "nickname", "birthday", "notes", "postal-addresses" };
+  private const string[] SORTED_PROPERTIES = { "email-addresses" , "phone-numbers" , "im-addresses", "urls", "nickname", "birthday", "postal-addresses", "notes" };
 
-  public static string []sort_persona_properties (string [] props) {
-    CompareDataFunc<string> compare_properties = (a, b) =>
-    {
-      var sorted_map = new HashMap<string, int> ();
-      int i = 0;
-      foreach (var p in sorted_properties) {
-	sorted_map.set (p, ++i);
-      }
+  public static string[] sort_persona_properties (string[] props) {
+    CompareDataFunc<string> compare_properties = (a, b) => {
+        foreach (var prop in SORTED_PROPERTIES) {
+          if (a == prop)
+            return (b == prop)? 0 : -1;
 
-      string a_str = (string) a;
-      string b_str = (string) b;
+          if (b == prop)
+            return 1;
+        }
 
-      if (sorted_map.has_key (a_str) && sorted_map.has_key (b_str)) {
-	if (sorted_map[a_str] < sorted_map[b_str])
-	  return -1;
-	if (sorted_map[a_str] > sorted_map[b_str])
-	  return 1;
-	return 0;
-      } else if (sorted_map.has_key (a_str))
-	return -1;
-      else if (sorted_map.has_key (b_str))
-	return 1;
-      else {
-	if (a_str < b_str)
-	  return -1;
-      if (a_str > b_str)
-	return 1;
-      return 0;
-      }
-    };
+        return 0;
+      };
 
     var sorted_props = new ArrayList<string> ();
-    foreach (var s in props) {
+    foreach (var s in props)
       sorted_props.add (s);
-    }
+
     sorted_props.sort ((owned) compare_properties);
     return sorted_props.to_array ();
-
   }
 
   /* Tries to set the property on all persons that have it writeable, and
@@ -1331,18 +575,6 @@ public class Contacts.Contact : GLib.Object  {
       var fake = new FakePersona (contact);
       return yield fake.make_real_and_set (property_name, value);
     }
-    return null;
-  }
-
-  public Account? is_callable (string proto, string id) {
-    Tpf.Persona? t_persona = this.find_im_persona (proto, id);
-    if (t_persona != null && t_persona.contact != null) {
-      unowned TelepathyGLib.Capabilities caps =
-      t_persona.contact.get_capabilities ();
-      if (caps.supports_audio_call (TelepathyGLib.HandleType.CONTACT))
-	      return (t_persona.store as Tpf.PersonaStore).account;
-    }
-
     return null;
   }
 
@@ -1431,6 +663,7 @@ public class Contacts.Contact : GLib.Object  {
     w.destroy.connect (() => { this.disconnect (id); });
   }
 
+#if HAVE_TELEPATHY
   public void fetch_contact_info () {
     /* TODO: Ideally Folks should have API for this (#675131) */
     foreach (var p in individual.personas) {
@@ -1440,6 +673,7 @@ public class Contacts.Contact : GLib.Object  {
       }
     }
   }
+#endif
 }
 
 public class Contacts.FakePersonaStore : PersonaStore {
@@ -1534,7 +768,7 @@ public class Contacts.FakePersona : Persona {
       prop_vals.add (v);
       Persona p = yield contact.ensure_primary_persona ();
       if (!has_full_name)
-	p.set ("full-name", contact.display_name);
+	p.set ("full-name", contact.individual.display_name);
       foreach (var pv in prop_vals) {
 	yield Contact.set_persona_property (p, pv.property, pv.value);
       }

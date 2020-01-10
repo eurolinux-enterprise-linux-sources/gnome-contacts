@@ -24,7 +24,7 @@ public class Contacts.AddressEditor : Box {
   public Entry? entries[7];  /* must be the number of elements in postal_element_props */
   public PostalAddressFieldDetails details;
 
-  public static const string[] postal_element_props = {"street", "extension", "locality", "region", "postal_code", "po_box", "country"};
+  public const string[] postal_element_props = {"street", "extension", "locality", "region", "postal_code", "po_box", "country"};
   public static string[] postal_element_names = {_("Street"), _("Extension"), _("City"), _("State/Province"), _("Zip/Postal Code"), _("PO box"), _("Country")};
 
   public signal void changed ();
@@ -46,7 +46,6 @@ public class Contacts.AddressEditor : Box {
       if (postal_part != null)
 	entries[i].set_text (postal_part);
 
-      entries[i].get_style_context ().add_class ("contacts-entry");
       entries[i].get_style_context ().add_class ("contacts-postal-entry");
       add (entries[i]);
 
@@ -61,14 +60,35 @@ public class Contacts.AddressEditor : Box {
   }
 }
 
+[GtkTemplate (ui = "/org/gnome/Contacts/ui/contacts-contact-editor.ui")]
 public class Contacts.ContactEditor : Grid {
-  Contact contact;
 
-  Grid container_grid;
-  weak Widget focus_widget;
+  private const string[] DEFAULT_PROPS_NEW_CONTACT = {
+    "email-addresses.personal",
+    "phone-numbers.cell",
+    "postal-addresses.home"
+  };
 
+  private Contact contact;
+
+  [GtkChild]
+  private Grid container_grid;
+  private weak Widget focus_widget;
+
+  private Entry name_entry;
+
+  private Avatar avatar;
+
+  [GtkChild]
+  private ScrolledWindow main_sw;
+
+  [GtkChild]
+  private MenuButton add_detail_button;
+
+  [GtkChild]
   public Button linked_button;
 
+  [GtkChild]
   public Button remove_button;
 
   public struct PropertyData {
@@ -77,7 +97,7 @@ public class Contacts.ContactEditor : Grid {
   }
 
   struct RowData {
-    AbstractFieldDetails<string> details;
+    AbstractFieldDetails details;
   }
 
   struct Field {
@@ -357,7 +377,6 @@ public class Contacts.ContactEditor : Grid {
     var value_text = new TextView ();
     value_text.get_buffer ().set_text (value);
     value_text.set_hexpand (true);
-    value_text.get_style_context ().add_class ("contacts-entry");
     sw.add (value_text);
     container_grid.attach (sw, 1, row, 1, 1);
 
@@ -368,7 +387,7 @@ public class Contacts.ContactEditor : Grid {
 
     /* Notify change to upper layer */
     value_text.get_buffer ().changed.connect (() => {
-	set_field_changed (get_current_row (value_text));
+	set_field_changed (get_current_row (sw));
       });
     delete_button.clicked.connect (() => {
 	remove_row (get_current_row (delete_button));
@@ -396,22 +415,14 @@ public class Contacts.ContactEditor : Grid {
     day_spin.numeric = true;
     day_spin.set_value ((double)birthday.to_local ().get_day_of_month ());
 
-    var combo = new ComboBoxText ();
-    combo.append_text (_("January"));
-    combo.append_text (_("February"));
-    combo.append_text (_("March"));
-    combo.append_text (_("April"));
-    combo.append_text (_("May"));
-    combo.append_text (_("June"));
-    combo.append_text (_("July"));
-    combo.append_text (_("August"));
-    combo.append_text (_("September"));
-    combo.append_text (_("October"));
-    combo.append_text (_("November"));
-    combo.append_text (_("December"));
-    combo.set_active (birthday.to_local ().get_month () - 1);
-    combo.get_style_context ().add_class ("contacts-combo");
-    combo.set_hexpand (true);
+    var month_combo = new ComboBoxText ();
+    var january = new DateTime.local (1, 1, 1, 1, 1, 1);
+    for (int i = 0; i < 12; i++) {
+        var month = january.add_months (i);
+        month_combo.append_text (month.format ("%B"));
+    }
+    month_combo.set_active (birthday.to_local ().get_month () - 1);
+    month_combo.hexpand = true;
 
     var year_spin = new SpinButton.with_range (1800, 3000, 1);
     year_spin.set_digits (0);
@@ -419,7 +430,7 @@ public class Contacts.ContactEditor : Grid {
     year_spin.set_value ((double)birthday.to_local ().get_year ());
 
     box.add (day_spin);
-    box.add (combo);
+    box.add (month_combo);
     box.add (year_spin);
 
     container_grid.attach (box, 1, row, 1, 1);
@@ -430,36 +441,36 @@ public class Contacts.ContactEditor : Grid {
 
     AdjustingDateFn fn = () => {
       int[] month_of_31 = {3, 5, 8, 10};
-      if (combo.get_active () in month_of_31) {
-	day_spin.set_range (1, 30);
-      } else if (combo.get_active () == 1) {
-	if (year_spin.get_value_as_int () % 4 == 0 &&
-	    year_spin.get_value_as_int () % 100 != 0) {
-	  day_spin.set_range (1, 29);
-	} else {
-	  day_spin.set_range (1, 28);
-	}
+      if (month_combo.get_active () in month_of_31) {
+        day_spin.set_range (1, 30);
+      } else if (month_combo.get_active () == 1) {
+        if (year_spin.get_value_as_int () % 4 == 0 &&
+            year_spin.get_value_as_int () % 100 != 0) {
+          day_spin.set_range (1, 29);
+        } else {
+          day_spin.set_range (1, 28);
+        }
       }
     };
 
     /* Notify change to upper layer */
     day_spin.changed.connect (() => {
-	set_field_changed (get_current_row (day_spin));
+        set_field_changed (get_current_row (day_spin));
       });
-    combo.changed.connect (() => {
-	set_field_changed (get_current_row (combo));
+    month_combo.changed.connect (() => {
+        set_field_changed (get_current_row (month_combo));
 
-	/* adjusting day_spin value using selected month constraints*/
-	fn ();
+        /* adjusting day_spin value using selected month constraints*/
+        fn ();
       });
     year_spin.changed.connect (() => {
-	set_field_changed (get_current_row (year_spin));
+        set_field_changed (get_current_row (year_spin));
 
-	fn ();
+        fn ();
       });
     delete_button.clicked.connect (() => {
-	remove_row (get_current_row (delete_button));
-	has_birthday_row = false;
+        remove_row (get_current_row (delete_button));
+        has_birthday_row = false;
       });
   }
 
@@ -742,7 +753,8 @@ public class Contacts.ContactEditor : Grid {
     container_grid.insert_row (idx);
   }
 
-  void size_allocate_cb (Allocation alloc) {
+  [GtkCallback]
+  private void on_container_grid_size_allocate (Allocation alloc) {
     if (focus_widget != null &&
         focus_widget is Widget) {
       focus_widget.grab_focus ();
@@ -751,71 +763,20 @@ public class Contacts.ContactEditor : Grid {
   }
 
   public ContactEditor (SimpleActionGroup editor_actions) {
-    set_orientation (Orientation.VERTICAL);
+    this.container_grid.set_focus_vadjustment (this.main_sw.get_vadjustment ());
 
-    var main_sw = new ScrolledWindow (null, null);
-    add (main_sw);
+    this.main_sw.get_style_context ().add_class ("contacts-main-view");
+    this.main_sw.get_style_context ().add_class ("view");
 
-    main_sw.set_shadow_type (ShadowType.NONE);
-    main_sw.set_hexpand (true);
-    main_sw.set_vexpand (true);
-    main_sw.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
+    this.add_detail_button.get_popover ().insert_action_group ("edit", editor_actions);
 
-    var hcenter = new Center ();
-    hcenter.max_width = 600;
-    hcenter.xalign = 0.0;
-
-    container_grid = new Grid ();
-    container_grid.set_row_spacing (12);
-    container_grid.set_column_spacing (12);
-    container_grid.set_vexpand (true);
-    container_grid.set_hexpand (true);
-    container_grid.margin = 36;
-    container_grid.set_margin_bottom (24);
-
-    hcenter.add (container_grid);
-    main_sw.add (hcenter);
-    container_grid.set_focus_vadjustment (main_sw.get_vadjustment ());
-
-    main_sw.get_child ().get_style_context ().add_class ("contacts-main-view");
-    main_sw.get_child ().get_style_context ().add_class ("view");
-
-    var edit_toolbar = new ActionBar ();
-
-    var builder = load_ui ("app-menu.ui");
-    var gmenu = builder.get_object ("edit-contact") as MenuModel;
-
-    var add_detail_button = new Gtk.MenuButton ();
-    add_detail_button.use_popover = true;
-    add_detail_button.set_menu_model (gmenu);
-    add_detail_button.set_direction (ArrowType.UP);
-    add_detail_button.get_popover ().insert_action_group ("edit", editor_actions);
-
-    var box = new Box (Orientation.HORIZONTAL, 6);
-    box.add (new Label (_("New Detail")));
-    box.add (new Image.from_icon_name ("go-down-symbolic", IconSize.BUTTON));
-    add_detail_button.add (box);
-
-    edit_toolbar.pack_start (add_detail_button);
-
-    linked_button = new Button.with_label (_("Linked Accounts"));
-    edit_toolbar.pack_start (linked_button);
-
-    remove_button = new Button.with_label (_("Remove Contact"));
-    edit_toolbar.pack_end (remove_button);
-
-    edit_toolbar.show_all ();
-    add (edit_toolbar);
-
-    container_grid.show_all ();
-    main_sw.show ();
-    show_all ();
-
-    writable_personas = new HashMap<string, HashMap<string, Field?> > ();
-
-    container_grid.size_allocate.connect_after (size_allocate_cb);
+    this.writable_personas = new HashMap<string, HashMap<string, Field?>> ();
   }
 
+  /**
+   * Adjusts the ContactEditor to the given contact.
+   * Use clear() to make sure nothing is lingering from the previous one.
+   */
   public void edit (Contact c) {
     contact = c;
 
@@ -824,48 +785,8 @@ public class Contacts.ContactEditor : Grid {
     linked_button.show ();
     linked_button.sensitive = contact.individual.personas.size > 1;
 
-    var image_frame = new ContactFrame (PROFILE_SIZE, true);
-    image_frame.set_vexpand (false);
-    image_frame.set_valign (Align.START);
-    (image_frame.get_child () as Button).set_relief (ReliefStyle.NORMAL);
-    image_frame.clicked.connect ( () => {
-	var dialog = new AvatarDialog (contact);
-	dialog.set_avatar.connect ( (icon) =>  {
-	    image_frame.set_data ("value", icon);
-	    image_frame.set_data ("changed", true);
-
-	    Gdk.Pixbuf? a_pixbuf = null;
-	    try {
-	      var stream = (icon as LoadableIcon).load (PROFILE_SIZE, null);
-	      a_pixbuf = new Gdk.Pixbuf.from_stream_at_scale (stream,
-							      PROFILE_SIZE,
-							      PROFILE_SIZE,
-							      true);
-	    }
-	    catch {
-	    }
-
-	    image_frame.set_pixbuf (a_pixbuf);
-	  });
-	dialog.show ();
-      });
-    c.keep_widget_uptodate (image_frame,  (w) => {
-	(w as ContactFrame).set_image (c.individual, c);
-      });
-    container_grid.attach (image_frame,  0, 0, 1, 3);
-
-    var name_entry = new Entry ();
-    name_entry.set_hexpand (true);
-    name_entry.set_valign (Align.CENTER);
-    name_entry.set_text (c.display_name);
-    name_entry.set_data ("changed", false);
-    name_entry.placeholder_text = _("Add name");
-    container_grid.attach (name_entry,  1, 0, 3, 3);
-
-    /* structured name change */
-    name_entry.changed.connect (() => {
-  	name_entry.set_data ("changed", true);
-      });
+    create_avatar_button ();
+    create_name_entry ();
 
     int i = 3;
     int last_store_position = 0;
@@ -905,6 +826,27 @@ public class Contacts.ContactEditor : Grid {
 	container_grid.get_child_at (0, i).destroy ();
       }
     }
+  }
+
+  /**
+   * Adjusts the ContactEditor for a new contact.
+   * Use clear() to make sure nothing is lingering from the previous one.
+   */
+  public void set_new_contact () {
+    remove_button.hide ();
+    linked_button.hide ();
+
+    create_avatar_button ();
+    create_name_entry ();
+    this.last_row = 2;
+
+    writable_personas["null-persona.hack"] = new HashMap<string, Field?> ();
+    foreach (var prop in DEFAULT_PROPS_NEW_CONTACT) {
+      var tok = prop.split (".");
+      add_new_row_for_property (null, tok[0], tok[1].up ());
+    }
+
+    this.focus_widget = this.name_entry;
   }
 
   public void clear () {
@@ -968,31 +910,6 @@ public class Contacts.ContactEditor : Grid {
     return props_set;
   }
 
-  public bool name_changed () {
-    var name_entry = container_grid.get_child_at (1, 0) as Entry;
-    return name_entry.get_data<bool> ("changed");
-  }
-
-  public Value get_full_name_value () {
-    Value v = Value (typeof (string));
-    var name_entry = container_grid.get_child_at (1, 0) as Entry;
-    v.set_string (name_entry.get_text ());
-    return v;
-  }
-
-  public bool avatar_changed () {
-    var image_frame = container_grid.get_child_at (0, 0) as ContactFrame;
-    return image_frame.get_data<bool> ("changed");
-  }
-
-  public Value get_avatar_value () {
-    var image_frame = container_grid.get_child_at (0, 0) as ContactFrame;
-    GLib.Icon icon = image_frame.get_data<GLib.Icon> ("value");
-    Value v = Value (icon.get_type ());
-    v.set_object (icon);
-    return v;
-  }
-
   public void add_new_row_for_property (Persona? p, string prop_name, string? type = null) {
     /* Somehow, I need to ensure that p is the main/default/first persona */
     Persona persona = null;
@@ -1023,62 +940,74 @@ public class Contacts.ContactEditor : Grid {
     container_grid.show_all ();
   }
 
-  public void set_new_contact () {
-    remove_button.hide ();
-    linked_button.hide ();
+  // Creates the contact's current avatar in a big button on top of the Editor
+  private void create_avatar_button () {
+    this.avatar = new Avatar (PROFILE_SIZE, this.contact);
 
-    var image_frame = new ContactFrame (PROFILE_SIZE, true);
-    image_frame.set_vexpand (false);
-    image_frame.set_valign (Align.START);
-    image_frame.set_image (null, null);
-    (image_frame.get_child () as Button).set_relief (ReliefStyle.NORMAL);
-    image_frame.clicked.connect ( () => {
-	var dialog = new AvatarDialog (null);
-	dialog.set_avatar.connect ( (icon) =>  {
-	    image_frame.set_data ("value", icon);
-	    image_frame.set_data ("changed", true);
+    var button = new Button ();
+    button.get_accessible ().set_name (_("Change avatar"));
+    button.image = this.avatar;
+    button.clicked.connect (on_avatar_button_clicked);
 
-	    Gdk.Pixbuf? a_pixbuf = null;
-	    try {
-	      var stream = (icon as LoadableIcon).load (PROFILE_SIZE, null);
-	      a_pixbuf = new Gdk.Pixbuf.from_stream_at_scale (stream,
-							      PROFILE_SIZE,
-							      PROFILE_SIZE,
-							      true);
-	    }
-	    catch {
-	    }
+    this.container_grid.attach (button, 0, 0, 1, 3);
+  }
 
-	    image_frame.set_pixbuf (a_pixbuf);
-	  });
-	dialog.show ();
+  // Show the avatar dialog when the avatar is clicked
+  private void on_avatar_button_clicked (Button avatar_button) {
+    var dialog = new AvatarSelector ((Window) get_toplevel (), this.contact);
+    dialog.set_avatar.connect ( (icon) =>  {
+        this.avatar.set_data ("value", icon);
+        this.avatar.set_data ("changed", true);
+
+        Gdk.Pixbuf? a_pixbuf = null;
+        try {
+          var stream = (icon as LoadableIcon).load (PROFILE_SIZE, null);
+          a_pixbuf = new Gdk.Pixbuf.from_stream_at_scale (stream, PROFILE_SIZE, PROFILE_SIZE, true);
+        } catch {
+        }
+
+        this.avatar.set_pixbuf (a_pixbuf);
       });
-    container_grid.attach (image_frame,  0, 0, 1, 3);
+    dialog.run ();
+  }
 
-    var name_entry = new Entry ();
-    name_entry.set_hexpand (true);
-    name_entry.set_valign (Align.CENTER);
-    name_entry.set_data ("changed", false);
-    name_entry.placeholder_text = _("Add name");
-    container_grid.attach (name_entry,  1, 0, 3, 3);
+  public bool avatar_changed () {
+    return this.avatar.get_data<bool> ("changed");
+  }
+
+  public Value get_avatar_value () {
+    GLib.Icon icon = this.avatar.get_data<GLib.Icon> ("value");
+    Value v = Value (icon.get_type ());
+    v.set_object (icon);
+    return v;
+  }
+
+  // Creates the big name entry on the top
+  private void create_name_entry () {
+    this.name_entry = new Entry ();
+    this.name_entry.hexpand = true;
+    this.name_entry.valign = Align.CENTER;
+    this.name_entry.placeholder_text = _("Add name");
+    this.name_entry.set_data ("changed", false);
+
+    if (this.contact != null)
+        this.name_entry.text = this.contact.individual.display_name;
 
     /* structured name change */
-    name_entry.changed.connect (() => {
-	name_entry.set_data ("changed", true);
+    this.name_entry.changed.connect (() => {
+        this.name_entry.set_data ("changed", true);
       });
 
-    last_row = 2;
-    string[] rw_props = {
-      "email-addresses.personal",
-      "phone-numbers.cell",
-      "postal-addresses.home" };
-    writable_personas.set ("null-persona.hack",
-			   new HashMap<string, Field?> ());
-    foreach (var prop in rw_props) {
-      var tok = prop.split (".");
-      add_new_row_for_property (null, tok[0], tok[1].up ());
-    }
+    this.container_grid.attach (this.name_entry, 1, 0, 3, 3);
+  }
 
-    focus_widget = name_entry;
+  public bool name_changed () {
+    return this.name_entry.get_data<bool> ("changed");
+  }
+
+  public Value get_full_name_value () {
+    Value v = Value (typeof (string));
+    v.set_string (this.name_entry.get_text ());
+    return v;
   }
 }

@@ -1,4 +1,3 @@
-/* -*- Mode: vala; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 8 -*- */
 /*
  * Copyright (C) 2011 Alexander Larsson <alexl@redhat.com>
  *
@@ -20,16 +19,72 @@ using Gtk;
 using Folks;
 
 public class Contacts.App : Gtk.Application {
-  public static App app;
-  public GLib.Settings settings;
+  private Settings settings;
 
-  /* moving creation to Window */
-  public Store contacts_store;
+  private Store contacts_store;
 
-  public Contacts.Window window;
+  private Window window;
 
   private bool is_prepare_scheluded = false;
   private bool is_quiescent_scheduled = false;
+
+  private const GLib.ActionEntry[] action_entries = {
+    { "quit",        quit                },
+    { "help",        show_help           },
+    { "about",       show_about          },
+    { "change-book", change_address_book },
+    { "new-contact", new_contact         }
+  };
+
+  private const OptionEntry[] options = {
+    { "individual",  'i', 0, OptionArg.STRING, null, N_("Show contact with this individual id") },
+    { "email",       'e', 0, OptionArg.STRING, null, N_("Show contact with this email address") },
+    { "search",      's', 0, OptionArg.STRING                                                   },
+    { "version",     'v', 0, OptionArg.NONE,   null, N_("Show the current version of Contacts") },
+    {}
+  };
+
+  public App () {
+    Object (
+      application_id: "org.gnome.Contacts",
+      flags: ApplicationFlags.HANDLES_COMMAND_LINE
+    );
+
+    this.settings = new Settings (this);
+    add_main_option_entries (options);
+	create_actions ();
+  }
+
+  public override int command_line (ApplicationCommandLine command_line) {
+    var options = command_line.get_options_dict ();
+
+    activate ();
+
+    if ("individual" in options) {
+      var individual = options.lookup_value ("individual", VariantType.STRING);
+      if (individual != null)
+        show_individual.begin (individual.get_string ());
+    } else if ("email" in options) {
+      var email = options.lookup_value ("email", VariantType.STRING);
+      if (email != null)
+        show_by_email.begin (email.get_string ());
+    } else if ("search" in options) {
+      var search_term = options.lookup_value ("search", VariantType.STRING);
+      if (search_term != null)
+        show_search (search_term.get_string ());
+    }
+
+    return 0;
+  }
+
+  public override int handle_local_options (VariantDict options) {
+    if ("version" in options) {
+      stdout.printf ("gnome-contacts %s\n", Config.PACKAGE_VERSION);
+      return 0;
+    }
+
+    return -1;
+  }
 
   public void show_contact (Contact? contact) {
     window.set_shown_contact (contact);
@@ -42,7 +97,7 @@ public class Contacts.App : Gtk.Application {
     if (contact != null) {
       show_contact (contact);
     } else {
-      var dialog = new MessageDialog (App.app.window, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.CLOSE,
+      var dialog = new MessageDialog (this.window, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.CLOSE,
                                       _("No contact with id %s found"), id);
       dialog.set_title(_("Contact not found"));
       dialog.show ();
@@ -72,7 +127,7 @@ public class Contacts.App : Gtk.Application {
     (dialog.get_content_area () as Box).add (explanation_label);
     (dialog.get_content_area () as Box).set_spacing (12);
 
-    var acc = new AccountsList ();
+    var acc = new AccountsList (this.contacts_store);
     acc.update_contents (true);
 
     ulong active_button_once = 0;
@@ -106,9 +161,7 @@ public class Contacts.App : Gtk.Application {
 
   public void show_help () {
     try {
-      Gtk.show_uri (window.get_screen (),
-		    "help:gnome-help/contacts",
-		    Gtk.get_current_event_time ());
+      Gtk.show_uri_on_window (window, "help:gnome-help/contacts", Gtk.get_current_event_time ());
     } catch (GLib.Error e1) {
       warning ("Error showing help: %s", e1.message);
     }
@@ -117,7 +170,8 @@ public class Contacts.App : Gtk.Application {
   public void show_about () {
     string[] authors = {
       "Alexander Larsson <alexl@redhat.com>",
-      "Erick Pérez Castellanos <erick.red@gmail.com>"
+      "Erick Pérez Castellanos <erick.red@gmail.com>",
+      "Niels De Graef <nielsdegraef@gmail.com>"
     };
     string[] artists = {
       "Allan Day <allanpday@gmail.com>"
@@ -131,7 +185,7 @@ public class Contacts.App : Gtk.Application {
                            "comments", _("Contact Management Application"),
                            "copyright", "Copyright 2011 Red Hat, Inc.\nCopyright 2014 The Contacts Developers",
                            "license-type", Gtk.License.GPL_2_0,
-                           "logo-icon-name", "x-office-address-book",
+                           "logo-icon-name", "gnome-contacts",
                            "version", Config.PACKAGE_VERSION,
                            "website", "https://wiki.gnome.org/Apps/Contacts",
                            "wrap-license", true);
@@ -144,7 +198,7 @@ public class Contacts.App : Gtk.Application {
     if (contact != null) {
       show_contact (contact);
     } else {
-      var dialog = new MessageDialog (App.app.window, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.CLOSE,
+      var dialog = new MessageDialog (this.window, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.CLOSE,
                                       _("No contact with email address %s found"), email_address);
       dialog.set_title(_("Contact not found"));
       dialog.show ();
@@ -164,35 +218,15 @@ public class Contacts.App : Gtk.Application {
     }
   }
 
-  private void create_app_menu () {
-    var action = new GLib.SimpleAction ("quit", null);
-    action.activate.connect (() => { this.quit (); });
-    this.add_action (action);
+  private void create_actions () {
+    this.add_action_entries (action_entries, this);
 
-    action = new GLib.SimpleAction ("help", null);
-    action.activate.connect (() => { show_help (); });
-    this.add_action (action);
-    this.add_accelerator ("F1", "app.help", null);
-
-    action = new GLib.SimpleAction ("about", null);
-    action.activate.connect (() => { show_about (); });
-    this.add_action (action);
-
-    action = new GLib.SimpleAction ("change_book", null);
-    action.activate.connect (() => { change_address_book (); });
-    this.add_action (action);
-
-    action = new GLib.SimpleAction ("new_contact", null);
-    action.activate.connect (() => { new_contact (); });
-    this.add_action (action);
-    this.add_accelerator ("<Primary>n", "app.new_contact", null);
-
-    var builder = load_ui ("app-menu.ui");
-    set_app_menu ((MenuModel)builder.get_object ("app-menu"));
+    this.set_accels_for_action ("app.help", {"F1"});
+    this.set_accels_for_action ("app.new-contact", {"<Primary>n"});
   }
 
   private void create_window () {
-    window = new Contacts.Window (this, contacts_store);
+    this.window = new Contacts.Window (this.settings, this, this.contacts_store);
   }
 
   private void schedule_window_creation () {
@@ -204,7 +238,6 @@ public class Contacts.App : Gtk.Application {
 	contacts_store.disconnect (id);
 	Source.remove (id2);
 
-	create_app_menu ();
 	create_window ();
 	window.show ();
 
@@ -216,7 +249,6 @@ public class Contacts.App : Gtk.Application {
     id2 = Timeout.add (500, () => {
 	contacts_store.disconnect (id);
 
-	create_app_menu ();
 	create_window ();
 	window.show ();
 
@@ -257,32 +289,62 @@ public class Contacts.App : Gtk.Application {
     if (!ensure_eds_accounts (true))
       quit ();
 
-    contacts_store = new Store ();
+    this.contacts_store = new Store ();
     base.startup ();
 
-    var css_provider = load_css ("style.css");
-    Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default(),
-					      css_provider,
-					      Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+    load_styling ();
+  }
 
+  public void load_styling () {
+    var provider = new Gtk.CssProvider ();
+    provider.load_from_resource ("/org/gnome/Contacts/ui/style.css");
+    StyleContext.add_provider_for_screen (Gdk.Screen.get_default(),
+                                          provider,
+                                          Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
   }
 
   public override void activate () {
+    // Check if we've already done the setup process
+    if (this.settings.did_initial_setup)
+      create_new_window ();
+    else
+      run_setup ();
+  }
+
+  private void run_setup () {
+    // Disable the change-book action (don't want the user to do that during setup)
+    var change_book_action = lookup_action ("change-book") as SimpleAction;
+    change_book_action.set_enabled (false);
+
+    // Create and show the setup window
+    var setup_window = new SetupWindow (this, this.contacts_store);
+    setup_window.setup_done.connect ( (selected_store) => {
+        setup_window.destroy ();
+
+        eds_source_registry.set_default_address_book (selected_store.source);
+        this.settings.did_initial_setup = true;
+
+        change_book_action.set_enabled (true); // re-enable change-book action
+        create_new_window ();
+      });
+    setup_window.show ();
+  }
+
+  private void create_new_window () {
     /* window creation code */
     if (window == null) {
-      if (!contacts_store.is_prepared) {
+      if (!this.contacts_store.is_prepared) {
 	if (!is_prepare_scheluded) {
 	  schedule_window_creation ();
 	  return;
 	}
       }
 
-      create_app_menu ();
       create_window ();
       window.show ();
     }
 
-    if (contacts_store.is_quiescent) {
+    if (this.contacts_store.is_quiescent) {
       debug ("callign set_list_pane cause store is already quiescent");
       window.set_list_pane ();
     } else if (!is_quiescent_scheduled) {
@@ -293,84 +355,7 @@ public class Contacts.App : Gtk.Application {
       window.present ();
   }
 
-  public void show_message (string message) {
-    var notification = new Gd.Notification ();
-    notification.timeout = 5;
-
-    var g = new Grid ();
-    g.set_column_spacing (8);
-    var l = new Label (message);
-    l.set_line_wrap (true);
-    l.set_line_wrap_mode (Pango.WrapMode.WORD_CHAR);
-    notification.add (l);
-
-    notification.show_all ();
-    window.add_notification (notification);
-  }
-
   public void new_contact () {
     window.new_contact ();
-  }
-
-  private static string individual_id = null;
-  private static string email_address = null;
-  private static string search_terms = null;
-  private static const OptionEntry[] options = {
-    { "individual", 'i', 0, OptionArg.STRING, ref individual_id,
-      N_("Show contact with this individual id"), null },
-    { "email", 'e', 0, OptionArg.STRING, ref email_address,
-      N_("Show contact with this email address"), null },
-    { "search", 's', 0, OptionArg.STRING, ref search_terms,
-      null, null },
-    { null }
-  };
-
-  public override int command_line (ApplicationCommandLine command_line) {
-    var args = command_line.get_arguments ();
-    unowned string[] _args = args;
-    var context = new OptionContext (N_("— contact management"));
-    context.add_main_entries (options, Config.GETTEXT_PACKAGE);
-    context.set_translation_domain (Config.GETTEXT_PACKAGE);
-    context.add_group (Gtk.get_option_group (true));
-
-    individual_id = null;
-    email_address = null;
-    search_terms = null;
-
-    try {
-      context.parse (ref _args);
-    } catch (Error e) {
-      printerr ("Unable to parse: %s\n", e.message);
-      return 1;
-    }
-
-    activate ();
-
-    if (individual_id != null)
-      app.show_individual.begin (individual_id);
-    if (email_address != null)
-      app.show_by_email.begin (email_address);
-    if (search_terms != null)
-      app.show_search (search_terms);
-
-    return 0;
-  }
-
-  public static PersonaStore[] get_eds_address_books () {
-    PersonaStore[] stores = {};
-    foreach (var backend in app.contacts_store.backend_store.enabled_backends.values) {
-      foreach (var persona_store in backend.persona_stores.values) {
-        if (persona_store.type_id == "eds") {
-          stores += persona_store;
-        }
-      }
-    }
-    return stores;
-  }
-
-  public App () {
-    Object (application_id: "org.gnome.Contacts", flags: ApplicationFlags.HANDLES_COMMAND_LINE);
-    app = this;
-    settings = new GLib.Settings ("org.gnome.Contacts");
   }
 }

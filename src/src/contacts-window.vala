@@ -1,4 +1,3 @@
-/* -*- Mode: vala; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 8 -*- */
 /*
  * Copyright (C) 2011 Alexander Larsson <alexl@redhat.com>
  *
@@ -20,26 +19,33 @@ using Gee;
 using Gtk;
 using Folks;
 
-[GtkTemplate (ui = "/org/gnome/contacts/ui/contacts-window.ui")]
+[GtkTemplate (ui = "/org/gnome/Contacts/ui/contacts-window.ui")]
 public class Contacts.Window : Gtk.ApplicationWindow {
   [GtkChild]
   private Grid content_grid;
+  [GtkChild]
+  private Container contact_pane_container;
   [GtkChild]
   private Grid loading_box;
   [GtkChild]
   private SizeGroup left_pane_size_group;
   [GtkChild]
-  private HeaderBar left_toolbar;
+  private HeaderBar left_header;
   [GtkChild]
-  private HeaderBar right_toolbar;
+  private HeaderBar right_header;
   [GtkChild]
-  private Overlay overlay;
-  [GtkChild]
-  private ContactPane contact_pane;
+  private Overlay notification_overlay;
   [GtkChild]
   private Button add_button;
   [GtkChild]
-  private ToggleButton select_button;
+  private Button select_cancel_button;
+  [GtkChild]
+  private MenuButton hamburger_menu_button;
+  [GtkChild]
+  private RadioButton sort_on_surname_button;
+  [GtkChild]
+  private ToggleButton favorite_button;
+  private bool ignore_favorite_button_toggled;
   [GtkChild]
   private Button edit_button;
   [GtkChild]
@@ -47,139 +53,108 @@ public class Contacts.Window : Gtk.ApplicationWindow {
   [GtkChild]
   private Button done_button;
 
-  [GtkChild]
-  private Stack view_switcher;
-
-  [GtkChild]
-  private Grid  content_header_bar;
-
-  [GtkChild]
-  private HeaderBar setup_header_bar;
-  [GtkChild]
-  private Button setup_done_button;
-  [GtkChild]
-  private Button setup_cancel_button;
-  [GtkChild]
-  private AccountsList setup_accounts_list;
-
+  // The 2 panes the window consists of
   private ListPane list_pane;
+  private ContactPane contact_pane;
 
-  private string left_title {
-    get {
-      return left_toolbar.get_title ();
-    }
-    set {
-      left_toolbar.set_title (value);
-    }
-  }
+  public UiState state { get; set; default = UiState.NORMAL; }
 
-  private string right_title {
-    get {
-      return right_toolbar.get_title ();
-    }
-    set {
-      right_toolbar.set_title (value);
-    }
-  }
+  /** Holds the current width. */
+  public int window_width { get; set; }
+  private const string WINDOW_WIDTH_PROP = "window-width";
 
-  private bool new_contact_mode = false;
+  /** Holds the current height. */
+  public int window_height { get; set; }
+  private const string WINDOW_HEIGHT_PROP = "window-height";
+
+  /** Holds true if the window is currently maximized. */
+  public bool window_maximized { get; set; }
+  private const string WINDOW_MAXIMIZED_PROP = "window-maximized";
+
+  private Settings settings;
 
   public Store store {
     get; construct set;
   }
 
-  public bool selection_mode {
-    get; set;
+  public Window (Settings settings, App app, Store contacts_store) {
+    Object (
+      application: app,
+      show_menubar: false,
+      store: contacts_store
+    );
+
+    this.settings = settings;
+    this.sort_on_surname_button.active = this.settings.sort_on_surname;
+    this.sort_on_surname_button.toggled.connect (() => {
+        this.settings.sort_on_surname = this.sort_on_surname_button.active;
+      });
+
+    this.notify["state"].connect (on_ui_state_changed);
+
+    bind_dimension_properties_to_settings ();
+    create_contact_pane ();
+    set_headerbar_layout ();
+    connect_button_signals ();
+    restore_window_size_and_position_from_settings ();
   }
 
-  public bool edit_mode {
-    get; set;
-  }
-
-  public Window (Gtk.Application app, Store contacts_store) {
-    Object (application: app, store: contacts_store);
-    debug ("everyone creation: finalized already!!!");
-
-    contact_pane.store = contacts_store;
-
-    /* stablishing constraints */
-    this.bind_property ("selection-mode",
-			right_toolbar, "show-close-button",
-			BindingFlags.DEFAULT |
-			BindingFlags.INVERT_BOOLEAN);
-    this.bind_property ("selection-mode",
-			add_button, "visible",
-			BindingFlags.DEFAULT |
-			BindingFlags.INVERT_BOOLEAN);
-    this.bind_property ("selection-mode",
-			edit_button, "visible",
-			BindingFlags.DEFAULT |
-			BindingFlags.INVERT_BOOLEAN);
-
-    this.bind_property ("edit-mode",
-			edit_button, "visible",
-			BindingFlags.DEFAULT |
-			BindingFlags.INVERT_BOOLEAN);
-    this.bind_property ("edit-mode",
-			done_button, "visible",
-			BindingFlags.DEFAULT);
-    this.bind_property ("edit-mode",
-			cancel_button, "visible",
-			BindingFlags.DEFAULT);
-    this.bind_property ("edit-mode",
-			add_button, "visible",
-			BindingFlags.DEFAULT |
-			BindingFlags.INVERT_BOOLEAN);
-    this.bind_property ("edit-mode",
-			select_button, "visible",
-			BindingFlags.DEFAULT |
-			BindingFlags.INVERT_BOOLEAN);
-    this.bind_property ("edit-mode",
-			right_toolbar, "show-close-button",
-			BindingFlags.DEFAULT |
-			BindingFlags.INVERT_BOOLEAN);
-
-    if ((app as App).settings.get_boolean ("did-initial-setup")) {
-      view_switcher.visible_child_name = "content-view";
-      set_titlebar (content_header_bar);
-    } else {
-      var change_book_action = app.lookup_action ("change_book") as GLib.SimpleAction;
-      if (change_book_action != null) {
-	change_book_action.set_enabled (false);
-      }
-
-      store.eds_persona_store_changed.connect  ( () => {
-	  setup_accounts_list.update_contents (false);
-	});
-      ulong id2 = 0;
-      id2 = setup_accounts_list.account_selected.connect (() => {
-	  setup_done_button.set_sensitive (true);
-	  setup_accounts_list.disconnect (id2);
-	});
-
-      view_switcher.visible_child_name = "setup-view";
-      set_titlebar (setup_header_bar);
-
-      setup_accounts_list.update_contents (false);
-
-      setup_done_button.clicked.connect (() => {
-	  view_switcher.visible_child_name = "content-view";
-	  set_titlebar (content_header_bar);
-
-	  var e_store = setup_accounts_list.selected_store as Edsf.PersonaStore;
-	  eds_source_registry.set_default_address_book (e_store.source);
-	  (app as App).settings.set_boolean ("did-initial-setup", true);
-
-	  if (change_book_action != null) {
-	    change_book_action.set_enabled (true);
-	  }
-	});
-      setup_cancel_button.clicked.connect (() => {
-	  app.quit ();
-	});
+  private void restore_window_size_and_position_from_settings () {
+    var screen = get_screen();
+    if (screen != null && this.window_width <= screen.get_width () && this.window_height <= screen.get_height ()) {
+      set_default_size (this.window_width, this.window_height);
     }
+    if (this.window_maximized) {
+      maximize();
+    }
+    // always put the window into the center position to avoid losing it somewhere at the screen boundaries.
+    this.window_position = Gtk.WindowPosition.CENTER;
+  }
 
-    init_content_widgets ();
+  public override bool window_state_event (Gdk.EventWindowState event) {
+    if (!(Gdk.WindowState.WITHDRAWN in event.new_window_state)) {
+      bool maximized = (Gdk.WindowState.MAXIMIZED in event.new_window_state);
+      if (this.window_maximized != maximized)
+        this.window_maximized = maximized;
+    }
+    return base.window_state_event (event);
+  }
+
+  // Called on window resize. Save window size for the next start.
+  public override void size_allocate (Gtk.Allocation allocation) {
+    base.size_allocate (allocation);
+
+    var screen = get_screen ();
+    if (screen != null && !this.window_maximized) {
+      // Get the size via ::get_size instead of the allocation
+      // so that the window isn't ever-expanding.
+      int width = 0;
+      int height = 0;
+      get_size(out width, out height);
+
+      // Only store if the values have changed and are
+      // reasonable-looking.
+      if (this.window_width != width && width > 0 && width <= screen.get_width ()) {
+        this.window_width = width;
+      }
+      if (this.window_height != height && height > 0 && height <= screen.get_height ()) {
+        this.window_height = height;
+      }
+    }
+  }
+
+  private void create_contact_pane () {
+    this.contact_pane = new ContactPane (this, this.store);
+    this.contact_pane.visible = true;
+    this.contact_pane.hexpand = true;
+    this.contact_pane.will_delete.connect ( (contact) => {
+        delete_contacts (new ArrayList<Contact>.wrap ({ contact }));
+     });
+    this.contact_pane.contacts_linked.connect (contact_pane_contacts_linked_cb);
+    this.contact_pane.display_name_changed.connect ((display_name) => {
+      this.right_header.title = display_name;
+    });
+    this.contact_pane_container.add (this.contact_pane);
   }
 
   public void set_list_pane () {
@@ -188,18 +163,16 @@ public class Contacts.Window : Gtk.ApplicationWindow {
     if (list_pane != null)
       return;
 
-    list_pane = new ListPane (store);
+    list_pane = new ListPane (this.settings, store);
+    bind_property ("state", this.list_pane, "state", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
     list_pane.selection_changed.connect (list_pane_selection_changed_cb);
     list_pane.link_contacts.connect (list_pane_link_contacts_cb);
-    list_pane.delete_contacts.connect (list_pane_delete_contacts_cb);
+    list_pane.delete_contacts.connect (delete_contacts);
 
     list_pane.contacts_marked.connect ((nr_contacts) => {
-	if (nr_contacts == 0) {
-	  left_title = _("Select");
-	} else {
-	  left_title = ngettext ("%d Selected",
-				 "%d Selected", nr_contacts).printf (nr_contacts);
-	}
+        if (nr_contacts != 0)
+          this.left_header.title = ngettext ("%d Selected", "%d Selected", nr_contacts)
+                                       .printf (nr_contacts);
       });
 
     left_pane_size_group.add_widget (list_pane);
@@ -208,151 +181,144 @@ public class Contacts.Window : Gtk.ApplicationWindow {
 
     content_grid.attach (list_pane, 0, 0, 1, 1);
 
-    if (contact_pane.contact != null)
-      list_pane.select_contact (contact_pane.contact);
+    if (this.contact_pane.contact != null)
+      list_pane.select_contact (this.contact_pane.contact);
 
     list_pane.show ();
   }
 
-  public void activate_selection_mode (bool active) {
-    if (active) {
-      selection_mode = true;
+  private void on_ui_state_changed (Object obj, ParamSpec pspec) {
+    // UI when we're not editing of selecting stuff
+    this.add_button.visible
+        = this.hamburger_menu_button.visible
+        = this.right_header.show_close_button
+        = (this.state == UiState.NORMAL || this.state == UiState.SHOWING);
 
-      left_toolbar.get_style_context ().add_class ("selection-mode");
-      right_toolbar.get_style_context ().add_class ("selection-mode");
+    // UI when showing a contact
+    this.edit_button.visible
+        = this.favorite_button.visible
+        = (this.state == UiState.SHOWING);
 
-      left_toolbar.set_title (_("Select"));
+    // Selecting UI
+    this.select_cancel_button.visible = (this.state == UiState.SELECTING);
 
-      list_pane.show_selection ();
+    if (this.state != UiState.SELECTING)
+      this.left_header.title = _("Contacts");
+
+    // Editing UI
+    this.cancel_button.visible
+        = this.done_button.visible
+        = this.state.editing ();
+    if (this.state.editing ())
+      this.done_button.label = (this.state == UiState.CREATING)? _("Add") : _("Done");
+
+    // When selecting or editing, we get special headerbars
+    if (this.state == UiState.SELECTING || this.state.editing ()) {
+      this.left_header.get_style_context ().add_class ("selection-mode");
+      this.right_header.get_style_context ().add_class ("selection-mode");
     } else {
-      selection_mode = false;
-
-      left_toolbar.get_style_context ().remove_class ("selection-mode");
-      right_toolbar.get_style_context ().remove_class ("selection-mode");
-
-      left_toolbar.set_title (_("All Contacts"));
-
-      list_pane.hide_selection ();
-
-      /* could be no contact selected whatsoever */
-      if (contact_pane.contact == null)
-	edit_button.hide ();
+      this.left_header.get_style_context ().remove_class ("selection-mode");
+      this.right_header.get_style_context ().remove_class ("selection-mode");
     }
   }
 
-  public void enter_edit_mode () {
-    if (contact_pane.contact == null)
+  [GtkCallback]
+  private void on_edit_button_clicked () {
+    if (this.contact_pane.contact == null)
       return;
 
-    edit_mode = true;
+    this.state = UiState.UPDATING;
 
-    var name = contact_pane.contact.display_name;
-    right_title = _("Editing %s").printf (name);
+    var name = this.contact_pane.contact.individual.display_name;
+    this.right_header.title = _("Editing %s").printf (name);
 
-    left_toolbar.get_style_context ().add_class ("selection-mode");
-    right_toolbar.get_style_context ().add_class ("selection-mode");
-
-    contact_pane.set_edit_mode (true);
+    this.contact_pane.set_edit_mode (true);
   }
 
-  public void leave_edit_mode (bool drop_changes = false) {
-    edit_mode = false;
+  [GtkCallback]
+  private void on_favorite_button_toggled (ToggleButton button) {
+    // Don't change the contact being favorite while switching between the two of them
+    if (this.ignore_favorite_button_toggled)
+      return;
 
-    left_toolbar.get_style_context ().remove_class ("selection-mode");
-    right_toolbar.get_style_context ().remove_class ("selection-mode");
+    var is_fav = this.contact_pane.contact.individual.is_favourite;
+    this.contact_pane.contact.individual.is_favourite = !is_fav;
+  }
 
-    if (new_contact_mode) {
-      done_button.label = _("Done");
+  private void stop_editing (bool drop_changes = false) {
+    if (this.state == UiState.CREATING) {
 
       if (drop_changes) {
-	contact_pane.set_edit_mode (false, drop_changes);
+        this.contact_pane.set_edit_mode (false, drop_changes);
       } else {
-	contact_pane.create_contact ();
+        this.contact_pane.create_contact.begin ();
       }
-      new_contact_mode = false;
+      this.state = UiState.NORMAL;
     } else {
-      contact_pane.set_edit_mode (false, drop_changes);
+      this.contact_pane.set_edit_mode (false, drop_changes);
+      this.state = UiState.SHOWING;
     }
 
-    if (contact_pane.contact != null) {
-      right_title = contact_pane.contact.display_name;
+    if (this.contact_pane.contact != null) {
+      this.right_header.title = this.contact_pane.contact.individual.display_name;
     } else {
-      right_title = "";
-      edit_button.hide ();
+      this.right_header.title = "";
     }
   }
 
-  public void add_notification (Widget notification) {
-    overlay.add_overlay (notification);
+  public void add_notification (InAppNotification notification) {
+    this.notification_overlay.add_overlay (notification);
+    notification.show ();
   }
 
   public void set_shown_contact (Contact? c) {
     /* FIXME: ask the user to leave edit-mode and act accordingly */
-    if (contact_pane.on_edit_mode) {
-      leave_edit_mode ();
-    }
+    if (this.contact_pane.on_edit_mode)
+      stop_editing ();
 
-    contact_pane.show_contact (c, false);
+    this.contact_pane.show_contact (c, false);
     if (list_pane != null)
       list_pane.select_contact (c);
 
-    /* clearing right_toolbar */
-    if (c != null)
-      right_title = c.display_name;
-    else
-      right_title = "";
-
-    edit_button.visible = (c != null) && !select_button.active;
+    // clearing right_header
+    if (c != null) {
+      this.ignore_favorite_button_toggled = true;
+      this.favorite_button.active = c.individual.is_favourite;
+      this.ignore_favorite_button_toggled = false;
+      this.favorite_button.tooltip_text = (c.individual.is_favourite)? _("Unmark as favorite")
+                                                                     : _("Mark as favorite");
+      this.right_header.title = c.individual.display_name;
+    }
   }
 
   [GtkCallback]
   public void new_contact () {
-    /* FIXME: eventually ContactPane will become just a skeleton and
-     * this call will go through to ContactEditor */
-    edit_mode = true;
-    new_contact_mode = true;
+    this.state = UiState.CREATING;
 
-    right_title = _("New Contact");
+    this.right_header.title = _("New Contact");
 
-    left_toolbar.get_style_context ().add_class ("selection-mode");
-    right_toolbar.get_style_context ().add_class ("selection-mode");
-
-    done_button.label = _("Add");
-
-    contact_pane.new_contact ();
+    this.contact_pane.new_contact ();
   }
 
   public void show_search (string query) {
     list_pane.filter_entry.set_text (query);
   }
 
-  /* internal API */
-  void init_content_widgets () {
-    string layout_desc;
-    string[] tokens;
-
-    layout_desc = Gtk.Settings.get_default ().gtk_decoration_layout;
-    tokens = layout_desc.split (":", 2);
+  private void set_headerbar_layout () {
+    // Propagate the decoration layout to the separate headerbars, so
+    // that we know, for example, on which side the close button should be.
+    string layout_desc = Gtk.Settings.get_default ().gtk_decoration_layout;
+    string[] tokens = layout_desc.split (":", 2);
     if (tokens != null) {
-      right_toolbar.decoration_layout = ":%s".printf (tokens[1]);
-      left_toolbar.decoration_layout = tokens[0];
+      this.right_header.decoration_layout = ":%s".printf (tokens[1]);
+      this.left_header.decoration_layout = tokens[0];
     }
+  }
 
-    select_button.toggled.connect (() => {
-	activate_selection_mode (select_button.active);
-      });
-
-    edit_button.clicked.connect (() => {
-	enter_edit_mode ();
-      });
-
-    done_button.clicked.connect (() => {
-	leave_edit_mode ();
-      });
-
-    cancel_button.clicked.connect (() => {
-	leave_edit_mode (true);
-      });
+  private void connect_button_signals () {
+    this.select_cancel_button.clicked.connect (() => { this.state = UiState.NORMAL; });
+    this.done_button.clicked.connect (() => stop_editing ());
+    this.cancel_button.clicked.connect (() => stop_editing (true));
   }
 
   [GtkCallback]
@@ -360,7 +326,7 @@ public class Contacts.Window : Gtk.ApplicationWindow {
     if ((event.keyval == Gdk.keyval_from_name ("q")) &&
         ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0)) {
       // Clear the contacts so any changed information is stored
-      contact_pane.show_contact (null);
+      this.contact_pane.show_contact (null);
       destroy ();
     } else if (((event.keyval == Gdk.Key.s) ||
                 (event.keyval == Gdk.Key.f)) &&
@@ -383,139 +349,84 @@ public class Contacts.Window : Gtk.ApplicationWindow {
   [GtkCallback]
   bool delete_event_cb (Gdk.EventAny event) {
     // Clear the contacts so any changed information is stored
-    contact_pane.show_contact (null);
+    this.contact_pane.show_contact (null);
     return false;
   }
 
   void list_pane_selection_changed_cb (Contact? new_selection) {
     set_shown_contact (new_selection);
+    if (this.state != UiState.SELECTING)
+      this.state = UiState.SHOWING;
   }
 
   void list_pane_link_contacts_cb (LinkedList<Contact> contact_list) {
-    /* getting out of selection mode */
     set_shown_contact (null);
-    select_button.set_active (false);
+    this.state = UiState.NORMAL;
 
     LinkOperation2 operation = null;
-    link_contacts_list.begin (contact_list, (obj, result) => {
+    link_contacts_list.begin (contact_list, this.store, (obj, result) => {
         operation = link_contacts_list.end (result);
       });
-
-    var notification = new Gd.Notification ();
-    notification.timeout = 5;
-
-    var g = new Grid ();
-    g.set_column_spacing (8);
-    notification.add (g);
 
     string msg = ngettext ("%d contacts linked",
                            "%d contacts linked",
                            contact_list.size).printf (contact_list.size);
 
     var b = new Button.with_mnemonic (_("_Undo"));
-    g.add (new Label (msg));
-    g.add (b);
 
-    notification.show_all ();
-    add_notification (notification);
-
+    var notification = new InAppNotification (msg);
     /* signal handlers */
     b.clicked.connect ( () => {
         /* here, we will unlink the thing in question */
         operation.undo.begin ();
-
         notification.dismiss ();
       });
+
+    add_notification (notification);
   }
 
-  void list_pane_delete_contacts_cb (LinkedList<Contact> contact_list) {
-    /* getting out of selection mode */
+  private void delete_contacts (Gee.List<Contact> contacts) {
     set_shown_contact (null);
-    select_button.set_active (false);
+    this.state = UiState.NORMAL;
 
-    var notification = new Gd.Notification ();
-    notification.timeout = 5;
-
-    var g = new Grid ();
-    g.set_column_spacing (8);
-    notification.add (g);
-
-    string msg = ngettext ("%d contact deleted",
-                           "%d contacts deleted",
-                           contact_list.size).printf (contact_list.size);
+    string msg;
+    if (contacts.size == 1)
+      msg = _("Deleted contact %s").printf (contacts[0].individual.display_name);
+    else
+      msg = ngettext ("%d contact deleted", "%d contacts deleted", contacts.size)
+              .printf (contacts.size);
 
     var b = new Button.with_mnemonic (_("_Undo"));
-    g.add (new Label (msg));
-    g.add (b);
 
-    notification.show_all ();
-    add_notification (notification);
+    var notification = new InAppNotification (msg, b);
 
-    /* signal handlers */
+    // Don't wrap (default), but ellipsize
+    notification.message_label.wrap = false;
+    notification.message_label.max_width_chars = 45;
+    notification.message_label.ellipsize = Pango.EllipsizeMode.END;
+
+    // signal handlers
     bool really_delete = true;
-    notification.dismissed.connect ( () => {
-        if (really_delete) {
-          foreach (var c in contact_list) {
-            c.remove_personas.begin ();
-          }
-        }
-      });
     b.clicked.connect ( () => {
         really_delete = false;
         notification.dismiss ();
-	foreach (var c in contact_list) {
-	  c.show ();
-	}
-	set_shown_contact (contact_list.last ());
+
+        foreach (var c in contacts)
+          c.show ();
+
+        set_shown_contact (contacts[0]);
+        this.state = UiState.SHOWING;
       });
-  }
-
-  [GtkCallback]
-  void contact_pane_delete_contact_cb (Contact contact) {
-    /* unsetting edit-mode */
-    set_shown_contact (null);
-    select_button.set_active (false);
-
-    var notification = new Gd.Notification ();
-    notification.timeout = 5;
-
-    var g = new Grid ();
-    g.set_column_spacing (8);
-    notification.add (g);
-
-    var label = new Label (_("Contact deleted: \"%s\"").printf (contact.display_name));
-    label.set_max_width_chars (45);
-    label.set_ellipsize (Pango.EllipsizeMode.END);
-    var b = new Button.with_mnemonic (_("_Undo"));
-    g.add (label);
-    g.add (b);
-
-    bool really_delete = true;
-    notification.show_all ();
     notification.dismissed.connect ( () => {
         if (really_delete)
-          contact.remove_personas.begin ( () => {
-              contact.show ();
-            });
+          foreach (var c in contacts)
+            c.remove_personas.begin ();
       });
-    b.clicked.connect ( () => {
-        really_delete = false;
-        notification.dismiss ();
-        contact.show ();
-        set_shown_contact (contact);
-      });
+
     add_notification (notification);
   }
 
-  [GtkCallback]
   void contact_pane_contacts_linked_cb (string? main_contact, string linked_contact, LinkOperation operation) {
-    var notification = new Gd.Notification ();
-    notification.timeout = 5;
-
-    var g = new Grid ();
-    g.set_column_spacing (8);
-    notification.add (g);
-
     string msg;
     if (main_contact != null)
       msg = _("%s linked to %s").printf (main_contact, linked_contact);
@@ -523,14 +434,19 @@ public class Contacts.Window : Gtk.ApplicationWindow {
       msg = _("%s linked to the contact").printf (linked_contact);
 
     var b = new Button.with_mnemonic (_("_Undo"));
-    g.add (new Label (msg));
-    g.add (b);
+    var notification = new InAppNotification (msg, b);
 
-    notification.show_all ();
     b.clicked.connect ( () => {
-	notification.dismiss ();
-	operation.undo.begin ();
+        notification.dismiss ();
+        operation.undo.begin ();
       });
+
     add_notification (notification);
+  }
+
+  private void bind_dimension_properties_to_settings () {
+    this.settings.bind_default (Settings.WINDOW_WIDTH_KEY, this, WINDOW_WIDTH_PROP);
+    this.settings.bind_default (Settings.WINDOW_HEIGHT_KEY, this, WINDOW_HEIGHT_PROP);
+    this.settings.bind_default (Settings.WINDOW_MAXIMIZED_KEY, this, WINDOW_MAXIMIZED_PROP);
   }
 }

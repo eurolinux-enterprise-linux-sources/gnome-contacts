@@ -20,133 +20,90 @@ using Gee;
 using Gtk;
 using Folks;
 
-[GtkTemplate (ui = "/org/gnome/contacts/ui/contacts-list-pane.ui")]
+[GtkTemplate (ui = "/org/gnome/Contacts/ui/contacts-list-pane.ui")]
 public class Contacts.ListPane : Frame {
-  private Store _store;
-  public Store store {
-    get {
-      return _store;
-    }
-    set {
-      _store = value;
-      contacts_view.store = _store;
-    }
-  }
+  private Store store;
 
   [GtkChild]
-  private View contacts_view;
-
-  [GtkChild]
-  public ToolItem search_tool_item;
+  private Gtk.ScrolledWindow contacts_list_container;
+  private ContactList contacts_list;
 
   [GtkChild]
   public SearchEntry filter_entry;
+  private SimpleQuery filter_query;
 
   [GtkChild]
-  public Button link_button;
+  private Button link_button;
 
   [GtkChild]
-  public Button delete_button;
+  private Button delete_button;
 
   [GtkChild]
-  public ActionBar actions_bar;
+  private ActionBar actions_bar;
 
-  private uint filter_entry_changed_id;
-  private bool ignore_selection_change;
+  public UiState state { get; set; }
 
   public signal void selection_changed (Contact? contact);
-
-  public signal void link_contacts (LinkedList<Contact> contacts_list);
-  public signal void delete_contacts (LinkedList<Contact> contacts_list);
-
+  public signal void link_contacts (LinkedList<Contact> contacts);
+  public signal void delete_contacts (LinkedList<Contact> contacts);
   public signal void contacts_marked (int contacts_marked);
 
-  public void refilter () {
-    string []? values;
-    string str = filter_entry.get_text ();
+  public ListPane (Settings settings, Store contacts_store) {
+    this.store = contacts_store;
+    this.notify["state"].connect (on_ui_state_changed);
 
-    if (Utils.string_is_empty (str))
-      values = null;
-    else {
-      str = Utils.canonicalize_for_search (str);
-      values = str.split(" ");
-    }
+    // Build the filter query
+    string[] filtered_fields = Query.MATCH_FIELDS_NAMES;
+    foreach (var field in Query.MATCH_FIELDS_ADDRESSES)
+      filtered_fields += field;
+    this.filter_query = new SimpleQuery ("", filtered_fields);
 
-    contacts_view.set_filter_values (values);
+
+    // Load the ContactsView and connect the necessary signals
+    this.contacts_list = new ContactList (settings, contacts_store, this.filter_query);
+    bind_property ("state", this.contacts_list, "state", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+    this.contacts_list_container.add (this.contacts_list);
+
+    this.contacts_list.selection_changed.connect( (l, contact) => {
+        selection_changed (contact);
+      });
+
+    this.contacts_list.contacts_marked.connect ((nr_contacts_marked) => {
+        this.delete_button.sensitive = (nr_contacts_marked > 0);
+        this.link_button.sensitive = (nr_contacts_marked > 1);
+        contacts_marked (nr_contacts_marked);
+      });
   }
 
-  private bool filter_entry_changed_timeout () {
-    filter_entry_changed_id = 0;
-    refilter ();
-    return false;
+  private void on_ui_state_changed (Object obj, ParamSpec pspec) {
+    // Disable when editing a contact. (Not using `this.sensitive` to allow scrolling)
+    this.filter_entry.sensitive
+        = this.contacts_list.sensitive
+        = !this.state.editing ();
+
+    this.actions_bar.visible = (this.state == UiState.SELECTING);
   }
 
   [GtkCallback]
   private void filter_entry_changed (Editable editable) {
-    if (filter_entry_changed_id != 0)
-      Source.remove (filter_entry_changed_id);
-
-    filter_entry_changed_id = Timeout.add (300, filter_entry_changed_timeout);
+    this.filter_query.query_string = this.filter_entry.text;
   }
 
-  public ListPane (Store contacts_store) {
-    Object (store: contacts_store);
+  public void select_contact (Contact? contact) {
+    this.contacts_list.select_contact (contact);
   }
 
-  construct {
-    search_tool_item.set_expand (true);
-
-    contacts_view.selection_changed.connect( (l, contact) => {
-        if (!ignore_selection_change)
-          selection_changed (contact);
-      });
-
-    /* contact mark handling */
-    contacts_view.contacts_marked.connect ((nr_contacts_marked) => {
-        if (nr_contacts_marked > 0)
-          delete_button.set_sensitive (true);
-        else
-          delete_button.set_sensitive (false);
-
-        if (nr_contacts_marked > 1)
-          link_button.set_sensitive (true);
-        else
-          link_button.set_sensitive (false);
-
-	contacts_marked (nr_contacts_marked);
-      });
-
-    link_button.clicked.connect (() => {
-        var marked_contacts = contacts_view.get_marked_contacts ();
-
-	link_contacts (marked_contacts);
-      });
-
-    delete_button.clicked.connect (() => {
-        var marked_contacts = contacts_view.get_marked_contacts ();
-        foreach (var c in marked_contacts) {
-	  c.hide ();
-        }
-
-	delete_contacts (marked_contacts);
-      });
+  [GtkCallback]
+  private void on_link_button_clicked (Gtk.Button link_button) {
+    link_contacts (this.contacts_list.get_marked_contacts ());
   }
 
-  public void select_contact (Contact? contact, bool ignore_change = false) {
-    if (ignore_change)
-      ignore_selection_change = true;
-    contacts_view.select_contact (contact);
-    ignore_selection_change = false;
-  }
-
-  public void show_selection () {
-    contacts_view.show_selectors ();
-    actions_bar.show ();
-  }
-
-  public void hide_selection () {
-    contacts_view.hide_selectors ();
-    actions_bar.hide ();
+  [GtkCallback]
+  private void on_delete_button_clicked (Gtk.Button delete_button) {
+    var marked_contacts = this.contacts_list.get_marked_contacts ();
+    foreach (var c in marked_contacts)
+      c.hide ();
+    delete_contacts (marked_contacts);
   }
 
   /* Limiting width hack */

@@ -1,4 +1,3 @@
-/* -*- Mode: vala; indent-tabs-mode: nil; c-basic-offset: 2; tab-width: 8 -*- */
 /*
  * Copyright (C) 2011 Erick Pérez Castellanos <erick.red@gmail.com>
  *
@@ -19,54 +18,25 @@
 using Gtk;
 using Folks;
 
-public class Contacts.AccountsList : Grid {
-  ListBox accounts_view;
-  ListBoxRow last_selected_row;
-  Button add_account_button;
+[GtkTemplate (ui = "/org/gnome/Contacts/ui/contacts-accounts-list.ui")]
+public class Contacts.AccountsList : Box {
+  [GtkChild]
+  private ListBox accounts_view;
 
-  public PersonaStore selected_store;
+  private ListBoxRow last_selected_row;
+
+  private Store contacts_store;
+
+  public PersonaStore? selected_store;
 
   public signal void account_selected ();
 
-  construct {
-    set_orientation (Orientation.VERTICAL);
-    set_row_spacing (12);
+  public AccountsList (Store contacts_store) {
+    this.contacts_store = contacts_store;
+    this.selected_store = null;
 
-    selected_store = null;
-
-    accounts_view = new ListBox ();
-    accounts_view.set_selection_mode (SelectionMode.NONE);
-    accounts_view.set_size_request (372, -1);
-    accounts_view.set_header_func (add_separator);
-
-    var scrolled = new ScrolledWindow(null, null);
-    scrolled.set_min_content_height (210);
-    scrolled.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
-    scrolled.set_shadow_type (ShadowType.IN);
-    scrolled.add (accounts_view);
-
-    add_account_button = new Button.with_label (_("Online Accounts"));
-    add_account_button.get_style_context ().add_class (STYLE_CLASS_RAISED);
-    add_account_button.get_child ().margin_start = 6;
-    add_account_button.get_child ().margin_end = 6;
-    add_account_button.get_child ().margin_top = 3;
-    add_account_button.get_child ().margin_bottom = 3;
-    add_account_button.clicked.connect (() => {
-        try {
-          Process.spawn_command_line_async ("gnome-control-center online-accounts");
-        }
-        catch (Error e) {
-          // TODO: Show error dialog
-        }
-      });
-
-    add (scrolled);
-    add (add_account_button);
-
-    show_all ();
-
-    /* signal handling */
-    accounts_view.row_activated.connect (row_activated);
+    this.accounts_view.set_header_func (add_separator);
+    this.accounts_view.row_activated.connect (row_activated);
   }
 
   private void row_activated (ListBoxRow? row) {
@@ -107,7 +77,7 @@ public class Contacts.AccountsList : Grid {
     }
 
     PersonaStore local_store = null;
-    foreach (var persona_store in App.get_eds_address_books ()) {
+    foreach (var persona_store in Utils.get_eds_address_books (this.contacts_store)) {
       if (persona_store.id == "system-address-book") {
         local_store = persona_store;
         continue;
@@ -134,7 +104,7 @@ public class Contacts.AccountsList : Grid {
         var provider_image = Contacts.get_icon_for_goa_account (source_account_id);
         row_data.attach (provider_image, 0, 0, 1, 2);
       } else {
-        var provider_image = new Image.from_icon_name ("x-office-address-book",
+        var provider_image = new Image.from_icon_name ("gnome-contacts",
                                                        IconSize.DIALOG);
         row_data.attach (provider_image, 0, 0, 1, 2);
       }
@@ -156,7 +126,7 @@ public class Contacts.AccountsList : Grid {
       accounts_view.add (row_data);
 
       if (select_active &&
-          persona_store == App.app.contacts_store.aggregator.primary_store) {
+          persona_store == this.contacts_store.aggregator.primary_store) {
         var row = row_data.get_parent () as ListBoxRow;
         row_activated (row);
       }
@@ -168,19 +138,46 @@ public class Contacts.AccountsList : Grid {
       local_data.margin_start = 5;
       local_data.set_column_spacing (10);
       local_data.set_data ("store", local_store);
-      var provider_image = new Image.from_icon_name ("x-office-address-book",
+      var provider_image = new Image.from_icon_name ("gnome-contacts",
                                                      IconSize.DIALOG);
       local_data.add (provider_image);
       var local_label = new Label (_("Local Address Book"));
       local_data.add (local_label);
       accounts_view.add (local_data);
       if (select_active &&
-          local_store == App.app.contacts_store.aggregator.primary_store) {
+          local_store == this.contacts_store.aggregator.primary_store) {
         var row = local_data.get_parent () as ListBoxRow;
         row_activated (row);
       }
     }
 
     accounts_view.show_all ();
+  }
+
+  [GtkCallback]
+  private void on_goa_button_clicked () {
+    try {
+      var proxy = new DBusProxy.for_bus_sync (BusType.SESSION,
+                                              DBusProxyFlags.NONE,
+                                              null,
+                                              "org.gnome.ControlCenter",
+                                              "/org/gnome/ControlCenter",
+                                              "org.gtk.Actions");
+
+      var builder = new VariantBuilder (new VariantType ("av") );
+      builder.add ("v", new Variant.string (""));
+      var param = new Variant.tuple ({
+        new Variant.string ("launch-panel"),
+        new Variant.array (new VariantType ("v"), {
+          new Variant ("v", new Variant ("(sav)", "online-accounts", builder))
+        }),
+        new Variant.array (new VariantType ("{sv}"), {})
+      });
+
+      proxy.call_sync ("Activate", param, DBusCallFlags.NONE, -1);
+    } catch (Error e) {
+      // TODO: Show error dialog
+      warning ("Couldn't open online-accounts: %s", e.message);
+    }
   }
 }

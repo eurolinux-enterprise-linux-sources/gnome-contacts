@@ -3,19 +3,19 @@
   <id>org.gnome.Contacts.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
-  <_name>GNOME Contacts</_name>
-  <_summary>A contacts manager for GNOME</_summary>
+  <name>Contacts</name>
+  <summary>A contacts manager for GNOME</summary>
   <description>
-    <_p>
+    <p>
       Contacts keeps and organize your contacts information. You can create,
       edit, delete and link together pieces of information about your contacts.
       Contacts aggregates the details from all your sources providing a
       centralized place for managing your contacts.
-    </_p>
-    <_p>
+    </p>
+    <p>
       Contacts will also integrate with online address books and automatically
       link contacts from different online sources.
-    </_p>
+    </p>
   </description>
   <screenshots>
     <screenshot height="575" width="800" type="default">
@@ -24,6 +24,169 @@
     </image>
     </screenshot>
   </screenshots>
+
+  <releases>
+    <release date="2018-05-08" version="3.28.2">
+      <description>
+        <p>
+          This is the third release in the 3.28 stable release series. It
+          contains an updated Slovenian translation.
+        </p>
+      </description>
+    </release>
+    <release date="2018-04-12" version="3.28.1">
+      <description>
+        <p>
+          This is the second release in the 3.28 stable release series. 3.28.1
+          contains updated translations for several languages and contains a
+          fix when checking for libcheese.
+        </p>
+      </description>
+    </release>
+    <release date="2018-03-12" version="3.28">
+      <description>
+        <p>
+          Version 3.28 is a stable release, with the following major improvements:
+        </p>
+        <ul>
+          <li>Favorite contacts, which are shown at the top of the contact list.</li>
+          <li>Sort contacts by their first name or surname.</li>
+          <li>Small tweaks to the UI, such as a more welcoming setup screen and rounded avatars.</li>
+          <li>Performance improvements to the GNOME Shell search provider.</li>
+          <li>A slightly decreased memory usage.</li>
+        </ul>
+        <p>This release also updates translations in several languages.</p>
+      </description>
+    </release>
+    <release date="2018-03-05" version="3.27.92">
+      <description>
+        <p>
+          This is the fourth unstable (beta) release in the 3.27 development series,
+          with the following improvements:
+        </p>
+        <ul>
+          <li>The titlebar is now updated when a contact's name changes.</li>
+          <li>The window will now remember its size and restore it on the next start.</li>
+          <li>Postal addresses are now sorted before notes.</li>
+        </ul>
+        <p>This release also updates translations in several languages.</p>
+      </description>
+    </release>
+    <release date="2018-02-05" version="3.27.90">
+      <description>
+        <p>
+          This is the third unstable release in the 3.27 development series,
+          with the following improvements:
+        </p>
+        <ul>
+          <li>Support for favorite contacts. These contacts will be shown at the top of the list.</li>
+          <li>Contacts now allows sorting by both first name and surname.</li>
+          <li>Avatars are now displayed as a circle and are better optimized for memory usage.</li>
+          <li>Selection mode can now be started by right-clicking the contact list.</li>
+        </ul>
+        <p>This release also updates translations in several languages.</p>
+      </description>
+    </release>
+    <release date="2018-01-09" version="3.27.4">
+      <description>
+        <p>
+          This is the second unstable release in the 3.27 development series,
+          with the following improvements:
+        </p>
+        <ul>
+          <li>Contacts now has a shortcuts window</li>
+          <li>Small tweaks to the setup screen</li>
+          <li>Support --version as command-line argument</li>
+          <li>Telepathy is no longer a mandatory dependency</li>
+          <li>Support for maps can be disabled at compile time</li>
+          <li>Improved the Shell search provider</li>
+        </ul>
+        <p>This release also updates translations in several languages.</p>
+      </description>
+    </release>
+    <release date="2017-11-13" version="3.27.2">
+      <description>
+        <p>
+          This is the first unstable release in the 3.27 development series,
+          with the following improvements:
+        </p>
+        <ul>
+          <li>Contact properties are now sorted by type</li>
+          <li>Avatars are now displayed using rounded border</li>
+        </ul>
+        <p>This release also updates translations in several languages.</p>
+      </description>
+    </release>
+    <release date="2017-09-11" version="3.26.0">
+      <description>
+        <p>
+          Version 3.26 is a stable release, with the following improvements:
+        </p>
+        <ul>
+          <li>Support for Flatpak</li>
+          <li>Support for faster builds using Meson</li>
+          <li>Saving notes in a contact now works again</li>
+          <li>Some contact properties are now selectable</li>
+          <li>Use our own app icon, rather than a predefined one</li>
+        </ul>
+        <p>This release also updates translations in several languages.</p>
+      </description>
+    </release>
+    <release date="2017-09-05" version="3.25.92.1">
+      <description>
+        <p>
+          This is an unstable release in the 3.25 development series,
+          which fixes build errors in version 3.25.92.
+        </p>
+      </description>
+    </release>
+    <release date="2017-09-04" version="3.25.92">
+      <description>
+        <p>
+          This is an unstable release in the 3.25 development series,
+          with the following improvements:
+        </p>
+        <ul>
+          <li>Added experimental support for Flatpak</li>
+          <li>Contacts can now be built with Meson</li>
+          <li>Contacts now provides its own proper app icon</li>
+          <li>Some labels in the contact sheet are now selectable</li>
+        </ul>
+        <p>
+          The following bugs are also fixed:
+        </p>
+        <ul>
+          <li>Can't save notes in a contact</li>
+          <li>Bumped minimal version of telepathy-glib, GTK+ and GLib</li>
+        </ul>
+        <p>This release also updates translations in several languages.</p>
+      </description>
+    </release>
+    <release date="2017-07-17" version="3.25.4">
+      <description>
+        <p>
+          This is an unstable release in the 3.25 development series,
+          with the following improvements:
+        </p>
+        <ul>
+          <li>Contacts now provides its own application icon</li>
+          <li>Small UI improvements to the avatar chooser dialog</li>
+        </ul>
+        <p>
+          The following bugs are also fixed:
+        </p>
+        <ul>
+          <li>Folks now requires version 11.4 or higher</li>
+          <li>Migrated away from intltool and libgd</li>
+          <li>Got rid of a bunch of warnings and critical messsages</li>
+          <li>Use the locale to translate months</li>
+          <li>Added git.mk to automagically create .gitignores</li>
+        </ul>
+        <p>This release also updates translations in several languages.</p>
+      </description>
+    </release>
+  </releases>
+
   <kudos>
     <kudo>AppMenu</kudo>
     <kudo>HiDpiIcon</kudo>
@@ -31,9 +194,9 @@
     <kudo>SearchProvider</kudo>
   </kudos>
   <url type="homepage">https://wiki.gnome.org/Apps/Contacts</url>
-  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-contacts</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/gnome-contacts/issues</url>
   <url type="donation">http://www.gnome.org/friends/</url>
-  <update_contact>erickpc@gnome.org</update_contact>
+  <update_contact>nielsdg@gnome.org</update_contact>
   <project_group>GNOME</project_group>
   <translation type="gettext">gnome-contacts</translation>
 </component>

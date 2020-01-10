@@ -1,22 +1,34 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
 data/org.gnome.Contacts.appdata.xml.in
-data/org.gnome.Contacts.desktop.in.in
-[type: gettext/ini]data/org.gnome.Contacts.search-provider.ini.in.in
+data/org.gnome.Contacts.desktop.in
+data/gtk/help-overlay.ui
+data/gtk/menus.ui
+data/ui/contacts-accounts-list.ui
+data/ui/contacts-avatar-selector.ui
+data/ui/contacts-contact-editor.ui
+data/ui/contacts-contact-pane.ui
+data/ui/contacts-link-suggestion-grid.ui
+data/ui/contacts-linked-personas-dialog.ui
+data/ui/contacts-list-pane.ui
+data/ui/contacts-setup-window.ui
+data/ui/contacts-window.ui
 src/contacts-accounts-list.vala
-src/contacts-address-map.vala
 src/contacts-app.vala
-src/contacts-avatar-dialog.vala
+src/contacts-avatar-selector.vala
+src/contacts-avatar.vala
 src/contacts-contact-editor.vala
+src/contacts-contact-list.vala
 src/contacts-contact-pane.vala
 src/contacts-contact-sheet.vala
-src/contacts-contact-frame.vala
 src/contacts-contact.vala
-src/contacts-esd-setup.c
-src/contacts-linked-accounts-dialog.vala
+src/contacts-esd-setup.vala
+src/contacts-im-service.vala
+src/contacts-linked-personas-dialog.vala
+src/contacts-link-suggestion-grid.vala
+src/contacts-settings.vala
+src/contacts-setup-window.vala
 src/contacts-types.vala
-src/contacts-view.vala
 src/contacts-window.vala
-[type: gettext/glade]data/ui/app-menu.ui
-[type: gettext/glade]data/ui/contacts-list-pane.ui
-[type: gettext/glade]data/ui/contacts-window.ui
 src/main.vala
-src/org.gnome.Contacts.gschema.xml.in
+src/org.gnome.Contacts.gschema.xml

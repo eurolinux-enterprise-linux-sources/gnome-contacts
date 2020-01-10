@@ -1,27 +1,29 @@
-%global gtk3_version 3.20.0
+%global folks_version 0.11.4
+%global gtk3_version 3.22.0
 %global geocode_glib_version 3.15.3
 
 Name:           gnome-contacts
-Version:        3.22.1
+Version:        3.28.2
 Release:        1%{?dist}
 Summary:        Contacts manager for GNOME
 
 License:        GPLv2+
 URL:            https://wiki.gnome.org/Apps/Contacts
-Source0:        https://download.gnome.org/sources/%{name}/3.22/%{name}-%{version}.tar.xz
+Source0:        https://download.gnome.org/sources/%{name}/3.28/%{name}-%{version}.tar.xz
+Patch0:         no-python3.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  docbook-dtds
 BuildRequires:  docbook-style-xsl
-BuildRequires:  intltool
+BuildRequires:  gettext
+BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  vala-devel
 BuildRequires:  /usr/bin/appstream-util
 BuildRequires:  /usr/bin/xsltproc
 BuildRequires:  pkgconfig(champlain-0.12)
 BuildRequires:  pkgconfig(cheese-gtk)
 BuildRequires:  pkgconfig(clutter-gtk-1.0)
-BuildRequires:  pkgconfig(folks)
+BuildRequires:  pkgconfig(folks) >= %{folks_version}
 BuildRequires:  pkgconfig(folks-eds)
 BuildRequires:  pkgconfig(folks-telepathy)
 BuildRequires:  pkgconfig(gee-0.8)
@@ -31,25 +33,28 @@ BuildRequires:  pkgconfig(goa-1.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gtk+-3.0) >= %{gtk3_version}
 
+Requires:       folks%{?_isa} >= 1:%{folks_version}
 Requires:       geocode-glib%{?_isa} >= %{geocode_glib_version}
 Requires:       gtk3%{?_isa} >= %{gtk3_version}
+Requires:       hicolor-icon-theme
 
 %description
 %{name} is a standalone contacts manager for GNOME desktop.
 
 %prep
 %setup -q
+%patch0 -p1 -b .no-py3
 
 %build
-%configure --enable-man-pages
-make %{?_smp_mflags} V=1
+%meson
+%meson_build
 
 %install
-%make_install
+%meson_install
 %find_lang %{name}
 
 %check
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/org.gnome.Contacts.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/org.gnome.Contacts.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/org.gnome.Contacts.desktop
 
 %postun
@@ -61,23 +66,28 @@ fi
 glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 
 %files -f %{name}.lang
-%doc AUTHORS README NEWS
+%doc AUTHORS NEWS
 %license COPYING
 %{_bindir}/%{name}
 %{_libexecdir}/gnome-contacts-search-provider
-%{_datadir}/appdata/org.gnome.Contacts.appdata.xml
 %{_datadir}/applications/org.gnome.Contacts.desktop
 %{_datadir}/dbus-1/services/org.gnome.Contacts.service
 %{_datadir}/dbus-1/services/org.gnome.Contacts.SearchProvider.service
-%{_datadir}/glib-2.0/schemas/org.gnome.Contacts.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.Contacts.gschema.xml
 %dir %{_datadir}/gnome-shell
 %dir %{_datadir}/gnome-shell/search-providers
 %{_datadir}/gnome-shell/search-providers/org.gnome.Contacts.search-provider.ini
+%{_datadir}/icons/hicolor/*/apps/gnome-contacts.png
+%{_datadir}/icons/hicolor/symbolic/apps/gnome-contacts-symbolic.svg
+%{_datadir}/metainfo/org.gnome.Contacts.appdata.xml
 %{_mandir}/man1/%{name}.1*
 
 
 %changelog
+* Wed Jun 06 2018 Richard Hughes <rhughes@redhat.com> - 3.28.2-1
+- Update to 3.28.2
+- Resolves: #1567478
+
 * Wed Sep 21 2016 Kalev Lember <klember@redhat.com> - 3.22.1-1
 - Update to 3.22.1
 - Resolves: #1386886

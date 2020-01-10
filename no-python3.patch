@@ -1,0 +1,9 @@
+diff -urNp gnome-contacts-3.28.2.old/meson_post_install.py gnome-contacts-3.28.2/meson_post_install.py
+--- gnome-contacts-3.28.2.old/meson_post_install.py	2018-06-08 10:26:13.765509046 +0100
++++ gnome-contacts-3.28.2/meson_post_install.py	2018-06-08 10:26:35.762434802 +0100
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/usr/bin/env python
+ 
+ import os
+ import subprocess
